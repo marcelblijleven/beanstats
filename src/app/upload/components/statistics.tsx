@@ -8,7 +8,6 @@ import {Button} from "@/components/ui/button";
 export default function Statistics(props: BrewStatistics) {
     return (
         <div className={"flex flex-col w-full space-y-4 md:space-y-6"}>
-            <Link href={"/upload"} passHref><Button>Upload another file</Button></Link>
             <CardStats
                 averageWeight={props.averageGrindWeight}
                 averageBrewsPerDay={props.averageBrewsPerDay}

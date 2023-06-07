@@ -13,12 +13,12 @@ export default function Home() {
     }
 
     return (
-        <main className="flex min-h-screen flex-col items-center px-2 md:px-24 pb-12">
-            <div className={"flex flex-col items-center w-full max-w-5xl space-y-4 text-center"}>
+        <main className="flex h-full flex-col items-center px-2 md:px-24 pb-12">
+            <div className={"flex flex-col items-center w-full max-w-5xl space-y-4"}>
                 <h1 className={"text-4xl md:text-6xl font-bold text-center"}>
                     <span className={"gradient-text"}>Upload</span> a Beanconqueror file to view your data
                 </h1>
-                <p className={"text-lg"}>
+                <p className={"text-lg text-center"}>
                     <Link
                         className={"underline"}
                         href={"https://beanconqueror.com/"}

@@ -53,7 +53,7 @@ export default function CountableStats(props: Props) {
                 </div>
                 {showAll && (
                     <div className={"flex justify-end"}>
-                        <Button onClick={() => setSlice(!slice)}>{slice ? "Show all" : "Collapse"}</Button>
+                        <Button variant={"link"} onClick={() => setSlice(!slice)}>{slice ? "Show all" : "Collapse"}</Button>
                     </div>
                 )}
             </CardContent>
