@@ -22,7 +22,8 @@ export function increaseCountOfKey(mapping: Mapping<number>, key: string, value?
         return
     }
 
-    mapping[key.toLowerCase().trim()] = (mapping[key] || 0) + (value || 1);
+    const lcKey = key.toLowerCase().trim();
+    mapping[lcKey] = (mapping[lcKey] || 0) + (value || 1);
 }
 
 // Sort mapping by descending value
