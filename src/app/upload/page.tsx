@@ -5,6 +5,7 @@ import {useState} from "react";
 import {processBCFile, Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
 import Statistics from "@/app/upload/components/statistics";
 import Link from "next/link";
+import {Button} from "@/components/ui/button";
 
 export default function Home() {
     const [data, setData] = useState<BrewStatistics>();
@@ -14,15 +15,21 @@ export default function Home() {
 
     return (
         <main className="flex min-h-screen flex-col items-center p-24">
-            <div className={"flex flex-col items-center w-full max-w-3xl space-y-4 text-center"}>
+            <div className={"flex flex-col items-center w-full max-w-5xl space-y-4 text-center"}>
                 <h1 className={"text-4xl md:text-6xl font-bold text-center"}>
-                    Upload
+                    <span className={"gradient-text"}>Upload</span> a Beanconqueror file to view your data
                 </h1>
-                <h2>Upload a <Link target={"_blank"} className={"underline"} href={"https://beanconqueror.com"}>Beanconqueror</Link> json file to view your brew data</h2>
-                <div className={"flex align-middle gap-2"}>
-                    {!data && <FileUpload callback={(contents) => processBCFile(contents, retrieveData)}/>}
-                    {!!data && <Statistics {...data} />}
-                </div>
+                <p className={"text-lg"}>
+                    <Link
+                        className={"underline"}
+                        href={"https://beanconqueror.com/"}
+                        target={"_blank"}
+                    >
+                        Beanconqueror
+                    </Link> is an app to track your coffee brews
+                </p>
+                {!data && <FileUpload callback={(contents) => processBCFile(contents, retrieveData)}/>}
+                {!!data && <Statistics {...data} />}
             </div>
         </main>
     )

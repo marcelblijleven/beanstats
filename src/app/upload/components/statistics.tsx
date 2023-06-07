@@ -2,14 +2,13 @@ import {Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
 import CountableStats from "@/app/upload/components/countable-stats";
 import BacklogStats from "@/app/upload/components/backlog-stats";
 import CardStats from "@/app/upload/components/card-stats";
+import Link from "next/link";
+import {Button} from "@/components/ui/button";
 
-interface Props extends BrewStatistics {
-    uploaded: boolean;
-}
-
-export default function Statistics(props: Props) {
+export default function Statistics(props: BrewStatistics) {
     return (
         <div className={"flex flex-col w-full space-y-4 md:space-y-6"}>
+            <Link href={"/upload"} passHref><Button>Upload another file</Button></Link>
             <CardStats
                 averageWeight={props.averageGrindWeight}
                 averageBrewsPerDay={props.averageBrewsPerDay}
@@ -19,7 +18,7 @@ export default function Statistics(props: Props) {
                 usagePerBeans={props.usagePerBean}
                 beanMapping={props.beanMapping}
             />
-            <BacklogStats label={props.uploaded ? "Your backlog" : "My backlog"} beans={props.beanMapping} usage={props.usagePerBean}/>
+            <BacklogStats label={"Your backlog"} beans={props.beanMapping} usage={props.usagePerBean}/>
             <CountableStats label={"Favourite origins"} countable={props.countryCount} />
             <CountableStats label={"Favourite roasters (bags)"} countable={props.roasterCount} />
             <CountableStats label={"Favourite roasters (grams)"} countable={props.roasterCountWeight} />

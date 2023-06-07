@@ -78,4 +78,8 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  .gradient-text {
+      @apply bg-gradient-to-r from-amber-500 via-amber-700 to-amber-500 bg-clip-text text-transparent;
+  }
 }
