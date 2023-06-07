@@ -5,7 +5,6 @@ import {useState} from "react";
 import {processBCFile, Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
 import Statistics from "@/app/upload/components/statistics";
 import Link from "next/link";
-import {Button} from "@/components/ui/button";
 
 export default function Home() {
     const [data, setData] = useState<BrewStatistics>();
@@ -14,7 +13,7 @@ export default function Home() {
     }
 
     return (
-        <main className="flex min-h-screen flex-col items-center p-24">
+        <main className="flex min-h-screen flex-col items-center px-2 md:px-24 pb-12">
             <div className={"flex flex-col items-center w-full max-w-5xl space-y-4 text-center"}>
                 <h1 className={"text-4xl md:text-6xl font-bold text-center"}>
                     <span className={"gradient-text"}>Upload</span> a Beanconqueror file to view your data

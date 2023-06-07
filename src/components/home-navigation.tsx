@@ -11,12 +11,12 @@ const HomeNavigation = () => (
         <div className={"flex align-middle gap-2"}>
 
             <Link href={"/upload"} passHref>
-                <Button>Process beanconqueror file</Button>
+                <Button>Process bc file</Button>
             </Link>
             <Link href={"https://www.github.com/marcelblijleven/beanstats"}>
                 <Button variant={"secondary"}>
                     <Github />
-                    View on GitHub
+                    <span className={"hidden md:inline-block"}>View on GitHub</span>
                 </Button>
             </Link>
         </div>
