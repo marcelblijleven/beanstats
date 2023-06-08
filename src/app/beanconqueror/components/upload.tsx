@@ -17,6 +17,7 @@ const Process = (props: ProcessProps) => {
         if (!props.file) return;
 
         const reader = new FileReader();
+
         reader.onloadend = (event: ProgressEvent<FileReader>) => {
             if (typeof event.target?.result === "string") {
                 props.callback(event.target.result);
@@ -27,7 +28,7 @@ const Process = (props: ProcessProps) => {
     }
 
     return (
-        <Button variant={"secondary"} onClick={onClick} disabled={!props.file}>
+        <Button variant={!!props.file ? "default": "secondary"} onClick={onClick} disabled={!props.file}>
             Process
         </Button>
     )
@@ -49,13 +50,18 @@ const FileUpload = (props: FileUploadProps) => {
             <input
                 hidden
                 ref={ref}
-                id={"file-upload"}
+                id={"file-beanconqueror"}
                 type={"file"}
                 multiple={false}
                 accept={"application/json,application.zip"}
                 onChange={onFileChange}
             />
-            <Button onClick={onFileSelect}>Select file</Button>
+            <Button
+                onClick={onFileSelect}
+                variant={!file ? "default" : "secondary"}
+            >
+                Select file
+            </Button>
             <Process file={file} callback={props.callback} />
         </div>
     )

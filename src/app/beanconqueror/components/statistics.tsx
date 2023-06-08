@@ -1,9 +1,7 @@
 import {Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
-import CountableStats from "@/app/upload/components/countable-stats";
-import BacklogStats from "@/app/upload/components/backlog-stats";
-import CardStats from "@/app/upload/components/card-stats";
-import Link from "next/link";
-import {Button} from "@/components/ui/button";
+import CountableStats from "@/app/beanconqueror/components/countable-stats";
+import BacklogStats from "@/app/beanconqueror/components/backlog-stats";
+import CardStats from "@/app/beanconqueror/components/card-stats";
 
 export default function Statistics(props: BrewStatistics) {
     return (
