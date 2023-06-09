@@ -16,13 +16,13 @@ export default function Statistics(props: BrewStatistics) {
                 beanMapping={props.beanMapping}
             />
             <BacklogStats label={"Your backlog"} beans={props.beanMapping} usage={props.usagePerBean}/>
-            <CountableStats label={"Favourite origins"} countable={props.countryCount} />
-            <CountableStats label={"Favourite roasters (bags)"} countable={props.roasterCount} />
-            <CountableStats label={"Favourite roasters (grams)"} countable={props.roasterCountWeight} />
-            <CountableStats label={"Favourite grinder"} countable={props.brewsPerGrinder} mapping={props.grinderMapping} />
-            <CountableStats label={"Favourite preparation method"} countable={props.brewsPerPreparationMethod} mapping={props.preparationMapping} />
-            <CountableStats label={"Favourite variety"} countable={props.varietyCount} />
-            <CountableStats label={"Favourite processing"} countable={props.processingCount} />
+            <CountableStats key={"fav-origins"} label={"Favourite origins"} countable={props.countryCount} />
+            <CountableStats key={"fav-roasters-bags"} label={"Favourite roasters (bags)"} countable={props.roasterCount} />
+            <CountableStats key={"fav-roasters-grams"} label={"Favourite roasters (grams)"} countable={props.roasterCountWeight} />
+            <CountableStats key={"fav-variety"} label={"Favourite variety"} countable={props.varietyCount} />
+            <CountableStats key={"fav-processing"} label={"Favourite processing"} countable={props.processingCount} />
+            <CountableStats key={"fav-grinder"} label={"Favourite grinder"} countable={props.brewsPerGrinder} mapping={props.grinderMapping} />
+            <CountableStats key={"fav-prep"} label={"Favourite preparation method"} countable={props.brewsPerPreparationMethod} mapping={props.preparationMapping} />
         </div>
 
     )

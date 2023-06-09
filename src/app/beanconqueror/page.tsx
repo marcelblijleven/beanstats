@@ -1,34 +1,35 @@
 "use client"
 
-import FileUpload from "@/app/upload/components/upload";
+import FileUpload from "@/app/beanconqueror/components/upload";
 import {useState} from "react";
 import {processBCFile, Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
-import Statistics from "@/app/upload/components/statistics";
-import Link from "next/link";
+import Statistics from "@/app/beanconqueror/components/statistics";
+import {Button} from "@/components/ui/button";
 
-export default function Home() {
+export default function BeanconquerorPage() {
     const [data, setData] = useState<BrewStatistics>();
+
     const retrieveData = (data: BrewStatistics) => {
         setData(data);
     }
-
+    
     return (
-        <main className="flex h-full flex-col items-center px-2 md:px-24 pb-12">
+        <main className="flex h-full flex-col items-center p-6 md:p-24">
             <div className={"flex flex-col items-center w-full max-w-5xl space-y-4"}>
                 <h1 className={"text-4xl md:text-6xl font-bold text-center"}>
                     <span className={"gradient-text"}>Upload</span> a Beanconqueror file to view your data
                 </h1>
-                <p className={"text-lg text-center"}>
-                    <Link
-                        className={"underline"}
-                        href={"https://beanconqueror.com/"}
-                        target={"_blank"}
-                    >
-                        Beanconqueror
-                    </Link> is an app to track your coffee brews
+                <p className={"text-lg text-center max-w-2xl"}>
+                    Use the select file button below and search for your Beanconqueror.json file.
                 </p>
+
                 {!data && <FileUpload callback={(contents) => processBCFile(contents, retrieveData)}/>}
-                {!!data && <Statistics {...data} />}
+                {!!data && (
+                    <>
+                        <Button onClick={() => setData(undefined)}>Upload another file</Button>
+                        <Statistics {...data} />
+                    </>
+                )}
             </div>
         </main>
     )

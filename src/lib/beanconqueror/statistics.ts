@@ -73,7 +73,6 @@ function getBrewStatistics(brews: Brew[]): BrewStatistics {
     for (const brew  of brews) {
         // Brews per day
         if (!brew.config.unix_timestamp) {
-            console.log(brew);
             continue
         }
         const date = new Date(brew.config.unix_timestamp * 1000);
@@ -124,7 +123,7 @@ function getBrewStatistics(brews: Brew[]): BrewStatistics {
 }
 
 
-export function processBCFile(contents: string | BCData, callback?: (data: Statistics) => void): Statistics {
+export function processBCFile(contents: string | BCData, callback: (data: Statistics) => void) {
     let data: BCData
 
     if (typeof contents === "string") {
@@ -147,9 +146,5 @@ export function processBCFile(contents: string | BCData, callback?: (data: Stati
         ...beanStatistics,
     }
 
-    if (callback) {
-        callback(statistics);
-    }
-
-    return statistics;
+    callback(statistics);
 }
