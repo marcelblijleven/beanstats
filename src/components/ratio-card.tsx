@@ -94,7 +94,7 @@ const RatioCard = () => {
                     </TabsContent>
                     <TabsContent value={"water"} className={"space-y-2 md:space-y-4"}>
                         <UserInputGroup>
-                            <UserInput id={"water-tab_ratio"} label={"Ratio"} value={ratio} onChange={onChangeRatio} />
+                            <UserInput id={"water-tab_ratio"} label={"Ratio"} value={ratio} onChange={onChangeRatio} prefix={"1/"}/>
                             <UserInput id={"water-tab_coffee"} label={"Ground coffee (gr)"} value={coffee} onChange={onChangeCoffee} />
                         </UserInputGroup>
                         <CalculatedValue title={"Calculated water (gr/ml)"} value={!!ratio && !!coffee ? (ratio * coffee).toFixed(2) : "-"} />
