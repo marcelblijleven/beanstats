@@ -28,7 +28,7 @@ const UserInput = ({id, label, value, onChange, prefix}: UserInputProps) => (
             id={id}
             value={value}
             type={"number"}
-            inputmode={"decimal"}
+            inputMode={"decimal"}
             className={"text-lg"}
             onChange={onChange}
         />)}
@@ -38,7 +38,7 @@ const UserInput = ({id, label, value, onChange, prefix}: UserInputProps) => (
                 id={id}
                 value={value}
                 type={"number"}
-                inputmode={"decimal"}
+                inputMode={"decimal"}
                 className={"text-lg"}
                 onChange={onChange}
             />
