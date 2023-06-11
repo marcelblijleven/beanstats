@@ -16,13 +16,13 @@ interface UserInputProps {
 }
 
 const UserInputGroup = ({children}: {children: ReactNode}) => (
-    <div className={"flex gap-2 md:gap-4"}>
+    <div className={"flex flex-col md:flex-row gap-2 md:gap-4"}>
         {children}
     </div>
 )
 
 const UserInput = ({id, label, value, onChange, prefix}: UserInputProps) => (
-    <div className="grid w-1/2 max-w-sm items-center gap-1.5">
+    <div className="flex flex-col items-left w-full gap-1.5">
         <Label htmlFor={id}>{label}</Label>
         {!prefix && (<Input
             id={id}
