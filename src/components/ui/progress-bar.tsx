@@ -8,7 +8,7 @@ const ProgressComponent = (props: { label: string, value: number, total: number 
         <div className="relative flex items-center w-full">
             <span className="flex items-center h-10 px-2 z-10 text-sm capitalize">{props.label}</span>
             <motion.div
-                className="absolute origin-left h-8 bg-orange-100"
+                className="absolute origin-left h-8 bg-amber-300 dark:bg-amber-700"
                 style={{width: getWidth(props.value, props.total)}}
                 initial={{transform: "scaleX(0)"}}
                 animate={{transform: "scaleX(1)"}}

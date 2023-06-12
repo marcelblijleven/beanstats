@@ -27,7 +27,7 @@ export default function CountableStats(props: Props) {
     const showAll = totalEntries > slicedLength;
 
     return (
-        <Card className={"w-full lg:w-[calc(50%-0.5rem)]"}>
+        <Card className={"w-full lg:w-[calc(50%-1rem)]"}>
             <CardHeader>
                 <CardTitle>
                     {props.label}

@@ -16,7 +16,7 @@ export default function Statistics(props: BrewStatistics) {
                 beanMapping={props.beanMapping}
             />
             <BacklogStats label={"Your backlog"} beans={props.beanMapping} usage={props.usagePerBean}/>
-            <div className={"flex flex-wrap gap-4"}>
+            <div className={"flex flex-wrap gap-4 md:gap-6"}>
                 <CountableStats key={"fav-origins"} label={"Favourite origins"} countable={props.countryCount} />
                 <CountableStats key={"fav-roasters-bags"} label={"Favourite roasters (bags)"} countable={props.roasterCount} />
                 <CountableStats key={"fav-roasters-grams"} label={"Favourite roasters (grams)"} countable={props.roasterCountWeight} />
