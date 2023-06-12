@@ -18,15 +18,11 @@ const Process = (props: ProcessProps) => {
     const onClick = () => {
         if (!props.file) return;
 
-        const reader = new FileReader();
-
-        reader.onloadend = (event: ProgressEvent<FileReader>) => {
-            if (typeof event.target?.result === "string") {
-                props.callback(event.target.result);
-            }
+        if (props.file.type === "application/json") {
+            readTextFile(props.file, props.callback)
+        } else if (props.file.type === "application/zip") {
+            readZipFile(props.file, props.callback)
         }
-
-        reader.readAsText(props.file, "utf-8")
     }
 
     return (
