@@ -9,11 +9,14 @@ import {InputWithPrefix} from "@/components/ui/input-with-prefix";
 
 interface UserInputProps {
     id: string;
-    value: number | undefined;
+    value: number | string;
     label: string;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
     prefix?: string;
 }
+
+const numberFormat = new Intl.NumberFormat(window.navigator.language, { minimumFractionDigits: 2});
+const toFixed = (value: number): string => numberFormat.format(value);
 
 const UserInputGroup = ({children}: {children: ReactNode}) => (
     <div className={"flex flex-col md:flex-row gap-2 md:gap-4"}>
@@ -27,9 +30,10 @@ const UserInput = ({id, label, value, onChange, prefix}: UserInputProps) => (
         {!prefix && (<Input
             id={id}
             value={value}
-            type={"number"}
+            type={"text"}
             className={"text-lg"}
             inputMode={"decimal"}
+            pattern="[0-9]+([,\.][0-9]+)?"
             onChange={onChange}
         />)}
         {!!prefix && (
@@ -37,9 +41,10 @@ const UserInput = ({id, label, value, onChange, prefix}: UserInputProps) => (
                 prefix={prefix}
                 id={id}
                 value={value}
-                type={"number"}
+                type={"text"}
                 className={"text-lg"}
                 inputMode={"decimal"}
+                pattern="[0-9]+([,\.][0-9]+)?"
                 onChange={onChange}
             />
         )}
@@ -57,18 +62,13 @@ const CalculatedValue = ({title, value}: {title: string, value: string}) => (
 
 
 const RatioCard = () => {
-    const [ratio, setRatio] = useState<number | undefined>(16);
-    const [coffee, setCoffee] = useState<number | undefined>(12.5);
-    const [water, setWater] = useState<number | undefined>(200);
+    const [ratio, setRatio] = useState<number | string>(16);
+    const [coffee, setCoffee] = useState<number | string>(12.5);
+    const [water, setWater] = useState<number | string>(200);
 
-    const onChange = (setFunc: any) => (event:ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-
-        if (value === "") {
-            return setFunc(undefined);
-        }
-        setFunc(value)
-    }
+    const onChange = (setFunc: (value: any) => void) => (event: ChangeEvent<HTMLInputElement>) => setFunc(
+        event.currentTarget.value.replace(",", ".")
+    );
 
     const onChangeWater = onChange(setWater);
     const onChangeCoffee = onChange(setCoffee);
@@ -92,21 +92,21 @@ const RatioCard = () => {
                             <UserInput id={"coffee-tab_ratio"} label={"Ratio"} value={ratio} onChange={onChangeRatio} prefix={"1/"}/>
                             <UserInput id={"coffee-tab_water"} label={"Water (gr/ml)"} value={water} onChange={onChangeWater} />
                         </UserInputGroup>
-                        <CalculatedValue title={"Calculated ground coffee (gr/ml)"} value={!!ratio && !!water ? (water / ratio).toFixed(2) : "-"} />
+                        <CalculatedValue title={"Calculated ground coffee (gr/ml)"} value={!!ratio && !!water ? toFixed(water / ratio) : "-"} />
                     </TabsContent>
                     <TabsContent value={"water"} className={"space-y-2 md:space-y-4"}>
                         <UserInputGroup>
                             <UserInput id={"water-tab_ratio"} label={"Ratio"} value={ratio} onChange={onChangeRatio} prefix={"1/"}/>
                             <UserInput id={"water-tab_coffee"} label={"Ground coffee (gr)"} value={coffee} onChange={onChangeCoffee} />
                         </UserInputGroup>
-                        <CalculatedValue title={"Calculated water (gr/ml)"} value={!!ratio && !!coffee ? (ratio * coffee).toFixed(2) : "-"} />
+                        <CalculatedValue title={"Calculated water (gr/ml)"} value={!!ratio && !!coffee ? toFixed(ratio * coffee) : "-"} />
                     </TabsContent>
                     <TabsContent value={"ratio"} className={"space-y-2 md:space-y-4"}>
                         <UserInputGroup>
                             <UserInput id={"ratio-tab_water"} label={"Water (gr/ml("} value={water} onChange={onChangeWater} />
                             <UserInput id={"ratio-tab_coffee"} label={"Ground coffee (gr)"} value={coffee} onChange={onChangeCoffee} />
                         </UserInputGroup>
-                        <CalculatedValue title={"Calculated ratio"} value={!!water && !! coffee ? `1/${(water / coffee).toFixed(2)}` : "-"} />
+                        <CalculatedValue title={"Calculated ratio"} value={!!water && !! coffee ? `1/${toFixed(water / coffee)}` : "-"} />
                     </TabsContent>
                 </Tabs>
             </CardContent>
