@@ -29,6 +29,7 @@ const UserInput = ({id, label, value, onChange, prefix}: UserInputProps) => (
             value={value}
             type={"number"}
             className={"text-lg"}
+            inputMode={"decimal"}
             onChange={onChange}
         />)}
         {!!prefix && (
@@ -38,6 +39,7 @@ const UserInput = ({id, label, value, onChange, prefix}: UserInputProps) => (
                 value={value}
                 type={"number"}
                 className={"text-lg"}
+                inputMode={"decimal"}
                 onChange={onChange}
             />
         )}
@@ -65,7 +67,7 @@ const RatioCard = () => {
         if (value === "") {
             return setFunc(undefined);
         }
-        setFunc(parseInt(value))
+        setFunc(value)
     }
 
     const onChangeWater = onChange(setWater);
