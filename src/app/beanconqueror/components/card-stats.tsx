@@ -3,6 +3,7 @@ import {Bean} from "@/types/beanconqueror";
 import ProgressBar from "@/components/progress-bar";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Mapping} from "@/types";
+import {cn} from "@/lib/utils";
 
 interface Props {
     averageWeight: number;
@@ -18,11 +19,12 @@ interface StatsProps {
     label: string;
     value: string;
     progress?: number | null;
+    className?: string | null;
 }
 
 function Stats(props: StatsProps) {
     return (
-        <Card>
+        <Card className={cn(props.className, "flex flex-col justify-between")}>
             <CardHeader>
                 <CardTitle className={"text-sm font-medium"}>{props.label}</CardTitle>
             </CardHeader>
@@ -58,6 +60,18 @@ function getRemainingWeight(mapping: Mapping<Bean>, usage: Mapping<number>): num
     return remainingWeight;
 }
 
+function getRemainingWeightWarningClassName(remainingWeight: number): string | null {
+    if (remainingWeight >= 100) return null;
+
+    const baseShadow = "shadow-md"
+
+    if (remainingWeight >= 50) return cn(baseShadow, "shadow-amber-600");
+    if (remainingWeight >= 20) return cn(baseShadow, "shadow-orange-600");
+
+    return cn(baseShadow, "shadow-red-600");
+
+}
+
 export default function CardStats(props: Props) {
     const averageWeight = props.averageWeight;
     const averageBrewsPerDay = props.averageBrewsPerDay;
@@ -81,7 +95,12 @@ export default function CardStats(props: Props) {
             {averageBrewsPerDay && <Stats label={"Avg. brews per day"} value={averageBrewsPerDay.toFixed(2)} />}
             {totalBrews && <Stats label={"Total brews"} value={totalBrews} />}
             {props.totalGroundBeans && <Stats label={"Total ground beans"} value={totalGroundBeansText} />}
-            {remainingWeight && <Stats label={"Remaining bean weight"} value={`${remainingWeight.toFixed(2)} gr`} progress={estimatedRemainingWeight} />}
+            <Stats
+                label={"Remaining bean weight"}
+                value={`${remainingWeight.toFixed(2)} gr`}
+                progress={estimatedRemainingWeight}
+                className={getRemainingWeightWarningClassName(remainingWeight)}
+            />
             {props.lastBrew && <Stats label={"Last brew"} value={timeSinceLastCoffee} />}
         </div>
     )

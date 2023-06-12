@@ -27,7 +27,8 @@ export default function BacklogStats(props: BacklogStatsProps) {
                 <CardTitle>{props.label}</CardTitle>
             </CardHeader>
             <CardContent>
-                <BacklogTable beans={beans} usage={props.usage} />
+                {!beans.length && "Uh-oh, you've seem to have run out beans"}
+                {!!beans.length && <BacklogTable beans={beans} usage={props.usage} />}
             </CardContent>
         </Card>
     )
