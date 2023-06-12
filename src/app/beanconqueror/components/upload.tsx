@@ -2,6 +2,8 @@
 
 import {ChangeEvent, createRef, useCallback, useState} from "react";
 import {Button} from "@/components/ui/button";
+import {Input} from "@/components/ui/input";
+import {readTextFile, readZipFile} from "@/lib/upload/utils";
 
 export interface FileUploadProps {
     callback: (data: string) => void;
@@ -37,31 +39,21 @@ const Process = (props: ProcessProps) => {
 
 const FileUpload = (props: FileUploadProps) => {
     const [file, setFile] = useState<File>();
-    const ref = createRef<HTMLInputElement>();
-    const onFileSelect = useCallback(() => {
-        ref?.current && ref.current.click();
-    }, [ref]);
+
     const onFileChange = (event: ChangeEvent<HTMLInputElement>) => {
         setFile(event.target.files?.[0]);
     }
 
     return (
         <div className={"flex gap-2"}>
-            <input
+            <Input
                 hidden
-                ref={ref}
                 id={"file-beanconqueror"}
                 type={"file"}
                 multiple={false}
                 accept={"application/json,application.zip"}
                 onChange={onFileChange}
             />
-            <Button
-                onClick={onFileSelect}
-                variant={!file ? "default" : "secondary"}
-            >
-                Select file
-            </Button>
             <Process file={file} callback={props.callback} />
         </div>
     )
