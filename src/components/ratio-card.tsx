@@ -92,21 +92,21 @@ const RatioCard = () => {
                             <UserInput id={"coffee-tab_ratio"} label={"Ratio"} value={ratio} onChange={onChangeRatio} prefix={"1/"}/>
                             <UserInput id={"coffee-tab_water"} label={"Water (gr/ml)"} value={water} onChange={onChangeWater} />
                         </UserInputGroup>
-                        <CalculatedValue title={"Calculated ground coffee (gr/ml)"} value={!!ratio && !!water ? toFixed(water / ratio) : "-"} />
+                        <CalculatedValue title={"Calculated ground coffee (gr/ml)"} value={!!ratio && !!water ? toFixed(parseFloat(water as string) / parseFloat(ratio as string)) : "-"} />
                     </TabsContent>
                     <TabsContent value={"water"} className={"space-y-2 md:space-y-4"}>
                         <UserInputGroup>
                             <UserInput id={"water-tab_ratio"} label={"Ratio"} value={ratio} onChange={onChangeRatio} prefix={"1/"}/>
                             <UserInput id={"water-tab_coffee"} label={"Ground coffee (gr)"} value={coffee} onChange={onChangeCoffee} />
                         </UserInputGroup>
-                        <CalculatedValue title={"Calculated water (gr/ml)"} value={!!ratio && !!coffee ? toFixed(ratio * coffee) : "-"} />
+                        <CalculatedValue title={"Calculated water (gr/ml)"} value={!!ratio && !!coffee ? toFixed(parseFloat(ratio as string) * parseFloat(coffee as string)) : "-"} />
                     </TabsContent>
                     <TabsContent value={"ratio"} className={"space-y-2 md:space-y-4"}>
                         <UserInputGroup>
                             <UserInput id={"ratio-tab_water"} label={"Water (gr/ml("} value={water} onChange={onChangeWater} />
                             <UserInput id={"ratio-tab_coffee"} label={"Ground coffee (gr)"} value={coffee} onChange={onChangeCoffee} />
                         </UserInputGroup>
-                        <CalculatedValue title={"Calculated ratio"} value={!!water && !! coffee ? `1/${toFixed(water / coffee)}` : "-"} />
+                        <CalculatedValue title={"Calculated ratio"} value={!!water && !! coffee ? `1/${toFixed(parseFloat(water as string) / parseFloat(coffee as string))}` : "-"} />
                     </TabsContent>
                 </Tabs>
             </CardContent>
