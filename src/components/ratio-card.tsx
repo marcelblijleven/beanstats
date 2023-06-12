@@ -15,8 +15,7 @@ interface UserInputProps {
     prefix?: string;
 }
 
-const numberFormat = new Intl.NumberFormat(window.navigator.language, { minimumFractionDigits: 2});
-const toFixed = (value: number): string => numberFormat.format(value);
+const toFixed = (value: number): string => value.toFixed(2);
 
 const UserInputGroup = ({children}: {children: ReactNode}) => (
     <div className={"flex flex-col md:flex-row gap-2 md:gap-4"}>
