@@ -24,17 +24,16 @@ export default function CountableStats(props: Props) {
         const name = props.mapping?.[key].name || key;
 
         return (
-            <>
-                <div
-                    className={"flex gap-2 justify-between items-center"}>
+            <div className={"flex justify-between items-center gap-2"} key={key}>
+                <div className={"flex w-1/2 justify-between items-center"}>
                     <p className={"truncate capitalize"}>{name}</p>
-                    <p>{value}</p>
+                    {value}
                 </div>
-                <div className={"my-auto"}>
+                <div className={"w-1/2"}>
                     <ProgressBar total={total} progress={(value as number)}/>
                 </div>
 
-            </>
+            </div>
         )
     });
 
@@ -48,7 +47,7 @@ export default function CountableStats(props: Props) {
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <div className={"grid grid-cols-2 gap-x-2 gap-y-1"}>
+                <div className={"space-y"}>
                     {items}
                 </div>
                 {showAll && (
