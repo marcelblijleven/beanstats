@@ -1,11 +1,12 @@
 "use client"
 
-import ProgressBar from "@/components/progress-bar";
 import {useState} from "react";
 import {Preparation, Mill} from "@/types/beanconqueror";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Mapping} from "@/types";
 import {Button} from "@/components/ui/button";
+import ProgressComponent from "@/components/ui/progress-bar";
+import {getTextWithFlagSupport} from "@/lib/flags";
 
 interface Props {
     label: string;
@@ -20,27 +21,14 @@ export default function CountableStats(props: Props) {
 
     const entries = slice ? props.countable.slice(0, slicedLength) : props.countable;
     const total = entries.reduce((prev, [_, value]) => prev + (value as number), 0);
-    const items = entries.map(([key, value]) => {
-        const name = props.mapping?.[key].name || key;
-
-        return (
-            <div className={"flex justify-between items-center gap-2"} key={key}>
-                <div className={"flex w-1/2 justify-between items-center"}>
-                    <p className={"truncate capitalize"}>{name}</p>
-                    {value}
-                </div>
-                <div className={"w-1/2"}>
-                    <ProgressBar total={total} progress={(value as number)}/>
-                </div>
-
-            </div>
-        )
-    });
+    const items = entries.map(([key, value]) => (
+        <ProgressComponent key={key} value={value} label={getTextWithFlagSupport(props.mapping?.[key].name || key)} total={total}/>
+    ));
 
     const showAll = totalEntries > slicedLength;
 
     return (
-        <Card>
+        <Card className={"w-full lg:w-[calc(50%-1rem)]"}>
             <CardHeader>
                 <CardTitle>
                     {props.label}
