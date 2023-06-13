@@ -6,6 +6,7 @@ import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Mapping} from "@/types";
 import {Button} from "@/components/ui/button";
 import ProgressComponent from "@/components/ui/progress-bar";
+import {getTextWithFlagSupport} from "@/lib/flags";
 
 interface Props {
     label: string;
@@ -21,7 +22,7 @@ export default function CountableStats(props: Props) {
     const entries = slice ? props.countable.slice(0, slicedLength) : props.countable;
     const total = entries.reduce((prev, [_, value]) => prev + (value as number), 0);
     const items = entries.map(([key, value]) => (
-        <ProgressComponent key={key} value={value} label={props.mapping?.[key].name || key} total={total}/>
+        <ProgressComponent key={key} value={value} label={getTextWithFlagSupport(props.mapping?.[key].name || key)} total={total}/>
     ));
 
     const showAll = totalEntries > slicedLength;

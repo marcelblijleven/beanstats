@@ -1,9 +1,10 @@
 "use client"
 import {motion} from "framer-motion";
+import {ReactElement} from "react";
 
 const getWidth = (value: number, total: number) => `${(value / (total || 0)) * 100}%`
 
-const ProgressComponent = (props: { label: string, value: number, total: number }) => (
+const ProgressComponent = (props: { label: string | ReactElement, value: number, total: number }) => (
     <div className="flex items-center justify-between gap-2">
         <div className="relative flex items-center w-full">
             <span className="flex items-center h-10 px-2 z-10 text-sm capitalize">{props.label}</span>
