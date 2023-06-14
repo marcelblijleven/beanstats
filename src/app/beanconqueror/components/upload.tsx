@@ -3,15 +3,15 @@
 import {ChangeEvent, useState} from "react";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
-// import {readTextFile, readZipFile} from "@/lib/upload/utils";
+import {readTextFile, readZipFile} from "@/lib/upload/utils";
 
 export interface FileUploadProps {
-    callback: (data: string) => void;
+    callback: (data: any) => void;
 }
 
 interface ProcessProps {
     file: File | undefined;
-    callback: (data: string) => void;
+    callback: (data: any) => void;
 }
 
 const Process = (props: ProcessProps) => {
@@ -21,7 +21,7 @@ const Process = (props: ProcessProps) => {
         if (props.file.type === "application/json") {
             readTextFile(props.file, props.callback)
         } else if (props.file.type === "application/zip") {
-            readZipFile(props.file, props.callback)
+            readZipFile(props.file, props.callback).catch(err => console.error(err));
         }
     }
 
@@ -47,7 +47,7 @@ const FileUpload = (props: FileUploadProps) => {
                 id={"file-beanconqueror"}
                 type={"file"}
                 multiple={false}
-                accept={"application/json,application.zip"}
+                accept={"application/json,application/zip"}
                 onChange={onFileChange}
             />
             <Process file={file} callback={props.callback} />
