@@ -1,9 +1,9 @@
 "use client"
 
-import FileUpload from "@/app/beanconqueror/components/upload";
+import FileUpload from "@/app/beanconqueror/stats/components/upload";
 import {useState} from "react";
 import {processBCFile, Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
-import Statistics from "@/app/beanconqueror/components/statistics";
+import Statistics from "@/app/beanconqueror/stats/components/statistics";
 import {Button} from "@/components/ui/button";
 
 export default function BeanconquerorPage() {

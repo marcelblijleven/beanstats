@@ -18,7 +18,7 @@ const BeanconquerorCard = () => (
             </CardDescription>
         </CardHeader>
         <CardContent className={"flex flex-col"}>
-            <Link href={"/beanconqueror"} passHref className={"self-end"}>
+            <Link href={"/beanconqueror/stats"} passHref className={"self-end"}>
                 <Button>Go to Beanconqueror stats</Button>
             </Link>
         </CardContent>
