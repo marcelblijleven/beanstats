@@ -8,7 +8,7 @@ import CardGrid from "@/components/ui/card-grid";
 
 export default async function Home() {
     return (
-        <main className="flex h-full flex-col items-center p-6 md:p-24 space-y-6">
+        <>
             <HomeNavigation/>
             <CardGrid>
                 <BeanconquerorCard/>
@@ -20,6 +20,6 @@ export default async function Home() {
                     <span className={"hidden md:inline-block"}>View on GitHub</span>
                 </Button>
             </Link>
-        </main>
+        </>
     )
 }

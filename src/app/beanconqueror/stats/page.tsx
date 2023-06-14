@@ -12,25 +12,23 @@ export default function BeanconquerorPage() {
     const retrieveData = (data: BrewStatistics) => {
         setData(data);
     }
-    
-    return (
-        <main className="flex h-full flex-col items-center p-6 md:p-24">
-            <div className={"flex flex-col items-center w-full max-w-5xl space-y-4"}>
-                <h1 className={"text-4xl md:text-6xl font-bold text-center"}>
-                    <span className={"gradient-text"}>Upload</span> a Beanconqueror file to view your data
-                </h1>
-                <p className={"text-lg text-center max-w-2xl"}>
-                    Use the select file button below and search for your Beanconqueror.json file.
-                </p>
 
-                {!data && <FileUpload callback={(contents) => processBCFile(contents, retrieveData)}/>}
-                {!!data && (
-                    <>
-                        <Button onClick={() => setData(undefined)}>Upload another file</Button>
-                        <Statistics {...data} />
-                    </>
-                )}
-            </div>
-        </main>
+    return (
+        <div className={"flex flex-col items-center w-full max-w-5xl space-y-4"}>
+            <h1 className={"text-4xl md:text-6xl font-bold text-center"}>
+                <span className={"gradient-text"}>Upload</span> a Beanconqueror file to view your data
+            </h1>
+            <p className={"text-lg text-center max-w-2xl"}>
+                Use the select file button below and search for your Beanconqueror.json file.
+            </p>
+
+            {!data && <FileUpload callback={(contents) => processBCFile(contents, retrieveData)}/>}
+            {!!data && (
+                <>
+                    <Button onClick={() => setData(undefined)}>Upload another file</Button>
+                    <Statistics {...data} />
+                </>
+            )}
+        </div>
     )
 }

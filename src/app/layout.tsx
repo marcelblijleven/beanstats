@@ -21,7 +21,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute={"class"} defaultTheme={"system"} enableSystem>
           <Header />
-          {children}
+          <main className="flex h-full flex-col items-center p-6 md:p-24 space-y-6">
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>
