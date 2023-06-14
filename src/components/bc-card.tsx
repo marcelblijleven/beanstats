@@ -3,7 +3,7 @@ import Link from "next/link";
 import {Button} from "@/components/ui/button";
 
 const BeanconquerorCard = () => (
-    <Card className={"max-w-xl"}>
+    <Card className={"w-full lg:w-[calc(50%-1rem)]"}>
         <CardHeader>
             <CardTitle>Beanconqueror stats</CardTitle>
             <CardDescription>
