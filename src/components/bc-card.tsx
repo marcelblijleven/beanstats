@@ -2,6 +2,15 @@ import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/compo
 import Link from "next/link";
 import {Button} from "@/components/ui/button";
 
+const LinkDetail = ({detail, button, href}: {detail: string, button: string, href: string}) => (
+    <div className={"flex justify-between items-center gap-2"}>
+        <p>{detail}</p>
+        <Link href={href} passHref>
+            <Button>{button}</Button>
+        </Link>
+    </div>
+)
+
 const BeanconquerorCard = () => (
     <Card className={"w-full lg:w-[calc(50%-1rem)]"}>
         <CardHeader>
@@ -17,10 +26,17 @@ const BeanconquerorCard = () => (
                 your data
             </CardDescription>
         </CardHeader>
-        <CardContent className={"flex flex-col"}>
-            <Link href={"/beanconqueror/stats"} passHref className={"self-end"}>
-                <Button>Go to Beanconqueror stats</Button>
-            </Link>
+        <CardContent className={"flex flex-col space-y-2"}>
+            <LinkDetail
+                detail={"View brews, backlog and other stats"}
+                button={"View stats"}
+                href={"/beanconqueror/stats"}
+            />
+            <LinkDetail
+                detail={"View contents of a share url"}
+                button={"View share link"}
+                href={"/beanconqueror/share/view"}
+            />
         </CardContent>
     </Card>
 )
