@@ -3,12 +3,10 @@
 import {decodeMessage} from "@/lib/beanconqueror/proto";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {getTextWithFlagSupport} from "@/lib/flags";
-import {getDateString} from "@/lib/dates";
 
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
 import {AlertCircle} from "lucide-react";
-import {Badge} from "@/components/ui/badge"
 
 import {beanconqueror} from "@/lib/beanconqueror/proto/generated/beanconqueror";
 import Roast = beanconqueror.Roast;
@@ -16,60 +14,8 @@ import BeanMix = beanconqueror.BeanMix;
 import BeanRoastingType = beanconqueror.BeanRoastingType;
 import BeanProto = beanconqueror.BeanProto;
 import IBeanInformation = beanconqueror.IBeanInformation;
-import Rating from "@/app/beanconqueror/share/view/components/rating";
 import QRCodeCard from "@/app/beanconqueror/share/view/components/qr-code-card";
-
-const LabelledValue = ({
-                           label,
-                           value,
-                           type,
-                           splitLabels
-                       }: { label: string, value: any, type: string, splitLabels?: boolean }) => {
-    let parsed;
-
-    if (value === null || value === undefined || value === "") {
-        parsed = "-";
-    } else {
-        switch (type) {
-            case "boolean":
-                parsed = value ? "Yes" : "No";
-                break;
-            case "date":
-                parsed = getDateString(new Date(value), false, Intl.DateTimeFormat().resolvedOptions().timeZone);
-                break;
-            case "string":
-                value = (value as string).replaceAll("_", " ");
-                if (splitLabels && (value as string).includes(",")) {
-                    parsed = (
-                        <div className={"flex gap-1 flex-wrap"}>
-                            {(value as string).split(",").map(part => {
-                                const content = getTextWithFlagSupport(part.trim().toLowerCase());
-                                return (
-                                    <Badge variant={"outline"} className={"shrink-0"} key={part.trim()}>{content}</Badge>
-                                )
-                            })}
-                        </div>
-                    );
-                } else {
-                    parsed = getTextWithFlagSupport(value.trim().toLowerCase());
-                }
-                break;
-            case "rating":
-                parsed = (<Rating value={value}/>);
-                break;
-            case "number":
-            default:
-                parsed = value;
-        }
-    }
-
-    return (
-        <div className={"flex flex-col gap-1"}>
-            <span className={"text-xs font-semibold"}>{label}</span>
-            <span className={"text-md capitalize"}>{parsed}</span>
-        </div>
-    )
-}
+import LabelledValue from "@/app/beanconqueror/share/view/components/labelled-value";
 
 const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
     <>
