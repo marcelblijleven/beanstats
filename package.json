@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "protoc": "protoc --plugin=node_modules/ts-proto/protoc-gen-ts_proto --ts_proto_out ./src/lib/beanconqueror/proto/generated ./src/lib/beanconqueror/proto/beanconqueror.proto"
+    "pbjs": "pbjs ./src/lib/beanconqueror/proto/beanconqueror.proto -t json -o ./src/lib/beanconqueror/proto/beanconqueror.json",
+    "pbts": "pbts ./src/lib/beanconqueror/proto/beanconqueror.proto -t json-module -o ./src/lib/beanconqueror/proto/beanconqueror.json"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.0.5",
