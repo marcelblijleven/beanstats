@@ -17,6 +17,7 @@ import BeanRoastingType = beanconqueror.BeanRoastingType;
 import BeanProto = beanconqueror.BeanProto;
 import IBeanInformation = beanconqueror.IBeanInformation;
 import Rating from "@/app/beanconqueror/share/view/components/rating";
+import QRCodeCard from "@/app/beanconqueror/share/view/components/qr-code-card";
 
 const LabelledValue = ({
                            label,
@@ -71,7 +72,7 @@ const LabelledValue = ({
 }
 
 const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
-    <TabsContent value={"general"} className={"flex flex-col space-y-4"}>
+    <>
         <Card>
             <CardHeader>
                 <CardTitle>General information</CardTitle>
@@ -113,7 +114,7 @@ const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
                 {!!decoded.note && <LabelledValue type={"string"} label={"Notes"} value={decoded.note}/>}
             </CardContent>
         </Card>
-    </TabsContent>
+    </>
 )
 
 const VarietyCard = ({info, index}: {info: IBeanInformation, index?: number}) => (
@@ -142,13 +143,11 @@ const VarietyCard = ({info, index}: {info: IBeanInformation, index?: number}) =>
 )
 
 const VarietyTabsContent = ({decoded}: {decoded: BeanProto}) => (
-    <TabsContent value={"variety"}>
-        <div  className={"flex flex-col space-y-2"}>
-            {decoded.beanInformation.map((info, index) => (
-                <VarietyCard key={index} info={info} index={index} />
-            ))}
-        </div>
-    </TabsContent>
+    <>
+        {decoded.beanInformation.map((info, index) => (
+            <VarietyCard key={index} info={info} index={index} />
+        ))}
+    </>
 )
 
 const SharedBean = ({url, validUrl}: { url: string | undefined, validUrl: boolean }) => {
@@ -187,9 +186,17 @@ const SharedBean = ({url, validUrl}: { url: string | undefined, validUrl: boolea
                     <TabsList>
                         <TabsTrigger value={"general"}>General</TabsTrigger>
                         <TabsTrigger value={"variety"}>Variety information</TabsTrigger>
+                        <TabsTrigger value={"share"}>Share</TabsTrigger>
                     </TabsList>
-                    <GeneralTabsContent decoded={decoded} />
-                    <VarietyTabsContent decoded={decoded} />
+                    <TabsContent value={"general"} className={"flex flex-col space-y-4"}>
+                        <GeneralTabsContent decoded={decoded} />
+                    </TabsContent>
+                    <TabsContent value={"variety"} className={"flex flex-col space-y-4"}>
+                        <VarietyTabsContent decoded={decoded} />
+                    </TabsContent>
+                    <TabsContent value={"share"} className={"flex flex-col space-y-4"}>
+                        <QRCodeCard value={url} />
+                    </TabsContent>
                 </Tabs>
 
             </CardContent>
