@@ -1,7 +1,8 @@
 import {Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
-import CountableStats from "@/app/beanconqueror/components/countable-stats";
-import BacklogStats from "@/app/beanconqueror/components/backlog-stats";
-import CardStats from "@/app/beanconqueror/components/card-stats";
+import CountableStats from "@/app/beanconqueror/stats/components/countable-stats";
+import BacklogStats from "@/app/beanconqueror/stats/components/backlog-stats";
+import CardStats from "@/app/beanconqueror/stats/components/card-stats";
+import CardGrid from "@/components/ui/card-grid";
 
 export default function Statistics(props: BrewStatistics) {
     return (
@@ -16,7 +17,7 @@ export default function Statistics(props: BrewStatistics) {
                 beanMapping={props.beanMapping}
             />
             <BacklogStats label={"Your backlog"} beans={props.beanMapping} usage={props.usagePerBean}/>
-            <div className={"flex flex-wrap gap-4 md:gap-6"}>
+            <CardGrid>
                 <CountableStats key={"fav-origins"} label={"Favourite origins"} countable={props.countryCount} />
                 <CountableStats key={"fav-roasters-bags"} label={"Favourite roasters (bags)"} countable={props.roasterCount} />
                 <CountableStats key={"fav-roasters-grams"} label={"Favourite roasters (grams)"} countable={props.roasterCountWeight} />
@@ -24,7 +25,7 @@ export default function Statistics(props: BrewStatistics) {
                 <CountableStats key={"fav-processing"} label={"Favourite processing"} countable={props.processingCount} />
                 <CountableStats key={"fav-grinder"} label={"Favourite grinder"} countable={props.brewsPerGrinder} mapping={props.grinderMapping} />
                 <CountableStats key={"fav-prep"} label={"Favourite preparation method"} countable={props.brewsPerPreparationMethod} mapping={props.preparationMapping} />
-            </div>
+            </CardGrid>
         </div>
 
     )

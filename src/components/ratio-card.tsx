@@ -74,7 +74,7 @@ const RatioCard = () => {
     const onChangeRatio = onChange(setRatio);
 
     return (
-        <Card className={"w-full max-w-xl"}>
+        <Card className={"w-full lg:w-[calc(50%-1rem)]"}>
             <CardHeader>
                 <CardTitle>Brew ratio</CardTitle>
                 <CardDescription>Calculate your brew ratio</CardDescription>

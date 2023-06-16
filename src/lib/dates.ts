@@ -53,13 +53,13 @@ export function getNaturalDate(date: Date): string {
     return "Just now"
 }
 
-export function getDateString(date: Date | null, includeTime: boolean) {
+export function getDateString(date: Date | null, includeTime: boolean, timeZone?: string) {
     if (!date) {
         return "";
     }
 
     const options: Intl.DateTimeFormatOptions = {
-        timeZone: "UTC",
+        timeZone: timeZone || "UTC",
         minute: "2-digit",
         hour: "2-digit",
         day: "2-digit",
