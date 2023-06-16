@@ -83,13 +83,13 @@ const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
                     <LabelledValue type={"date"} label={"Buy date"} value={decoded.buyDate}/>
                     <LabelledValue type={"date"} label={"Roasting date"} value={decoded.roastingDate}/>
                     {decoded.roast !== Roast.CUSTOM_ROAST &&
-                      <LabelledValue type={"string"} label={"Roast"} value={Roast[decoded.roast]}/>}
+                      <LabelledValue type={"string"} label={"Roast"} value={Roast[decoded.roast || 0]}/>}
                     <LabelledValue type={"rating"} label={"Roast range"} value={decoded.roastRange}/>
                     <LabelledValue type={"string"} label={"Bean roasting type"}
-                                   value={BeanRoastingType[decoded.beanRoastingType]}/>
+                                   value={BeanRoastingType[decoded.beanRoastingType || 0]}/>
                     {decoded.roast === Roast.CUSTOM_ROAST &&
                       <LabelledValue type={"string"} label={"Roast (custom)"} value={decoded.roastCustom}/>}
-                    <LabelledValue type={"string"} label={"Bean mix"} value={BeanMix[decoded.beanMix]}/>
+                    <LabelledValue type={"string"} label={"Bean mix"} value={BeanMix[decoded.beanMix || 0]}/>
                 </div>
             </CardContent>
         </Card>
@@ -106,7 +106,7 @@ const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
                     />
                     <LabelledValue type={"string"} label={"Cupping points"} value={decoded.cuppingPoints}/>
                     <LabelledValue type={"boolean"} label={"Decaffeinated"}
-                                   value={decoded.decaffeinated.toString()}/>
+                                   value={decoded.decaffeinated}/>
                     <LabelledValue type={"string"} label={"Website"} value={decoded.url}/>
                     <LabelledValue type={"string"} label={"EAN"} value={decoded.eanArticleNumber}/>
                 </div>
@@ -165,7 +165,7 @@ const SharedBean = ({url, validUrl}: { url: string | undefined, validUrl: boolea
         err = e;
     }
 
-    if (err !== undefined) {
+    if (err !== undefined || decoded === undefined) {
         return (
             <Alert variant="destructive">
                 <AlertCircle className="h-4 w-4"/>
