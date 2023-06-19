@@ -14,8 +14,8 @@ import BeanMix = beanconqueror.BeanMix;
 import BeanRoastingType = beanconqueror.BeanRoastingType;
 import BeanProto = beanconqueror.BeanProto;
 import IBeanInformation = beanconqueror.IBeanInformation;
-import QRCodeCard from "@/app/beanconqueror/share/view/components/qr-code-card";
 import LabelledValue from "@/app/beanconqueror/share/view/components/labelled-value";
+import QRCodeCard from "@/components/qrcode-card";
 
 const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
     <>
@@ -121,7 +121,6 @@ const SharedBean = ({url, validUrl}: { url: string | undefined, validUrl: boolea
             </Alert>
         )
     }
-
     return (
         <Card>
             <CardHeader>

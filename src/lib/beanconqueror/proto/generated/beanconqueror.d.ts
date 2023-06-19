@@ -1149,9 +1149,9 @@ export namespace beanconqueror {
 
     /** BeanRoastingType enum. */
     enum BeanRoastingType {
-        UNKNOWN_BEAN_ROASTING_TYPE = 0,
-        FILTER = 1,
-        ESPRESSO = 2,
-        OMNI = 3
+        UNKNOWN_BEAN_ROASTING_TYPE ,
+        FILTER,
+        ESPRESSO,
+        OMNI
     }
 }
