@@ -37,6 +37,11 @@ const BeanconquerorCard = () => (
                 button={"View share link"}
                 href={"/beanconqueror/share/view"}
             />
+            <LinkDetail
+                detail={"Create a share url"}
+                button={"Create share link"}
+                href={"/beanconqueror/share/create"}
+            />
         </CardContent>
     </Card>
 )
