@@ -6,14 +6,15 @@ import {Button} from "@/components/ui/button";
 import SharedBean from "@/app/beanconqueror/share/view/components/shared-bean";
 
 const LINK_RE = /^https:\/\/(?:www\.)?beanconqueror.com\/?\?.*$/;
+const BEANLINK_RE = /^https:\/\/beanl.ink\/l\/.*$/;
 
 const ViewLink = () => {
     const [url, setUrl] = useState<string>("");
     const [err, setErr] = useState<boolean>(false);
 
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setErr(value === "" || !value.match(LINK_RE));
+        const value = event.target.value.trim();
+        setErr(value === "" || (!value.match(LINK_RE) && !value.match(BEANLINK_RE)));
         setUrl(value);
     }
 
@@ -31,7 +32,7 @@ const ViewLink = () => {
                 />
                 <Button onClick={() => setUrl("")}>Clear</Button>
             </div>
-            <SharedBean url={url} validUrl={!err} />
+            <SharedBean url={url} validUrl={!err} isBeanLink={!!url.match(BEANLINK_RE)} />
         </div>
     )
 }

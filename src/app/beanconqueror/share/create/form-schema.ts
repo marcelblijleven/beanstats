@@ -27,7 +27,7 @@ export const varietyInformationShape = z.object({
 export type varietyInformationType = z.infer<typeof varietyInformationShape>
 
 export const formSchema = z.object({
-    name: z.string(),
+    coffeeName: z.string(),
     roaster: z.optional(z.string()),
     buyDate: z.optional(z.date()),
     roastingDate: z.optional(z.date()),

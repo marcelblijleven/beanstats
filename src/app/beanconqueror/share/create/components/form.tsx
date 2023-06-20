@@ -22,17 +22,19 @@ import {VarietyInformationFieldset} from "@/app/beanconqueror/share/create/compo
 import HorizontalGroup from "@/app/beanconqueror/share/create/components/horizontal-group";
 import {defaultVarietyInformation, formSchema} from "@/app/beanconqueror/share/create/form-schema";
 import {createUrlFromFormSchema} from "@/app/beanconqueror/share/create/util/proto-helpers";
-import QRCodeCard from "@/components/qrcode-card";
+import {getBeanLink} from "@/app/beanconqueror/share/create/util/beanlink-helpers";
+import ShareCard from "@/app/beanconqueror/share/create/components/share-card";
 
 
 const BeanInformationForm = () => {
     const [showQR, setShowQR] = useState(false);
     const [url, setUrl] = useState("");
+    const [beanLinkUrl, setBeanLinkUrl] = useState("");
 
     const form = useForm<formSchema>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            name: "",
+            coffeeName: "",
             roaster: "",
             weight: "",
             cost: "",
@@ -55,8 +57,12 @@ const BeanInformationForm = () => {
     const blend = form.watch("beanMix");
 
     const onSubmit = (values: formSchema) => {
-        setUrl(createUrlFromFormSchema(values));
+        const shareUrl = createUrlFromFormSchema(values);
+        setUrl(shareUrl);
         setShowQR(true);
+        getBeanLink(shareUrl).then(r => setBeanLinkUrl(r)).catch(err => {
+            console.error(err);
+        });
     }
     useEffect(() => {
         append({...defaultVarietyInformation} as any);
@@ -65,14 +71,14 @@ const BeanInformationForm = () => {
     return (
         <>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className={"w-full max-w-xl space-y-3"}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className={"w-full space-y-3"}>
                     <Card>
                         <CardHeader>
                             <CardTitle>General information</CardTitle>
                         </CardHeader>
                         <CardContent className={"space-y-3"}>
                             <ControlledTextInput<formSchema>
-                                name={"name"} label={"Name"}
+                                name={"coffeeName"} label={"Name"}
                                 placeholder={"Enter the name of the beans"}
                                 control={form.control}
                             />
@@ -113,7 +119,7 @@ const BeanInformationForm = () => {
                                 enum={BeanMix}
                             />
 
-                            <fieldset>
+                            <fieldset className={"space-y-3"}>
                                 <Legend>More information</Legend>
                                 <FormField<formSchema>
                                     control={form.control}
@@ -204,11 +210,11 @@ const BeanInformationForm = () => {
                         </CardContent>
                     </Card>
                     <div className={"flex gap-2 justify-end"}>
-                        <Button type={"submit"}>Submit</Button>
+                        <Button type={"submit"}>Get share link</Button>
                     </div>
                 </form>
             </Form>
-            {showQR && <QRCodeCard value={url}/>}
+            {showQR && <ShareCard bcUrl={url} beanLinkUrl={beanLinkUrl}/>}
 
         </>
     )

@@ -16,6 +16,7 @@ import BeanProto = beanconqueror.BeanProto;
 import IBeanInformation = beanconqueror.IBeanInformation;
 import LabelledValue from "@/app/beanconqueror/share/view/components/labelled-value";
 import QRCodeCard from "@/components/qrcode-card";
+import {followBeanLink} from "@/app/beanconqueror/share/create/util/beanlink-helpers";
 
 const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
     <>
@@ -96,9 +97,15 @@ const VarietyTabsContent = ({decoded}: {decoded: BeanProto}) => (
     </>
 )
 
-const SharedBean = ({url, validUrl}: { url: string | undefined, validUrl: boolean }) => {
+const SharedBean = ({url, validUrl, isBeanLink}: { url: string | undefined, validUrl: boolean, isBeanLink: boolean }) => {
     if (!url || !validUrl) {
         return null;
+    }
+
+    if (isBeanLink) {
+        followBeanLink(url).then(response => {
+            url = response;
+        });
     }
 
     let err;
