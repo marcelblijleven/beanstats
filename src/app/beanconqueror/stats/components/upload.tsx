@@ -53,7 +53,6 @@ const FileUpload = (props: FileUploadProps) => {
                 multiple={false}
                 accept={"application/json,application.zip"}
                 onChange={onFileChange}
-                value={file}
             />
             <Process file={file} callback={props.callback} />
         </div>
