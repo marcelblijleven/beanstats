@@ -22,14 +22,14 @@ import {VarietyInformationFieldset} from "@/app/beanconqueror/share/create/compo
 import HorizontalGroup from "@/app/beanconqueror/share/create/components/horizontal-group";
 import {defaultVarietyInformation, formSchema} from "@/app/beanconqueror/share/create/form-schema";
 import {createUrlFromFormSchema} from "@/app/beanconqueror/share/create/util/proto-helpers";
-import {getBeanLink} from "@/app/beanconqueror/share/create/util/beanlink-helpers";
+import {BeanLinkResponse, getBeanLink} from "@/app/beanconqueror/share/create/util/beanlink-helpers";
 import ShareCard from "@/app/beanconqueror/share/create/components/share-card";
 
 
 const BeanInformationForm = () => {
     const [showQR, setShowQR] = useState(false);
     const [url, setUrl] = useState("");
-    const [beanLinkUrl, setBeanLinkUrl] = useState("");
+    const [beanLinkResponse, setBeanLinkResponse] = useState<BeanLinkResponse | undefined>();
 
     const form = useForm<formSchema>({
         resolver: zodResolver(formSchema),
@@ -60,7 +60,7 @@ const BeanInformationForm = () => {
         const shareUrl = createUrlFromFormSchema(values);
         setUrl(shareUrl);
         setShowQR(true);
-        getBeanLink(shareUrl).then(r => setBeanLinkUrl(r)).catch(err => {
+        getBeanLink(shareUrl).then(response => setBeanLinkResponse(response)).catch(err => {
             console.error(err);
         });
     }
@@ -214,7 +214,7 @@ const BeanInformationForm = () => {
                     </div>
                 </form>
             </Form>
-            {showQR && <ShareCard bcUrl={url} beanLinkUrl={beanLinkUrl}/>}
+            {showQR && <ShareCard bcUrl={url} beanLinkResponse={beanLinkResponse}/>}
 
         </>
     )

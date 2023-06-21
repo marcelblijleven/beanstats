@@ -21,7 +21,7 @@ const ViewLink = () => {
     const ringColor = err ? "ring-red-500 focus-visible:ring-red-500" : "ring-green-500 focus-visible:ring-green-500";
 
     return (
-        <div className={"w-full max-w-xl space-y-4"}>
+        <div className={"w-full space-y-4"}>
             <div className={"flex gap-2"}>
                 <Input
                     type={"text"}

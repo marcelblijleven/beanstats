@@ -17,6 +17,7 @@ import IBeanInformation = beanconqueror.IBeanInformation;
 import LabelledValue from "@/app/beanconqueror/share/view/components/labelled-value";
 import QRCodeCard from "@/components/qrcode-card";
 import {followBeanLink} from "@/app/beanconqueror/share/create/util/beanlink-helpers";
+import {useState} from "react";
 
 const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
     <>
@@ -48,7 +49,7 @@ const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
             <CardContent>
                 <div className={"grid grid-cols-1 md:grid-cols-2 gap-2"}>
                     <LabelledValue type={"number"} label={"Weight"} value={decoded.weight}/>
-                    <LabelledValue type={"boolean"} label={"Cost"} value={decoded.cost}/>
+                    <LabelledValue type={"number"} label={"Cost"} value={decoded.cost}/>
                     <LabelledValue
                         type={"string"} label={"Flavour profile"} value={decoded.aromatics} splitLabels
                     />
@@ -98,21 +99,28 @@ const VarietyTabsContent = ({decoded}: {decoded: BeanProto}) => (
 )
 
 const SharedBean = ({url, validUrl, isBeanLink}: { url: string | undefined, validUrl: boolean, isBeanLink: boolean }) => {
-    if (!url || !validUrl) {
+    const [viewUrl, setViewUrl] = useState<string | undefined>(url);
+
+    if (!url) {
         return null;
     }
 
     if (isBeanLink) {
         followBeanLink(url).then(response => {
-            url = response;
+            console.log(response)
+            setViewUrl(response);
         });
+    }
+
+    if (!viewUrl || !validUrl) {
+        return null;
     }
 
     let err;
     let decoded;
 
     try {
-        decoded = decodeMessage(url);
+        decoded = decodeMessage(viewUrl);
     } catch (e) {
         err = e;
     }
@@ -129,7 +137,7 @@ const SharedBean = ({url, validUrl, isBeanLink}: { url: string | undefined, vali
         )
     }
     return (
-        <Card>
+        <Card className={"w-full"}>
             <CardHeader>
                 <CardTitle>{getTextWithFlagSupport(decoded.name)}</CardTitle>
             </CardHeader>

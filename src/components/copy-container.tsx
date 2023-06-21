@@ -4,7 +4,7 @@ import {Button} from "@/components/ui/button";
 import {Check, Copy, LucideIcon} from "lucide-react";
 import {createElement, useState} from "react";
 
-const CopyContainer = ({value}: {value: string}) => {
+const CopyContainer = ({value, displayValue}: {value: string, displayValue?: string}) => {
     const [icon, setIcon] = useState<LucideIcon>(Copy);
 
     const onClick = () => {
@@ -19,7 +19,7 @@ const CopyContainer = ({value}: {value: string}) => {
 
     return (
         <div className={"flex items-center justify-between rounded-lg border bg-card text-card-foreground shadow-sm"}>
-            <div className={"text-sm p-2"}>{value}</div>
+            <div className={"text-sm p-2"}>{displayValue || value}</div>
             <Button variant={"ghost"} onClick={onClick}>
                 {createElement(icon)}
             </Button>
