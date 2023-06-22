@@ -47,7 +47,7 @@ const BeanInformationForm = () => {
         rules: {
             minLength: 0,
             maxLength: 10,
-        }
+        },
     } as UseFieldArrayProps<formSchema, "varietyInformation">);
 
     const blend = form.watch("beanMix");
@@ -61,7 +61,9 @@ const BeanInformationForm = () => {
         });
     }
     useEffect(() => {
-        append({...defaultVarietyInformation} as any);
+        append({...defaultVarietyInformation} as any, {
+            shouldFocus: false,
+        });
     }, [append]);
 
     return (
