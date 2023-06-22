@@ -25,8 +25,15 @@ const ShareCard = ({bcUrl, beanLinkResponse}: {bcUrl: string, beanLinkResponse: 
             <CardTitle>Share or import</CardTitle>
         </CardHeader>
         <CardContent className={"flex flex-col space-y-2"}>
-            {beanLinkResponse?.link && <BeanLinkCard response={beanLinkResponse} />}
-            <QRCodeCard value={bcUrl} />
+            {beanLinkResponse?.link && (
+                <>
+                    <BeanLinkCard response={beanLinkResponse} />
+                    <QRCodeCard value={beanLinkResponse.link} />
+                </>
+            )}
+            {!beanLinkResponse?.link && (
+                <QRCodeCard value={bcUrl} />
+            )}
         </CardContent>
     </Card>
 );
