@@ -1,4 +1,4 @@
-import HomeNavigation from "@/components/home-navigation";
+import Hero from "@/components/hero";
 import RatioCard from "@/components/ratio-card";
 import BeanconquerorCard from "@/components/bc-card";
 import {Button} from "@/components/ui/button";
@@ -10,7 +10,7 @@ import Image from "next/image";
 export default async function Home() {
     return (
         <>
-            <HomeNavigation/>
+            <Hero/>
             <div>
                 <Image className={"block dark:hidden"} width={500} height={500} src={"/beanstats_img_light.png"} alt={"An illustration of coffee"} />
                 <Image className={"hidden dark:block"} width={500} height={500} src={"/beanstats_img_dark.png"} alt={"An illustration of coffee"} />

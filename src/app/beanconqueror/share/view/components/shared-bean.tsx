@@ -16,8 +16,8 @@ import BeanProto = beanconqueror.BeanProto;
 import IBeanInformation = beanconqueror.IBeanInformation;
 import LabelledValue from "@/app/beanconqueror/share/view/components/labelled-value";
 import QRCodeCard from "@/components/qrcode-card";
-import {followBeanLink} from "@/app/beanconqueror/share/create/util/beanlink-helpers";
 import {useState} from "react";
+import {followBeanLink} from "@/lib/beanlink";
 
 const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
     <>
@@ -107,7 +107,6 @@ const SharedBean = ({url, validUrl, isBeanLink}: { url: string | undefined, vali
 
     if (isBeanLink) {
         followBeanLink(url).then(response => {
-            console.log(response)
             setViewUrl(response);
         });
     }
@@ -158,7 +157,6 @@ const SharedBean = ({url, validUrl, isBeanLink}: { url: string | undefined, vali
                         <QRCodeCard value={url} />
                     </TabsContent>
                 </Tabs>
-
             </CardContent>
         </Card>
     )

@@ -2,16 +2,15 @@ import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/compon
 import {Control} from "react-hook-form";
 import {FieldPath, FieldValues} from "react-hook-form/dist/types";
 import {Textarea} from "@/components/ui/textarea";
-import {Input} from "@/components/ui/input";
 
-export interface ControlledTextInputProps<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> {
+export interface ControlledTextAreaInputProps<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> {
     name: TName;
     label: string;
     placeholder?: string | undefined;
     control: Control<TFieldValues>
 }
 
-export default function ControlledTextInput<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(props: ControlledTextInputProps<TFieldValues, TName>) {
+export default function TextareaInput<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(props: ControlledTextAreaInputProps<TFieldValues, TName>) {
     return (
         <FormField<TFieldValues, TName>
             control={props.control}
@@ -20,7 +19,7 @@ export default function ControlledTextInput<TFieldValues extends FieldValues = F
                 <FormItem>
                     <FormLabel>{props.label}</FormLabel>
                     <FormControl>
-                        <Input placeholder={props.placeholder} {...field} />
+                        <Textarea {...field} onChange={field.onChange} placeholder={props.placeholder}/>
                     </FormControl>
                     <FormMessage/>
                 </FormItem>

@@ -5,25 +5,21 @@ import {Input} from "@/components/ui/input";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Button} from "@/components/ui/button";
-import DatePickerFormField from "@/app/beanconqueror/share/create/components/date-picker";
+import DatePickerInput from "@/components/controlled-form/date-picker";
 import {beanconqueror} from "@/lib/beanconqueror/proto/generated/beanconqueror";
 import Roast = beanconqueror.Roast;
 import BeanRoastingType = beanconqueror.BeanRoastingType;
-import SelectFormField from "@/app/beanconqueror/share/create/components/controlled-select-input";
+import SelectFormField from "@/components/controlled-form/select-input";
 import BeanMix = beanconqueror.BeanMix;
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {useEffect, useState} from "react";
-import ControlledTextInput from "@/app/beanconqueror/share/create/components/controlled-text-input";
-import ControlledTextAreaInput from "@/app/beanconqueror/share/create/components/controlled-textarea-input";
-import ControlledCheckboxInput from "@/app/beanconqueror/share/create/components/controlled-checkbox-input";
-import ControlledSliderInput from "@/app/beanconqueror/share/create/components/controlled-slider-input";
+import { CheckboxInput, HorizontalGroup, TextInput, TextareaInput, SliderInput } from "@/components/controlled-form";
 import {Legend} from "@/components/ui/legend";
 import {VarietyInformationFieldset} from "@/app/beanconqueror/share/create/components/variety-information-fieldset";
-import HorizontalGroup from "@/app/beanconqueror/share/create/components/horizontal-group";
-import {defaultVarietyInformation, formSchema} from "@/app/beanconqueror/share/create/form-schema";
-import {createUrlFromFormSchema} from "@/app/beanconqueror/share/create/util/proto-helpers";
-import {BeanLinkResponse, getBeanLink} from "@/app/beanconqueror/share/create/util/beanlink-helpers";
+import {defaultVarietyInformation, formSchema} from "@/lib/beanconqueror/proto/form-schema";
+import {createUrlFromFormSchema} from "@/lib/beanconqueror/proto/proto-helpers";
 import ShareCard from "@/app/beanconqueror/share/create/components/share-card";
+import {BeanLinkResponse, getBeanLink} from "@/lib/beanlink";
 
 
 const BeanInformationForm = () => {
@@ -77,21 +73,21 @@ const BeanInformationForm = () => {
                             <CardTitle>General information</CardTitle>
                         </CardHeader>
                         <CardContent className={"space-y-3"}>
-                            <ControlledTextInput<formSchema>
+                            <TextInput<formSchema>
                                 name={"coffeeName"} label={"Name"}
                                 placeholder={"Enter the name of the beans"}
                                 control={form.control}
                             />
-                            <ControlledTextInput<formSchema>
+                            <TextInput<formSchema>
                                 name={"roaster"} label={"Roaster"}
                                 placeholder={"Enter the name of the roaster"}
                                 control={form.control}
                             />
                             <HorizontalGroup>
-                                <DatePickerFormField<formSchema> name={"buyDate"} control={form.control}
-                                                                 label={"Buy date"}/>
-                                <DatePickerFormField<formSchema> name={"roastingDate"} control={form.control}
-                                                                 label={"Roast date"}/>
+                                <DatePickerInput<formSchema> name={"buyDate"} control={form.control}
+                                                             label={"Buy date"}/>
+                                <DatePickerInput<formSchema> name={"roastingDate"} control={form.control}
+                                                             label={"Roast date"}/>
                             </HorizontalGroup>
                             <HorizontalGroup>
                                 <SelectFormField<formSchema>
@@ -101,8 +97,8 @@ const BeanInformationForm = () => {
                                     default={"UNKNOWN_BEAN_ROASTING_TYPE"}
                                     enum={BeanRoastingType}
                                 />
-                                <ControlledSliderInput<formSchema> name={"degreeOfRoast"} control={form.control}
-                                                                   label={"Degree of roast"}/>
+                                <SliderInput<formSchema> name={"degreeOfRoast"} control={form.control}
+                                                         label={"Degree of roast"}/>
                             </HorizontalGroup>
                             <SelectFormField<formSchema>
                                 name={"roast"}
@@ -156,7 +152,7 @@ const BeanInformationForm = () => {
                                         </FormItem>
                                     )}
                                 />
-                                <ControlledTextInput<formSchema>
+                                <TextInput<formSchema>
                                     name={"flavourProfile"} label={"Flavour profile"}
                                     placeholder={"Enter some taste notes"}
                                     control={form.control}
@@ -176,17 +172,17 @@ const BeanInformationForm = () => {
                                         </FormItem>
                                     )}
                                 />
-                                <ControlledCheckboxInput<formSchema> name={"decaffeinated"} label={"Decaffeinated"}
-                                                                     control={form.control}/>
-                                <ControlledTextInput<formSchema> name={"website"} label={"Website"}
-                                                                 placeholder={"Enter the website of the beans"}
-                                                                 control={form.control}/>
-                                <ControlledTextInput<formSchema> name={"eanArticle"} label={"EAN / Article number"}
-                                                                 placeholder={"Enter the EAN or article number"}
-                                                                 control={form.control}/>
-                                <ControlledTextAreaInput<formSchema> name={"notes"} label={"Notes"}
-                                                                     placeholder={"Enter some notes"}
-                                                                     control={form.control}/>
+                                <CheckboxInput<formSchema> name={"decaffeinated"} label={"Decaffeinated"}
+                                                           control={form.control}/>
+                                <TextInput<formSchema> name={"website"} label={"Website"}
+                                                       placeholder={"Enter the website of the beans"}
+                                                       control={form.control}/>
+                                <TextInput<formSchema> name={"eanArticle"} label={"EAN / Article number"}
+                                                       placeholder={"Enter the EAN or article number"}
+                                                       control={form.control}/>
+                                <TextareaInput<formSchema> name={"notes"} label={"Notes"}
+                                                           placeholder={"Enter some notes"}
+                                                           control={form.control}/>
                             </fieldset>
                         </CardContent>
                     </Card>

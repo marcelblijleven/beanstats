@@ -1,8 +1,6 @@
 import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Control} from "react-hook-form";
 import {FieldPath, FieldValues} from "react-hook-form/dist/types";
-import {Textarea} from "@/components/ui/textarea";
-import {Checkbox} from "@/components/ui/checkbox";
 import {Slider} from "@/components/ui/slider";
 
 export interface ControlledSliderInputProps<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> {
@@ -12,7 +10,7 @@ export interface ControlledSliderInputProps<TFieldValues extends FieldValues = F
     control: Control<TFieldValues>
 }
 
-export default function ControlledSliderInput<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(props: ControlledSliderInputProps<TFieldValues, TName>) {
+export default function SliderInput<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(props: ControlledSliderInputProps<TFieldValues, TName>) {
     return (
         <FormField<TFieldValues>
             control={props.control}

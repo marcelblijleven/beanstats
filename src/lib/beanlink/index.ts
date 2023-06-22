@@ -1,3 +1,5 @@
+export const BEANLINK_RE = /^https:\/\/beanl.ink\/l\/.*$/;
+
 export interface BeanLinkResponse {
     link: string;
     error?: string | undefined,

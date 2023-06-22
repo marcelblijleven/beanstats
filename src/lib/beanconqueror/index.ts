@@ -1,0 +1,1 @@
+export const LINK_RE = /^https:\/\/(?:www\.)?beanconqueror.com\/?\?.*$/;

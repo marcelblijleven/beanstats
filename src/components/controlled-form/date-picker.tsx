@@ -1,7 +1,5 @@
-import {FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
-import Form from "@/app/beanconqueror/share/create/components/form";
+import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {cn} from "@/lib/utils";
-import form from "@/app/beanconqueror/share/create/components/form";
 import {Popover, PopoverTrigger} from "@radix-ui/react-popover";
 import {Button} from "@/components/ui/button";
 import {CalendarIcon} from "lucide-react";
@@ -18,7 +16,7 @@ export interface DatePickerFormFieldProps<TFieldValues extends FieldValues = Fie
 }
 
 
-export default function DatePickerFormField<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(props: DatePickerFormFieldProps<TFieldValues, TName>) {
+export default function DatePickerInput<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(props: DatePickerFormFieldProps<TFieldValues, TName>) {
     return (
         <FormField<TFieldValues>
             control={props.control}
