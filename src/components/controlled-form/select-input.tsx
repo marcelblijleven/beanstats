@@ -11,7 +11,7 @@ export interface SelectFormFieldProps<TFieldValues extends FieldValues = FieldVa
     enum: any // TODO: figure out typing
 }
 
-export default function SelectFormField<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(props: SelectFormFieldProps<TFieldValues, TName>) {
+export default function SelectInput<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(props: SelectFormFieldProps<TFieldValues, TName>) {
     return (
         <FormField<TFieldValues>
             control={props.control}

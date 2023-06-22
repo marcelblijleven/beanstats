@@ -1,5 +1,5 @@
 import {beanconqueror} from "@/lib/beanconqueror/proto/generated/beanconqueror";
-import {formSchema} from "@/app/beanconqueror/share/create/form-schema";
+import {formSchema} from "@/lib/beanconqueror/proto/form-schema";
 import BeanProto = beanconqueror.BeanProto;
 import BeanInformation = beanconqueror.BeanInformation;
 import Config = beanconqueror.Config;

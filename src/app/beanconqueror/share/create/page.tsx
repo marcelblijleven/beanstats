@@ -1,4 +1,4 @@
-import Form from "@/app/beanconqueror/share/create/components/form";
+import Form from "@/app/beanconqueror/share/create/components/bean-information-form";
 
 export default function CreateShareLinkPage() {
     return (

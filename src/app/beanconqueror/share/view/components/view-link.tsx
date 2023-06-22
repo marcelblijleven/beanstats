@@ -4,9 +4,8 @@ import {Input} from "@/components/ui/input";
 import {ChangeEvent, useState} from "react";
 import {Button} from "@/components/ui/button";
 import SharedBean from "@/app/beanconqueror/share/view/components/shared-bean";
-
-const LINK_RE = /^https:\/\/(?:www\.)?beanconqueror.com\/?\?.*$/;
-const BEANLINK_RE = /^https:\/\/beanl.ink\/l\/.*$/;
+import {BEANLINK_RE} from "@/lib/beanlink";
+import {LINK_RE} from "@/lib/beanconqueror";
 
 const ViewLink = () => {
     const [url, setUrl] = useState<string>("");

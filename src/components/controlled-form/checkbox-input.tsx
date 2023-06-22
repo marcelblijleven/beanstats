@@ -1,7 +1,6 @@
 import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Control} from "react-hook-form";
 import {FieldPath, FieldValues} from "react-hook-form/dist/types";
-import {Textarea} from "@/components/ui/textarea";
 import {Checkbox} from "@/components/ui/checkbox";
 
 export interface ControlledCheckboxInputProps<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> {
@@ -11,7 +10,7 @@ export interface ControlledCheckboxInputProps<TFieldValues extends FieldValues =
     control: Control<TFieldValues>
 }
 
-export default function ControlledCheckboxInput<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(props: ControlledCheckboxInputProps<TFieldValues, TName>) {
+export default function CheckboxInput<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(props: ControlledCheckboxInputProps<TFieldValues, TName>) {
     return (
         <FormField<TFieldValues, TName>
             control={props.control}

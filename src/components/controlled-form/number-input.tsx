@@ -1,7 +1,6 @@
 import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Control} from "react-hook-form";
 import {FieldPath, FieldValues} from "react-hook-form/dist/types";
-import {Textarea} from "@/components/ui/textarea";
 import {Input} from "@/components/ui/input";
 import {HTMLAttributes} from "react";
 
@@ -13,7 +12,7 @@ extends HTMLAttributes<HTMLInputElement>{
     control: Control<TFieldValues>
 }
 
-export default function ControlledNumberInput<
+export default function NumberInput<
     TFieldValues extends FieldValues = FieldValues,
     TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
     >({name, label, placeholder, control, ...props}: ControlledNumberInputProps<TFieldValues, TName>) {
