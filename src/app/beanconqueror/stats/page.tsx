@@ -5,17 +5,6 @@ import {useState} from "react";
 import {processBCFile, Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
 import Statistics from "@/app/beanconqueror/stats/components/statistics";
 import {Button} from "@/components/ui/button";
-import {Metadata} from "next";
-
-export const metadata: Metadata = {
-    title: "Beanconqueror stats",
-    description: "Import your Beanconqueror data and view your stats",
-    openGraph: {
-        title: "Beanconqueror stats",
-        description: "Import your Beanconqueror data and view your stats",
-        images: ["/beanconqueror_logo.png"],
-    },
-}
 
 export default function BeanconquerorPage() {
     const [data, setData] = useState<BrewStatistics>();
