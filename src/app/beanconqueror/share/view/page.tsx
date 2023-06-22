@@ -1,4 +1,15 @@
 import ViewLink from "@/app/beanconqueror/share/view/components/view-link";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "View link",
+    description: "View the contents of a Beanconqueror share link",
+    openGraph: {
+        title: "View link",
+        description: "View the contents of a Beanconqueror share link",
+        images: ["/beanconqueror_logo.png"],
+    },
+}
 
 export default function ViewLinkPage() {
     return (

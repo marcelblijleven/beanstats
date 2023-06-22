@@ -1,4 +1,15 @@
 import Form from "@/app/beanconqueror/share/create/components/bean-information-form";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Share link",
+    description: "Create a Beanconqueror share link using this webform",
+    openGraph: {
+        title: "Create a share link",
+        description: "Create Beanconqueror share link using this webform",
+        images: ["/beanconqueror_logo.png"],
+    },
+}
 
 export default function CreateShareLinkPage() {
     return (
