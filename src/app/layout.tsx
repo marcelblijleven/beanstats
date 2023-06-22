@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import {ThemeProvider} from "@/components/theme-provider";
 import Header from "@/components/layout/header";
 import {ReactNode} from "react";
-import Analytics from "@vercel/analytics"
+// import Analytics from "@vercel/analytics"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,7 +24,7 @@ export default function RootLayout({
           <Header />
           <main className="flex h-full flex-col items-center p-6 md:p-24 space-y-6">
             {children}
-            <Analytics />
+            {/*<Analytics />*/}
           </main>
         </ThemeProvider>
       </body>
