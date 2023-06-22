@@ -6,15 +6,6 @@ import {Github} from "lucide-react";
 import Link from "next/link";
 import CardGrid from "@/components/ui/card-grid";
 import Image from "next/image";
-import {Metadata} from "next";
-
-export const metadata: Metadata = {
-    title: {
-        template: '%s | Beanstats',
-        default: 'Beanstats',
-    },
-    description: "Coffee tools, statistics and visualisations"
-}
 
 export default async function Home() {
     return (
