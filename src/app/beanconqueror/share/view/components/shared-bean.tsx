@@ -99,7 +99,7 @@ const VarietyTabsContent = ({decoded}: {decoded: BeanProto}) => (
 )
 
 const SharedBean = ({url, validUrl, isBeanLink}: { url: string | undefined, validUrl: boolean, isBeanLink: boolean }) => {
-    const [viewUrl, setViewUrl] = useState<string>(null);
+    const [viewUrl, setViewUrl] = useState<string | null>(null);
 
     useEffect(() => {
         setViewUrl(url || "");
