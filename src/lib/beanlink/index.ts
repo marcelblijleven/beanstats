@@ -1,5 +1,3 @@
-export const BEANLINK_RE = /^https:\/\/beanl.ink\/l\/.*$/;
-
 export interface BeanLinkResponse {
     link: string;
     error?: string | undefined,
@@ -7,7 +5,13 @@ export interface BeanLinkResponse {
     roaster?: string | null;
 }
 
+const wait = (): Promise<string> => {
+    return new Promise(resolve => setTimeout(resolve, 3000))
+}
+
 export async function getBeanLink(link: string): Promise<BeanLinkResponse> {
+    console.log("bai")
+    await wait()
     const response = await fetch("https://beanl.ink/add", {
         method: "POST",
         body: JSON.stringify({"link": link})

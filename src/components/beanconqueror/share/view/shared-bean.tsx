@@ -5,8 +5,6 @@ import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {getTextWithFlagSupport} from "@/lib/flags";
 
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
-import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
-import {AlertCircle} from "lucide-react";
 
 import {beanconqueror} from "@/lib/beanconqueror/proto/generated/beanconqueror";
 import Roast = beanconqueror.Roast;
@@ -14,10 +12,14 @@ import BeanMix = beanconqueror.BeanMix;
 import BeanRoastingType = beanconqueror.BeanRoastingType;
 import BeanProto = beanconqueror.BeanProto;
 import IBeanInformation = beanconqueror.IBeanInformation;
-import LabelledValue from "@/app/beanconqueror/share/view/components/labelled-value";
+import LabelledValue from "@/components/beanconqueror/share/view/labelled-value";
 import QRCodeCard from "@/components/qrcode-card";
 import {useEffect, useState} from "react";
-import {followBeanLink} from "@/lib/beanlink";
+import {BeanLinkResponse, followBeanLink} from "@/lib/beanlink";
+import {BEANLINK_RE} from "@/lib/validation/links";
+import {Alert} from "@/components/alert";
+import {ShortenLinkForm} from "@/components/forms/shorten-link-form";
+import {BeanLinkCard} from "@/components/share-card";
 
 const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
     <>
@@ -98,29 +100,22 @@ const VarietyTabsContent = ({decoded}: {decoded: BeanProto}) => (
     </>
 )
 
-const SharedBean = ({url, validUrl, isBeanLink}: { url: string | undefined, validUrl: boolean, isBeanLink: boolean }) => {
-    const [viewUrl, setViewUrl] = useState<string | null>(null);
+const SharedBean = ({url}: { url: string}) => {
+    const [viewUrl, setViewUrl] = useState<string>(url);
+    const [data, setData] = useState<BeanLinkResponse | null>(null);
+
+    let err;
+    let decoded;
 
     useEffect(() => {
         setViewUrl(url || "");
     }, [url])
 
-    if (!url) {
-        return null;
-    }
-
-    if (isBeanLink) {
+    if (url.match(BEANLINK_RE)) {
         followBeanLink(url).then(response => {
             setViewUrl(response);
         });
     }
-
-    if (!viewUrl || !validUrl) {
-        return null;
-    }
-
-    let err;
-    let decoded;
 
     try {
         decoded = decodeMessage(viewUrl);
@@ -129,16 +124,9 @@ const SharedBean = ({url, validUrl, isBeanLink}: { url: string | undefined, vali
     }
 
     if (err !== undefined || decoded === undefined) {
-        return (
-            <Alert variant="destructive">
-                <AlertCircle className="h-4 w-4"/>
-                <AlertTitle>Error</AlertTitle>
-                <AlertDescription>
-                    Could not decode this url into bean information
-                </AlertDescription>
-            </Alert>
-        )
+        return (<Alert description={"Could not decode this url"} />)
     }
+
     return (
         <Card className={"w-full"}>
             <CardHeader>
@@ -158,7 +146,17 @@ const SharedBean = ({url, validUrl, isBeanLink}: { url: string | undefined, vali
                         <VarietyTabsContent decoded={decoded} />
                     </TabsContent>
                     <TabsContent value={"share"} className={"flex flex-col space-y-4"}>
-                        <QRCodeCard value={url} />
+                        {!data && <ShortenLinkForm
+                          link={viewUrl}
+                          callback={(data: BeanLinkResponse) => setData(data)}
+                          buttonText={"Create share link"}
+                        />}
+                        {!!data && (
+                            <>
+                                <BeanLinkCard response={data} />
+                                <QRCodeCard value={data.link} />
+                            </>
+                        )}
                     </TabsContent>
                 </Tabs>
 

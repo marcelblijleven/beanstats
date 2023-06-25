@@ -3,13 +3,16 @@ import { Inter } from 'next/font/google'
 import {ThemeProvider} from "@/components/theme-provider";
 import Header from "@/components/layout/header";
 import {ReactNode} from "react";
-// import Analytics from "@vercel/analytics"
+import {Metadata} from "next";
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
-  title: 'Beanstats',
-  description: 'Coffee tools and visualisation',
+export const metadata: Metadata = {
+  title: {
+    template: '%s | Beanstats',
+    default: 'Beanstats',
+  },
+  description: "Coffee tools, statistics and visualisations"
 }
 
 export default function RootLayout({

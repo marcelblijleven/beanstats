@@ -21,8 +21,8 @@ export interface VarietyInformationFieldsetProps<TFieldValues extends FieldValue
 export function VarietyInformationFieldset<TFieldValues extends FieldValues = FieldValues>({index, remove, control}: VarietyInformationFieldsetProps<TFieldValues>) {
     return (
         <fieldset>
-            <div className={"flex justify-between"}>
-                <Legend>{`Bean ${index + 1}`}</Legend>
+            <div className={"flex justify-between mb-3"}>
+                <Legend className={"text-md"}>{`Bean ${index + 1}`}</Legend>
                 {index !== 0 && <Button variant={"outline"} onClick={() => remove(index)}>Remove</Button>}
             </div>
             <HorizontalGroup>
