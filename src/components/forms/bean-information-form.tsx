@@ -15,10 +15,10 @@ import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/compo
 import {useEffect, useState} from "react";
 import {CheckboxInput, HorizontalGroup, TextInput, TextareaInput, SliderInput} from "@/components/controlled-form";
 import {Legend} from "@/components/ui/legend";
-import {VarietyInformationFieldset} from "@/app/beanconqueror/share/create/components/variety-information-fieldset";
-import {defaultVarietyInformation, formSchema} from "@/lib/beanconqueror/proto/form-schema";
+import {VarietyInformationFieldset} from "@/components/forms/variety-information-fieldset";
+import {defaultVarietyInformation, beanInformationFormSchema} from "@/lib/validation/bean-information-form-schema";
 import {createUrlFromFormSchema} from "@/lib/beanconqueror/proto/proto-helpers";
-import ShareCard from "@/app/beanconqueror/share/create/components/share-card";
+import ShareCard from "@/components/share-card";
 import {BeanLinkResponse, getBeanLink} from "@/lib/beanlink";
 import {TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {Tabs} from "@radix-ui/react-tabs";
@@ -29,8 +29,8 @@ const BeanInformationForm = () => {
     const [url, setUrl] = useState("");
     const [beanLinkResponse, setBeanLinkResponse] = useState<BeanLinkResponse | undefined>();
 
-    const form = useForm<formSchema>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<beanInformationFormSchema>({
+        resolver: zodResolver(beanInformationFormSchema),
         defaultValues: {
             coffeeName: "",
             roaster: "",
@@ -50,11 +50,11 @@ const BeanInformationForm = () => {
             minLength: 0,
             maxLength: 10,
         },
-    } as UseFieldArrayProps<formSchema, "varietyInformation">);
+    } as UseFieldArrayProps<beanInformationFormSchema, "varietyInformation">);
 
     const blend = form.watch("beanMix");
 
-    const onSubmit = (values: formSchema) => {
+    const onSubmit = (values: beanInformationFormSchema) => {
         const shareUrl = createUrlFromFormSchema(values);
         setUrl(shareUrl);
         setShowQR(true);
@@ -89,41 +89,41 @@ const BeanInformationForm = () => {
                             <TabsContent value={"general"} className={"space-y-3"}>
                                 <fieldset className={"space-y-3"}>
                                     <Legend>General information</Legend>
-                                    <TextInput<formSchema>
+                                    <TextInput<beanInformationFormSchema>
                                         name={"coffeeName"} label={"Name"}
                                         placeholder={"Enter the name of the beans"}
                                         control={form.control}
                                     />
-                                    <TextInput<formSchema>
+                                    <TextInput<beanInformationFormSchema>
                                         name={"roaster"} label={"Roaster"}
                                         placeholder={"Enter the name of the roaster"}
                                         control={form.control}
                                     />
                                     <HorizontalGroup>
-                                        <DatePickerInput<formSchema> name={"buyDate"} control={form.control}
-                                                                     label={"Buy date"}/>
-                                        <DatePickerInput<formSchema> name={"roastingDate"} control={form.control}
-                                                                     label={"Roast date"}/>
+                                        <DatePickerInput<beanInformationFormSchema> name={"buyDate"} control={form.control}
+                                                                                    label={"Buy date"}/>
+                                        <DatePickerInput<beanInformationFormSchema> name={"roastingDate"} control={form.control}
+                                                                                    label={"Roast date"}/>
                                     </HorizontalGroup>
                                     <HorizontalGroup>
-                                        <SelectFormField<formSchema>
+                                        <SelectFormField<beanInformationFormSchema>
                                             name={"beanRoastingType"}
                                             label={"Roast"}
                                             control={form.control}
                                             default={"UNKNOWN_BEAN_ROASTING_TYPE"}
                                             enum={BeanRoastingType}
                                         />
-                                        <SliderInput<formSchema> name={"degreeOfRoast"} control={form.control}
-                                                                 label={"Degree of roast"}/>
+                                        <SliderInput<beanInformationFormSchema> name={"degreeOfRoast"} control={form.control}
+                                                                                label={"Degree of roast"}/>
                                     </HorizontalGroup>
-                                    <SelectFormField<formSchema>
+                                    <SelectFormField<beanInformationFormSchema>
                                         name={"roast"}
                                         label={"Roast style"}
                                         control={form.control}
                                         default={"UNKNOWN_ROAST"}
                                         enum={Roast}
                                     />
-                                    <SelectFormField<formSchema>
+                                    <SelectFormField<beanInformationFormSchema>
                                         name={"beanMix"}
                                         label={"Blend"}
                                         control={form.control}
@@ -133,7 +133,7 @@ const BeanInformationForm = () => {
                                 </fieldset>
                                 <fieldset className={"space-y-3"}>
                                     <Legend>More information</Legend>
-                                    <FormField<formSchema>
+                                    <FormField<beanInformationFormSchema>
                                         control={form.control}
                                         name={"weight"}
                                         rules={{}}
@@ -151,7 +151,7 @@ const BeanInformationForm = () => {
                                             </FormItem>
                                         )}
                                     />
-                                    <FormField<formSchema>
+                                    <FormField<beanInformationFormSchema>
                                         control={form.control}
                                         name={"cost"}
                                         render={({field}) => (
@@ -167,12 +167,12 @@ const BeanInformationForm = () => {
                                             </FormItem>
                                         )}
                                     />
-                                    <TextInput<formSchema>
+                                    <TextInput<beanInformationFormSchema>
                                         name={"flavourProfile"} label={"Flavour profile"}
                                         placeholder={"Enter some taste notes"}
                                         control={form.control}
                                     />
-                                    <FormField<formSchema>
+                                    <FormField<beanInformationFormSchema>
                                         control={form.control}
                                         name={"cuppingPoints"}
                                         render={({field}) => (
@@ -187,27 +187,27 @@ const BeanInformationForm = () => {
                                             </FormItem>
                                         )}
                                     />
-                                    <CheckboxInput<formSchema> name={"decaffeinated"} label={"Decaffeinated"}
-                                                               control={form.control}/>
-                                    <TextInput<formSchema> name={"website"} label={"Website"}
-                                                           placeholder={"Enter the website of the beans"}
-                                                           control={form.control}/>
-                                    <TextInput<formSchema> name={"eanArticle"} label={"EAN / Article number"}
-                                                           placeholder={"Enter the EAN or article number"}
-                                                           control={form.control}/>
-                                    <TextareaInput<formSchema> name={"notes"} label={"Notes"}
-                                                               placeholder={"Enter some notes"}
-                                                               control={form.control}/>
+                                    <CheckboxInput<beanInformationFormSchema> name={"decaffeinated"} label={"Decaffeinated"}
+                                                                              control={form.control}/>
+                                    <TextInput<beanInformationFormSchema> name={"website"} label={"Website"}
+                                                                          placeholder={"Enter the website of the beans"}
+                                                                          control={form.control}/>
+                                    <TextInput<beanInformationFormSchema> name={"eanArticle"} label={"EAN / Article number"}
+                                                                          placeholder={"Enter the EAN or article number"}
+                                                                          control={form.control}/>
+                                    <TextareaInput<beanInformationFormSchema> name={"notes"} label={"Notes"}
+                                                                              placeholder={"Enter some notes"}
+                                                                              control={form.control}/>
                                 </fieldset>
                             </TabsContent>
                             <TabsContent value={"variety"} className={"space-y-3"}>
                                 <Legend>Variety information</Legend>
                                 <div className={"space-y-4"}>
                                     {fields.map((field, index) => (
-                                        <VarietyInformationFieldset<formSchema> key={field.id} field={field}
-                                                                                index={index}
-                                                                                control={form.control}
-                                                                                remove={remove}/>
+                                        <VarietyInformationFieldset<beanInformationFormSchema> key={field.id} field={field}
+                                                                                               index={index}
+                                                                                               control={form.control}
+                                                                                               remove={remove}/>
                                     ))}
                                     {blend === "BLEND" && (<Button onClick={(event) => {
                                         event.preventDefault();
@@ -223,7 +223,7 @@ const BeanInformationForm = () => {
                         </div>
                     </form>
                 </Form>
-                {showQR && <ShareCard bcUrl={url} beanLinkResponse={beanLinkResponse}/>}
+                {showQR && <ShareCard fallbackUrl={url} beanLinkResponse={beanLinkResponse}/>}
             </CardContent>
         </Card>
     )

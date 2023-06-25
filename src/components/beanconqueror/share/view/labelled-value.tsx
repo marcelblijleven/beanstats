@@ -1,7 +1,7 @@
 import {getDateString} from "@/lib/dates";
 import {getTextWithFlagSupport} from "@/lib/flags";
 import {Badge} from "@/components/ui/badge";
-import Rating from "@/app/beanconqueror/share/view/components/rating";
+import Rating from "@/components/beanconqueror/share/view/rating";
 
 const LabelledValue = ({
                            label,

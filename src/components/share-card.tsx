@@ -3,7 +3,7 @@ import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import CopyContainer from "@/components/copy-container";
 import {BeanLinkResponse} from "@/lib/beanlink";
 
-const BeanLinkCard = ({response}: {response: BeanLinkResponse }) => (
+export const BeanLinkCard = ({response}: {response: BeanLinkResponse }) => (
     <Card>
         <CardHeader>
             <CardTitle>{`🫘 ${response.name}, ${response.roaster || ""}`}</CardTitle>
@@ -19,7 +19,7 @@ const BeanLinkCard = ({response}: {response: BeanLinkResponse }) => (
 )
 
 
-const ShareCard = ({bcUrl, beanLinkResponse}: {bcUrl: string, beanLinkResponse: BeanLinkResponse | undefined}) => (
+const ShareCard = ({fallbackUrl, beanLinkResponse}: {fallbackUrl?: string | undefined, beanLinkResponse?: BeanLinkResponse | undefined}) => (
     <Card className={"w-full"}>
         <CardHeader>
             <CardTitle>Share or import</CardTitle>
@@ -31,8 +31,8 @@ const ShareCard = ({bcUrl, beanLinkResponse}: {bcUrl: string, beanLinkResponse: 
                     <QRCodeCard value={beanLinkResponse.link} />
                 </>
             )}
-            {!beanLinkResponse?.link && (
-                <QRCodeCard value={bcUrl} />
+            {(!beanLinkResponse?.link && !!fallbackUrl) && (
+                <QRCodeCard value={fallbackUrl} />
             )}
         </CardContent>
     </Card>

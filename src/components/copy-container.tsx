@@ -19,7 +19,7 @@ const CopyContainer = ({value, displayValue}: {value: string, displayValue?: str
 
     return (
         <div className={"flex items-center justify-between rounded-lg border bg-card text-card-foreground shadow-sm"}>
-            <div className={"text-sm p-2"}>{displayValue || value}</div>
+            <div className={"text-sm p-2 truncate text-ellipsis"}>{displayValue || value}</div>
             <Button variant={"ghost"} onClick={onClick}>
                 {createElement(icon)}
             </Button>

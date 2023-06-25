@@ -1,5 +1,5 @@
 import {beanconqueror} from "@/lib/beanconqueror/proto/generated/beanconqueror";
-import {formSchema} from "@/lib/beanconqueror/proto/form-schema";
+import {beanInformationFormSchema} from "@/lib/validation/bean-information-form-schema";
 import BeanProto = beanconqueror.BeanProto;
 import BeanInformation = beanconqueror.BeanInformation;
 import Config = beanconqueror.Config;
@@ -9,7 +9,7 @@ import BeanRoastingType = beanconqueror.BeanRoastingType;
 import BeanRoastInformation = beanconqueror.BeanRoastInformation;
 import ICupping = beanconqueror.ICupping;
 
-const formSchemaToBeanProto = (values: formSchema) => BeanProto.create({
+const formSchemaToBeanProto = (values: beanInformationFormSchema) => BeanProto.create({
     name: values.coffeeName,
     buyDate: values.buyDate?.toISOString() || "",
     roastingDate: values.roastingDate?.toISOString() || "",
@@ -92,7 +92,7 @@ const buildURL = (encoded: string, limit: number = 400): string => {
 }
 
 
-export const createUrlFromFormSchema = (values: formSchema) => {
+export const createUrlFromFormSchema = (values: beanInformationFormSchema) => {
     const bytes = BeanProto.encode(formSchemaToBeanProto(values)).finish();
     const encoded = btoa(String.fromCharCode(...Array.from(new Uint8Array(bytes))));
     return buildURL(encoded);

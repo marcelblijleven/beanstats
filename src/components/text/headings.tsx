@@ -20,7 +20,7 @@ export const H2 = forwardRef<
     HTMLAttributes<HTMLHeadingElement>
     >(({className, ...props}, ref) => (
     <h2
-        className={cn("text-4xl font-bold tracking-tight leading-none", styles.balance, className)}
+        className={cn("text-3xl font-bold tracking-tight leading-none", styles.balance, className)}
         ref={ref}
     >
         {props.children}
@@ -32,7 +32,7 @@ export const H3 = forwardRef<
     HTMLAttributes<HTMLHeadingElement>
     >(({className, ...props}, ref) => (
     <h3
-        className={cn("text-3xl font-bold tracking-tight leading-none", styles.balance, className)}
+        className={cn("text-2xl font-bold tracking-tight leading-none", styles.balance, className)}
         ref={ref}
     >
         {props.children}

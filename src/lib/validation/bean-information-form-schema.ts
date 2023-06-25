@@ -26,7 +26,7 @@ export const varietyInformationShape = z.object({
 
 export type varietyInformationType = z.infer<typeof varietyInformationShape>
 
-export const formSchema = z.object({
+export const beanInformationFormSchema = z.object({
     coffeeName: z.string(),
     roaster: z.optional(z.string()),
     buyDate: z.optional(z.date()),
@@ -46,7 +46,7 @@ export const formSchema = z.object({
     varietyInformation: z.optional(z.array(varietyInformationShape).min(0))
 });
 
-export type formSchema = z.infer<typeof formSchema>;
+export type beanInformationFormSchema = z.infer<typeof beanInformationFormSchema>;
 
 export const defaultVarietyInformation = {
     country: "",

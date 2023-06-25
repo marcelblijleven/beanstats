@@ -1,11 +1,11 @@
 import Hero from "@/components/hero";
-import RatioCard from "@/components/ratio-card";
-import BeanconquerorCard from "@/components/bc-card";
+import BeanconquerorSection from "@/components/home/beanconqueror-section";
 import {Button} from "@/components/ui/button";
 import {Github} from "lucide-react";
 import Link from "next/link";
 import CardGrid from "@/components/ui/card-grid";
 import Image from "next/image";
+import ToolsSection from "@/components/home/tools-section";
 
 export default async function Home() {
     return (
@@ -17,8 +17,8 @@ export default async function Home() {
 
             </div>
             <CardGrid>
-                <BeanconquerorCard/>
-                <RatioCard/>
+                <BeanconquerorSection/>
+                <ToolsSection />
             </CardGrid>
             <Link href={"https://www.github.com/marcelblijleven/beanstats"}>
                 <Button variant={"secondary"}>

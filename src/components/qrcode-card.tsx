@@ -1,7 +1,7 @@
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import { QRCode } from "react-qrcode-logo";
 
-const QRCodeSize = 250;
+const QRCodeSize = 200;
 
 const QRCodeCard = ({value}: {value: string}) => (
     <Card className={"bg-white"} style={{color: "hsl(222.2 47.4% 11.2%)"}}>
