@@ -9,6 +9,7 @@ import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {BeanLinkResponse, getBeanLink} from "@/lib/beanlink";
+import {Loader2Icon} from "lucide-react";
 
 type Inputs = z.infer<typeof shortenLinkSchema>
 
@@ -26,10 +27,12 @@ export function ShortenLinkForm(props: ShortenLinkFormProps) {
             link: props.link || "",
         }
     });
+    const { isSubmitting } = form.formState;
 
-    const onSubmit = (data: Inputs) => {
+    const onSubmit = async (data: Inputs) => {
         try {
-            getBeanLink(data.link).then(response => props.callback(response));
+            const response = await getBeanLink(data.link);
+            props.callback(response);
         } catch (e) {
             console.log(e)
         }
@@ -54,7 +57,17 @@ export function ShortenLinkForm(props: ShortenLinkFormProps) {
                         </FormItem>
                     )}
                 />
-                <Button className={"flex gap-2"}>{props.buttonText || "Shorten"}</Button>
+                <Button
+                    className={"flex gap-2"}
+                    disabled={isSubmitting}
+                >
+                    {props.buttonText || "Shorten"}
+                    {isSubmitting && (
+                        <Loader2Icon
+                            className={"h-5 w-5 animate-spin text-background"}
+                        />
+                    )}
+                </Button>
             </form>
         </Form>
     )
