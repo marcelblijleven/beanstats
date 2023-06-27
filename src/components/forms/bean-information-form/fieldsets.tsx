@@ -206,7 +206,7 @@ export function VarietyInformationFieldset<TFieldValues extends FieldValues = Fi
                     name={`varietyInformation.${index}.farm` as const}
                     render={({field}) => (
                         <FormItemWrapper label={"Farm"}>
-                            <Input {...field} />
+                            <Input placeholder={"Name of the farm"} {...field} />
                         </FormItemWrapper>
                     )}
                 />
@@ -215,7 +215,7 @@ export function VarietyInformationFieldset<TFieldValues extends FieldValues = Fi
                     name={`varietyInformation.${index}.farmer` as const}
                     render={({field}) => (
                         <FormItemWrapper label={"Farmer"}>
-                            <Input {...field} />
+                            <Input placeholder={"Name of the farmer"} {...field} />
                         </FormItemWrapper>
                     )}
                 />
@@ -226,7 +226,7 @@ export function VarietyInformationFieldset<TFieldValues extends FieldValues = Fi
                     name={`varietyInformation.${index}.elevation` as const}
                     render={({field}) => (
                         <FormItemWrapper label={"Elevation"}>
-                            <Input {...field} />
+                            <Input placeholder={"Enter the elevation"} {...field} />
                         </FormItemWrapper>
                     )}
                 />
@@ -235,7 +235,7 @@ export function VarietyInformationFieldset<TFieldValues extends FieldValues = Fi
                     name={`varietyInformation.${index}.variety` as const}
                     render={({field}) => (
                         <FormItemWrapper label={"Variety"}>
-                            <Input {...field} />
+                            <Input placeholder={"Enter bean variety"} {...field} />
                         </FormItemWrapper>
                     )}
                 />
@@ -245,7 +245,7 @@ export function VarietyInformationFieldset<TFieldValues extends FieldValues = Fi
                 name={`varietyInformation.${index}.processing` as const}
                 render={({field}) => (
                     <FormItemWrapper label={"Processing"}>
-                        <Input {...field} />
+                        <Input placeholder={"Enter processing method"} {...field} />
                     </FormItemWrapper>
                 )}
             />
@@ -255,7 +255,7 @@ export function VarietyInformationFieldset<TFieldValues extends FieldValues = Fi
                     name={`varietyInformation.${index}.harvested` as const}
                     render={({field}) => (
                         <FormItemWrapper label={"Harvested"}>
-                            <Input {...field} />
+                            <Input placeholder={"Enter when the beans were harvested"} {...field} />
                         </FormItemWrapper>
                     )}
                 />
@@ -264,7 +264,7 @@ export function VarietyInformationFieldset<TFieldValues extends FieldValues = Fi
                     name={`varietyInformation.${index}.certification` as const}
                     render={({field}) => (
                         <FormItemWrapper label={"Certification"}>
-                            <Input {...field} />
+                            <Input placeholder={"Enter certification"}  {...field} />
                         </FormItemWrapper>
                     )}
                 />
@@ -275,7 +275,7 @@ export function VarietyInformationFieldset<TFieldValues extends FieldValues = Fi
                     name={`varietyInformation.${index}.purchasePrice` as const}
                     render={({field}) => (
                         <FormItemWrapper label={"Purchase price"}>
-                            <Input type={"number"} inputMode={"numeric"} {...field} />
+                            <Input type={"number"} inputMode={"numeric"} placeholder={"Enter purchase price"} {...field} />
                         </FormItemWrapper>
                     )}
                 />
@@ -284,7 +284,7 @@ export function VarietyInformationFieldset<TFieldValues extends FieldValues = Fi
                     name={`varietyInformation.${index}.fobPrice` as const}
                     render={({field}) => (
                         <FormItemWrapper label={"FOB price"}>
-                            <Input type={"number"} inputMode={"numeric"} {...field} />
+                            <Input type={"number"} inputMode={"numeric"} placeholder={"Enter FOB price"} {...field} />
                         </FormItemWrapper>
                     )}
                 />
