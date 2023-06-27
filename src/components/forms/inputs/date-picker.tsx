@@ -30,7 +30,7 @@ export default function DatePickerInput<TFieldValues extends FieldValues = Field
                                 <Button
                                     variant={"outline"}
                                     className={cn(
-                                        "w-full pl-3 text-left font-normal",
+                                        "w-full pl-3 text-left text-base font-normal",
                                         !field.value && "text-muted-foreground"
                                     )}
                                 >
