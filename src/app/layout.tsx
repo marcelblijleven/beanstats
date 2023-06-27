@@ -4,7 +4,7 @@ import {ThemeProvider} from "@/components/theme-provider";
 import Header from "@/components/layout/header";
 import {ReactNode} from "react";
 import {Metadata} from "next";
-import Analytics from "@vercel/analytics";
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] })
 
