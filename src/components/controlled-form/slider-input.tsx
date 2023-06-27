@@ -21,7 +21,7 @@ export default function SliderInput<TFieldValues extends FieldValues = FieldValu
                     <FormControl>
                         <div className={"flex gap-3"}>
                             <Slider defaultValue={[0]} max={5} step={1} {...field} onValueChange={field.onChange} />
-                            {field.value}
+                            {field.value || "0"}
                         </div>
                     </FormControl>
                     <FormMessage/>
