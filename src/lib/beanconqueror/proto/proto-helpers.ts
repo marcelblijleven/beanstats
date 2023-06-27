@@ -11,7 +11,6 @@ import ICupping = beanconqueror.ICupping;
 
 const formSchemaToBeanProto = (values: beanInformationFormSchema) => BeanProto.create({
     name: values.coffeeName,
-    buyDate: values.buyDate?.toISOString() || "",
     roastingDate: values.roastingDate?.toISOString() || "",
     note: values.notes || "",
     roaster: values.roaster || "",
