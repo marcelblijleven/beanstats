@@ -15,8 +15,8 @@ import {defaultVarietyInformation, beanInformationFormSchema} from "@/lib/valida
 import {createUrlFromFormSchema} from "@/lib/beanconqueror/proto/proto-helpers";
 import ShareCard from "@/components/share-card";
 import {BeanLinkResponse, getBeanLink} from "@/lib/beanlink";
-import {TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
-import {Tabs} from "@radix-ui/react-tabs";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import {Separator} from "@/components/ui/separator"
 
 import {
     GeneralInformationFieldset,
@@ -105,18 +105,22 @@ export default function BeanInformationForm() {
                             </TabsList>
                             <TabsContent value={"general"} className={"space-y-3"}>
                                 <GeneralInformationFieldset form={form}/>
+                                <Separator />
                                 <MoreInformationFieldset form={form}/>
                             </TabsContent>
                             <TabsContent value={"variety"} className={"space-y-3"}>
                                 <Legend>Variety information</Legend>
                                 <fieldset className={"space-y-3"}>
                                     {fields.map((field, index) => (
-                                        <VarietyInformationFieldset<beanInformationFormSchema>
-                                            key={field.id} field={field}
-                                            index={index}
-                                            form={form}
-                                            remove={remove}
-                                        />
+                                        <>
+                                            <VarietyInformationFieldset<beanInformationFormSchema>
+                                                key={field.id} field={field}
+                                                index={index}
+                                                form={form}
+                                                remove={remove}
+                                            />
+                                            {index !== fields.length - 1 && <Separator />}
+                                        </>
                                     ))}
                                     {blend === "BLEND" && (<Button onClick={(event) => {
                                         event.preventDefault();
