@@ -29,7 +29,6 @@ export type varietyInformationType = z.infer<typeof varietyInformationShape>
 export const beanInformationFormSchema = z.object({
     coffeeName: z.string(),
     roaster: z.optional(z.string()),
-    buyDate: z.optional(z.date()),
     roastingDate: z.optional(z.date()),
     beanRoastingType: z.optional(zodEnumFromObjKeys(BeanRoastingType)),
     degreeOfRoast: z.optional(z.array(z.number().min(0).max(5))),

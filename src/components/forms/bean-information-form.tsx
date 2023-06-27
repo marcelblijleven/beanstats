@@ -99,12 +99,7 @@ const BeanInformationForm = () => {
                                         placeholder={"Enter the name of the roaster"}
                                         control={form.control}
                                     />
-                                    <HorizontalGroup>
-                                        <DatePickerInput<beanInformationFormSchema> name={"buyDate"} control={form.control}
-                                                                                    label={"Buy date"}/>
-                                        <DatePickerInput<beanInformationFormSchema> name={"roastingDate"} control={form.control}
-                                                                                    label={"Roast date"}/>
-                                    </HorizontalGroup>
+                                    <DatePickerInput<beanInformationFormSchema> name={"roastingDate"} control={form.control} label={"Roast date"}/>
                                     <HorizontalGroup>
                                         <SelectFormField<beanInformationFormSchema>
                                             name={"beanRoastingType"}
