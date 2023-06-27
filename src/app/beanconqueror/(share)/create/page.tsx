@@ -1,4 +1,4 @@
-import Form from "@/components/forms/bean-information-form";
+import Form from "@/components/forms/bean-information-form/form";
 import {Metadata} from "next";
 
 export const metadata: Metadata = {
