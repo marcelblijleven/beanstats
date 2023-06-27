@@ -1,9 +1,14 @@
 import {H2} from "@/components/text";
 import Link from "next/link";
 import RatioCard from "@/components/ratio-card";
+import {cn} from "@/lib/utils";
 
-const ToolsSection = () => (
-    <section className={"space-y-4"}>
+export interface ToolsSectionProps {
+    className?: string;
+}
+
+const ToolsSection = ({className, ...props}: ToolsSectionProps) => (
+    <section className={cn("space-y-4", className)}>
         <H2>Tools</H2>
         <p>
             A collection of coffee related tools. More to come, if you have any ideas or suggestions please
@@ -14,7 +19,7 @@ const ToolsSection = () => (
             Github page
         </Link>
         </p>
-        <section>
+        <section className={"flex justify-center"}>
             <RatioCard/>
         </section>
     </section>
