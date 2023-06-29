@@ -1,5 +1,6 @@
 import {Metadata} from "next";
 import {ViewLinkContainer} from "@/components/beanconqueror/share/view/view-link-container";
+import PageShell from "@/components/layout/page-shell";
 
 export const metadata: Metadata = {
     title: "View link",
@@ -13,11 +14,11 @@ export const metadata: Metadata = {
 
 export default function ViewLinkPage() {
     return (
-        <div className={"flex flex-col items-center w-full max-w-5xl space-y-4"}>
+        <PageShell>
             <h1 className={"text-4xl md:text-6xl font-bold text-center"}>
                 Paste a <span className={"gradient-text"}>Beanconqueror</span> share url to view its content
             </h1>
             <ViewLinkContainer />
-        </div>
+        </PageShell>
     )
 }
