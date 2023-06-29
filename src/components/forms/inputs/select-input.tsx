@@ -21,7 +21,7 @@ export default function SelectInput<TFieldValues extends FieldValues = FieldValu
                     <FormLabel>{props.label}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={props.default}>
                         <FormControl>
-                            <SelectTrigger>
+                            <SelectTrigger className={"capitalize text-base"}>
                                 <SelectValue className={"capitalize text-base"} placeholder="Select an option" />
                             </SelectTrigger>
                         </FormControl>

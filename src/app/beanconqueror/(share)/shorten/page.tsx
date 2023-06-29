@@ -1,5 +1,6 @@
 import {Metadata} from "next";
 import {ShortenContainer} from "@/components/beanconqueror/share/shorten/shorten-link-container";
+import PageShell from "@/components/layout/page-shell";
 
 export const metadata: Metadata = {
     title: "Shorten Beanconqueror link",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function CreateShareLinkPage() {
     return (
-        <div className={"flex flex-col items-center w-full max-w-3xl space-y-4"}>
+        <PageShell>
             <h1 className={"text-4xl md:text-6xl font-bold text-center"}>
                 Shorten a <span className={"gradient-text"}>Beanconqueror</span> share link
             </h1>
@@ -21,6 +22,6 @@ export default function CreateShareLinkPage() {
                 This form uses Beanlink to shorten a Beanconqueror share link.
             </p>
             <ShortenContainer link={null}  />
-        </div>
+        </PageShell>
     )
 }
