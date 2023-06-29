@@ -3,9 +3,8 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
-  push:
-    tags:
-      - v*
+  release:
+    types: [released]
 jobs:
   deploy-production:
     runs-on: ubuntu-latest
