@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/marcelblijleven/beanstats/compare/v1.1.0...v1.1.1) (2023-06-29)
+
+
+### Bug Fixes
+
+* add custom not found page for better ux ([1561415](https://github.com/marcelblijleven/beanstats/commit/1561415808d1ad9aa23e20ba75edad70d8479c51))
+
 ## [1.1.0](https://github.com/marcelblijleven/beanstats/compare/v1.0.0...v1.1.0) (2023-06-29)
 
 
