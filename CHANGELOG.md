@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/marcelblijleven/beanstats/compare/v1.0.0...v1.1.0) (2023-06-29)
+
+
+### Features
+
+* add changelog page ([a485bd6](https://github.com/marcelblijleven/beanstats/commit/a485bd68be6c3c38080c15b29441b85de47f35f3))
+
 ## 1.0.0 (2023-06-28)
 
 
