@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/marcelblijleven/beanstats/compare/v1.1.1...v1.2.0) (2023-06-30)
+
+
+### Features
+
+* add toast to layout ([8b99b2d](https://github.com/marcelblijleven/beanstats/commit/8b99b2dec37199a8360662ab45be331d91322194))
+* notify users on upload error ([c57088f](https://github.com/marcelblijleven/beanstats/commit/c57088f077192a7c08f766704ed2a3776876e890))
+
 ## [1.1.1](https://github.com/marcelblijleven/beanstats/compare/v1.1.0...v1.1.1) (2023-06-29)
 
 
