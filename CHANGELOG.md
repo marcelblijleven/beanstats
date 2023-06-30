@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/marcelblijleven/beanstats/compare/v1.2.0...v1.2.1) (2023-06-30)
+
+
+### Bug Fixes
+
+* parse zipped brew and bean data correctly ([4c1c5d1](https://github.com/marcelblijleven/beanstats/commit/4c1c5d1e1c3a1156d444fb36d3f3ad0c70feda33))
+
 ## [1.2.0](https://github.com/marcelblijleven/beanstats/compare/v1.1.1...v1.2.0) (2023-06-30)
 
 
