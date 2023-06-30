@@ -4,8 +4,8 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
   workflow_dispatch:
-  release:
-    types: [released]
+  create:
+    tags: 'v*'
 jobs:
   deploy-production:
     runs-on: ubuntu-latest
