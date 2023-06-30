@@ -31,7 +31,7 @@ export async function readZipFile(file: File, callback: (data: any) => void) {
     const blobReader = new BlobReader(file);
     const reader = new ZipReader(blobReader);
     const entries: Entry[] = await reader.getEntries();
-    console.log(entries)
+
     if (!entries.length) {
         throw new Error("Empty zip file uploaded");
     }
@@ -51,16 +51,17 @@ export async function readZipFile(file: File, callback: (data: any) => void) {
         const data = await readEntryToJSON(entry);
 
         if (!!entry.filename.match(BEANCONQUEROR_BEANS_RE)) {
-            additionalBeans.push(data.BEANS);
+            additionalBeans.push(...data);
             continue;
         }
 
         if (!!entry.filename.match(BEANCONQUEROR_BREWS_RE)) {
-            additionalBrews.push(data.BREWS);
+            additionalBrews.push(...data);
         }
     }
-    baseData.BEANS = baseData.BEANS.concat(...additionalBeans);
-    baseData.BREWS = baseData.BREWS.concat(...additionalBrews);
+
+    baseData.BEANS = baseData.BEANS.concat(additionalBeans);
+    baseData.BREWS = baseData.BREWS.concat(additionalBrews);
 
     await callback(baseData);
     await reader.close();
