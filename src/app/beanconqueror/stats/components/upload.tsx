@@ -4,6 +4,7 @@ import {ChangeEvent, useState} from "react";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {readTextFile, readZipFile} from "@/lib/upload/utils";
+import {useToast} from "@/components/ui/use-toast";
 
 export interface FileUploadProps {
     callback: (data: any) => void;
@@ -15,13 +16,21 @@ interface ProcessProps {
 }
 
 const Process = (props: ProcessProps) => {
+    const { toast } = useToast();
+
     const onClick = () => {
         if (!props.file) return;
 
         if (props.file.type === "application/json") {
             readTextFile(props.file, props.callback)
         } else if (props.file.type === "application/zip") {
-            readZipFile(props.file, props.callback).catch(err => console.error(err));
+            readZipFile(props.file, props.callback).catch(err => {
+                toast({
+                    title: "Oh, something went wrong",
+                    description: "There was a problem reading the file",
+                    variant: "destructive",
+                })
+            });
         }
     }
 
