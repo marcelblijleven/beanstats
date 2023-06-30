@@ -1,5 +1,5 @@
 import {BlobReader, Entry, TextWriter, ZipReader} from "@zip.js/zip.js";
-import {BCData} from "@/types/beanconqueror";
+import {BCData, Bean, Brew} from "@/types/beanconqueror";
 
 const BEANCONQUEROR_BASE = "Beanconqueror.json";
 const BEANCONQUEROR_BEANS_RE = /^Beanconqueror_Beans_\d+.json$/;
@@ -51,12 +51,12 @@ export async function readZipFile(file: File, callback: (data: any) => void) {
         const data = await readEntryToJSON(entry);
 
         if (!!entry.filename.match(BEANCONQUEROR_BEANS_RE)) {
-            additionalBeans.push(...data);
+            additionalBeans.push(...data as Bean[]);
             continue;
         }
 
         if (!!entry.filename.match(BEANCONQUEROR_BREWS_RE)) {
-            additionalBrews.push(...data);
+            additionalBrews.push(...data as Brew[]);
         }
     }
 
