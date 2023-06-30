@@ -18,12 +18,13 @@ export function readTextFile(file: File, callback: (data: string) => void) {
 
 async function readEntryToJSON(entry: Entry): Promise<BCData> {
     const writer = new TextWriter();
-
+    console.log("readEntry")
     if (typeof entry.getData === "undefined") {
         return {MILL: [], PREPARATION: [], SETTINGS: [], VERSION: [], BEANS: [], BREWS: []}
     }
 
     const data = await entry.getData(writer);
+    console.log(data, "data in read entry")
     return JSON.parse(data);
 }
 
@@ -37,7 +38,7 @@ export async function readZipFile(file: File, callback: (data: any) => void) {
     }
 
     const baseEntry = entries.find(entry => entry.filename === BEANCONQUEROR_BASE);
-
+    console.log("baseEntry", baseEntry)
     if (!baseEntry) {
         throw new Error("Invalid zip file uploaded");
     }
@@ -47,9 +48,10 @@ export async function readZipFile(file: File, callback: (data: any) => void) {
     const additionalBrews = [];
 
     for (const entry of entries) {
+        console.log(entry);
         if (entry.filename.includes("MACOS")) continue;
         const data = await readEntryToJSON(entry);
-
+        console.log(data)
         if (!!entry.filename.match(BEANCONQUEROR_BEANS_RE)) {
             additionalBeans.push(data.BEANS);
             continue;
