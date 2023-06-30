@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/marcelblijleven/beanstats/compare/v1.2.2...v1.2.3) (2023-06-30)
+
+
+### Bug Fixes
+
+* incomplete brew graph data ([448c883](https://github.com/marcelblijleven/beanstats/commit/448c883b49856740b8098fbf121e465a244a183f))
+
 ## [1.2.2](https://github.com/marcelblijleven/beanstats/compare/v1.2.1...v1.2.2) (2023-06-30)
 
 
