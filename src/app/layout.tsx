@@ -7,6 +7,7 @@ import {Metadata} from "next";
 import {Analytics} from '@vercel/analytics/react';
 import {cn} from "@/lib/utils";
 import Footer from "@/components/layout/footer";
+import {Toaster} from "@/components/ui/toaster";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -29,6 +30,7 @@ export default function RootLayout({children}: {children: ReactNode }) {
                     {children}
                     <Analytics/>
                 </main>
+                <Toaster/>
                 <Footer/>
             </div>
         </ThemeProvider>
