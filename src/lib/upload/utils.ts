@@ -51,12 +51,12 @@ export async function readZipFile(file: File, callback: (data: any) => void) {
         const data = await readEntryToJSON(entry);
 
         if (!!entry.filename.match(BEANCONQUEROR_BEANS_RE)) {
-            additionalBeans.push(...data as Bean[]);
+            additionalBeans.push(...(data as unknown) as Bean[]);
             continue;
         }
 
         if (!!entry.filename.match(BEANCONQUEROR_BREWS_RE)) {
-            additionalBrews.push(...data as Brew[]);
+            additionalBrews.push(...(data as unknown) as Brew[]);
         }
     }
 
