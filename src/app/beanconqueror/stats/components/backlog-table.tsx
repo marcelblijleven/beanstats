@@ -9,7 +9,6 @@ export interface BacklogTableProps {
     usage: Mapping<number>;
 }
 
-
 const BacklogTable = (props: BacklogTableProps) => (
     <Table className={"whitespace-nowrap"}>
         <TableHeader>
@@ -26,15 +25,15 @@ const BacklogTable = (props: BacklogTableProps) => (
         <TableBody>
             {props.beans.map(bean => {
                 const usage = props.usage[bean.config.uuid] || 0;
-                const remaining = bean.weight - usage;
+                const remaining = (bean.weight || 0 - usage).toFixed(2);
                 return (
                     <TableRow key={bean.config.uuid}>
                         <TableCell  >{getTextWithFlagSupport(bean.name)}</TableCell>
                         <TableCell>{getTextWithFlagSupport(bean.roaster)}</TableCell>
                         <TableCell>{getDateString(bean.roastingDate ? new Date(bean.roastingDate): null, false)}</TableCell>
                         <TableCell>{getAge(bean.roastingDate)}</TableCell>
-                        <TableCell>{bean.weight ? `${bean.weight} gr`: "-"}</TableCell>
-                        <TableCell>{props.usage[bean.config.uuid] ? `${props.usage[bean.config.uuid]} gr`: "-"}</TableCell>
+                        <TableCell>{bean.weight ? `${bean.weight.toFixed(2)} gr`: "-"}</TableCell>
+                        <TableCell>{props.usage[bean.config.uuid] ? `${props.usage[bean.config.uuid].toFixed(2)} gr`: "-"}</TableCell>
                         <TableCell>{bean.weight ? `${remaining} gr` : "-"}</TableCell>
                     </TableRow>
                 );
