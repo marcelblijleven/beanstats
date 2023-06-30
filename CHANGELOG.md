@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.2](https://github.com/marcelblijleven/beanstats/compare/v1.2.1...v1.2.2) (2023-06-30)
+
+
+### Bug Fixes
+
+* convert expression to unknown first ([16cf683](https://github.com/marcelblijleven/beanstats/commit/16cf683c07932135039631da8e44506c7f52a410))
+* satisfy build by declaring type ([7efbc2e](https://github.com/marcelblijleven/beanstats/commit/7efbc2e40b0421ec39b73b0b6a1f521a6a410207))
+
 ## [1.2.1](https://github.com/marcelblijleven/beanstats/compare/v1.2.0...v1.2.1) (2023-06-30)
 
 
