@@ -301,16 +301,17 @@ export interface BrewFilterARCHIVED {
     rating:                      Rating;
 }
 
-export interface Graph {
-    ESPRESSO: Espresso;
-    FILTER:   Espresso;
+export interface BrewGraphs {
+    weight: boolean;
+    calc_flow: boolean;
+    realtime_flow: boolean;
+    pressure: boolean;
+    temperature: boolean;
 }
 
-export interface Espresso {
-    weight:        boolean;
-    calc_flow:     boolean;
-    realtime_flow: boolean;
-    pressure:      boolean;
+export interface Graph {
+    ESPRESSO: BrewGraphs;
+    FILTER:   BrewGraphs;
 }
 
 export interface Version {
@@ -318,3 +319,4 @@ export interface Version {
     updatedDataVersions:      string[];
     config:                   Config;
 }
+
