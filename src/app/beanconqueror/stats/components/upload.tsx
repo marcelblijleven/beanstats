@@ -25,6 +25,7 @@ const Process = (props: ProcessProps) => {
             readTextFile(props.file, props.callback)
         } else if (props.file.type === "application/zip") {
             readZipFile(props.file, props.callback).catch(err => {
+                console.error(err);
                 toast({
                     title: "Oh, something went wrong",
                     description: "There was a problem reading the file",
