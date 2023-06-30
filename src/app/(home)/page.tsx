@@ -1,10 +1,8 @@
+import Image from "next/image";
+
 import Hero from "@/components/hero";
 import BeanconquerorSection from "@/components/home/beanconqueror-section";
-import {Button} from "@/components/ui/button";
-import {Github} from "lucide-react";
-import Link from "next/link";
 import CardGrid from "@/components/ui/card-grid";
-import Image from "next/image";
 import ToolsSection from "@/components/home/tools-section";
 import PageShell from "@/components/layout/page-shell";
 
@@ -29,12 +27,6 @@ export default async function Home() {
                 <BeanconquerorSection/>
                 <ToolsSection />
             </CardGrid>
-            <Link href={"https://www.github.com/marcelblijleven/beanstats"}>
-                <Button variant={"secondary"}>
-                    <Github/>
-                    <span className={"hidden md:inline-block"}>View on GitHub</span>
-                </Button>
-            </Link>
         </PageShell>
     )
 }
