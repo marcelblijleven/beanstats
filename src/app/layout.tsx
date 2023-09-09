@@ -8,6 +8,7 @@ import {Analytics} from '@vercel/analytics/react';
 import {cn} from "@/lib/utils";
 import Footer from "@/components/layout/footer";
 import {Toaster} from "@/components/ui/toaster";
+import {ClerkProvider} from "@clerk/nextjs";
 
 const inter = Inter({subsets: ['latin']})
 
@@ -19,22 +20,24 @@ export const metadata: Metadata = {
     description: "Coffee tools, statistics and visualisations"
 }
 
-export default function RootLayout({children}: {children: ReactNode }) {
+export default function RootLayout({children}: { children: ReactNode }) {
     return (
-        <html lang="en" suppressHydrationWarning>
-        <body className={cn(inter.className, "min-h-screen")}>
-        <ThemeProvider attribute={"class"} defaultTheme={"system"} enableSystem>
-            <div className={"relative min-h-screen"}>
-                <Header/>
-                <main className="flex h-full flex-col items-center p-6 md:p-24 space-y-6">
-                    {children}
-                    <Analytics/>
-                </main>
-                <Toaster/>
-                <Footer/>
-            </div>
-        </ThemeProvider>
-        </body>
-        </html>
+        <ClerkProvider>
+            <html lang="en" suppressHydrationWarning>
+            <body className={cn(inter.className, "min-h-screen")}>
+            <ThemeProvider attribute={"class"} defaultTheme={"system"} enableSystem>
+                <div className={"relative min-h-screen"}>
+                    <Header/>
+                    <main className="flex h-full flex-col items-center p-6 md:p-24 space-y-6">
+                        {children}
+                        <Analytics/>
+                    </main>
+                    <Toaster/>
+                    <Footer/>
+                </div>
+            </ThemeProvider>
+            </body>
+            </html>
+        </ClerkProvider>
     )
 }
