@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/marcelblijleven/beanstats/compare/v1.2.3...v1.3.0) (2023-09-09)
+
+
+### Features
+
+* add clerk authentication ([2bec342](https://github.com/marcelblijleven/beanstats/commit/2bec3423c5df2a40ad7b47c43cc14b0581ad3ac1))
+
 ## [1.2.3](https://github.com/marcelblijleven/beanstats/compare/v1.2.2...v1.2.3) (2023-06-30)
 
 
