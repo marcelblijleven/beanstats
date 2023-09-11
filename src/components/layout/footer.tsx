@@ -1,11 +1,10 @@
 import Link from "next/link";
 
-import {getCurrentVersion, getSha} from "@/lib/versioning/utils";
+import {getCurrentVersion} from "@/lib/versioning/utils";
 import {Github} from "lucide-react";
 
 export default async function Footer() {
     const version = await getCurrentVersion();
-    const sha = await getSha();
 
     return (
         <footer className={"absolute bottom-0 px-2 md:px-24 bg-opacity-90 w-full"}>
@@ -14,7 +13,7 @@ export default async function Footer() {
                     className={"text-xs text-gray-500 self-center"}
                     href={"/changelog"}
                 >
-                    {`${version} ${sha.substring(0, 7)}`}
+                    {version}
                 </Link>
                 <Link href={"https://www.github.com/marcelblijleven/beanstats"}>
                         <Github className={"text-gray-500 h-4 w-4"}/>
