@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/marcelblijleven/beanstats/compare/v1.3.0...v1.3.1) (2023-09-11)
+
+
+### Bug Fixes
+
+* fix broken git sha fetching ([0fdba06](https://github.com/marcelblijleven/beanstats/commit/0fdba064d08409022981275e4ace0dddccf824b9))
+
 ## [1.3.0](https://github.com/marcelblijleven/beanstats/compare/v1.2.3...v1.3.0) (2023-09-09)
 
 
