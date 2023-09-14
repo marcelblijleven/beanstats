@@ -1,13 +1,15 @@
 import {mysqlTable, serial, text, varchar, int, timestamp, date, decimal, boolean} from 'drizzle-orm/mysql-core'
-import {relations} from "drizzle-orm";
+import {relations, sql} from "drizzle-orm";
 import {generateNanoid} from "./utils";
 
 export const users = mysqlTable("users", {
     id: serial("id").primaryKey(),
     publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid).notNull(),
-    clerkId: varchar("userId", { length: 191 }).notNull(),
+    clerkId: varchar("clerk_id", { length: 191 }).notNull(),
     email: varchar("email", {length: 255}),
     username: varchar("username", {length: 255}),
+    modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
+    created: timestamp("created").default(sql`CURRENT_TIMESTAMP`),
 });
 
 
@@ -17,6 +19,8 @@ export const roasters = mysqlTable("roasters", {
     name: varchar("name", {length: 255}).notNull(),
     country: varchar("name", {length: 255}),
     userId: int("user_id").notNull(),
+    modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
+    created: timestamp("created").default(sql`CURRENT_TIMESTAMP`),
 });
 
 export const beanVarieties = mysqlTable("varieties", {
@@ -47,6 +51,8 @@ export const beans = mysqlTable("beans", {
     isPublic: boolean("is_public").default(false),
     isArchived: boolean("is_archived").default(false),
     userId: int("user_id").notNull(),
+    modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
+    created: timestamp("created").default(sql`CURRENT_TIMESTAMP`),
 });
 
 // Relations
