@@ -63,6 +63,6 @@ export async function readZipFile(file: File, callback: (data: any) => void) {
     baseData.BEANS = baseData.BEANS.concat(additionalBeans);
     baseData.BREWS = baseData.BREWS.concat(additionalBrews);
 
-    await callback(baseData);
+    callback(baseData);
     await reader.close();
 }

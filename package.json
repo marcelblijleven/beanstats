@@ -7,12 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "jest --watch",
     "pbjs": "./node_modules/protobufjs-cli/bin/pbjs -t static-module -w es6 src/lib/beanconqueror/proto/beanconqueror.proto -o src/lib/beanconqueror/proto/generated/beanconqueror.js",
-    "pbts": "./node_modules/protobufjs-cli/bin/pbts src/lib/beanconqueror/proto/generated/beanconqueror.js -o src/lib/beanconqueror/proto/generated/beanconqueror.d.ts"
+    "pbts": "./node_modules/protobufjs-cli/bin/pbts src/lib/beanconqueror/proto/generated/beanconqueror.js -o src/lib/beanconqueror/proto/generated/beanconqueror.d.ts",
+    "generate-db-schema": "drizzle-kit generate:mysql",
+    "push-db-schema": "drizzle-kit push:mysql"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.23.5",
+    "@clerk/themes": "^1.7.5",
     "@hookform/resolvers": "^3.1.1",
+    "@planetscale/database": "^1.11.0",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dropdown-menu": "^2.0.5",
     "@radix-ui/react-label": "^2.0.2",
@@ -33,10 +38,13 @@
     "class-variance-authority": "^0.6.1",
     "clsx": "^1.2.1",
     "date-fns": "^2.30.0",
+    "drizzle-orm": "^0.28.6",
+    "drizzle-zod": "^0.5.1",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
     "framer-motion": "^10.12.16",
     "lucide-react": "^0.241.0",
+    "nanoid": "^3.3.6",
     "next": "13.4.19",
     "next-themes": "^0.2.1",
     "postcss": "8.4.24",
@@ -47,6 +55,7 @@
     "react-hook-form": "7.44.3",
     "react-markdown": "^8.0.7",
     "react-qrcode-logo": "^2.9.0",
+    "svix": "^1.12.0",
     "tailwind-merge": "^1.13.2",
     "tailwindcss": "3.3.2",
     "tailwindcss-animate": "^1.0.6",
@@ -54,6 +63,16 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.3",
+    "@testing-library/react": "^14.0.0",
+    "@types/testing-library__jest-dom": "^6.0.0",
+    "babel-jest": "^29.7.0",
+    "dotenv": "^16.3.1",
+    "drizzle-kit": "^0.19.13",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3",
     "protobufjs-cli": "~1.1.1"
   }
 }
