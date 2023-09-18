@@ -39,3 +39,11 @@ export async function createUser(user: InsertUser): Promise<SelectUser | undefin
 
     return await getUserByClerkId(data.clerkId);
 }
+
+/**
+ * Updates the user record with the provided data
+ */
+export async function updateUser(user: InsertUser): Promise<void> {
+    const data = insertUserSchema.parse(user);
+    await db.update(users).set(user).where(eq(users.clerkId, data.clerkId))
+}

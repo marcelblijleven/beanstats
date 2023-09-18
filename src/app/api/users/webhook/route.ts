@@ -1,72 +1,9 @@
 import {Webhook} from "svix";
 import {headers} from "next/headers";
 import type {WebhookEvent, UserWebhookEvent} from "@clerk/nextjs/api";
-import {db} from "@/db";
-import {createUser, deleteUserByClerkId, getUserByClerkId} from "@/db/operations";
-import {clerkClient} from "@clerk/nextjs";
-import {UserJSON} from "@clerk/types";
+import {handleEvent} from "@/app/api/users/webhook/utils";
 
 //"runtime edge?"
-
-const acceptedWebhookEvents = [
-    "user.created", "user.updated", "user.deleted",
-]
-
-/**
- * Performs actions based on the type of Webhook event
- *
- * Only user.created, user.updated and user.deleted trigger
- * actions
- *
- * If a user record does not exist in the database, a record will be created
- * and the database id will be linked to the Clerk account using public metadata.
- *
- */
-async function handleEvent(event: WebhookEvent) {
-    if (!acceptedWebhookEvents.includes(event.type)) {
-        throw new Error(`Error occurred, webhook event type not implemented: ${event.type}`)
-    }
-
-    const userEvent = event as UserWebhookEvent;
-    const {
-        id,
-        email_addresses,
-        primary_email_address_id,
-        username,
-    } = userEvent.data as unknown as UserJSON
-
-    if (!id) {
-        throw new Error("Error occurred, no Clerk id received")
-    }
-
-    const emailAddress = email_addresses?.find(email => email.id === primary_email_address_id)?.email_address || null;
-
-    switch (event.type) {
-        case "user.created":
-        case "user.updated":
-            const exists = await getUserByClerkId(id);
-
-            if (!exists) {
-                const user = await createUser({clerkId: id, email: emailAddress, username});
-
-                // Link database id to Clerk account in user metadata
-                if (user) {
-                    await clerkClient.users.updateUserMetadata(id, {
-                        publicMetadata: {
-                            databaseId: user.id,
-                        }
-                    })
-                }
-
-                // Update not implemented yet, return here
-                return
-            }
-            break;
-        case "user.deleted":
-            console.log("foo", id)
-            await deleteUserByClerkId(id);
-    }
-}
 
 /**
  * Webhook that is called whenever a user is created, updated or deleted
