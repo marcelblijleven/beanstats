@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/marcelblijleven/beanstats/compare/v1.3.1...v1.4.0) (2023-09-18)
+
+
+### Features
+
+* add initial database support ([d085705](https://github.com/marcelblijleven/beanstats/commit/d0857051b854ee4aec11fa6d65662e7dfc00cc9c))
+
 ## [1.3.1](https://github.com/marcelblijleven/beanstats/compare/v1.3.0...v1.3.1) (2023-09-11)
 
 
