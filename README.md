@@ -1,3 +1,5 @@
-# Beans
+# Beanstats
+
+Coffee brewing stats
 
 
