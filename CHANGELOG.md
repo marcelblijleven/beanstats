@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/marcelblijleven/beanstats/compare/v1.4.0...v1.4.1) (2023-09-18)
+
+
+### Bug Fixes
+
+* remove types for testing library ([7cefd5c](https://github.com/marcelblijleven/beanstats/commit/7cefd5ca151df8e2d439ffb9039a0b9aac2afef9))
+
 ## [1.4.0](https://github.com/marcelblijleven/beanstats/compare/v1.3.1...v1.4.0) (2023-09-18)
 
 
