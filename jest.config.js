@@ -5,7 +5,9 @@ module.exports = {
   // on node 14.x coverage provider v8 offers good speed and more or less good report
   coverageProvider: 'v8',
   collectCoverageFrom: [
-    '**/*.{js,jsx,ts,tsx}',
+    '<rootDir>/src/**/*.{js,jsx,ts,tsx}',
+    // Ignore files directly in app dir
+    '!<rootDir>/src/app/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
     '!**/node_modules/**',
     '!<rootDir>/out/**',
@@ -47,4 +49,5 @@ module.exports = {
     '^.+\\.module\\.(css|sass|scss)$',
     `/node_modules/(?!${transformIgnoreModules})`
   ],
+  modulePathIgnorePatterns: ["<rootDir>/src/types"]
 }
