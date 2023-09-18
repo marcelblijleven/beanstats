@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/marcelblijleven/beanstats/compare/v1.4.1...v1.5.0) (2023-09-18)
+
+
+### Features
+
+* add account ([4521ba6](https://github.com/marcelblijleven/beanstats/commit/4521ba6663b7bf20e7cf82f6e35d347a66a9178b))
+
 ## [1.4.1](https://github.com/marcelblijleven/beanstats/compare/v1.4.0...v1.4.1) (2023-09-18)
 
 
