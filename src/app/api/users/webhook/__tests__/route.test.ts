@@ -1,6 +1,6 @@
 import * as nextHeaders from "next/headers";
 
-const headers = <jest.Mock<typeof nextHeaders.headers>>nextHeaders.headers
+const headers = <jest.Mock<typeof nextHeaders.headers>><unknown>nextHeaders.headers
 import {POST} from "@/app/api/users/webhook/route";
 
 jest.mock("next/headers", () => ({
@@ -31,6 +31,7 @@ describe("Users Clerk webhook", () => {
                 "svix-timestamp": new Date().getTime().toString(),
                 "svix-signature": "foo"
             });
+            // @ts-ignore
             headers.mockReturnValueOnce(requestHeaders)
 
             const res = await POST(req);
@@ -45,6 +46,7 @@ describe("Users Clerk webhook", () => {
                 // "svix-timestamp": new Date().getTime().toString(),
                 "svix-signature": "foo"
             });
+            // @ts-ignore
             headers.mockReturnValueOnce(requestHeaders)
 
             const res = await POST(req);
@@ -59,6 +61,7 @@ describe("Users Clerk webhook", () => {
                 "svix-timestamp": new Date().getTime().toString(),
                 // "svix-signature": "foo"
             });
+            // @ts-ignore
             headers.mockReturnValueOnce(requestHeaders)
 
             const res = await POST(req);
