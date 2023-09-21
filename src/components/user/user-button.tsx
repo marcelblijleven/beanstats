@@ -1,34 +1,31 @@
 "use client"
-import { UserButton as ClerkButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
-import {NavigationMenuItem, NavigationMenuLink, navigationMenuTriggerStyle} from "@/components/ui/navigation-menu";
+import {UserButton as ClerkButton, useUser} from "@clerk/nextjs";
 import {useClerkTheme} from "@/lib/hooks/clerk";
+import {Button} from "@/components/ui/button";
 
-export default function UserButtonMenuItem() {
+
+export default function UserButton() {
     const auth = useUser();
     const clerkTheme = useClerkTheme();
 
-    if (!auth.isLoaded || !auth.isSignedIn) {
+    if (!auth.isLoaded) return <Button disabled variant={"outline"}>Loading</Button>
+
+    if (!auth.isSignedIn) {
         return (
-            <NavigationMenuItem>
-                <Link href="/account/sign-in" legacyBehavior passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        {auth.isLoaded ? "Sign in" : "Account"}
-                    </NavigationMenuLink>
-                </Link>
-            </NavigationMenuItem>
+            <Link href="/account/sign-in" legacyBehavior passHref>
+                <Button variant={"outline"}>
+                    {auth.isLoaded ? "Sign in" : "Account"}
+                </Button>
+            </Link>
         )
     }
 
     return (
-        <NavigationMenuItem>
-            <Link href={"/account"} legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    <ClerkButton afterSignOutUrl={"/"} appearance={{
-                        baseTheme: clerkTheme,
-                    }} />
-                </NavigationMenuLink>
-            </Link>
-        </NavigationMenuItem>
+        <Link href={"/account"} legacyBehavior passHref>
+            <ClerkButton afterSignOutUrl={"/"} appearance={{
+                baseTheme: clerkTheme,
+            }}/>
+        </Link>
     )
 }
