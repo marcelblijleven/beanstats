@@ -4,7 +4,6 @@ import {
     NavigationMenuLink,
     NavigationMenuList, navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
-import UserButtonMenuItem from "@/components/user/user-button";
 import Link from "next/link";
 
 type MenuItemProps = {
@@ -31,7 +30,6 @@ export function Navigation() {
         <NavigationMenu>
             <NavigationMenuList>
                 <MenuItem href={"/dashboard"} label={"Dashboard"} />
-                <UserButtonMenuItem />
             </NavigationMenuList>
         </NavigationMenu>
     )
