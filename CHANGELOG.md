@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/marcelblijleven/beanstats/compare/v1.5.0...v1.6.0) (2023-09-21)
+
+
+### Features
+
+* add dashboard page ([1964a2c](https://github.com/marcelblijleven/beanstats/commit/1964a2cc88d83b36c18ca05420672e73ea1f5664))
+
 ## [1.5.0](https://github.com/marcelblijleven/beanstats/compare/v1.4.1...v1.5.0) (2023-09-18)
 
 
