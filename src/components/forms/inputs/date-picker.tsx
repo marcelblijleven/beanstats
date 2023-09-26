@@ -35,7 +35,7 @@ export default function DatePickerInput<TFieldValues extends FieldValues = Field
                                     )}
                                 >
                                     {field.value ? (
-                                        format(field.value, "PPP")
+                                        format(field.value, "yyyy-MM-dd")
                                     ) : (
                                         <span>Pick a date</span>
                                     )}
