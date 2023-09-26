@@ -36,6 +36,13 @@
       "when": 1695710042235,
       "tag": "0004_free_master_chief",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1695739656438,
+      "tag": "0005_grey_newton_destine",
+      "breakpoints": true
     }
   ]
 }
