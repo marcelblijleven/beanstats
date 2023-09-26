@@ -29,6 +29,13 @@
       "when": 1694670527776,
       "tag": "0003_cooing_spiral",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1695710042235,
+      "tag": "0004_free_master_chief",
+      "breakpoints": true
     }
   ]
 }

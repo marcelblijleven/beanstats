@@ -1,4 +1,4 @@
-import {mysqlTable, serial, text, varchar, int, timestamp, date, decimal, boolean} from 'drizzle-orm/mysql-core'
+import {mysqlTable, serial, text, varchar, int, timestamp, date, decimal, boolean, index} from 'drizzle-orm/mysql-core'
 import {relations, sql} from "drizzle-orm";
 import {generateNanoid} from "./utils";
 
@@ -10,6 +10,11 @@ export const users = mysqlTable("users", {
     username: varchar("username", {length: 255}),
     modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
     created: timestamp("created").default(sql`CURRENT_TIMESTAMP`),
+}, (table) => {
+    return {
+        publicIdIndex: index("public_id_index").on(table.publicId),
+        clerkIdIndex: index("clerk_id_index").on(table.clerkId),
+    }
 });
 
 
@@ -21,6 +26,12 @@ export const roasters = mysqlTable("roasters", {
     userId: int("user_id").notNull(),
     modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
     created: timestamp("created").default(sql`CURRENT_TIMESTAMP`),
+}, (table) => {
+    return {
+        publicIdIndex: index("public_id_index").on(table.publicId),
+        userIdIndex: index("user_id_index").on(table.userId),
+        nameIndex: index("name_index").on(table.name),
+    }
 });
 
 export const beanVarieties = mysqlTable("varieties", {
@@ -34,6 +45,12 @@ export const beanVarieties = mysqlTable("varieties", {
     farmer: varchar("farmer", {length: 255}),
     elevation: varchar("elevation", {length: 80}),
     beanId: int("bean_id").notNull(),
+}, (table) => {
+    return {
+        beanId: index("bean_id_index").on(table.beanId),
+        nameIndex: index("name_index").on(table.name),
+        processingIndex: index("processing_index").on(table.processing),
+    }
 });
 
 export const beans = mysqlTable("beans", {
@@ -53,6 +70,13 @@ export const beans = mysqlTable("beans", {
     userId: int("user_id").notNull(),
     modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
     created: timestamp("created").default(sql`CURRENT_TIMESTAMP`),
+}, (table) => {
+    return {
+        publicIdIndex: index("public_id_index").on(table.publicId),
+        userIdIndex: index("user_id_index").on(table.userId),
+        nameIndex: index("name_index").on(table.name),
+        roasterIdIndex: index("roaster_id_index").on(table.roasterId),
+    }
 });
 
 // Relations
