@@ -28,7 +28,7 @@ export default function RootLayout({children}: { children: ReactNode }) {
             <ThemeProvider attribute={"class"} defaultTheme={"system"} enableSystem>
                 <div className={"relative min-h-screen"}>
                     <Header/>
-                    <main className="flex h-full flex-col items-center p-6 md:p-12 space-y-6">
+                    <main className="flex h-full flex-col items-center pb-12 px-6 pt-6 md:pt-12 space-y-6">
                         {children}
                         <Analytics/>
                     </main>
