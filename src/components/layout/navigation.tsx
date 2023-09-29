@@ -4,14 +4,12 @@ import {
     NavigationMenu,
     NavigationMenuItem,
     NavigationMenuLink,
-    NavigationMenuList, navigationMenuTriggerStyle
+    NavigationMenuList
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import {LucideMenu as MenuIcon, X as CloseIcon} from "lucide-react";
 import {MouseEventHandler, ReactNode, useState} from "react";
 import {cn} from "@/lib/utils";
-import {Separator} from "@/components/ui/separator";
-import UserButton from "@/components/user/user-button";
 import {usePathname} from "next/navigation";
 
 type MenuItemProps = {
