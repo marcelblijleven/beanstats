@@ -78,7 +78,7 @@ function MobileMenuItems(props: MobileMenuItemsProps) {
                 previousValue.push(
                     <li key={currentValue.label + "-separator"} className={cn("transition-all", props.open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-24")}>
                         <Link
-                            data-active={currentValue.href.includes(pathname)}
+                            data-active={pathname !== "/" && currentValue.href.includes(pathname)}
                             onClick={props.onClick}
                             className={"w-full data-[active='true']:font-bold"} href={currentValue.href}>{currentValue.label}</Link>
                     </li>
