@@ -31,6 +31,7 @@ module.exports = {
     '^@/app/(.*)$': '<rootDir>/src/app/$1',
     '^@/components/(.*)$': '<rootDir>/src/components/$1',
     '^@/db/(.*)$': '<rootDir>/src/db/$1',
+    '^@/lib/(.*)$': '<rootDir>/src/lib/$1',
 
     // ES module imports
     '^nanoid(/(.*)|$)': 'nanoid$1',
