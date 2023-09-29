@@ -1,8 +1,5 @@
 "use client"
 
-import {createInsertSchema} from "drizzle-zod";
-import * as z from "zod";
-import {beans, beanVarieties} from "@/db/schema";
 import {
     DefaultValues,
     FieldArrayWithId,
@@ -21,14 +18,14 @@ import DatePickerInput from "@/components/forms/inputs/date-picker";
 import {Checkbox} from "@/components/ui/checkbox";
 import {CheckedState} from "@radix-ui/react-checkbox";
 import {useUser} from "@clerk/nextjs";
-import {ReactNode, useEffect} from "react";
+import {ReactNode, useEffect, useState} from "react";
 import {Separator} from "@/components/ui/separator";
 import {FormItemWrapper} from "@/components/forms/inputs/form-item-wrapper";
 import {Textarea} from "@/components/ui/textarea";
-import {submitCoffeeForm} from "@/lib/db/actions/coffee-form/submit-coffee-form";
-import {SubmitButton} from "@/app/coffee/components/submit-button";
+import {submitCoffeeForm} from "@/app/coffee/actions/coffee-form/submit-coffee-form";
+import {ResetButton, SubmitButton} from "@/app/coffee/components/form-buttons";
 
-import {type Inputs, formSchema} from "@/lib/db/actions/coffee-form/form-schema"
+import {type Inputs, formSchema} from "@/app/coffee/actions/coffee-form/form-schema"
 import {getChangedFields} from "@/lib/forms/utils";
 import {useToast} from "@/components/ui/use-toast";
 import {useRouter} from "next/navigation";
@@ -47,8 +44,8 @@ type VarietyFieldsetProps<TFieldValues extends FieldValues = FieldValues> = {
 
 const defaultValues = {
     name: "",
-    roastDate: null,
-    buyDate: null,
+    roastDate: undefined,
+    buyDate: undefined,
     notes: "",
     weight: "",
     price: "",
@@ -190,13 +187,15 @@ function VarietyFieldset<TFieldValues extends FieldValues = FieldValues>({
 }
 
 export function CoffeeForm(props: CoffeeFormProps) {
+    const [submitting, setSubmitting] = useState<boolean>(false);
     const {isLoaded, user} = useUser();
+    const values = {
+        ...(props.values ?? defaultValues),
+        userId: user?.publicMetadata.databaseId as string
+    };
+
     const router = useRouter();
     const {toast} = useToast();
-    const values = !!props.values ? {
-        ...props.values,
-        userId: user?.publicMetadata.databaseId as string
-    } : {...defaultValues, userId: user?.publicMetadata.databaseId as string}
 
     const form = useForm<Inputs>({
         mode: "onBlur",
@@ -207,39 +206,49 @@ export function CoffeeForm(props: CoffeeFormProps) {
     const {fields, append, remove} = useFieldArray({
         name: "varieties",
         control: form.control,
-        rules: {
-            minLength: 0,
-            maxLength: 10,
-        }
+        rules: {minLength: 0, maxLength: 10}
     });
+    const dirtyFields = form.formState.dirtyFields
 
     useEffect(() => {
-        // Add a variety on initial mount
-        append({...defaultVarietyValues}, {
-            shouldFocus: false,
-        })
-    }, [append]);
+        form.reset(props.values);
+    }, [form, props.values]);
 
     if (!isLoaded || !user?.id) {
         return null;
     }
 
     const submitFormData: SubmitHandler<Inputs> = async values => {
+        setSubmitting(true);
         const dirtyFields = form.formState.dirtyFields;
         const changedFields = getChangedFields(dirtyFields, values);
-        const result = await submitCoffeeForm(changedFields);
 
-        if (!result.success) {
-            const errorMessage = result.error
-            toast({
-                title: "Form error",
-                description: errorMessage ?? "Something went wrong while submitting the form"
-            });
+        // No need to do something when no values have changed
+        if (Object.keys(changedFields).length === 0) {
+            if (values.publicId) {
+                return router.push(`/coffee/${values.publicId}`);
+            }
 
-            return;
+            return router.push("/coffee");
         }
 
-        router.push("/");
+        const result = await submitCoffeeForm({...changedFields, name: values.name});
+
+        if (!result.success) {
+            toast({
+                title: "Form error",
+                description: result.error ?? "Something went wrong while submitting the form"
+            });
+
+            return setSubmitting(false);
+        }
+
+        if (result.publicId) {
+            return router.push(`/coffee/${result.publicId}`);
+        }
+
+        return router.push("/coffee")
+
     }
 
     return (
@@ -319,7 +328,15 @@ export function CoffeeForm(props: CoffeeFormProps) {
                                 <FormItem>
                                     <FormLabel>Roaster</FormLabel>
                                     <FormControl>
-                                        <Input placeholder={"Who roasted the beans?"} {...field} list={"roaster-list"}/>
+                                        <Input
+                                            placeholder={"Who roasted the beans?"}
+                                            {...field}
+                                            list={"roaster-list"}
+                                            onChange={(event) => {
+                                                form.setValue("roasterId", undefined);
+                                                field.onChange(event);
+                                            }}
+                                        />
                                     </FormControl>
                                     <FormMessage/>
                                 </FormItem>
@@ -380,23 +397,17 @@ export function CoffeeForm(props: CoffeeFormProps) {
                     name={"notes"}
                     render={({field}) => (
                         <FormItemWrapper label={"Notes"}>
-                            <Textarea onChange={field.onChange} placeholder={"Enter some notes"} />
+                            {/* @ts-ignore:*/}
+                            <Textarea placeholder={"Enter some notes"} {...field} />
                         </FormItemWrapper>
                     )}
                 />
                 <div className={"flex flex-row-reverse gap-2 my-2"}>
-                    <SubmitButton />
-                    <Button
-                        type={"button"}
-                        variant={"outline"}
-                        onClick={() => form.reset()}
-                        className={"hover:bg-destructive hover:text-destructive-foreground"}
-                    >
-                        Reset
-                    </Button>
+                    <SubmitButton loading={submitting} disabled={!Object.keys(dirtyFields).length} />
+                    <ResetButton onClick={() => form.reset()} />
                 </div>
             </form>
-            {JSON.stringify(form.formState.errors)}
+        {/*    TODO: show form errors not related to fields here*/}
         </Form>
     )
 }
