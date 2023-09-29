@@ -16,7 +16,7 @@ import LabelledValue from "@/components/beanconqueror/share/view/labelled-value"
 import QRCodeCard from "@/components/qrcode-card";
 import {useEffect, useState} from "react";
 import {BeanLinkResponse, followBeanLink} from "@/lib/beanlink";
-import {BEANLINK_RE} from "@/lib/validations/links";
+import {BEANLINK_RE} from "@/lib/beanconqueror/validations/links";
 import {Alert} from "@/components/alert";
 import {ShortenLinkForm} from "@/components/forms/shorten-link-form";
 import {BeanLinkCard} from "@/components/share-card";

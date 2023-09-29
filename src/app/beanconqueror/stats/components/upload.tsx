@@ -3,7 +3,7 @@
 import {ChangeEvent, useState} from "react";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
-import {readTextFile, readZipFile} from "@/lib/upload/utils";
+import {readTextFile, readZipFile} from "@/lib/beanconqueror/upload/utils";
 import {useToast} from "@/components/ui/use-toast";
 
 export interface FileUploadProps {
