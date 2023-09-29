@@ -13,7 +13,7 @@ export default function UserButton() {
 
     if (!auth.isSignedIn) {
         return (
-            <Link href="/account/sign-in" legacyBehavior passHref>
+            <Link href="/sign-in" legacyBehavior passHref>
                 <Button variant={"outline"}>
                     {auth.isLoaded ? "Sign in" : "Account"}
                 </Button>
@@ -22,7 +22,7 @@ export default function UserButton() {
     }
 
     return (
-        <Link href={"/account"} legacyBehavior passHref>
+        <Link href={"/"} legacyBehavior passHref>
             <ClerkButton afterSignOutUrl={"/"} appearance={{
                 baseTheme: clerkTheme,
             }}/>
