@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.7.0](https://github.com/marcelblijleven/beanstats/compare/v1.6.0...v1.7.0) (2023-09-29)
+
+
+### Features
+
+* add add coffee form ([634e599](https://github.com/marcelblijleven/beanstats/commit/634e599260bcf8b35e845ca90277c0a9a3977932))
+* add bean detail page ([b75ad40](https://github.com/marcelblijleven/beanstats/commit/b75ad401a01aa74110ddd559591d5133fb697193))
+* add coffee detail and coffee edit pages ([ca9c342](https://github.com/marcelblijleven/beanstats/commit/ca9c34259a3b02c2a52d7043a0dcb01adb8d1ebb))
+* add data table for coffee backlog ([c0d82a2](https://github.com/marcelblijleven/beanstats/commit/c0d82a217b2880d4ba07873d798ee5fa2787dfe0))
+* add mobile menu ([614e997](https://github.com/marcelblijleven/beanstats/commit/614e997cdc8c44cfac1e4c99790aef2d1b1d63d7))
+
+
+### Bug Fixes
+
+* issue where all paths were active on homepage ([03afc85](https://github.com/marcelblijleven/beanstats/commit/03afc85a0a953d657541d11c62456b9688ce7059))
+* issue where all paths were active on homepage ([59f82f1](https://github.com/marcelblijleven/beanstats/commit/59f82f15a73dade378eb9f7e4114151bbe1f213d))
+* issue where columns had similar names ([9cdf2f2](https://github.com/marcelblijleven/beanstats/commit/9cdf2f20867fae2dc2e057c2565f769021aec42b))
+
 ## [1.6.0](https://github.com/marcelblijleven/beanstats/compare/v1.5.0...v1.6.0) (2023-09-21)
 
 
