@@ -1,10 +1,8 @@
 import {currentUser} from "@clerk/nextjs";
-import {cache, ReactNode} from "react";
-import {calculateMetrics} from "@/lib/dashboard";
+import {ReactNode} from "react";
+import {getMetrics} from "@/lib/db/get-metrics";
 import { StatsCard, StatsCardSkeleton } from "./stats-card";
 
-
-const getMetrics = cache(calculateMetrics);
 
 function Layout({children}: {children: ReactNode}) {
     return (

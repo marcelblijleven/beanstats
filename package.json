@@ -11,7 +11,8 @@
     "pbjs": "./node_modules/protobufjs-cli/bin/pbjs -t static-module -w es6 src/lib/beanconqueror/proto/beanconqueror.proto -o src/lib/beanconqueror/proto/generated/beanconqueror.js",
     "pbts": "./node_modules/protobufjs-cli/bin/pbts src/lib/beanconqueror/proto/generated/beanconqueror.js -o src/lib/beanconqueror/proto/generated/beanconqueror.d.ts",
     "generate-db-schema": "drizzle-kit generate:mysql",
-    "push-db-schema": "drizzle-kit push:mysql"
+    "push-db-schema": "drizzle-kit push:mysql",
+    "introspect-db-schema": "drizzle-kit introspect:mysql"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.23.5",
@@ -31,6 +32,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.4",
+    "@tanstack/react-table": "^8.10.3",
     "@types/node": "20.2.5",
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",

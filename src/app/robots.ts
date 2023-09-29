@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
         rules: {
             userAgent: '*',
             allow: '/',
-            disallow: '/account/',
+            disallow: '/coffee',
         },
         sitemap: 'https://beanstats.com.com/sitemap.xml',
     }

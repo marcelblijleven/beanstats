@@ -1,13 +1,17 @@
+import { cache } from "react";
+import {eq, sql} from "drizzle-orm";
+
 import {db} from "@/db";
 import {roasters, beans} from "@/db/schema";
-import {eq, sql} from "drizzle-orm";
 
 type Metrics = {
     roasterCount: number;
     beansCount: number;
 }
 
-export async function calculateMetrics(userId: number | unknown) {
+export const revalidate = 900; // Revalidate every 15 minutes at most
+
+export const getMetrics = cache(async (userId: number | unknown)=> {
     if (!userId) return {
         roasterCount: 0,
         beansCount: 0,
@@ -28,4 +32,4 @@ export async function calculateMetrics(userId: number | unknown) {
     }
 
     return metrics;
-}
+});

@@ -1,4 +1,4 @@
-import {mysqlTable, serial, text, varchar, int, timestamp, date, decimal, boolean} from 'drizzle-orm/mysql-core'
+import {mysqlTable, serial, text, varchar, int, timestamp, date, decimal, boolean, index} from 'drizzle-orm/mysql-core'
 import {relations, sql} from "drizzle-orm";
 import {generateNanoid} from "./utils";
 
@@ -10,17 +10,28 @@ export const users = mysqlTable("users", {
     username: varchar("username", {length: 255}),
     modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
     created: timestamp("created").default(sql`CURRENT_TIMESTAMP`),
+}, (table) => {
+    return {
+        publicIdIndex: index("public_id_index").on(table.publicId),
+        clerkIdIndex: index("clerk_id_index").on(table.clerkId),
+    }
 });
 
 
 export const roasters = mysqlTable("roasters", {
     id: serial("id").primaryKey(),
-    publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid),
-    name: varchar("name", {length: 255}).notNull(),
-    country: varchar("name", {length: 255}),
+    publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid).unique(),
+    name: varchar("name", {length: 255}).notNull().unique(),
+    country: varchar("country", {length: 255}),
     userId: int("user_id").notNull(),
     modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
     created: timestamp("created").default(sql`CURRENT_TIMESTAMP`),
+}, (table) => {
+    return {
+        publicIdIndex: index("public_id_index").on(table.publicId),
+        userIdIndex: index("user_id_index").on(table.userId),
+        nameIndex: index("name_index").on(table.name),
+    }
 });
 
 export const beanVarieties = mysqlTable("varieties", {
@@ -34,15 +45,20 @@ export const beanVarieties = mysqlTable("varieties", {
     farmer: varchar("farmer", {length: 255}),
     elevation: varchar("elevation", {length: 80}),
     beanId: int("bean_id").notNull(),
+}, (table) => {
+    return {
+        beanId: index("bean_id_index").on(table.beanId),
+        nameIndex: index("name_index").on(table.name),
+        processingIndex: index("processing_index").on(table.processing),
+    }
 });
 
 export const beans = mysqlTable("beans", {
     id: serial("id").primaryKey(),
-    publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid),
-    createdAt: timestamp("created_at").defaultNow(),
+    publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid).unique(),
     name: varchar("name", {length: 255}).notNull(),
-    roastDate: date("roast_date"),
-    buyDate: date("buy_date"),
+    roastDate: date("roast_date", {mode: "string"}),
+    buyDate: date("buy_date", {mode: "string"}),
     externalId: varchar("external_id", {length: 255}),
     notes: text("notes"),
     weight: decimal("weight", {precision: 10, scale: 2}),
@@ -53,6 +69,13 @@ export const beans = mysqlTable("beans", {
     userId: int("user_id").notNull(),
     modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
     created: timestamp("created").default(sql`CURRENT_TIMESTAMP`),
+}, (table) => {
+    return {
+        publicIdIndex: index("public_id_index").on(table.publicId),
+        userIdIndex: index("user_id_index").on(table.userId),
+        nameIndex: index("name_index").on(table.name),
+        roasterIdIndex: index("roaster_id_index").on(table.roasterId),
+    }
 });
 
 // Relations
