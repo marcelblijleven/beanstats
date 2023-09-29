@@ -20,9 +20,9 @@ export const users = mysqlTable("users", {
 
 export const roasters = mysqlTable("roasters", {
     id: serial("id").primaryKey(),
-    publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid),
-    name: varchar("name", {length: 255}).notNull(),
-    country: varchar("name", {length: 255}),
+    publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid).unique(),
+    name: varchar("name", {length: 255}).notNull().unique(),
+    country: varchar("country", {length: 255}),
     userId: int("user_id").notNull(),
     modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
     created: timestamp("created").default(sql`CURRENT_TIMESTAMP`),
@@ -55,11 +55,10 @@ export const beanVarieties = mysqlTable("varieties", {
 
 export const beans = mysqlTable("beans", {
     id: serial("id").primaryKey(),
-    publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid),
-    createdAt: timestamp("created_at").defaultNow(),
+    publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid).unique(),
     name: varchar("name", {length: 255}).notNull(),
-    roastDate: date("roast_date"),
-    buyDate: date("buy_date"),
+    roastDate: date("roast_date", {mode: "string"}),
+    buyDate: date("buy_date", {mode: "string"}),
     externalId: varchar("external_id", {length: 255}),
     notes: text("notes"),
     weight: decimal("weight", {precision: 10, scale: 2}),
