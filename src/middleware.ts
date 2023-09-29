@@ -8,6 +8,7 @@ export default authMiddleware({
         "/beanconqueror/stats",
         "/beanconqueror/shorten",
         "/beanconqueror/view",
+        /^\/coffee\/(.{12})$/,
     ]
 });
 
