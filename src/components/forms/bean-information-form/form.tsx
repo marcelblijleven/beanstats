@@ -11,7 +11,7 @@ import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {MouseEvent, useEffect, useState} from "react";
 import {Legend} from "@/components/ui/legend";
-import {defaultVarietyInformation, beanInformationFormSchema} from "@/lib/validations/bean-information-form-schema";
+import {defaultVarietyInformation, beanInformationFormSchema} from "@/lib/beanconqueror/validations/bean-information-form-schema";
 import {createUrlFromFormSchema} from "@/lib/beanconqueror/proto/proto-helpers";
 import ShareCard from "@/components/share-card";
 import {BeanLinkResponse, getBeanLink} from "@/lib/beanlink";

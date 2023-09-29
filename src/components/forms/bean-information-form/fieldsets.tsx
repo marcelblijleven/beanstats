@@ -1,5 +1,5 @@
 import {DefaultValues, FieldArrayWithId, UseFieldArrayRemove, UseFormReturn} from "react-hook-form";
-import {beanInformationFormSchema} from "@/lib/validations/bean-information-form-schema";
+import {beanInformationFormSchema} from "@/lib/beanconqueror/validations/bean-information-form-schema";
 import {FieldValues} from "react-hook-form/dist/types";
 import {Legend} from "@/components/ui/legend";
 import {FormField} from "@/components/ui/form";
