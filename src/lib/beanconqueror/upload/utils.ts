@@ -27,7 +27,7 @@ async function readEntryToJSON(entry: Entry): Promise<BCData> {
     return JSON.parse(data);
 }
 
-export async function readZipFile(file: File, callback: (data: any) => void) {
+export async function readZipFile(file: File) {
     const blobReader = new BlobReader(file);
     const reader = new ZipReader(blobReader);
     const entries: Entry[] = await reader.getEntries();
@@ -63,6 +63,12 @@ export async function readZipFile(file: File, callback: (data: any) => void) {
     baseData.BEANS = baseData.BEANS.concat(additionalBeans);
     baseData.BREWS = baseData.BREWS.concat(additionalBrews);
 
-    callback(baseData);
     await reader.close();
+
+    return baseData;
+}
+
+export async function readZipFileWithCallback(file: File, callback: (data: any) => void) {
+    const baseData = readZipFile(file);
+    callback(baseData);
 }

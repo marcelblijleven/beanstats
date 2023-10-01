@@ -49,7 +49,7 @@
     "framer-motion": "^10.12.16",
     "lucide-react": "^0.241.0",
     "nanoid": "^3.3.6",
-    "next": "13.4.19",
+    "next": "13.5.3",
     "next-themes": "^0.2.1",
     "postcss": "8.4.24",
     "protobufjs": "~7.2.3",
