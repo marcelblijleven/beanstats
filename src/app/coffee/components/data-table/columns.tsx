@@ -27,20 +27,26 @@ export const columns: ColumnDef<Coffee>[] = [
     {
         accessorKey: "name",
         cell: ({row}) => (
-            <Link
-                className={"hover:underline"}
-                href={`/coffee/${row.getValue("publicId")}`}>{row.getValue("name")}
-            </Link>
+IE                <Link
+                    className={"w-[200px] inline-block whitespace-nowrap truncate overflow-ellipsis hover:underline"}
+                    href={`/coffee/${row.getValue("publicId")}`}>{row.getValue("name")}
+                </Link>
         ),
         header: "Name",
     },
     {
         accessorKey: "roastDate",
         header: "Roast date",
+        cell: ({row}) => (
+            <div className={"w-[90px]"}>{row.getValue("roastDate")}</div>
+        )
     },
     {
         accessorKey: "buyDate",
         header: "Buy date",
+        cell: ({row, cell}) => (
+            <div className={"w-[90px]"}>{row.getValue("buyDate")}</div>
+        )
     },
     {
         accessorKey: "weight",
@@ -55,10 +61,16 @@ export const columns: ColumnDef<Coffee>[] = [
             row.roaster.name
         ),
         header: "Roaster",
+        cell: ({row}) => (
+            <div className={"w-[200px] whitespace-nowrap truncate overflow-ellipsis"}>{row.getValue("Roaster")}</div>
+        )
     },
     {
         accessorFn: (row) => row.varieties.map(variety => variety.name).join(", "),
         header: "Varieties",
+        cell: ({row}) => (
+            <div className={"w-[100px] whitespace-nowrap truncate overflow-ellipsis"}>{row.getValue("Varieties")}</div>
+        )
     },
     {
         accessorFn: (row) => row.isArchived ? "Yes" : "No",

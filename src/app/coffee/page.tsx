@@ -4,7 +4,7 @@ import {User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
 import {db} from "@/db";
 import {beans} from "@/db/schema";
-import {eq} from "drizzle-orm";
+import {and, eq} from "drizzle-orm";
 import {DataTable} from "@/app/coffee/components/data-table";
 import Link from "next/link";
 import {cn} from "@/lib/utils";
