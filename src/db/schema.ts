@@ -36,7 +36,7 @@ export const roasters = mysqlTable("roasters", {
 
 export const beanVarieties = mysqlTable("varieties", {
     id: serial("id").primaryKey(),
-    createdAt: timestamp("created_at").defaultNow(),
+    created: timestamp("created").defaultNow(),
     name: varchar("name", {length: 255}),
     processing: varchar("processing", {length: 255}),
     country: varchar("country", {length: 255}),
@@ -59,14 +59,17 @@ export const beans = mysqlTable("beans", {
     name: varchar("name", {length: 255}).notNull(),
     roastDate: date("roast_date", {mode: "string"}),
     buyDate: date("buy_date", {mode: "string"}),
-    externalId: varchar("external_id", {length: 255}),
+    externalId: varchar("external_id", {length: 255}).unique(),
     notes: text("notes"),
     weight: decimal("weight", {precision: 10, scale: 2}),
     price: decimal("price", {precision: 10, scale: 2}),
     roasterId: int("roaster_id").notNull(),
     isPublic: boolean("is_public").default(false),
     isArchived: boolean("is_archived").default(false),
+    isFinished: boolean("is_finished").default(false),
     userId: int("user_id").notNull(),
+    rating: int("rating"),
+    roastedFor: varchar("roasted_for", {length: 20}),
     modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
     created: timestamp("created").default(sql`CURRENT_TIMESTAMP`),
 }, (table) => {

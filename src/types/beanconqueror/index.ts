@@ -1,3 +1,6 @@
+import {beanconqueror} from "@/lib/beanconqueror/proto/generated/beanconqueror";
+import BeanInformation = beanconqueror.BeanInformation;
+
 export interface BCData {
     BEANS:       Bean[];
     BREWS:       Brew[];
@@ -26,7 +29,7 @@ export interface Bean {
     decaffeinated:          boolean;
     cupping_points:         number | string;
     bean_roasting_type:     BeanRoastingType;
-    bean_information:       { [key: string]: null | string }[];
+    bean_information:       BeanInformation[];
     url:                    string;
     ean_article_number:     null | string;
     bean_roast_information: BeanRoastInformation;
