@@ -3,7 +3,7 @@
 import {ChangeEvent, useState} from "react";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
-import {readTextFile, readZipFile} from "@/lib/beanconqueror/upload/utils";
+import {readTextFile, readZipFileWithCallback} from "@/lib/beanconqueror/upload/utils";
 import {useToast} from "@/components/ui/use-toast";
 
 export interface FileUploadProps {
@@ -24,7 +24,7 @@ const Process = (props: ProcessProps) => {
         if (props.file.type === "application/json") {
             readTextFile(props.file, props.callback)
         } else if (props.file.type === "application/zip") {
-            readZipFile(props.file, props.callback).catch(err => {
+            readZipFileWithCallback(props.file, props.callback).catch(err => {
                 console.error(err);
                 toast({
                     title: "Oh, something went wrong",
