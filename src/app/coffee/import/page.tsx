@@ -3,7 +3,7 @@ import {currentUser} from "@clerk/nextjs";
 import {Title} from "@/components/layout/title";
 import BeanconquerorImport from "@/app/coffee/import/components/beanconqueror-import";
 
-export default async function AddCoffeePage({ params }: { params: { publicUserId: string }}) {
+export default async function AddCoffeePage() {
     const user: User | null = await currentUser();
 
     if (!user) return null;
