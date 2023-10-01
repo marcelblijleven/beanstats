@@ -27,7 +27,7 @@ export const columns: ColumnDef<Coffee>[] = [
     {
         accessorKey: "name",
         cell: ({row}) => (
-IE                <Link
+                <Link
                     className={"w-[200px] inline-block whitespace-nowrap truncate overflow-ellipsis hover:underline"}
                     href={`/coffee/${row.getValue("publicId")}`}>{row.getValue("name")}
                 </Link>
