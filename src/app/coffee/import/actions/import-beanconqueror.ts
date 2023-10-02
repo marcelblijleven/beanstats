@@ -15,34 +15,40 @@ function checkFile(file: File) {
     throw new Error("invalid file type")
 }
 
+function getResultMessage(result: {totalBeans: number, abortedBeans: number, skippedBeans: number}): string {
+    if (result.abortedBeans === 0 && result.skippedBeans === 0) {
+        return `imported ${result.totalBeans} of ${result.totalBeans}`;
+    }
 
-
+    return `imported ${result.totalBeans - result.skippedBeans - result.abortedBeans} of ${result.totalBeans}. ` +
+        `${result.skippedBeans} were skipped, ${result.abortedBeans} were aborted due to an error.`
+}
 
 export async function importBeanconqueror(prevState: any, formData: FormData) {
-    console.log(formData, "nasi")
     const file = formData.get("file") as File | null;
 
     if (!file) {
-        return {message: "missing file"}
+        return {message: "missing file", success: false}
     }
 
     const user = auth();
     const clerkId = user.userId;
 
     if (!clerkId) {
-        return {message: "missing user id"}
+        return {message: "missing user id", success: false}
     }
 
     const [result] = await db.select({user_id: users.id}).from(users).where(eq(users.clerkId, clerkId))
-
+    console.log(result, clerkId, user)
     try {
         checkFile(file);
         const data = await readZipFile(file);
-        await importBeans(data, result.user_id);
-        return {message: "successfully imported"}
+        const importResult = await importBeans(data, result.user_id);
+
+        return {message: getResultMessage(importResult), success: true}
     } catch (e) {
         const message = e instanceof Error ? e.message : "unknown error occurred"
-        return {message}
+        return {message, success: false}
     }
 
 }
