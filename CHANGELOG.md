@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.1](https://github.com/marcelblijleven/beanstats/compare/v1.10.0...v1.10.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* replace links with buttons and push to router ([a54be96](https://github.com/marcelblijleven/beanstats/commit/a54be964cc62e20cab68c773495847587c0878d6))
+
 ## [1.10.0](https://github.com/marcelblijleven/beanstats/compare/v1.9.1...v1.10.0) (2023-10-02)
 
 
