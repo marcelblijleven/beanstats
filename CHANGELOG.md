@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.8.0](https://github.com/marcelblijleven/beanstats/compare/v1.7.0...v1.8.0) (2023-10-01)
+
+
+### Features
+
+* add beanconqueror import ([1cd5b5c](https://github.com/marcelblijleven/beanstats/commit/1cd5b5cf3a62b07169ee0bb384f70923a0c145ac))
+* add beanconqueror import ([f665173](https://github.com/marcelblijleven/beanstats/commit/f665173b84ac02a92138b47767c7590c97bb9e0a))
+* add beanconqueror import ([c64473d](https://github.com/marcelblijleven/beanstats/commit/c64473df95c601ab160d571847e8ac4b567dac31))
+* add coffee overview ([13dad12](https://github.com/marcelblijleven/beanstats/commit/13dad128260b429653290572079e891df60b3e5d))
+
+
+### Bug Fixes
+
+* cat walked over keyboard ([5a40df9](https://github.com/marcelblijleven/beanstats/commit/5a40df9818b953e986657dd5a1d93e4a37a6a745))
+
 ## [1.7.0](https://github.com/marcelblijleven/beanstats/compare/v1.6.0...v1.7.0) (2023-09-29)
 
 
