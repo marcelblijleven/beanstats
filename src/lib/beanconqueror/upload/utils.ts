@@ -69,6 +69,6 @@ export async function readZipFile(file: File) {
 }
 
 export async function readZipFileWithCallback(file: File, callback: (data: any) => void) {
-    const baseData = readZipFile(file);
+    const baseData = await readZipFile(file);
     callback(baseData);
 }
