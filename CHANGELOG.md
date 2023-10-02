@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.2](https://github.com/marcelblijleven/beanstats/compare/v1.10.1...v1.10.2) (2023-10-02)
+
+
+### Bug Fixes
+
+* await reading of zip file ([2d3606b](https://github.com/marcelblijleven/beanstats/commit/2d3606ba34e5cdb11b8c99c90196df6505d00224))
+
 ## [1.10.1](https://github.com/marcelblijleven/beanstats/compare/v1.10.0...v1.10.1) (2023-10-02)
 
 
