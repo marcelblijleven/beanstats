@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.1](https://github.com/marcelblijleven/beanstats/compare/v1.9.0...v1.9.1) (2023-10-02)
+
+
+### Bug Fixes
+
+* pnpm packages missing or deprecated ([7fa7e17](https://github.com/marcelblijleven/beanstats/commit/7fa7e1756cda6effe371a8dfec88971444d7a849))
+
 ## [1.9.0](https://github.com/marcelblijleven/beanstats/compare/v1.8.0...v1.9.0) (2023-10-02)
 
 
