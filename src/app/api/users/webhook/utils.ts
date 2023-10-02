@@ -1,5 +1,5 @@
 import {UserWebhookEvent, WebhookEvent} from "@clerk/nextjs/api";
-import {UserJSON} from "@clerk/types";
+import type {UserJSON} from "@clerk/types";
 import {createUser, deleteUserByClerkId, getUserByClerkId, updateUser} from "@/db/operations";
 import {clerkClient} from "@clerk/nextjs";
 
