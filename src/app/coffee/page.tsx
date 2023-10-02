@@ -53,6 +53,8 @@ export default async function CoffeePage({searchParams}: { searchParams: Record<
                 <div className={"justify-between items-center space-x-2"}>
                     <Link href={"/coffee/add"} className={cn(buttonVariants({variant: "default", size: "default"}), "hidden md:inline-flex")}>Add coffee</Link>
                     <Link href={"/coffee/add"} className={cn(buttonVariants({variant: "default", size: "sm"}), "inline-flex md:hidden")}>Add coffee</Link>
+                    <Link href={"/coffee/import"} className={cn(buttonVariants({variant: "default", size: "default"}), "hidden md:inline-flex")}>Import coffee</Link>
+                    <Link href={"/coffee/import"} className={cn(buttonVariants({variant: "default", size: "sm"}), "inline-flex md:hidden")}>Import coffee</Link>
                 </div>
             </section>
             <section>
