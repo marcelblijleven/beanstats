@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.9.0](https://github.com/marcelblijleven/beanstats/compare/v1.8.0...v1.9.0) (2023-10-02)
+
+
+### Features
+
+* improve home page ([687e6e8](https://github.com/marcelblijleven/beanstats/commit/687e6e82e438274f03b6ce4707f137485dbe2d06))
+
+
+### Bug Fixes
+
+* incorrect named import ([9b1dc7b](https://github.com/marcelblijleven/beanstats/commit/9b1dc7b816628ef164fc3bf6a967e739d4c273d5))
+
 ## [1.8.0](https://github.com/marcelblijleven/beanstats/compare/v1.7.0...v1.8.0) (2023-10-01)
 
 
