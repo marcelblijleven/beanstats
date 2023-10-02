@@ -1,5 +1,5 @@
 import {AlertCircle} from "lucide-react";
-import {AlertRoot as AlertComponent, AlertDescription, AlertTitle} from "@/components/ui/alert";
+import {Alert as AlertComponent, AlertDescription, AlertTitle} from "@/components/ui/alert";
 
 export interface AlertProps {
     title?: string;
