@@ -10,26 +10,38 @@ import Link from "next/link";
 import {cn} from "@/lib/utils";
 import {buttonVariants} from "@/components/ui/button";
 
-async function getCoffee(userId: number): Promise<Coffee[]> {
+/**
+ * Retrieve coffee for the user from the database
+ * Limit is set to page size + 1 to eliminate the need for a total count query.
+ * If size + 1 items are returned, there is a next page
+ */
+async function getCoffee(userId: number, page: number, archived: boolean): Promise<Coffee[]> {
+    const pageSize = 10;
     const bean = await db.query.beans.findMany({
-        where: eq(beans.userId, userId),
+        where: and(eq(beans.userId, userId), eq(beans.isArchived, archived)),
         with: {
             varieties: true,
             roaster: true,
         },
-        orderBy: (beans, { desc }) => [desc(beans.created)]
+        orderBy: (beans, { desc }) => [desc(beans.created), desc(beans.id)],
+        limit: pageSize + 1,
+        offset: (page - 1) * pageSize
     });
 
     return bean as unknown as Coffee[] // TODO: fix typing
 }
 
 
-export default async function CoffeePage() {
+export default async function CoffeePage({searchParams}: { searchParams: Record<string, string | string[] | undefined>}) {
     const user: User | null = await currentUser();
 
     if (!user) return null;
 
-    const data = await getCoffee(user.publicMetadata.databaseId as number);
+    const page = parseInt(searchParams?.page as string ?? 1);
+    const archived = parseInt(searchParams?.archived as string ?? 0);
+
+    const userId = user.publicMetadata.databaseId as number;
+    const data = await getCoffee(userId, page, !!archived);
 
     return (
         <>
