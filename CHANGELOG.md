@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.10.0](https://github.com/marcelblijleven/beanstats/compare/v1.9.1...v1.10.0) (2023-10-02)
+
+
+### Features
+
+* add server side pagination to coffee data table ([3b02587](https://github.com/marcelblijleven/beanstats/commit/3b025870c54e6d4a204c35d9cb5cd31dba9ffcd1))
+
+
+### Bug Fixes
+
+* add non hoisted package ([b54fd0b](https://github.com/marcelblijleven/beanstats/commit/b54fd0bf0f7e9fc313dd86fb9eaef31e705f768a))
+
 ## [1.9.1](https://github.com/marcelblijleven/beanstats/compare/v1.9.0...v1.9.1) (2023-10-02)
 
 
