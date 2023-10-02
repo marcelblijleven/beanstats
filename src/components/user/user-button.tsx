@@ -14,7 +14,7 @@ export default function UserButton() {
     if (!auth.isSignedIn) {
         return (
             <Link href="/sign-in" legacyBehavior passHref>
-                <Button variant={"outline"}>
+                <Button variant={"outline"} className={"w-20"}>
                     {auth.isLoaded ? "Sign in" : "Account"}
                 </Button>
             </Link>
