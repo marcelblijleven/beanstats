@@ -72,8 +72,9 @@ export async function importBeanconquerorBean(data: Bean, roasterMapping: Record
 }
 
 async function importRoasters(data: Iterable<string>, userId: number) {
-    const values: string[] = Array.from(data).map(entry => (`(${userId}, '${generateNanoid()}', '${entry}')`));
-
+    const values: string[] = Array.from(data).map(entry => {
+        return `(${userId}, '${generateNanoid()}', '${entry.replaceAll("'", "\\'").replaceAll('"', '\\"')}')`
+    });
     await db.execute(
         sql.raw(`
             INSERT INTO roasters (roasters.user_id, roasters.public_id, roasters.name)
@@ -82,7 +83,6 @@ async function importRoasters(data: Iterable<string>, userId: number) {
             roasters.name = VALUES(roasters.name);
         `)
     );
-
     const result = await db.select({id: roasters.id, name: roasters.name}).from(roasters).where(eq(roasters.userId, userId));
     const mapping: Record<string, number> = {}
 
