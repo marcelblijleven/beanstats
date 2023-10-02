@@ -6,7 +6,7 @@ import { StatsCard, StatsCardSkeleton } from "./stats-card";
 
 function Layout({children}: {children: ReactNode}) {
     return (
-        <section>
+        <section className={"mt-12"}>
             <h2 className={"text-xl font-bold"}>Stats</h2>
             <div className={"grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4"}>
                 {children}
