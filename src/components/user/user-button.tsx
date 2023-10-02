@@ -22,10 +22,8 @@ export default function UserButton() {
     }
 
     return (
-        <Link href={"/"} legacyBehavior passHref>
-            <ClerkButton afterSignOutUrl={"/"} appearance={{
-                baseTheme: clerkTheme,
-            }}/>
-        </Link>
+        <ClerkButton afterSignOutUrl={"/"} appearance={{
+            baseTheme: clerkTheme,
+        }}/>
     )
 }
