@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.3](https://github.com/marcelblijleven/beanstats/compare/v1.10.2...v1.10.3) (2023-10-02)
+
+
+### Bug Fixes
+
+* issue with quotes in roaster names ([2f9fa7a](https://github.com/marcelblijleven/beanstats/commit/2f9fa7a5339c40a6e80cb938e2119212192e792b))
+
 ## [1.10.2](https://github.com/marcelblijleven/beanstats/compare/v1.10.1...v1.10.2) (2023-10-02)
 
 
