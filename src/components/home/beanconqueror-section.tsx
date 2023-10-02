@@ -35,29 +35,7 @@ const BeanconquerorSection = () => (
             </div>
         </section>
     </section>
-    //
-    // <Card className={"w-full lg:w-[calc(50%-1rem)]"}>
-    //     <CardHeader>
-    //         <CardTitle>Beanconqueror stats</CardTitle>
-    //         <CardDescription>
-    //              This tool helps you visualise
-    //             your data
-    //         </CardDescription>
-    //     </CardHeader>
-    //     <CardContent className={"flex flex-col space-y-2"}>
-    //
-    //         <LinkDetail
-    //             detail={"View contents of a (share) url"}
-    //             button={"View (share) link"}
-    //             href={"/beanconqueror/(share)/view"}
-    //         />
-    //         <LinkDetail
-    //             detail={"Create a (share) url"}
-    //             button={"Create (share) link"}
-    //             href={"/beanconqueror/(share)/create"}
-    //         />
-    //     </CardContent>
-    // </Card>
+
 )
 
 export default BeanconquerorSection
