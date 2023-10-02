@@ -1,7 +1,7 @@
 import {BCData, Bean} from "@/types/beanconqueror";
 import {db} from "@/db";
 import {beans, beanVarieties, roasters} from "@/db/schema";
-import {eq, sql} from "drizzle-orm";
+import {and, eq, isNotNull, sql} from "drizzle-orm";
 import {generateNanoid} from "@/db/utils";
 import {createInsertSchema} from "drizzle-zod";
 import {z} from "zod";
@@ -23,13 +23,14 @@ export function getRoastersFromData(data: BCData) {
     return roasters.values()
 }
 
-export async function importBeanconquerorBean(data: Bean, roasterMapping: Record<string, number>, userId: number, tx: MySqlTransaction<any, any>) {
+export async function importBeanconquerorBean(data: Bean, roasterMapping: Record<string, number>, userId: number) {
     const formatStr = "yyyy-MM-dd";
 
     const bean: InsertBean = {
         name: data.name,
         roastDate: data.roastingDate ? format(new Date(data.roastingDate), formatStr) : null,
         buyDate: data.buyDate ? format(new Date(data.buyDate), formatStr) : null,
+        externalId: data.config.uuid,
         notes: data.note,
         weight: data.weight.toFixed(2),
         price: data.cost.toFixed(2),
@@ -44,27 +45,31 @@ export async function importBeanconquerorBean(data: Bean, roasterMapping: Record
         modified: new Date(data.config.unix_timestamp * 1000),
     }
 
-    const result = await tx.insert(beans).values({...bean, externalId: data.config.uuid}).onDuplicateKeyUpdate({
-        set: bean
-    });
+    return db.transaction(async tx => {
+        const result = await tx.insert(beans).values(bean);
+        const beanId = parseInt(result.insertId);
 
-    // Delete any varieties linked to the bean id so we can import varieties again without having to check for existing ids
-    db.delete(beanVarieties).where(eq(beanVarieties.beanId, parseInt(result.insertId)))
-
-    const varieties: InsertVariety[] = data.bean_information.map(info => {
-        return {
-            name: info.variety,
-            processing: info.processing,
-            country: info.country,
-            region: info.region,
-            farm: info.farm,
-            farmer: info.farmer,
-            elevation: info.elevation,
-            beanId: parseInt(result.insertId),
+        if (!beanId) {
+            await tx.rollback()
+            return false;
         }
-    });
 
-    await tx.insert(beanVarieties).values(varieties);
+        const varieties: InsertVariety[] = data.bean_information.map(info => {
+            return {
+                name: info.variety,
+                processing: info.processing,
+                country: info.country,
+                region: info.region,
+                farm: info.farm,
+                farmer: info.farmer,
+                elevation: info.elevation,
+                beanId: parseInt(result.insertId),
+            }
+        });
+
+        await tx.insert(beanVarieties).values(varieties);
+        return true;
+    });
 }
 
 async function importRoasters(data: Iterable<string>, userId: number) {
@@ -89,16 +94,36 @@ async function importRoasters(data: Iterable<string>, userId: number) {
     return mapping;
 }
 
+async function getExistingExternalIds(userId: number) {
+    const result = await db
+        .select({externalId: beans.externalId})
+        .from(beans)
+        .where(and(eq(beans.userId, userId), isNotNull(beans.userId)));
+
+    return result.map(item => item.externalId as string);
+}
+
 export async function importBeans(data: BCData, userId: number) {
-    console.log("importBeans")
     const roasters = getRoastersFromData(data);
     const roasterMapping = await importRoasters(roasters, userId);
-    let idx = 0;
-    await db.transaction(async (tx) => {
-        for (const bean of data.BEANS) {
-            console.log(++idx)
-            // @ts-ignore
-            await importBeanconquerorBean(bean, roasterMapping, userId, tx);
+    const existingExternalIds = await getExistingExternalIds(userId);
+
+    const totalBeans = data.BEANS.length;
+    let skippedBeans = 0;
+    let abortedBeans = 0;
+
+    for (const bean of data.BEANS) {
+        if (existingExternalIds.includes(bean.config.uuid)) {
+            skippedBeans += 1;
+            continue
         }
-    })
+
+        const result = await importBeanconquerorBean(bean, roasterMapping, userId);
+
+        if (!result) {
+            abortedBeans += 1;
+        }
+    }
+
+    return {totalBeans, skippedBeans, abortedBeans}
 }

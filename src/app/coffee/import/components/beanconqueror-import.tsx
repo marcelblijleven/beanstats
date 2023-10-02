@@ -21,27 +21,16 @@ function SubmitButton() {
     )
 }
 
-function FormAlert({state}: {state: {message: string | null}}) {
+function FormAlert({state}: {state: {message: string | null, success: boolean | null}}) {
     if (state.message === null) {
         return null;
     }
 
-    if (state.message === "successfully imported") {
-        return (
-            <Alert className={"ml-2 max-w-sm"}>
-                <Check className={"h-4 w-4"} />
-                <AlertTitle>Done</AlertTitle>
-                <AlertDescription>
-                    {state.message}
-                </AlertDescription>
-            </Alert>
-        )
-    }
-
     return (
-        <Alert className={"px-2 ml-2 max-w-sm"} variant={"destructive"}>
-            <AlertCircle className={"h-4 w-4"} />
-            <AlertTitle>Error</AlertTitle>
+        <Alert className={"ml-2 max-w-sm"} variant={state.success ? "default" : "destructive"}>
+            {state.success && <Check className={"h-4 w-4"}/>}
+            {!state.success && <AlertCircle className={"h-4 w-4"} />}
+            <AlertTitle>Done</AlertTitle>
             <AlertDescription>
                 {state.message}
             </AlertDescription>
@@ -52,7 +41,7 @@ function FormAlert({state}: {state: {message: string | null}}) {
 export default function BeanconquerorImport() {
     const user = useUser();
     // @ts-ignore
-    const [state, formAction] = useFormState(importBeanconqueror, {message: null})
+    const [state, formAction] = useFormState(importBeanconqueror, {message: null, success: null})
 
     if (!user) return (
         <section>
