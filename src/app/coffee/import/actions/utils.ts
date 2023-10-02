@@ -6,7 +6,6 @@ import {generateNanoid} from "@/db/utils";
 import {createInsertSchema} from "drizzle-zod";
 import {z} from "zod";
 import {format} from "date-fns";
-import {MySqlTransaction} from "drizzle-orm/mysql-core";
 
 const insertBean = createInsertSchema(beans);
 type InsertBean = z.infer<typeof insertBean>
