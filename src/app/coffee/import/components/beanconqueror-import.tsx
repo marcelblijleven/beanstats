@@ -7,7 +7,7 @@ import {importBeanconqueror} from "@/app/coffee/import/actions/import-beanconque
 import {experimental_useFormStatus as useFormStatus} from "react-dom";
 // @ts-expect-error
 import { experimental_useFormState as useFormState } from "react-dom";
-import {AlertCircle, Check, Loader} from "lucide-react";
+import {AlertCircle, Check, Info, Loader} from "lucide-react";
 import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
 
 function SubmitButton() {
@@ -23,11 +23,19 @@ function SubmitButton() {
 
 function FormAlert({state}: {state: {message: string | null, success: boolean | null}}) {
     if (state.message === null) {
-        return null;
+        return (
+            <Alert>
+                <Info className={"h-4 w-4"}/>
+                <AlertTitle>Info</AlertTitle>
+                <AlertDescription>
+                    Previously imported beans will not be updated at this time
+                </AlertDescription>
+            </Alert>
+        )
     }
 
     return (
-        <Alert className={"ml-2 max-w-sm"} variant={state.success ? "default" : "destructive"}>
+        <Alert variant={state.success ? "default" : "destructive"}>
             {state.success && <Check className={"h-4 w-4"}/>}
             {!state.success && <AlertCircle className={"h-4 w-4"} />}
             <AlertTitle>Done</AlertTitle>
@@ -54,17 +62,19 @@ export default function BeanconquerorImport() {
         <div className={"space-y-4"}>
             <section className={"space-y-2"}>
                 <h3 className={"font-bold text-lg"}>Beanconqueror</h3>
-                <form className={"flex space-x-2 max-w-lg"} action={formAction}>
-                    <Input
-                        id={"file"}
-                        type={"file"}
-                        name={"file"}
-                        accept={"application/zip"}
-                    />
-                    <SubmitButton />
+                <form className={"max-w-lg space-y-2"} action={formAction}>
+                    <fieldset className={"flex space-x-2"}>
+                        <Input
+                            id={"file"}
+                            type={"file"}
+                            name={"file"}
+                            accept={"application/zip"}
+                        />
+                        <SubmitButton />
+                    </fieldset>
+                    <FormAlert state={state} />
                     <p aria-live={"polite"} className={"sr-only"}>{state?.message}</p>
                 </form>
-                <FormAlert state={state} />
             </section>
             <section className={"space-y-2"}>
                 <h3 className={"font-bold text-lg"}>Other methods</h3>

@@ -24,7 +24,7 @@ export default function RootLayout({children}: { children: ReactNode }) {
     return (
         <ClerkProvider>
             <html lang="en" suppressHydrationWarning>
-            <body className={cn(inter.className, "min-h-screen")}>
+            <body className={cn(inter.className, "min-h-screen antialiased")}>
             <ThemeProvider attribute={"class"} defaultTheme={"system"} enableSystem>
                 <div className={"relative min-h-screen"}>
                     <Header/>

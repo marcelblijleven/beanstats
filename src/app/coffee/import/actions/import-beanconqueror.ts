@@ -2,10 +2,7 @@
 
 import {readZipFile} from "@/lib/beanconqueror/upload/utils";
 import {importBeans} from "./utils";
-import {auth} from "@clerk/nextjs";
-import {db} from "@/db";
-import {users} from "@/db/schema";
-import {eq} from "drizzle-orm";
+import {currentUser} from "@clerk/nextjs/server";
 
 function checkFile(file: File) {
     if (file.type === "application/zip") {
@@ -31,19 +28,18 @@ export async function importBeanconqueror(prevState: any, formData: FormData) {
         return {message: "missing file", success: false}
     }
 
-    const user = auth();
-    const clerkId = user.userId;
+    const user = await currentUser();
 
-    if (!clerkId) {
-        return {message: "missing user id", success: false}
+    if (!user) {
+        return {message: "not signed in", success: false}
     }
 
-    const [result] = await db.select({user_id: users.id}).from(users).where(eq(users.clerkId, clerkId))
-    console.log(result, clerkId, user)
+    const userId = user.publicMetadata.databaseId as number;
+
     try {
         checkFile(file);
         const data = await readZipFile(file);
-        const importResult = await importBeans(data, result.user_id);
+        const importResult = await importBeans(data, userId);
 
         return {message: getResultMessage(importResult), success: true}
     } catch (e) {

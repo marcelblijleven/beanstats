@@ -10,13 +10,6 @@ const LinkDetail = ({button, href}: { button: string, href: string }) => (
 
 const BeanconquerorSection = () => (
     <section className={"space-y-4"}>
-        <H2 className={"gradient-text"}>Beanconqueror</H2>
-        <p>
-            <Link className={"underline"} href={"https://beanconqueror.com/"} target={"_blank"}>
-                Beanconqueror
-            </Link> is an app for tracking coffee brews, both filter and espresso.
-            The following tools will complement your Beanconqueror experience.
-        </p>
         <section className={"space-y-4"}>
             <H3>Stats</H3>
             <p>
