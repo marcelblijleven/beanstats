@@ -74,7 +74,7 @@ const RatioCard = () => {
     const onChangeRatio = onChange(setRatio);
 
     return (
-        <Card className={"w-full lg:w-[calc(75%-1rem)]"}>
+        <Card className={"min-w-full"}>
             <CardHeader>
                 <CardTitle>Brew ratio</CardTitle>
                 <CardDescription>Calculate your brew ratio</CardDescription>
@@ -102,7 +102,7 @@ const RatioCard = () => {
                     </TabsContent>
                     <TabsContent value={"ratio"} className={"space-y-2 md:space-y-4"}>
                         <UserInputGroup>
-                            <UserInput id={"ratio-tab_water"} label={"Water (gr/ml("} value={water} onChange={onChangeWater} />
+                            <UserInput id={"ratio-tab_water"} label={"Water (gr/ml)"} value={water} onChange={onChangeWater} />
                             <UserInput id={"ratio-tab_coffee"} label={"Ground coffee (gr)"} value={coffee} onChange={onChangeCoffee} />
                         </UserInputGroup>
                         <CalculatedValue title={"Calculated ratio"} value={!!water && !! coffee ? `1/${toFixed(parseFloat(water as string) / parseFloat(coffee as string))}` : "-"} />
