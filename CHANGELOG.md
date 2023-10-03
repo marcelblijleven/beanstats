@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/marcelblijleven/beanstats/compare/v1.10.4...v1.11.0) (2023-10-03)
+
+
+### Features
+
+* bring back ratio card, on its own page this time ([658de6b](https://github.com/marcelblijleven/beanstats/commit/658de6bc2183e57225ded3db1b8ab73ef77c3322))
+
 ## [1.10.4](https://github.com/marcelblijleven/beanstats/compare/v1.10.3...v1.10.4) (2023-10-03)
 
 
