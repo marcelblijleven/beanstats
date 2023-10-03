@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.10.4](https://github.com/marcelblijleven/beanstats/compare/v1.10.3...v1.10.4) (2023-10-03)
+
+
+### Bug Fixes
+
+* add initial varieties to coffee form ([9057cd6](https://github.com/marcelblijleven/beanstats/commit/9057cd69d4321b17e0ac3ba5d9ddcfc7c27d825f))
+* bug when updating form without changing varieties ([14c9242](https://github.com/marcelblijleven/beanstats/commit/14c924240260cc5ab42cdb76e5112abfcb6e1604))
+
 ## [1.10.3](https://github.com/marcelblijleven/beanstats/compare/v1.10.2...v1.10.3) (2023-10-02)
 
 
