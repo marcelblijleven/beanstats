@@ -42,6 +42,17 @@ type VarietyFieldsetProps<TFieldValues extends FieldValues = FieldValues> = {
     remove: UseFieldArrayRemove,
 }
 
+const defaultVarietyValues = {
+    name: "",
+    processing: "",
+    country: "",
+    region: "",
+    farm: "",
+    farmer: "",
+    elevation: "",
+    beanId: null,
+}
+
 const defaultValues = {
     name: "",
     roastDate: undefined,
@@ -52,18 +63,7 @@ const defaultValues = {
     roasterId: 0,
     isPublic: false,
     isArchived: false,
-    varieties: [],
-}
-
-const defaultVarietyValues = {
-    name: "",
-    processing: "",
-    country: "",
-    region: "",
-    farm: "",
-    farmer: "",
-    elevation: "",
-    beanId: null,
+    varieties: [{...defaultVarietyValues}],
 }
 
 function VarietyFieldset<TFieldValues extends FieldValues = FieldValues>({
