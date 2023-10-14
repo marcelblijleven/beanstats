@@ -4,6 +4,7 @@ export default authMiddleware({
     publicRoutes: [
         "/",
         "/api/users/webhook",
+        "/beanconqueror",
         "/beanconqueror/create",
         "/beanconqueror/stats",
         "/beanconqueror/shorten",
