@@ -106,6 +106,7 @@ export const cafeBrews = mysqlTable("cafe_brews", {
 export const usersRelations =  relations(users, ({ many }) => ({
     roasters: many(roasters),
     beans: many(beans),
+    cafeBrews: many(cafeBrews),
 }));
 
 export const beansRelations = relations(beans, ({ many, one}) => ({
@@ -133,4 +134,11 @@ export const roastersRelations = relations(roasters, ({ many, one }) => ({
         references: [users.id]
     }),
     beans: many(beans),
+}));
+
+export const cafeBrewRelations = relations(cafeBrews, ({one}) => ({
+    user: one(users, {
+        fields: [cafeBrews.userId],
+        references: [users.id],
+    }),
 }));
