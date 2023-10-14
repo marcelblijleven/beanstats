@@ -81,6 +81,27 @@ export const beans = mysqlTable("beans", {
     }
 });
 
+export const cafeBrews = mysqlTable("cafe_brews", {
+    id: serial("id").primaryKey(),
+    publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid).unique(),
+    userId: int("user_id").notNull(),
+    name: varchar("name", {length: 128}).notNull(),
+    type: varchar("type", {length: 128}),
+    date: date("date", {mode: "string"}),
+    notes: text("notes"),
+    cafe: varchar("cafe", {length: 128}).notNull(),
+    cafeCity: varchar("cafe_city", {length: 128}),
+    cafeCountry: varchar("cafe_country", {length: 80}),
+    rating: int("rating"),
+    isPublic: boolean("is_public").default(false),
+}, (table) => {
+    return {
+        publicIdIndex: index("public_id_index").on(table.publicId),
+        userIdIndex: index("user_id_index").on(table.userId),
+        nameIndex: index("name_index").on(table.name),
+    }
+})
+
 // Relations
 export const usersRelations =  relations(users, ({ many }) => ({
     roasters: many(roasters),
