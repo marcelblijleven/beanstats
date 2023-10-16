@@ -4,11 +4,13 @@ export default authMiddleware({
     publicRoutes: [
         "/",
         "/api/users/webhook",
+        "/beanconqueror",
         "/beanconqueror/create",
         "/beanconqueror/stats",
         "/beanconqueror/shorten",
         "/beanconqueror/view",
         /^\/coffee\/(.{12})$/,
+        /^\/tools\/(.*)$/,
     ]
 });
 

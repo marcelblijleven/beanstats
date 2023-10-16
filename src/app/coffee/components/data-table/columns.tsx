@@ -44,7 +44,7 @@ export const columns: ColumnDef<Coffee>[] = [
     {
         accessorKey: "buyDate",
         header: "Buy date",
-        cell: ({row, cell}) => (
+        cell: ({row}) => (
             <div className={"w-[90px]"}>{row.getValue("buyDate")}</div>
         )
     },

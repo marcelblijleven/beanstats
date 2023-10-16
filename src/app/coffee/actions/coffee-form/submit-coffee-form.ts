@@ -79,7 +79,7 @@ async function performUpdate(bean: Partial<UpdateInputs>, varieties: Array<Parti
             eq(beans.publicId, bean.publicId as string)
         );
 
-        for (const variety of varieties) {
+        for (const variety of varieties ?? []) {
             variety.beanId = beanSelect.id;
             if (!variety.id) {
                 await tx.insert(beanVarieties).values(variety as z.infer<typeof insertVariety>);
@@ -96,6 +96,7 @@ async function performUpdate(bean: Partial<UpdateInputs>, varieties: Array<Parti
 
 
 async function submitData(values: Partial<Inputs>) {
+    console.log(values, "<- values")
     const {
         varieties,
         roaster,

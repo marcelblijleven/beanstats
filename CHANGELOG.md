@@ -1,5 +1,34 @@
 # Changelog
 
+## [1.11.0](https://github.com/marcelblijleven/beanstats/compare/v1.10.4...v1.11.0) (2023-10-03)
+
+
+### Features
+
+* bring back ratio card, on its own page this time ([658de6b](https://github.com/marcelblijleven/beanstats/commit/658de6bc2183e57225ded3db1b8ab73ef77c3322))
+
+## [1.10.4](https://github.com/marcelblijleven/beanstats/compare/v1.10.3...v1.10.4) (2023-10-03)
+
+
+### Bug Fixes
+
+* add initial varieties to coffee form ([9057cd6](https://github.com/marcelblijleven/beanstats/commit/9057cd69d4321b17e0ac3ba5d9ddcfc7c27d825f))
+* bug when updating form without changing varieties ([14c9242](https://github.com/marcelblijleven/beanstats/commit/14c924240260cc5ab42cdb76e5112abfcb6e1604))
+
+## [1.10.3](https://github.com/marcelblijleven/beanstats/compare/v1.10.2...v1.10.3) (2023-10-02)
+
+
+### Bug Fixes
+
+* issue with quotes in roaster names ([2f9fa7a](https://github.com/marcelblijleven/beanstats/commit/2f9fa7a5339c40a6e80cb938e2119212192e792b))
+
+## [1.10.2](https://github.com/marcelblijleven/beanstats/compare/v1.10.1...v1.10.2) (2023-10-02)
+
+
+### Bug Fixes
+
+* await reading of zip file ([2d3606b](https://github.com/marcelblijleven/beanstats/commit/2d3606ba34e5cdb11b8c99c90196df6505d00224))
+
 ## [1.10.1](https://github.com/marcelblijleven/beanstats/compare/v1.10.0...v1.10.1) (2023-10-02)
 
 
