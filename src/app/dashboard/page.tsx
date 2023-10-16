@@ -24,7 +24,7 @@ export default async function DashboardPage() {
                     <Link href={"/brews/cafe/add"} className={cn(buttonVariants({variant: "default", size: "default"}), "hidden md:inline-flex")}>Add cafe brew</Link>
                     <Button className={"hidden md:inline-block"} disabled>Add brew</Button>
                     <Link href={"/coffee/add"} className={cn(buttonVariants({variant: "default", size: "sm"}), "inline-flex md:hidden")}>Add coffee</Link>
-                    <Link href={"/brew/cafe/add"} className={cn(buttonVariants({variant: "default", size: "sm"}), "inline-flex md:hidden")}>Add cafe brew</Link>
+                    <Link href={"/brews/cafe/add"} className={cn(buttonVariants({variant: "default", size: "sm"}), "inline-flex md:hidden")}>Add cafe brew</Link>
                     <Button size={"sm"} className={"inline-block md:hidden"} disabled>Add brew</Button>
                 </div>
             </section>
