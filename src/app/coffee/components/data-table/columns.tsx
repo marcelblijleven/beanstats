@@ -58,7 +58,7 @@ export const columns: ColumnDef<Coffee>[] = [
     },
     {
         accessorFn: (row) => (
-            row.roaster?.name || "-"
+            row.roaster?.name ?? "-"
         ),
         header: "Roaster",
         cell: ({row}) => (

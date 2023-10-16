@@ -81,10 +81,36 @@ export const beans = mysqlTable("beans", {
     }
 });
 
+export const cafeBrews = mysqlTable("cafe_brews", {
+    id: serial("id").primaryKey(),
+    publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid).unique(),
+    userId: int("user_id").notNull(),
+    type: varchar("type", {length: 128}).notNull(),
+    coffeeVariety: varchar("coffee_variety", {length: 128}),
+    coffeeOrigin: varchar("coffee_origin", {length: 128}),
+    date: date("date", {mode: "string"}),
+    notes: text("notes"),
+    cafe: varchar("cafe", {length: 128}).notNull(),
+    cafeCity: varchar("cafe_city", {length: 128}),
+    cafeCountry: varchar("cafe_country", {length: 80}),
+    price: decimal("price", {precision: 10, scale: 2}),
+    rating: int("rating"),
+    isPublic: boolean("is_public").default(false),
+    modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
+    created: timestamp("created").default(sql`CURRENT_TIMESTAMP`),
+}, (table) => {
+    return {
+        publicIdIndex: index("public_id_index").on(table.publicId),
+        userIdIndex: index("user_id_index").on(table.userId),
+        typeIndex: index("name_index").on(table.type),
+    }
+})
+
 // Relations
 export const usersRelations =  relations(users, ({ many }) => ({
     roasters: many(roasters),
     beans: many(beans),
+    cafeBrews: many(cafeBrews),
 }));
 
 export const beansRelations = relations(beans, ({ many, one}) => ({
@@ -112,4 +138,11 @@ export const roastersRelations = relations(roasters, ({ many, one }) => ({
         references: [users.id]
     }),
     beans: many(beans),
+}));
+
+export const cafeBrewRelations = relations(cafeBrews, ({one}) => ({
+    user: one(users, {
+        fields: [cafeBrews.userId],
+        references: [users.id],
+    }),
 }));

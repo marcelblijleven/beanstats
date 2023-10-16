@@ -1,13 +1,14 @@
-type Values = Record<string, unknown>
-type DirtyFields = Partial<Record<keyof Values, unknown>>
+import {format} from "date-fns";
 
-function applyKey(dirtyFields: Record<string, unknown>, values: Record<string, unknown>, key: string) {
+type Values = Record<string, unknown>
+
+function applyKey<T extends Record<string, unknown | undefined>>(dirtyFields: Partial<Record<keyof T, unknown>>, values:T, key: keyof T) {
     if (typeof values[key] === 'undefined') return;
 
     dirtyFields[key] = values[key];
 }
 
-export function getChangedFields(dirtyFields: DirtyFields, values: Values): Partial<Values> {
+export function getChangedFields<T extends Values>(dirtyFields: Partial<Record<keyof T, unknown>>, values: T): Partial<T> {
     applyKey(dirtyFields, values, "id");
     applyKey(dirtyFields, values, "publicId");
 
@@ -17,8 +18,35 @@ export function getChangedFields(dirtyFields: DirtyFields, values: Values): Part
         return {
             ...prev,
             [key]: typeof dirtyFields[key] === 'object' ?
-                getChangedFields(dirtyFields[key] as DirtyFields, values[key] as Values)
+                // @ts-ignore
+                getChangedFields(dirtyFields[key] as unknown, values[key] as Values)
                 : values[key]
         }
     }, {});
+}
+
+/**
+ * Converts a date to string in yyyy-MM-dd format
+ */
+export function handleDatesToString<T extends Record<string, unknown>>(values: T, key: keyof T) {
+    const fmtString = "yyyy-MM-dd";
+
+    if (typeof values[key] === "undefined") return;
+
+    values[key] = format(values[key] as Date, fmtString) as T[keyof T];
+}
+
+/**
+ * Removes all non-dirty fields from the form data and converts any date field to a date string
+ */
+export function prepareFormValues<T extends Record<string, unknown>>(
+    values: T, dirtyFields: Partial<Record<keyof T, unknown>>, ...dateFields: Array<keyof T>
+): Partial<T> {
+    const changedFields = getChangedFields(dirtyFields, values);
+
+    for (const field of dateFields) {
+        handleDatesToString<Partial<T>>(changedFields, field)
+    }
+
+    return changedFields
 }

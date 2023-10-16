@@ -7,8 +7,8 @@ import UserButton from "@/components/user/user-button";
 // Header has z-20 because of progress bars
 
 const Header = () => (
-    <header className={"sticky z-20 top-0 px-2 bg-opacity-90 w-full"}>
-        <div className={"h-14 mx-auto flex align-middle items-center justify-between px-4 w-full max-w-[1600px] bg-background/95"}>
+    <header className={"sticky z-20 top-0 px-2 bg-opacity-90 w-full bg-background/95"}>
+        <div className={"h-14 mx-auto flex align-middle items-center justify-between px-4 w-full max-w-[1600px]"}>
             <div className={"flex items-center justify-between w-full"}>
                 <Link className={"text-xl md:text-2xl font-extrabold"} href={"/"}>beanstats</Link>
                 <Navigation/>

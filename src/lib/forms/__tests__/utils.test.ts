@@ -1,4 +1,28 @@
-import {getChangedFields} from "@/lib/forms/utils";
+import {getChangedFields, handleDatesToString} from "@/lib/forms/utils";
+
+describe("handleDatesToString", () => {
+    it("works when the key is not not present", () => {
+        const values = {
+            id: 1, foo: "bar"
+        }
+
+        handleDatesToString(values, "date");
+        expect(values).toEqual({
+            id: 1, foo: "bar"
+        })
+    });
+
+    it("works when the date is present", () => {
+        const values = {
+            id: 1, foo: "bar", buyDate: new Date("2023-09-29")
+        }
+
+        handleDatesToString(values, "buyDate");
+        expect(values).toEqual({
+            id: 1, foo: "bar", buyDate: "2023-09-29"
+        })
+    });
+});
 
 describe("getChangedFields", () => {
     it("should include 'id' and 'publicId' keys even when they're not changed", () => {

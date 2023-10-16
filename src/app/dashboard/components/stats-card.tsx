@@ -1,10 +1,12 @@
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Skeleton} from "@/components/ui/skeleton";
+import Link from "next/link";
 
 type StatsCardProps = {
     title: string;
     subtitle: string;
     value: string | number;
+    href?: string;
 }
 
 export function StatsCardSkeleton() {
@@ -27,7 +29,10 @@ export function StatsCard(props: StatsCardProps) {
     return (
         <Card>
             <CardHeader className={"space-y-0 pb-2"}>
-                <CardTitle className={"text-sm font-medium"}>{props.title}</CardTitle>
+                <CardTitle className={"text-sm font-medium"}>
+                    {!props.href && props.title}
+                    {!!props.href && <Link className={"hover:underline"} href={props.href}>{props.title}</Link>}
+                </CardTitle>
             </CardHeader>
             <CardContent>
                 <div className={"text-2xl font-bold"}>{props.value}</div>

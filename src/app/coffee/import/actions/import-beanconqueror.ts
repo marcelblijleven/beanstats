@@ -5,11 +5,12 @@ import {importBeans} from "./utils";
 import {currentUser} from "@clerk/nextjs/server";
 
 function checkFile(file: File) {
-    if (file.type === "application/zip") {
+    if (!file.type || file.type === "application/zip") {
+        // File type can be empty on Windows, apparently
         return true;
     }
 
-    throw new Error("invalid file type")
+    throw new Error(`invalid file type: ${file.type}`);
 }
 
 function getResultMessage(result: {totalBeans: number, abortedBeans: number, skippedBeans: number}): string {
