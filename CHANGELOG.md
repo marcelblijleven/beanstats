@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.0](https://github.com/marcelblijleven/beanstats/compare/v1.11.0...v1.12.0) (2023-10-16)
+
+
+### Features
+
+* add cafe brew ([021db4c](https://github.com/marcelblijleven/beanstats/commit/021db4c44cb79ea3b3d1ae032c69416694511c20))
+
 ## [1.11.0](https://github.com/marcelblijleven/beanstats/compare/v1.10.4...v1.11.0) (2023-10-03)
 
 
