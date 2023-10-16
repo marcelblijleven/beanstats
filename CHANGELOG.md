@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12.1](https://github.com/marcelblijleven/beanstats/compare/v1.12.0...v1.12.1) (2023-10-16)
+
+
+### Bug Fixes
+
+* incorrect href to café brew form page ([facc0be](https://github.com/marcelblijleven/beanstats/commit/facc0be9f0b779a98c2283a6ab1912fe43f4c034))
+
 ## [1.12.0](https://github.com/marcelblijleven/beanstats/compare/v1.11.0...v1.12.0) (2023-10-16)
 
 
