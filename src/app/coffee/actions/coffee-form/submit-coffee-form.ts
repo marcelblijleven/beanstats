@@ -8,7 +8,6 @@ import {beans, beanVarieties, roasters} from "@/db/schema";
 import {and, eq} from "drizzle-orm";
 import {createInsertSchema} from "drizzle-zod";
 import {z} from "zod";
-import {handleDatesToString} from "@/app/coffee/actions/coffee-form/utils";
 
 const insertBean = createInsertSchema(beans);
 const insertVariety = createInsertSchema(beanVarieties);
@@ -163,8 +162,6 @@ export async function submitCoffeeForm(values: Partial<Inputs> | Partial<UpdateI
     if (!result.success) {
         return {success: false, error: result.error.message}
     }
-
-    handleDatesToString(modifiedValues);
 
     try {
         const publicId = await submitData(modifiedValues);

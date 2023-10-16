@@ -4,8 +4,7 @@ import {usePathname, useRouter} from "next/navigation";
 
 export function SubmitButton({loading, disabled}: {loading: boolean, disabled: boolean}) {
     return (
-        // <Button disabled={loading || disabled} type={"submit"}>
-        <Button type={"submit"}>
+        <Button type={"submit"} disabled={disabled}>
             Submit
             {loading && <Loader className={"animate-spin h-4 w-4 ml-2"} />}
         </Button>

@@ -21,11 +21,11 @@ export default async function DashboardPage() {
                 </div>
                 <div className={"justify-between items-center space-x-2"}>
                     <Link href={"/coffee/add"} className={cn(buttonVariants({variant: "default", size: "default"}), "hidden md:inline-flex")}>Add coffee</Link>
+                    <Link href={"/brews/cafe/add"} className={cn(buttonVariants({variant: "default", size: "default"}), "hidden md:inline-flex")}>Add cafe brew</Link>
                     <Button className={"hidden md:inline-block"} disabled>Add brew</Button>
-                    <Button className={"hidden md:inline-block"} disabled>Add cafe brew</Button>
                     <Link href={"/coffee/add"} className={cn(buttonVariants({variant: "default", size: "sm"}), "inline-flex md:hidden")}>Add coffee</Link>
+                    <Link href={"/brew/cafe/add"} className={cn(buttonVariants({variant: "default", size: "sm"}), "inline-flex md:hidden")}>Add cafe brew</Link>
                     <Button size={"sm"} className={"inline-block md:hidden"} disabled>Add brew</Button>
-                    <Button size={"sm"} className={"inline-block md:hidden"} disabled>Add cafe brew</Button>
                 </div>
             </section>
             <StatsCardSection />

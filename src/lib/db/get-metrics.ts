@@ -1,35 +1,40 @@
-import { cache } from "react";
+import {cache} from "react";
 import {eq, sql} from "drizzle-orm";
 
 import {db} from "@/db";
-import {roasters, beans} from "@/db/schema";
+import {beans, cafeBrews, roasters} from "@/db/schema";
 
 type Metrics = {
     roasterCount: number;
     beansCount: number;
+    cafeBrewsCount: number;
 }
 
 export const revalidate = 900; // Revalidate every 15 minutes at most
 
-export const getMetrics = cache(async (userId: number | unknown)=> {
+export const getMetrics = cache(async (userId: number | unknown): Promise<Metrics> => {
     if (!userId) return {
         roasterCount: 0,
         beansCount: 0,
+        cafeBrewsCount: 0,
     }
 
-    const roasterCount = await db
+    const [roaster] = await db
         .select({ count: sql<number>`count(*)`})
         .from(roasters)
         .where(eq(roasters.userId, userId as number));
-    const beansCount = await db
+    const [bean] = await db
         .select({count: sql<number>`count(*)`})
         .from(beans)
         .where(eq(beans.userId, userId as number));
+    const [cafeBrew] = await db
+        .select({count: sql<number>`count(*)`})
+        .from(cafeBrews)
+        .where(eq(cafeBrews.userId, userId as number))
 
-    const metrics: Metrics = {
-        roasterCount: roasterCount[0].count,
-        beansCount: beansCount[0].count,
-    }
-
-    return metrics;
+    return {
+        roasterCount: roaster.count,
+        beansCount: bean.count,
+        cafeBrewsCount: cafeBrew.count,
+    };
 });

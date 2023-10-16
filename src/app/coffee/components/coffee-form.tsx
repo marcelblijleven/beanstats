@@ -26,7 +26,7 @@ import {submitCoffeeForm} from "@/app/coffee/actions/coffee-form/submit-coffee-f
 import {ResetButton, SubmitButton} from "@/app/coffee/components/form-buttons";
 
 import {type Inputs, formSchema} from "@/app/coffee/actions/coffee-form/form-schema"
-import {getChangedFields} from "@/lib/forms/utils";
+import {prepareFormValues} from "@/lib/forms/utils";
 import {useToast} from "@/components/ui/use-toast";
 import {useRouter} from "next/navigation";
 
@@ -220,11 +220,11 @@ export function CoffeeForm(props: CoffeeFormProps) {
 
     const submitFormData: SubmitHandler<Inputs> = async values => {
         setSubmitting(true);
-        const dirtyFields = form.formState.dirtyFields;
-        const changedFields = getChangedFields(dirtyFields, values);
+        const dirtyFields = form.formState.dirtyFields as Partial<Inputs>;
+        const formValues = prepareFormValues<Inputs>(values, dirtyFields, "buyDate", "roastDate");
 
         // No need to do something when no values have changed
-        if (Object.keys(changedFields).length === 0) {
+        if (Object.keys(formValues).length === 0) {
             if (values.publicId) {
                 return router.push(`/coffee/${values.publicId}`);
             }
@@ -232,7 +232,7 @@ export function CoffeeForm(props: CoffeeFormProps) {
             return router.push("/coffee");
         }
 
-        const result = await submitCoffeeForm({...changedFields, name: values.name});
+        const result = await submitCoffeeForm({...formValues, name: values.name});
 
         if (!result.success) {
             toast({

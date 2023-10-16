@@ -5,7 +5,21 @@ import {cn} from "@/lib/utils";
 import {Title} from "@/components/layout/title";
 import {buttonVariants} from "@/components/ui/button";
 import {DataTable} from "@/app/brews/cafe/components/data-table";
-import {columns} from "@/app/brews/cafe/components/data-table/columns";
+import {CafeBrew, columns} from "@/app/brews/cafe/components/data-table/columns";
+import {db} from "@/db";
+import {eq} from "drizzle-orm";
+import {beans} from "@/db/schema";
+
+async function getCafeBrews(userId: number, page: number): Promise<CafeBrew[]> {
+    const pageSize = 10;
+    return await db.query.cafeBrews.findMany({
+        where: eq(beans.userId, userId),
+        orderBy: (_brews, {desc}) => [desc(_brews.date), desc(_brews.id)],
+        limit: pageSize + 1,
+        offset: (page - 1) * pageSize
+    }) as unknown as CafeBrew[];
+}
+
 
 export default async function CafeBrewsPage({searchParams}: { searchParams: Record<string, string | string[] | undefined>}) {
     const user: User | null = await currentUser();
@@ -13,9 +27,8 @@ export default async function CafeBrewsPage({searchParams}: { searchParams: Reco
     if (!user) return null;
 
     const page = parseInt(searchParams?.page as string ?? 1);
-    const archived = parseInt(searchParams?.archived as string ?? 0);
-
     const userId = user.publicMetadata.databaseId as number;
+    const brews = await getCafeBrews(userId, page);
 
     return (
         <>
@@ -41,7 +54,7 @@ export default async function CafeBrewsPage({searchParams}: { searchParams: Reco
                         className='relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary to-[#fc6b03] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]'
                     />
                 </div>
-                <DataTable columns={columns} data={[]} />
+                <DataTable columns={columns} data={brews} />
             </section>
         </>
     )

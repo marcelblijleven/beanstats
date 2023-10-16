@@ -33,6 +33,7 @@ export async function StatsCardSection() {
                 title={"Coffee"}
                 subtitle={"Bags of coffee"}
                 value={metrics.beansCount}
+                href={"/coffee"}
             />
             <StatsCard
                 title={"Roasters"}
@@ -40,13 +41,14 @@ export async function StatsCardSection() {
                 value={metrics.roasterCount}
             />
             <StatsCard
-                title={"Brews"}
-                subtitle={"brews logged"}
-                value={"Coming soon"}
-            />
-            <StatsCard
                 title={"Cafe brews"}
                 subtitle={"cafe brews logged"}
+                value={metrics.cafeBrewsCount}
+                href={"/brews/cafe"}
+            />
+            <StatsCard
+                title={"Brews"}
+                subtitle={"brews logged"}
                 value={"Coming soon"}
             />
         </Layout>

@@ -1,0 +1,2 @@
+ALTER TABLE `cafe_brews` ADD `modified` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;--> statement-breakpoint
+ALTER TABLE `cafe_brews` ADD `created` timestamp DEFAULT CURRENT_TIMESTAMP;
