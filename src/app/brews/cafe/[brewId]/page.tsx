@@ -7,7 +7,31 @@ import {getCafeBrewDetails} from "@/lib/db/brews/get-cafe-brew-details";
 import {BrewDetail} from "@/app/brews/cafe/[brewId]/components/brew-detail";
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
+import {Metadata} from "next";
 
+type PageProps = {
+    params: { brewId: string}
+}
+
+export async function generateMetadata({params}: PageProps): Promise<Metadata> {
+    // read route params
+    const id = params.brewId
+
+    // fetch data
+    const brew = await getCafeBrewDetails(id, undefined)
+
+    if (!brew || !brew.isPublic) {
+        return {
+            title: "Beanstats",
+            description: "Keep track of your cafe brews"
+        }
+    }
+
+    return {
+        title: `${brew.type} - Beanstats`,
+        description: `Served by ${brew.cafe}`
+    }
+}
 
 function Buttons({user, brew} :{user: User | null, brew: Awaited<ReturnType<typeof getCafeBrewDetails>>}) {
     if (!brew || !user ||  user.publicMetadata.databaseId !== brew.userId) return null;
@@ -22,7 +46,7 @@ function Buttons({user, brew} :{user: User | null, brew: Awaited<ReturnType<type
 }
 
 
-export default async function CafeBrewDetailPage({ params }: { params: { brewId: string } }) {
+export default async function CafeBrewDetailPage({params}: PageProps) {
     const user: User | null = await currentUser();
     const brew =  await getCafeBrewDetails(params.brewId, user?.publicMetadata?.databaseId as number || undefined)
 

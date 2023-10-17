@@ -8,6 +8,31 @@ import {BeanDetail} from "@/app/coffee/[coffeeId]/components/bean-detail";
 import Link from "next/link";
 import {Button, buttonVariants} from "@/components/ui/button";
 import Image from "next/image";
+import {Metadata} from "next";
+
+type PageProps = {
+    params: { coffeeId: string}
+}
+
+export async function generateMetadata({params}: PageProps): Promise<Metadata> {
+    // read route params
+    const id = params.coffeeId
+
+    // fetch data
+    const bean = await getBeanDetails(id, undefined)
+
+    if (!bean || !bean.isPublic) {
+        return {
+            title: "Beanstats",
+            description: "Keep track of your coffee backlog"
+        }
+    }
+
+    return {
+        title: `${bean.name} - Beanstats`,
+        description: `Roasted by ${bean.roaster.name}`
+    }
+}
 
 function Buttons({user, bean} :{user: User | null, bean: Awaited<ReturnType<typeof getBeanDetails>>}) {
     if (!bean || !user ||  user.publicMetadata.databaseId !== bean.userId) return null;
@@ -30,7 +55,7 @@ function BeanConquerorButton({bean}: {bean:Awaited<ReturnType<typeof getBeanDeta
     )
 }
 
-export default async function CoffeeDetailPage({ params }: { params: { coffeeId: string } }) {
+export default async function CoffeeDetailPage({params}: PageProps) {
     const user: User | null = await currentUser();
     const bean =  await getBeanDetails(params.coffeeId, user?.publicMetadata?.databaseId as number || undefined)
 
