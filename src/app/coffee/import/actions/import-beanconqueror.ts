@@ -5,7 +5,12 @@ import {importBeans} from "./utils";
 import {currentUser} from "@clerk/nextjs/server";
 
 function checkFile(file: File) {
-    if (!file.type || file.type === "application/zip") {
+    const zipTypes = [
+        "application/zip",
+        "application/x-zip-compressed",
+    ]
+
+    if (!file.type || zipTypes.includes(file.type)) {
         // File type can be empty on Windows, apparently
         return true;
     }

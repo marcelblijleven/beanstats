@@ -23,7 +23,7 @@ const Process = (props: ProcessProps) => {
 
         if (props.file.type === "application/json") {
             readTextFile(props.file, props.callback)
-        } else if (props.file.type === "application/zip") {
+        } else if (props.file.type === "application/zip" || props.file.type === "application/x-zip-compressed") {
             readZipFileWithCallback(props.file, props.callback).catch(err => {
                 console.error(err);
                 toast({
