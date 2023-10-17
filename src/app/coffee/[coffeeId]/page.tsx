@@ -56,7 +56,7 @@ function BeanConquerorButton({bean}: {bean:Awaited<ReturnType<typeof getBeanDeta
     )
 }
 
-export default async function CoffeeDetailPage({params}: PageProps) {
+export default async function CoffeeDetailPage({ params }: { params: { coffeeId: string } }) {
     const user: User | null = await currentUser();
     const bean =  await getBeanDetails(params.coffeeId, user?.publicMetadata?.databaseId as number || undefined)
 

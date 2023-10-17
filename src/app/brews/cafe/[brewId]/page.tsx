@@ -47,7 +47,7 @@ function Buttons({user, brew} :{user: User | null, brew: Awaited<ReturnType<type
 }
 
 
-export default async function CafeBrewDetailPage({params}: PageProps) {
+export default async function CafeBrewDetailPage({ params }: { params: { brewId: string } }) {
     const user: User | null = await currentUser();
     const brew =  await getCafeBrewDetails(params.brewId, user?.publicMetadata?.databaseId as number || undefined)
 
