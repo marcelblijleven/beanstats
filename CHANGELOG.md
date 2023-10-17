@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.0](https://github.com/marcelblijleven/beanstats/compare/v1.12.1...v1.13.0) (2023-10-17)
+
+
+### Features
+
+* add dynamic page metadata to coffee and brew detail pages ([784ce20](https://github.com/marcelblijleven/beanstats/commit/784ce203fedb7ab07c95cf8ac4f90d8a11ee164c))
+
 ## [1.12.1](https://github.com/marcelblijleven/beanstats/compare/v1.12.0...v1.12.1) (2023-10-16)
 
 
