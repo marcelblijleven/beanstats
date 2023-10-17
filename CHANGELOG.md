@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.13.1](https://github.com/marcelblijleven/beanstats/compare/v1.13.0...v1.13.1) (2023-10-17)
+
+
+### Bug Fixes
+
+* also allow x-zip-compressed mime types ([a952673](https://github.com/marcelblijleven/beanstats/commit/a9526735ef7983859745dd2581852b070158bd22))
+* incorrect remaining grams ([27d0f62](https://github.com/marcelblijleven/beanstats/commit/27d0f6246cd79cb11a9fbfdb7c839a83021e0335))
+
 ## [1.13.0](https://github.com/marcelblijleven/beanstats/compare/v1.12.1...v1.13.0) (2023-10-17)
 
 
