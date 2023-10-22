@@ -1,6 +1,6 @@
 "use client"
 
-import {ColumnDef} from "@tanstack/react-table";
+import {type ColumnDef} from "@tanstack/react-table";
 import Link from "next/link";
 
 export type CafeBrew = {
@@ -22,12 +22,15 @@ export const columns: ColumnDef<CafeBrew>[] = [
     },
     {
         accessorKey: "type",
-        cell: ({row}) => (
-            <Link
-                className={"w-[200px] inline-block whitespace-nowrap truncate overflow-ellipsis hover:underline"}
-                href={`/brews/cafe/${row.getValue("publicId")}`}>{row.getValue("type")}
-            </Link>
-        ),
+        cell: ({row}) => {
+            const publicId: string = row.getValue("publicId");
+            return (
+                <Link
+                    className={"w-[200px] inline-block whitespace-nowrap truncate overflow-ellipsis hover:underline"}
+                    href={`/brews/cafe/${publicId}`}>{row.getValue("type")}
+                </Link>
+            )
+        },
         header: "Type",
     },
     {

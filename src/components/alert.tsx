@@ -10,7 +10,7 @@ export function Alert(props: AlertProps) {
     return (
         <AlertComponent variant="destructive">
             <AlertCircle className="h-4 w-4"/>
-            <AlertTitle>{props.title || "Error"}</AlertTitle>
+            <AlertTitle>{props.title ?? "Error"}</AlertTitle>
             <AlertDescription>
                 {props.description}
             </AlertDescription>

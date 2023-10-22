@@ -1,0 +1,4 @@
+src/lib/beanconqueror/proto/generated/beanconqueror.js
+src/lib/beanconqueror/proto/generated/beanconqueror.d.ts
+**/__mocks__/**/*
+**/__tests__/**/*

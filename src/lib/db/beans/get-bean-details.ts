@@ -34,6 +34,7 @@ export async function getBeanDetails(publicId: string, userId: number | undefine
 
     if (!bean) return bean;
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {id, ...rest} = bean;
 
     return rest as unknown as SelectBean;

@@ -1,5 +1,5 @@
 import {currentUser} from "@clerk/nextjs";
-import {ReactNode} from "react";
+import {type ReactNode} from "react";
 import {getMetrics} from "@/lib/db/get-metrics";
 import { StatsCard, StatsCardSkeleton } from "./stats-card";
 
@@ -25,7 +25,7 @@ export async function StatsCardSection() {
         )
     }
 
-    const metrics = await getMetrics(userId)
+    const metrics = await getMetrics(userId as number)
 
     return (
         <Layout>

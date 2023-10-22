@@ -10,7 +10,7 @@ export async function getBeanLink(link: string): Promise<BeanLinkResponse> {
         method: "POST",
         body: JSON.stringify({"link": link})
     });
-    const data: BeanLinkResponse = await response.json();
+    const data = await response.json() as unknown as BeanLinkResponse;
 
     if (!!data.error) {
         throw new Error(data.error);

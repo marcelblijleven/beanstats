@@ -76,12 +76,10 @@ export interface Config {
 
 export interface CuppedFlavor {
     predefined_flavors: PredefinedFlavors;
-    custom_flavors:     any[];
+    custom_flavors:     never[];
 }
 
-export interface PredefinedFlavors {
-    [key: string]: any;
-}
+export type PredefinedFlavors = Record<string, never>;
 
 export interface Cupping {
     body:               number;
@@ -118,7 +116,7 @@ export interface Brew {
     coffee_concentration:                 string;
     coffee_first_drip_time:               number;
     coffee_blooming_time:                 number;
-    attachments:                          any[];
+    attachments:                          never[];
     config:                               Config;
     tds:                                  number;
     brew_beverage_quantity:               number;
@@ -126,7 +124,7 @@ export interface Brew {
     coordinates:                          Coordinates;
     cupping:                              Cupping;
     cupped_flavor:                        CuppedFlavor;
-    method_of_preparation_tools:          any[];
+    method_of_preparation_tools:          never[];
     bean_weight_in:                       number;
     favourite:                            boolean;
     water:                                string;
@@ -158,7 +156,7 @@ export interface Mill {
     note:        string;
     config:      Config;
     finished:    boolean;
-    attachments: any[];
+    attachments: never[];
 }
 
 export interface Preparation {
@@ -169,16 +167,16 @@ export interface Preparation {
     style_type:                     string;
     finished:                       boolean;
     use_custom_parameters:          boolean;
-    manage_parameters:              { [key: string]: boolean };
-    default_last_coffee_parameters: { [key: string]: boolean };
-    visible_list_view_parameters:   { [key: string]: boolean };
+    manage_parameters:              Record<string, boolean>;
+    default_last_coffee_parameters: Record<string, boolean>;
+    visible_list_view_parameters:   Record<string, boolean>;
     brew_order:                     BrewOrder;
-    tools:                          any[];
-    attachments:                    any[];
+    tools:                          never[];
+    attachments:                    never[];
 }
 
 export interface BrewOrder {
-    before: { [key: string]: number };
+    before: Record<string, number>;
     while:  While;
     after:  After;
 }
@@ -206,9 +204,9 @@ export interface Setting {
     brew_view:                               string;
     startup_view:                            string;
     config:                                  Config;
-    manage_parameters:                       { [key: string]: boolean };
-    default_last_coffee_parameters:          { [key: string]: boolean };
-    visible_list_view_parameters:            { [key: string]: boolean };
+    manage_parameters:                       Record<string, boolean>;
+    default_last_coffee_parameters:          Record<string, boolean>;
+    visible_list_view_parameters:            Record<string, boolean>;
     brew_order:                              BrewOrder;
     language:                                string;
     matomo_analytics:                        boolean;
@@ -270,7 +268,7 @@ export interface BeanFilter {
 export interface BeanFilterARCHIVED {
     favourite:          boolean;
     rating:             Rating;
-    bean_roasting_type: any[];
+    bean_roasting_type: never[];
     roastingDateStart:  string;
     roastingDateEnd:    string;
 }
@@ -296,10 +294,10 @@ export interface BrewFilter {
 }
 
 export interface BrewFilterARCHIVED {
-    mill:                        any[];
-    bean:                        any[];
-    method_of_preparation:       any[];
-    method_of_preparation_tools: any[];
+    mill:                        never[];
+    bean:                        never[];
+    method_of_preparation:       never[];
+    method_of_preparation_tools: never[];
     favourite:                   boolean;
     rating:                      Rating;
 }

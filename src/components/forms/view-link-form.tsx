@@ -1,7 +1,7 @@
 "use client"
 
 import {useForm} from "react-hook-form";
-import {z} from "zod";
+import {type z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 
 import {viewLinkSchema} from "@/lib/beanconqueror/validations/links";

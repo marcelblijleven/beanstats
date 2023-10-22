@@ -1,7 +1,7 @@
 "use client"
 
 import {
-    ColumnDef,
+    type ColumnDef,
     getCoreRowModel, getPaginationRowModel,
     useReactTable
 } from "@tanstack/react-table";

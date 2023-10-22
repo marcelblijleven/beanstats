@@ -2,19 +2,19 @@
 
 import {
     useFieldArray,
-    UseFieldArrayProps,
+    type UseFieldArrayProps,
     useForm,
 } from "react-hook-form"
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Form} from "@/components/ui/form";
 import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
-import {MouseEvent, useEffect, useState} from "react";
+import {type MouseEvent, useEffect, useState} from "react";
 import {Legend} from "@/components/ui/legend";
 import {defaultVarietyInformation, beanInformationFormSchema} from "@/lib/beanconqueror/validations/bean-information-form-schema";
 import {createUrlFromFormSchema} from "@/lib/beanconqueror/proto/proto-helpers";
 import ShareCard from "@/components/share-card";
-import {BeanLinkResponse, getBeanLink} from "@/lib/beanlink";
+import {type BeanLinkResponse, getBeanLink} from "@/lib/beanlink";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {Separator} from "@/components/ui/separator"
 
@@ -66,7 +66,7 @@ export default function BeanInformationForm() {
     }
 
     useEffect(() => {
-        append({...defaultVarietyInformation} as any, {
+        append({...defaultVarietyInformation}, {
             shouldFocus: false,
         });
     }, [append]);
@@ -124,7 +124,7 @@ export default function BeanInformationForm() {
                                     ))}
                                     {blend === "BLEND" && (<Button onClick={(event) => {
                                         event.preventDefault();
-                                        append({...defaultVarietyInformation} as any)
+                                        append({...defaultVarietyInformation})
                                     }}>
                                         Add additional bean
                                     </Button>)}

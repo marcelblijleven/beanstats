@@ -2,7 +2,7 @@ import {and, eq, or} from "drizzle-orm";
 import {cafeBrews} from "@/db/schema";
 import {db} from "@/db";
 import {createSelectSchema} from "drizzle-zod";
-import {z} from "zod";
+import {type z} from "zod";
 
 const selectSchema = createSelectSchema(cafeBrews);
 
@@ -25,6 +25,7 @@ export async function getCafeBrewDetails(publicId: string, userId: number | unde
 
     if (!brew) return undefined;
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {id, ...rest} = brew;
 
     return rest as unknown as SelectBrew;

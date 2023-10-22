@@ -1,18 +1,19 @@
 "use client"
 
-import {ChangeEvent, useState} from "react";
+import {type ChangeEvent, useState} from "react";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {readTextFile, readZipFileWithCallback} from "@/lib/beanconqueror/upload/utils";
 import {useToast} from "@/components/ui/use-toast";
+import {type BCData} from "@/types/beanconqueror";
 
 export interface FileUploadProps {
-    callback: (data: any) => void;
+    callback: (data: string | BCData) => void;
 }
 
 interface ProcessProps {
     file: File | undefined;
-    callback: (data: any) => void;
+    callback: (data: string | BCData) => void;
 }
 
 const Process = (props: ProcessProps) => {

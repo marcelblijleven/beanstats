@@ -4,12 +4,12 @@ import type {ColumnDef, Table as TableType} from "@tanstack/react-table";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {flexRender} from "@tanstack/react-table";
 
-export type DataTableComponentProps<TData> = {
+export type DataTableComponentProps<TData, TValue> = {
     table: TableType<TData>
-    columns: ColumnDef<TData, any>[]
+    columns: ColumnDef<TData, TValue>[]
 }
 
-export function DataTableComponent<TData>(props: DataTableComponentProps<TData>) {
+export function DataTableComponent<TData, TValue>(props: DataTableComponentProps<TData, TValue>) {
     return (
         <div className="rounded-md border">
             <Table>

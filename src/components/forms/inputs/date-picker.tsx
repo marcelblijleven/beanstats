@@ -6,8 +6,8 @@ import {CalendarIcon} from "lucide-react";
 import {PopoverContent} from "@/components/ui/popover";
 import {Calendar} from "@/components/ui/calendar";
 import {format} from "date-fns";
-import {Control} from "react-hook-form";
-import {FieldPath, FieldValues} from "react-hook-form/dist/types";
+import {type Control} from "react-hook-form";
+import {type FieldPath, type FieldValues} from "react-hook-form/dist/types";
 
 export interface DatePickerFormFieldProps<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> {
     name: TName;

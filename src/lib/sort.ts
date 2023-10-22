@@ -22,10 +22,10 @@ export function sortFnDesc<T>(a: T, b: T): number {
     return _sortFn(a, b, false);
 }
 
-export function sortFnByKeyAsc<T>(key: string): (a: any, b: any) => number {
+export function sortFnByKeyAsc(key: string): (a: never, b: never) => number {
     return (a, b) => _sortFn(a[key], b[key], false);
 }
 
-export function sortFnByKeyDesc<T>(key: string): (a: any, b: any) => number {
+export function sortFnByKeyDesc(key: string): (a: never, b: never) => number {
     return (a, b) => _sortFn(a[key], b[key], false);
 }

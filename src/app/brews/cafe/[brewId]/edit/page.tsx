@@ -1,9 +1,9 @@
 import {Title} from "@/components/layout/title";
-import {User} from "@clerk/nextjs/api";
+import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
 import {notFound} from "next/navigation";
 import {getCafeBrewDetails} from "@/lib/db/brews/get-cafe-brew-details";
-import {CafeBrewForm, Inputs} from "@/app/brews/cafe/components/cafe-brew-form";
+import {CafeBrewForm, type Inputs} from "@/app/brews/cafe/components/cafe-brew-form";
 
 export default async function EditCoffeePage({ params }: { params: { brewId: string } }) {
     const user: User | null = await currentUser();

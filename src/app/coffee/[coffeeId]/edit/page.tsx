@@ -1,11 +1,10 @@
 import {CoffeeForm} from "@/app/coffee/components/coffee-form";
 import {Title} from "@/components/layout/title";
-import {User} from "@clerk/nextjs/api";
+import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
 import {getBeanDetails} from "@/lib/db/beans/get-bean-details";
 import {notFound} from "next/navigation";
-import {Inputs} from "@/app/coffee/actions/coffee-form/form-schema";
-import {undefined} from "zod";
+import {type Inputs} from "@/app/coffee/actions/coffee-form/form-schema";
 
 export default async function EditCoffeePage({ params }: { params: { coffeeId: string } }) {
     const user: User | null = await currentUser();

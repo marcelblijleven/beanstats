@@ -1,6 +1,6 @@
 import {eq} from "drizzle-orm";
 import {createInsertSchema, createSelectSchema} from "drizzle-zod";
-import {z} from 'zod';
+import {type z} from 'zod';
 
 import {db} from "@/db/index";
 import {users} from "@/db/schema";

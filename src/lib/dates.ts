@@ -59,7 +59,7 @@ export function getDateString(date: Date | null, includeTime: boolean, timeZone?
     }
 
     const options: Intl.DateTimeFormatOptions = {
-        timeZone: timeZone || "UTC",
+        timeZone: timeZone ?? "UTC",
         minute: "2-digit",
         hour: "2-digit",
         day: "2-digit",

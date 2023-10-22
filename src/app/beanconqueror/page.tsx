@@ -1,6 +1,4 @@
 import PageShell from "@/components/layout/page-shell";
-import Link from "next/link";
-import Image from "next/image";
 import BeanconquerorSection from "@/components/home/beanconqueror-section";
 
 export default function BeanconquerorPage() {

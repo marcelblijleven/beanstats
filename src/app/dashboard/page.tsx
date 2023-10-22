@@ -4,7 +4,7 @@ import Link from "next/link";
 import {cn} from "@/lib/utils";
 
 
-export default async function DashboardPage() {
+export default function DashboardPage() {
     return (
         <div className={"relative isolate"}>
             <section>

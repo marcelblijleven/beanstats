@@ -12,7 +12,7 @@ type Metrics = {
 
 export const revalidate = 900; // Revalidate every 15 minutes at most
 
-export const getMetrics = cache(async (userId: number | unknown): Promise<Metrics> => {
+export const getMetrics = cache(async (userId: number): Promise<Metrics> => {
     if (!userId) return {
         roasterCount: 0,
         beansCount: 0,
@@ -22,15 +22,15 @@ export const getMetrics = cache(async (userId: number | unknown): Promise<Metric
     const [roaster] = await db
         .select({ count: sql<number>`count(*)`})
         .from(roasters)
-        .where(eq(roasters.userId, userId as number));
+        .where(eq(roasters.userId, userId));
     const [bean] = await db
         .select({count: sql<number>`count(*)`})
         .from(beans)
-        .where(eq(beans.userId, userId as number));
+        .where(eq(beans.userId, userId));
     const [cafeBrew] = await db
         .select({count: sql<number>`count(*)`})
         .from(cafeBrews)
-        .where(eq(cafeBrews.userId, userId as number))
+        .where(eq(cafeBrews.userId, userId))
 
     return {
         roasterCount: roaster.count,

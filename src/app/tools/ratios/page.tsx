@@ -1,7 +1,7 @@
 import RatioCard from "@/components/ratio-card";
 
 
-export default async function RatioPage() {
+export default function RatioPage() {
     return (
         <div className={"relative isolate"}>
             <div

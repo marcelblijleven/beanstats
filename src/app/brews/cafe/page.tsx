@@ -1,11 +1,11 @@
-import {User} from "@clerk/nextjs/api";
+import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
 import Link from "next/link";
 import {cn} from "@/lib/utils";
 import {Title} from "@/components/layout/title";
 import {buttonVariants} from "@/components/ui/button";
 import {DataTable} from "@/app/brews/cafe/components/data-table";
-import {CafeBrew, columns} from "@/app/brews/cafe/components/data-table/columns";
+import {type CafeBrew, columns} from "@/app/brews/cafe/components/data-table/columns";
 import {db} from "@/db";
 import {eq} from "drizzle-orm";
 import {beans} from "@/db/schema";

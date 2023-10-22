@@ -1,5 +1,5 @@
 import {FormItem, FormControl, FormLabel, FormMessage, FormDescription} from "@/components/ui/form";
-import {ReactNode} from "react";
+import {type ReactNode} from "react";
 import {cn} from "@/lib/utils";
 
 export interface FormItemProps {

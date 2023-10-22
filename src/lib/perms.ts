@@ -1,4 +1,4 @@
-import {User} from "@clerk/nextjs/api";
+import {type User} from "@clerk/nextjs/api";
 
 interface Target {
     isPublic?: boolean | null;

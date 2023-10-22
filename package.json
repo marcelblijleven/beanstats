@@ -19,7 +19,7 @@
     "@clerk/shared": "0.24.0",
     "@clerk/themes": "^1.7.5",
     "@clerk/types": "^3.53.0",
-    "@hookform/resolvers": "^3.1.1",
+    "@hookform/resolvers": "^3.3.2",
     "@planetscale/database": "^1.11.0",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.4",
@@ -66,7 +66,7 @@
     "tailwind-merge": "^1.13.2",
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.6",
-    "zod": "^3.21.4"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.3",

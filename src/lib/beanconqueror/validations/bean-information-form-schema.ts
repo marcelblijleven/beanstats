@@ -4,7 +4,7 @@ import BeanRoastingType = beanconqueror.BeanRoastingType;
 import Roast = beanconqueror.Roast;
 import BeanMix = beanconqueror.BeanMix;
 
-function zodEnumFromObjKeys<K extends string> ( obj: Record<K, any> ): z.ZodEnum<[ K, ...K[] ]> {
+function zodEnumFromObjKeys<K extends string> ( obj: Record<K, unknown> ): z.ZodEnum<[ K, ...K[] ]> {
     const [ firstKey, ...otherKeys ] = Object.keys( obj ) as K[]
     return z.enum( [ firstKey, ...otherKeys ] )
 }

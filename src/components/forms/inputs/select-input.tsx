@@ -1,14 +1,14 @@
 import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Select, SelectValue, SelectContent, SelectItem, SelectTrigger} from "@/components/ui/select";
-import {Control} from "react-hook-form";
-import {FieldPath, FieldValues} from "react-hook-form/dist/types";
+import {type Control} from "react-hook-form";
+import {type FieldPath, type FieldValues} from "react-hook-form/dist/types";
 
 export interface SelectFormFieldProps<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> {
     name: TName;
     label: string;
     control: Control<TFieldValues>;
     default: string,
-    enum: any // TODO: figure out typing
+    enum: object
 }
 
 export default function SelectInput<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(props: SelectFormFieldProps<TFieldValues, TName>) {

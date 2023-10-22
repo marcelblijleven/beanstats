@@ -15,11 +15,12 @@ import IBeanInformation = beanconqueror.IBeanInformation;
 import LabelledValue from "@/components/beanconqueror/share/view/labelled-value";
 import QRCodeCard from "@/components/qrcode-card";
 import {useEffect, useState} from "react";
-import {BeanLinkResponse, followBeanLink} from "@/lib/beanlink";
+import {type BeanLinkResponse, followBeanLink} from "@/lib/beanlink";
 import {BEANLINK_RE} from "@/lib/beanconqueror/validations/links";
 import {Alert} from "@/components/alert";
 import {ShortenLinkForm} from "@/components/forms/shorten-link-form";
 import {BeanLinkCard} from "@/components/share-card";
+import {useToast} from "@/components/ui/use-toast";
 
 const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
     <>
@@ -34,13 +35,14 @@ const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
                     <LabelledValue type={"date"} label={"Buy date"} value={decoded.buyDate}/>
                     <LabelledValue type={"date"} label={"Roasting date"} value={decoded.roastingDate}/>
                     {decoded.roast !== Roast.CUSTOM_ROAST &&
-                      <LabelledValue type={"string"} label={"Roast"} value={Roast[decoded.roast || 0]}/>}
+                      <LabelledValue type={"string"} label={"Roast"} value={Roast[decoded.roast ?? 0]}/>}
+                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
                     <LabelledValue type={"rating"} label={"Roast range"} value={decoded.roastRange}/>
                     <LabelledValue type={"string"} label={"Bean roasting type"}
-                                   value={BeanRoastingType[decoded.beanRoastingType || 0]}/>
+                                   value={BeanRoastingType[decoded.beanRoastingType ?? 0]}/>
                     {decoded.roast === Roast.CUSTOM_ROAST &&
                       <LabelledValue type={"string"} label={"Roast (custom)"} value={decoded.roastCustom}/>}
-                    <LabelledValue type={"string"} label={"Bean mix"} value={BeanMix[decoded.beanMix || 0]}/>
+                    <LabelledValue type={"string"} label={"Bean mix"} value={BeanMix[decoded.beanMix ?? 0]}/>
                 </div>
             </CardContent>
         </Card>
@@ -50,7 +52,9 @@ const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
             </CardHeader>
             <CardContent>
                 <div className={"grid grid-cols-1 md:grid-cols-2 gap-2"}>
+                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
                     <LabelledValue type={"number"} label={"Weight"} value={decoded.weight}/>
+                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
                     <LabelledValue type={"number"} label={"Cost"} value={decoded.cost}/>
                     <LabelledValue
                         type={"string"} label={"Flavour profile"} value={decoded.aromatics} splitLabels
@@ -103,17 +107,26 @@ const VarietyTabsContent = ({decoded}: {decoded: BeanProto}) => (
 const SharedBean = ({url}: { url: string}) => {
     const [viewUrl, setViewUrl] = useState<string>(url);
     const [data, setData] = useState<BeanLinkResponse | null>(null);
+    const {toast} = useToast();
 
     let err;
     let decoded;
 
     useEffect(() => {
-        setViewUrl(url || "");
+        setViewUrl(url ?? "");
     }, [url])
 
     if (url.match(BEANLINK_RE)) {
         followBeanLink(url).then(response => {
             setViewUrl(response);
+        }).catch(err => {
+            toast({
+                title: "Error",
+                description: "Something went wrong",
+                variant: "destructive",
+            });
+            console.log(err);
+            return;
         });
     }
 

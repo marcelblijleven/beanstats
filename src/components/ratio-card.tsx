@@ -1,6 +1,6 @@
 "use client"
 
-import {ChangeEvent, ReactNode, useState} from "react";
+import {type ChangeEvent, type ReactNode, useState} from "react";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {Input} from "@/components/ui/input";
@@ -65,7 +65,7 @@ const RatioCard = () => {
     const [coffee, setCoffee] = useState<number | string>(12.5);
     const [water, setWater] = useState<number | string>(200);
 
-    const onChange = (setFunc: (value: any) => void) => (event: ChangeEvent<HTMLInputElement>) => setFunc(
+    const onChange = (setFunc: (value: string | number) => void) => (event: ChangeEvent<HTMLInputElement>) => setFunc(
         event.currentTarget.value.replace(",", ".")
     );
 
