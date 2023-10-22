@@ -1,14 +1,13 @@
 import {Title} from "@/components/layout/title";
-import {Coffee, columns} from "@/app/coffee/components/data-table/columns";
 import {User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
 import {db} from "@/db";
 import {beans} from "@/db/schema";
 import {and, eq} from "drizzle-orm";
-import {DataTable} from "@/app/coffee/components/data-table";
 import Link from "next/link";
 import {cn} from "@/lib/utils";
 import {buttonVariants} from "@/components/ui/button";
+import {type Coffee, CoffeeDataTable, columns} from "@/components/overview-pages/coffee-datatable";
 
 /**
  * Retrieve coffee for the user from the database
@@ -17,18 +16,16 @@ import {buttonVariants} from "@/components/ui/button";
  */
 async function getCoffee(userId: number, page: number, archived: boolean): Promise<Coffee[]> {
     const pageSize = 10;
-    const bean = await db.query.beans.findMany({
+    return await db.query.beans.findMany({
         where: and(eq(beans.userId, userId), eq(beans.isArchived, archived)),
         with: {
             varieties: true,
             roaster: true,
         },
-        orderBy: (beans, { desc }) => [desc(beans.created), desc(beans.id)],
+        orderBy: (beans, {desc}) => [desc(beans.created), desc(beans.id)],
         limit: pageSize + 1,
         offset: (page - 1) * pageSize
-    });
-
-    return bean as unknown as Coffee[] // TODO: fix typing
+    })
 }
 
 
@@ -69,7 +66,7 @@ export default async function CoffeePage({searchParams}: { searchParams: Record<
                         className='relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary to-[#fc6b03] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]'
                     />
                 </div>
-                <DataTable columns={columns} data={data} />
+                <CoffeeDataTable columns={columns} data={data} />
             </section>
         </>
     )
