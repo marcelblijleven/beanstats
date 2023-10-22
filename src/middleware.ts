@@ -10,6 +10,7 @@ export default authMiddleware({
         "/beanconqueror/shorten",
         "/beanconqueror/view",
         /^\/coffee\/(.{12})$/,
+        /^\/coffee\/freeze\/(.{12})$/,
         /^\/brews\/cafe\/(.{12})$/,
         /^\/tools\/(.*)$/,
     ]
