@@ -1,4 +1,4 @@
-import {getChangedFields, handleDatesToString} from "@/lib/forms/utils";
+import { getChangedFields, handleDatesToString} from "@/lib/forms/utils";
 
 describe("handleDatesToString", () => {
     it("works when the key is not not present", () => {
@@ -6,6 +6,7 @@ describe("handleDatesToString", () => {
             id: 1, foo: "bar"
         }
 
+        // @ts-expect-error: it should handle missing keys
         handleDatesToString(values, "date");
         expect(values).toEqual({
             id: 1, foo: "bar"
@@ -39,7 +40,7 @@ describe("getChangedFields", () => {
             foo: true
         }
 
-        expect(getChangedFields(dirtyFields, values)).toEqual({
+        expect(getChangedFields(dirtyFields, values, [])).toEqual({
             id: 1,
             publicId: 2,
             foo: "bar",
@@ -57,7 +58,7 @@ describe("getChangedFields", () => {
             foo: true
         }
 
-        expect(getChangedFields(dirtyFields, values)).toEqual({
+        expect(getChangedFields(dirtyFields, values, [])).toEqual({
             foo: "bar",
         })
     });
@@ -78,7 +79,7 @@ describe("getChangedFields", () => {
             }
         }
 
-        expect(getChangedFields(dirtyFields, values)).toEqual({
+        expect(getChangedFields(dirtyFields, values, [])).toEqual({
             id: 1,
             publicId: 2,
             foo: "bar",

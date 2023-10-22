@@ -78,7 +78,7 @@ export function CafeBrewForm(props: CafeBrewFormProps) {
     const dirtyFields = form.formState.dirtyFields as DirtyFields
     const submitFormData: SubmitHandler<Inputs> = async values => {
         const fields: DirtyFields = {...dirtyFields, type: true, cafe: true}
-        const formValues = prepareFormValues<Inputs>(values, fields, "date")
+        const formValues = prepareFormValues<Inputs>(values, fields, [], ["date"])
         const result = await submitCafeBrewForm(formValues,);
 
         if (!result.success) {

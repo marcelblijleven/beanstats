@@ -221,7 +221,7 @@ export function CoffeeForm(props: CoffeeFormProps) {
     const submitFormData: SubmitHandler<Inputs> = async values => {
         setSubmitting(true);
         const dirtyFields = form.formState.dirtyFields as Partial<Inputs>;
-        const formValues = prepareFormValues<Inputs>(values, dirtyFields, "buyDate", "roastDate");
+        const formValues = prepareFormValues<Inputs>(values, dirtyFields, [],["buyDate", "roastDate"]);
 
         // No need to do something when no values have changed
         if (Object.keys(formValues).length === 0) {
