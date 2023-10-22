@@ -1,4 +1,4 @@
-import {getFreezeEntry} from "@/lib/db/freeze-entries/get-freeze-entry";
+import {type getFreezeEntry} from "@/lib/db/freeze-entries/get-freeze-entry";
 import {DetailItem} from "@/components/detail-pages/detail-item";
 
 type Details = Awaited<ReturnType<typeof getFreezeEntry>>
@@ -25,7 +25,7 @@ export function FreezeEntryDetail({entry}: PageProps) {
             </section>
             <section>
                 <h3 className={"font-bold text-lg"}>Notes</h3>
-                <p className={"min-h-[300px] w-full md:w-1/2 rounded-lg outline outline-accent"}>{entry.notes || ""}</p>
+                <p className={"min-h-[300px] w-full md:w-1/2 rounded-lg outline outline-accent"}>{entry.notes ?? ""}</p>
             </section>
         </>
     )

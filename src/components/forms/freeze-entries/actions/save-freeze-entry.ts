@@ -1,6 +1,6 @@
 "use server"
 
-import {type FreezeEntryInput, freezeEntryInsertSchema} from "@/components/forms/freeze-entries/schema";
+import {type FreezeEntryInput} from "@/components/forms/freeze-entries/schema";
 import {db} from "@/db";
 import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
@@ -29,7 +29,7 @@ export async function saveFreezeEntry(data: Partial<FreezeEntryInput>) {
 
     const beanId = bean.id;
 
-    delete data["beanPublicId"] // delete this here, otherwise drizzle will throw an error when inserting/updating
+    delete data.beanPublicId // delete this here, otherwise drizzle will throw an error when inserting/updating
     const values = {...data, beanId: beanId, userId: user.publicMetadata.databaseId} as z.infer<typeof freezeEntrySchema>
 
     if (!!data.publicId) {

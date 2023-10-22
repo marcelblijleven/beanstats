@@ -1,12 +1,10 @@
-import {Metadata, ResolvingMetadata} from "next";
+import {type Metadata, type ResolvingMetadata} from "next";
 import {getFreezeEntry} from "@/lib/db/freeze-entries/get-freeze-entry";
-import {User} from "@clerk/nextjs/api";
+import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
-import {getBeanDetails} from "@/lib/db/beans/get-bean-details";
 import {canView} from "@/lib/perms";
 import {notFound} from "next/navigation";
 import {Title} from "@/components/layout/title";
-import {BeanDetail} from "@/app/coffee/[coffeeId]/components/bean-detail";
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 import {FreezeEntryDetail} from "@/components/detail-pages/freeze-entry-detail";

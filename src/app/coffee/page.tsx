@@ -1,5 +1,5 @@
 import {Title} from "@/components/layout/title";
-import {User} from "@clerk/nextjs/api";
+import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
 import {db} from "@/db";
 import {beans} from "@/db/schema";
@@ -8,6 +8,7 @@ import Link from "next/link";
 import {cn} from "@/lib/utils";
 import {buttonVariants} from "@/components/ui/button";
 import {type Coffee, CoffeeDataTable, columns} from "@/components/overview-pages/coffee-datatable";
+import {notFound} from "next/navigation";
 
 /**
  * Retrieve coffee for the user from the database
@@ -32,7 +33,7 @@ async function getCoffee(userId: number, page: number, archived: boolean): Promi
 export default async function CoffeePage({searchParams}: { searchParams: Record<string, string | string[] | undefined>}) {
     const user: User | null = await currentUser();
 
-    if (!user) return null;
+    if (!user) return notFound();
 
     const page = parseInt(searchParams?.page as string ?? 1);
     const archived = parseInt(searchParams?.archived as string ?? 0);

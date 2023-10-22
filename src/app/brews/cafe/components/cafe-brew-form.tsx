@@ -66,7 +66,6 @@ export function CafeBrewForm(props: CafeBrewFormProps) {
         ...(props.values ?? defaultValues),
         userId: user?.publicMetadata.databaseId as number
     }
-    console.log(values)
 
     const form = useForm<Inputs>({
         mode: "onSubmit",
@@ -82,7 +81,6 @@ export function CafeBrewForm(props: CafeBrewFormProps) {
         const result = await submitCafeBrewForm(formValues,);
 
         if (!result.success) {
-            console.log(result.error)
             toast({
                 title: "Form error",
                 description: result.error ?? "Something went wrong while submitting the form"

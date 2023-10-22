@@ -1,5 +1,5 @@
 import {Title} from "@/components/layout/title";
-import {User} from "@clerk/nextjs/api";
+import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
 import {notFound} from "next/navigation";
 import {canView} from "@/lib/perms";
@@ -8,7 +8,7 @@ import {BeanDetail} from "@/app/coffee/[coffeeId]/components/bean-detail";
 import Link from "next/link";
 import {Button, buttonVariants} from "@/components/ui/button";
 import Image from "next/image";
-import {Metadata, ResolvingMetadata} from "next";
+import {type Metadata, type ResolvingMetadata} from "next";
 
 type PageProps = {
     params: { coffeeId: string}
@@ -31,7 +31,7 @@ export async function generateMetadata({params}: PageProps, parent: ResolvingMet
 
     return {
         title: `${bean.name}`,
-        description: `Roasted by ${bean.roaster.name}`
+        description: `Roasted by ${bean.roaster?.name ?? "??"}`
     }
 }
 
@@ -42,6 +42,9 @@ function Buttons({user, bean} :{user: User | null, bean: Awaited<ReturnType<type
         <div className={"flex flex-row-reverse gap-2"}>
             <Link href={`/coffee/${bean.publicId}/edit`} className={buttonVariants({size: "sm", variant: "outline"})}>
                 Edit
+            </Link>
+            <Link href={`/coffee/freeze/add?id=${bean.publicId}&bean=${bean.name}`} className={buttonVariants({size: "sm", variant: "outline"})}>
+                Freeze
             </Link>
             {/*<BeanConquerorButton bean={bean} />*/}
         </div>
@@ -66,7 +69,7 @@ export default async function CoffeeDetailPage({ params }: { params: { coffeeId:
         <>
             <Title
                 title={bean.name}
-                subtitle={`Roasted by ${bean.roaster.name}`}
+                subtitle={`Roasted by ${bean.roaster?.name ?? "??"}`}
             />
             <Buttons user={user} bean={bean} />
             <BeanDetail bean={bean} />

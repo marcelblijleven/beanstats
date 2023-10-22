@@ -1,13 +1,11 @@
-import {CoffeeForm} from "@/app/coffee/components/coffee-form";
 import {Title} from "@/components/layout/title";
-import {User} from "@clerk/nextjs/api";
+import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
-import {getBeanDetails, getCoffeeIdsForUsers} from "@/lib/db/beans/get-bean-details";
+import {getCoffeeIdsForUsers} from "@/lib/db/beans/get-bean-details";
 import {notFound} from "next/navigation";
-import {Inputs} from "@/app/coffee/actions/coffee-form/form-schema";
 import {undefined} from "zod";
 import {getFreezeEntry} from "@/lib/db/freeze-entries/get-freeze-entry";
-import {FreezeEntryInput} from "@/components/forms/freeze-entries/schema";
+import {type FreezeEntryInput} from "@/components/forms/freeze-entries/schema";
 import {FreezeEntryForm} from "@/components/forms/freeze-entries/form";
 
 export default async function EditFreezeEntryPage({ params }: { params: { entryId: string } }) {
@@ -22,7 +20,7 @@ export default async function EditFreezeEntryPage({ params }: { params: { entryI
     const values: FreezeEntryInput = {
         publicId: entry.publicId,
         label: entry.label ?? "",
-        beanPublicId: entry.beanPublicId as string,
+        beanPublicId: entry.beanPublicId!,
         weight: entry.weight ?? "",
         freezeDate: entry.freezeDate ?? undefined,
         frozen: entry.frozen,

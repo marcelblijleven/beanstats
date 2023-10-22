@@ -1,13 +1,13 @@
 "use client"
 
-import {DataTableProps} from "@/components/overview-pages/interfaces";
+import {type DataTableProps} from "@/components/overview-pages/interfaces";
 import {useRouter, useSearchParams} from "next/navigation";
-import {ColumnDef, getCoreRowModel, getPaginationRowModel, useReactTable} from "@tanstack/react-table";
+import {type ColumnDef, getCoreRowModel, getPaginationRowModel, useReactTable} from "@tanstack/react-table";
 import {Button} from "@/components/ui/button";
 import {DataTableComponent} from "@/components/data-table";
 import {createSelectSchema} from "drizzle-zod";
 import {beans, freezeEntries} from "@/db/schema";
-import {z} from "zod";
+import {type z} from "zod";
 import Link from "next/link";
 
 const selectSchema = createSelectSchema(freezeEntries).extend({

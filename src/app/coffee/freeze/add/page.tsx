@@ -1,7 +1,7 @@
 import {FreezeEntryForm} from "@/components/forms/freeze-entries/form";
-import {User} from "@clerk/nextjs/api";
+import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
-import {notFound, useSearchParams} from "next/navigation";
+import {notFound} from "next/navigation";
 import {getCoffeeIdsForUsers} from "@/lib/db/beans/get-bean-details";
 import {Title} from "@/components/layout/title";
 

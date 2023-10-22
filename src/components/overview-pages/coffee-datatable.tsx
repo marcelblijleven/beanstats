@@ -1,10 +1,10 @@
 "use client"
 
 import {useRouter, useSearchParams} from "next/navigation";
-import {ColumnDef, getCoreRowModel, getPaginationRowModel, useReactTable} from "@tanstack/react-table";
+import {type ColumnDef, getCoreRowModel, getPaginationRowModel, useReactTable} from "@tanstack/react-table";
 import {Button} from "@/components/ui/button";
 import {DataTableComponent} from "@/components/data-table";
-import {DataTableProps} from "@/components/overview-pages/interfaces";
+import {type DataTableProps} from "@/components/overview-pages/interfaces";
 import Link from "next/link";
 import {createSelectSchema} from "drizzle-zod";
 import {beans, beanVarieties, roasters} from "@/db/schema";
@@ -23,12 +23,17 @@ export const columns: ColumnDef<Coffee>[] = [
     },
     {
         accessorKey: "name",
-        cell: ({row}) => (
-            <Link
-                className={"w-[200px] inline-block whitespace-nowrap truncate overflow-ellipsis hover:underline"}
-                href={`/coffee/${row.getValue("publicId")}`}>{row.getValue("name")}
-            </Link>
-        ),
+        cell: ({row}) => {
+            const value: string = row.getValue("publicId");
+            return (
+                <Link
+                    className={"w-[200px] inline-block whitespace-nowrap truncate overflow-ellipsis hover:underline"}
+                    href={`/coffee/${value}`}
+                >
+                    {row.getValue("name")}
+                </Link>
+            )
+        },
         header: "Name",
     },
     {
