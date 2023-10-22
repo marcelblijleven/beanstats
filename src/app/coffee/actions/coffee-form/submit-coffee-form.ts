@@ -96,7 +96,6 @@ async function performUpdate(bean: Partial<UpdateInputs>, varieties: Array<Parti
 
 
 async function submitData(values: Partial<Inputs>) {
-    console.log(values, "<- values")
     const {
         varieties,
         roaster,
