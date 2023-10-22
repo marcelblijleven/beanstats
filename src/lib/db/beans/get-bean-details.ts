@@ -38,3 +38,10 @@ export async function getBeanDetails(publicId: string, userId: number | undefine
 
     return rest as unknown as SelectBean;
 }
+
+export async function getCoffeeIdsForUsers(userId: number): Promise<{ publicId: string | null, name: string }[]> {
+    return db.select({
+        publicId: beans.publicId,
+        name: beans.name
+    }).from(beans).where(and(eq(beans.userId, userId), eq(beans.isArchived, false)));
+}
