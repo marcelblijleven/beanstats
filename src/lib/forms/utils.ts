@@ -3,7 +3,7 @@ import {format} from "date-fns";
 type Values = Record<string, unknown>
 
 
-function applyKey<T extends Record<string, unknown | undefined>>(dirtyFields: Partial<Record<keyof T, unknown>>, values:T, key: keyof T) {
+function applyKey<T extends Record<string, unknown>>(dirtyFields: Partial<Record<keyof T, unknown>>, values:T, key: keyof T) {
     if (typeof values[key] === 'undefined') return;
 
     dirtyFields[key] = values[key];
