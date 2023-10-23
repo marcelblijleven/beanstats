@@ -2,8 +2,8 @@
 import Link from "next/link";
 
 import {Navigation} from "@/components/layout/navigation";
-import ThemeSwitcher from "@/components/theme-switcher";
-import UserButton from "@/components/user/user-button";
+import ThemeSwitcher from "@/components/theme/theme-switcher";
+import UserButton from "@/components/account/user-button";
 
 // Header has z-20 because of progress bars
 

@@ -6,7 +6,7 @@ import {and, eq} from "drizzle-orm";
 import {createInsertSchema} from "drizzle-zod";
 import {type z} from "zod";
 
-import {formSchema, type Inputs, updateFormSchema, type UpdateInputs} from "@/app/coffee/actions/coffee-form/form-schema";
+import {coffeeFormSchema, type CoffeeFormInputs, updateFormSchema, type CoffeeUpdateFormInputs} from "@/components/forms/coffee-form/schema";
 import {db} from "@/db";
 import {beans, beanVarieties, roasters} from "@/db/schema";
 
@@ -40,7 +40,7 @@ async function getOrCreateRoaster(name: string, userId: number) {
     return newResult[0].id;
 }
 
-async function performInsert(beanData: Inputs, varieties: Array<Partial<z.infer<typeof insertVariety>>>) {
+async function performInsert(beanData: CoffeeFormInputs, varieties: Array<Partial<z.infer<typeof insertVariety>>>) {
     return db.transaction(async (tx) => {
         const bean = insertBean.parse(beanData);
         const result = await tx.insert(beans).values(bean);
@@ -66,7 +66,7 @@ async function performInsert(beanData: Inputs, varieties: Array<Partial<z.infer<
     })
 }
 
-async function performUpdate(bean: Partial<UpdateInputs>, varieties: Array<Partial<z.infer<typeof insertVariety>>>) {
+async function performUpdate(bean: Partial<CoffeeUpdateFormInputs>, varieties: Array<Partial<z.infer<typeof insertVariety>>>) {
     return db.transaction(async (tx) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore:
@@ -97,7 +97,7 @@ async function performUpdate(bean: Partial<UpdateInputs>, varieties: Array<Parti
 }
 
 
-async function submitData(values: Partial<Inputs>) {
+async function submitData(values: Partial<CoffeeFormInputs>) {
     const {
         varieties,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -109,7 +109,7 @@ async function submitData(values: Partial<Inputs>) {
         return await performUpdate(bean, varieties as Array<Partial<z.infer<typeof insertVariety>>>);
     }
 
-    return await performInsert(bean as Inputs, varieties as Array<Partial<z.infer<typeof insertVariety>>>);
+    return await performInsert(bean as CoffeeFormInputs, varieties as Array<Partial<z.infer<typeof insertVariety>>>);
 
 }
 
@@ -117,7 +117,7 @@ async function submitData(values: Partial<Inputs>) {
  * Checks if the roaster id in values is not null, if it is null
  * it will fetch the roaster id by name
  */
-async function getRoasterId(values: Partial<Inputs>, userId: number) {
+async function getRoasterId(values: Partial<CoffeeFormInputs>, userId: number) {
     if (values.roaster === undefined) {
         // This means the roaster field wasn't changed on edit,
         // so we can ignore the roaster
@@ -129,16 +129,16 @@ async function getRoasterId(values: Partial<Inputs>, userId: number) {
     return await getOrCreateRoaster(values.roaster , userId);
 }
 
-function parseInputs(values: Partial<Inputs> | Partial<UpdateInputs>) {
+function parseInputs(values: Partial<CoffeeFormInputs> | Partial<CoffeeUpdateFormInputs>) {
     if (!!values.publicId) {
         // If a public id is provided, it is probably an update
         return updateFormSchema.safeParse(values);
     }
 
-    return formSchema.safeParse(values);
+    return coffeeFormSchema.safeParse(values);
 }
 
-export async function submitCoffeeForm(values: Partial<Inputs> | Partial<UpdateInputs>) {
+export async function submitCoffeeForm(values: Partial<CoffeeFormInputs> | Partial<CoffeeUpdateFormInputs>) {
     const user: User | null = await currentUser();
 
     if (!user) {

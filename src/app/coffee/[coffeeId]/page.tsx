@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {notFound} from "next/navigation";
 
-import {BeanDetail} from "@/app/coffee/[coffeeId]/components/bean-detail";
+import {BeanDetail} from "@/components/detail-pages/bean-detail";
 import {Title} from "@/components/layout/title";
 import {Button, buttonVariants} from "@/components/ui/button";
 import {getBeanDetails, getBeanDetailsWithFreezeEntries} from "@/lib/db/beans/get-bean-details";

@@ -2,8 +2,8 @@ import {currentUser} from "@clerk/nextjs";
 import {type User} from "@clerk/nextjs/api";
 import {notFound} from "next/navigation";
 
-import {type Inputs} from "@/app/coffee/actions/coffee-form/form-schema";
-import {CoffeeForm} from "@/app/coffee/components/coffee-form";
+import {type CoffeeFormInputs} from "@/components/forms/coffee-form/schema";
+import {CoffeeForm} from "@/components/forms/coffee-form/form";
 import {Title} from "@/components/layout/title";
 import {getBeanDetails} from "@/lib/db/beans/get-bean-details";
 
@@ -18,7 +18,7 @@ export default async function EditCoffeePage({ params }: { params: { coffeeId: s
 
     if (!bean) return notFound();
 
-    const values: Inputs = {
+    const values: CoffeeFormInputs = {
         buyDate: bean.buyDate,
         isArchived: bean.isArchived,
         isPublic: bean.isPublic,

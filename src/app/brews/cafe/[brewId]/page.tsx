@@ -4,16 +4,11 @@ import {type Metadata, type ResolvingMetadata} from "next";
 import Link from "next/link";
 import {notFound} from "next/navigation";
 
-import {BrewDetail} from "@/app/brews/cafe/[brewId]/components/brew-detail";
+import {BrewDetail} from "@/components/detail-pages/brew-detail";
 import {Title} from "@/components/layout/title";
 import {buttonVariants} from "@/components/ui/button";
 import {getCafeBrewDetails} from "@/lib/db/brews/get-cafe-brew-details";
 import {canView} from "@/lib/perms";
-
-
-
-
-
 
 type PageProps = {
     params: { brewId: string}

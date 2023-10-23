@@ -15,9 +15,9 @@ import {
     type UseFormReturn
 } from "react-hook-form";
 
-import {type Inputs, formSchema} from "@/app/coffee/actions/coffee-form/form-schema"
-import {submitCoffeeForm} from "@/app/coffee/actions/coffee-form/submit-coffee-form";
-import {ResetButton, SubmitButton} from "@/app/coffee/components/form-buttons";
+import {type CoffeeFormInputs, coffeeFormSchema} from "@/components/forms/coffee-form/schema"
+import {submitCoffeeForm} from "@/components/forms/coffee-form/actions/submit-coffee-form";
+import {ResetButton, SubmitButton} from "@/components/forms/coffee-form/form-buttons";
 import DatePickerInput from "@/components/forms/inputs/date-picker";
 import {Button} from "@/components/ui/button";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
@@ -32,12 +32,12 @@ import {prepareFormValues} from "@/lib/forms/utils";
 
 type CoffeeFormProps = {
     roasters: { id: number, name: string }[]
-    values?: Inputs
+    values?: CoffeeFormInputs
 }
 
 type VarietyFieldsetProps<TFieldValues extends FieldValues = FieldValues> = {
     index: number;
-    form: UseFormReturn<Inputs>;
+    form: UseFormReturn<CoffeeFormInputs>;
     field: FieldArrayWithId<Partial<DefaultValues<TFieldValues>>>
     remove: UseFieldArrayRemove,
 }
@@ -197,9 +197,9 @@ export function CoffeeForm(props: CoffeeFormProps) {
     const router = useRouter();
     const {toast} = useToast();
 
-    const form = useForm<Inputs>({
+    const form = useForm<CoffeeFormInputs>({
         mode: "onBlur",
-        resolver: zodResolver(formSchema),
+        resolver: zodResolver(coffeeFormSchema),
         defaultValues: values,
     });
 
@@ -218,10 +218,10 @@ export function CoffeeForm(props: CoffeeFormProps) {
         return null;
     }
 
-    const submitFormData: SubmitHandler<Inputs> = async values => {
+    const submitFormData: SubmitHandler<CoffeeFormInputs> = async values => {
         setSubmitting(true);
-        const dirtyFields = form.formState.dirtyFields as Partial<Inputs>;
-        const formValues = prepareFormValues<Inputs>(values, dirtyFields, [],["buyDate", "roastDate"]);
+        const dirtyFields = form.formState.dirtyFields as Partial<CoffeeFormInputs>;
+        const formValues = prepareFormValues<CoffeeFormInputs>(values, dirtyFields, [],["buyDate", "roastDate"]);
 
         // No need to do something when no values have changed
         if (Object.keys(formValues).length === 0) {

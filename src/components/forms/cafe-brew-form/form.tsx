@@ -7,8 +7,8 @@ import {useRouter} from "next/navigation";
 import {useState} from "react";
 import {type SubmitHandler, useForm} from "react-hook-form";
 
-import {submitCafeBrewForm} from "@/app/brews/actions/submit-cafe-brew-form";
-import {ResetButton, SubmitButton} from "@/app/coffee/components/form-buttons";
+import {submitCafeBrewForm} from "@/components/forms/cafe-brew-form/actions/submit-cafe-brew-form";
+import {ResetButton, SubmitButton} from "@/components/forms/coffee-form/form-buttons";
 import {type CafeBrewInputs, cafeBrewInsertSchema} from "@/components/forms/cafe-brew-form/schema";
 import DatePickerInput from "@/components/forms/inputs/date-picker";
 import {FormItemWrapper} from "@/components/forms/inputs/form-item-wrapper";

@@ -6,7 +6,7 @@ import Link from "next/link";
 import {useRouter, useSearchParams} from "next/navigation";
 import {z} from "zod";
 
-import {DataTableComponent} from "@/components/data-table";
+import {DataTableComponent} from "@/components/overview-pages/data-table";
 import {type DataTableProps} from "@/components/overview-pages/interfaces";
 import {Button} from "@/components/ui/button";
 import {beans, beanVarieties, freezeEntries, roasters} from "@/db/schema";
