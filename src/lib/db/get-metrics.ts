@@ -84,9 +84,21 @@ export const getMetrics = cache(async (userId: number): Promise<Metrics> => {
     const favoriteRoastersByBag: FavoritesResult = [];
     const favoriteRoastersByWeight: FavoritesResult = [];
 
+    // Split roasters into by bag and by weight
     for (const row of favoriteRoasters.rows as {name: string, total: string, total_weight: string}[]) {
         favoriteRoastersByBag.push({name: row.name, total: row.total})
         favoriteRoastersByWeight.push({name: row.name, total: row.total_weight})
+    }
+
+    // "By bag" is sorted correctly by the database, need to re-sort "by weight"
+    for (let i = 1; i < favoriteRoastersByWeight.length; i++) {
+        for (let j = 0; j < i; j++) {
+            if (favoriteRoastersByWeight[i].total > favoriteRoastersByWeight[j].total) {
+                const swap = favoriteRoastersByWeight[i];
+                favoriteRoastersByWeight[i] = favoriteRoastersByWeight[j];
+                favoriteRoastersByWeight[j] = swap;
+            }
+        }
     }
 
     return {
