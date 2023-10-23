@@ -3,51 +3,29 @@
 import {useUser} from "@clerk/nextjs";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {type CheckedState} from "@radix-ui/react-checkbox";
-import {createInsertSchema} from "drizzle-zod";
 import {useRouter} from "next/navigation";
 import {useState} from "react";
 import {type SubmitHandler, useForm} from "react-hook-form";
-import {z} from "zod";
 
 import {submitCafeBrewForm} from "@/app/brews/actions/submit-cafe-brew-form";
 import {ResetButton, SubmitButton} from "@/app/coffee/components/form-buttons";
+import {type CafeBrewInputs, cafeBrewInsertSchema} from "@/components/forms/cafe-brew-form/schema";
 import DatePickerInput from "@/components/forms/inputs/date-picker";
 import {FormItemWrapper} from "@/components/forms/inputs/form-item-wrapper";
-import {Checkbox} from "@/components/ui/checkbox";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
+import {Checkbox} from "@/components/ui/checkbox";
 import {Input} from "@/components/ui/input";
-
-
-import {Textarea} from "@/components/ui/textarea";
-import {Slider} from "@/components/ui/slider";
-import {prepareFormValues} from "@/lib/forms/utils";
 import {useToast} from "@/components/ui/use-toast";
-import {cafeBrews} from "@/db/schema";
-
-
-const optionalStringWithMinLength = (length: number, name: string) => z.union(
-    [z.literal(""), z.string().min(length, `${name} should be at least ${length} characters`)]
-).optional()
-
-const formSchema = createInsertSchema(cafeBrews, {
-    type: z.string().min(3, "Type should be at least 3 characters"),
-    coffeeVariety: optionalStringWithMinLength(3, "Variety"),
-    coffeeOrigin: optionalStringWithMinLength(3, "Origin"),
-    cafeCountry: optionalStringWithMinLength(2, "Country"),
-    cafeCity: optionalStringWithMinLength(3, "City"),
-    rating: z.array(z.number()).nullable(),
-    userId: z.number().optional(),
-    date: z.optional(z.union([z.date(), z.string()])),
-});
-
-export type Inputs = z.infer<typeof formSchema>
-type DirtyFields = Partial<Record<keyof Inputs, boolean | undefined>>
+import {Slider} from "@/components/ui/slider";
+import {Textarea} from "@/components/ui/textarea";
+import {prepareFormValues} from "@/lib/forms/utils";
 
 export type CafeBrewFormProps = {
-    values?: Inputs
+    values?: CafeBrewInputs
 }
+type DirtyFields = Partial<Record<keyof CafeBrewInputs, boolean | undefined>>
 
-const defaultValues: Omit<Inputs, "publicId" | "id" | "userId"> = {
+const defaultValues: Omit<CafeBrewInputs, "publicId" | "id" | "userId"> = {
     type: "",
     coffeeOrigin: "",
     coffeeVariety: "",
@@ -71,17 +49,17 @@ export function CafeBrewForm(props: CafeBrewFormProps) {
         userId: user?.publicMetadata.databaseId as number
     }
 
-    const form = useForm<Inputs>({
+    const form = useForm<CafeBrewInputs>({
         mode: "onSubmit",
-        resolver: zodResolver(formSchema),
+        resolver: zodResolver(cafeBrewInsertSchema),
         defaultValues: values,
     });
 
 
     const dirtyFields = form.formState.dirtyFields as DirtyFields
-    const submitFormData: SubmitHandler<Inputs> = async values => {
+    const submitFormData: SubmitHandler<CafeBrewInputs> = async values => {
         const fields: DirtyFields = {...dirtyFields, type: true, cafe: true}
-        const formValues = prepareFormValues<Inputs>(values, fields, [], ["date"])
+        const formValues = prepareFormValues<CafeBrewInputs>(values, fields, [], ["date"])
         const result = await submitCafeBrewForm(formValues,);
 
         if (!result.success) {
@@ -99,7 +77,7 @@ export function CafeBrewForm(props: CafeBrewFormProps) {
 
         return router.push("/brews/cafe")
     }
-    
+
     if (!isLoaded) {
         return null
     }
