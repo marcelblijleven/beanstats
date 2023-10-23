@@ -9,6 +9,7 @@ import Link from "next/link";
 import {Button, buttonVariants} from "@/components/ui/button";
 import Image from "next/image";
 import {type Metadata, type ResolvingMetadata} from "next";
+import {cn} from "@/lib/utils";
 
 type PageProps = {
     params: { coffeeId: string}
@@ -43,7 +44,10 @@ function Buttons({user, bean} :{user: User | null, bean: Awaited<ReturnType<type
             <Link href={`/coffee/${bean.publicId}/edit`} className={buttonVariants({size: "sm", variant: "outline"})}>
                 Edit
             </Link>
-            <Link href={`/coffee/freeze/add?id=${bean.publicId}&bean=${bean.name}`} className={buttonVariants({size: "sm", variant: "outline"})}>
+            <Link
+                href={`/coffee/freeze/add?id=${bean.publicId}&bean=${bean.name}`}
+                className={cn(buttonVariants({size: "sm", variant: "outline"}), "hover:bg-blue-400 hover:outline-blue-600 hover:text-white transition-colors duration-500")}
+            >
                 Freeze
             </Link>
             {/*<BeanConquerorButton bean={bean} />*/}
