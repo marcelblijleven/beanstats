@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.3](https://github.com/marcelblijleven/beanstats/compare/v1.15.2...v1.15.3) (2023-10-23)
+
+
+### Bug Fixes
+
+* re-sort roasters by weight ([1727727](https://github.com/marcelblijleven/beanstats/commit/172772790365ab280df3939e6962faa68b2572fb))
+
 ## [1.15.2](https://github.com/marcelblijleven/beanstats/compare/v1.15.1...v1.15.2) (2023-10-23)
 
 
