@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.14.0](https://github.com/marcelblijleven/beanstats/compare/v1.13.1...v1.14.0) (2023-10-23)
+
+
+### Features
+
+* add freeze entries ([4b084eb](https://github.com/marcelblijleven/beanstats/commit/4b084ebec715d4bc40d8761478cb5d5bc2425c43))
+* add freeze entry metrics ([35a47c2](https://github.com/marcelblijleven/beanstats/commit/35a47c2a7df2fb03b1ba2b29443ae86a74937c92))
+* add freeze entry overview to coffee detail page ([884d132](https://github.com/marcelblijleven/beanstats/commit/884d1320b06f257fa41f4f49a7b01ca6dfed653b))
+
 ## [1.13.1](https://github.com/marcelblijleven/beanstats/compare/v1.13.0...v1.13.1) (2023-10-17)
 
 
