@@ -2,11 +2,12 @@ import {cache} from "react";
 import {eq, sql} from "drizzle-orm";
 
 import {db} from "@/db";
-import {beans, cafeBrews, roasters} from "@/db/schema";
+import {beans, cafeBrews, freezeEntries, roasters} from "@/db/schema";
 
 type Metrics = {
     roasterCount: number;
     beansCount: number;
+    freezerCount: number;
     cafeBrewsCount: number;
 }
 
@@ -16,6 +17,7 @@ export const getMetrics = cache(async (userId: number): Promise<Metrics> => {
     if (!userId) return {
         roasterCount: 0,
         beansCount: 0,
+        freezerCount: 0,
         cafeBrewsCount: 0,
     }
 
@@ -31,10 +33,15 @@ export const getMetrics = cache(async (userId: number): Promise<Metrics> => {
         .select({count: sql<number>`count(*)`})
         .from(cafeBrews)
         .where(eq(cafeBrews.userId, userId))
+    const [freezer] = await db
+        .select({count: sql<number>`count(*)`})
+        .from(freezeEntries)
+        .where(eq(freezeEntries.userId, userId))
 
     return {
         roasterCount: roaster.count,
         beansCount: bean.count,
+        freezerCount: freezer.count,
         cafeBrewsCount: cafeBrew.count,
     };
 });
