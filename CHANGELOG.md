@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.2](https://github.com/marcelblijleven/beanstats/compare/v1.15.1...v1.15.2) (2023-10-23)
+
+
+### Bug Fixes
+
+* make navigation menu items at most 1600px ([fc47dbe](https://github.com/marcelblijleven/beanstats/commit/fc47dbe798a2f639311a140c5e9760f63e84d534))
+
 ## [1.15.1](https://github.com/marcelblijleven/beanstats/compare/v1.15.0...v1.15.1) (2023-10-23)
 
 
