@@ -1,5 +1,5 @@
-import PageShell from "@/components/layout/page-shell";
 import BeanconquerorSection from "@/components/home/beanconqueror-section";
+import PageShell from "@/components/layout/page-shell";
 
 export default function BeanconquerorPage() {
     return (

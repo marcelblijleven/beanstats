@@ -1,11 +1,12 @@
 "use client"
 
 
-import FileUpload from "@/app/beanconqueror/stats/components/upload";
-import {processBCFile, type Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
-import {Button} from "@/components/ui/button";
-import Statistics from "@/app/beanconqueror/stats/components/statistics";
 import {useState} from "react";
+
+import Statistics from "@/app/beanconqueror/stats/components/statistics";
+import FileUpload from "@/app/beanconqueror/stats/components/upload";
+import {Button} from "@/components/ui/button";
+import {processBCFile, type Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
 
 export function StatsContainer() {
     const [data, setData] = useState<BrewStatistics>();

@@ -1,11 +1,13 @@
-import {type BCData, type Bean} from "@/types/beanconqueror";
-import {db} from "@/db";
-import {beans, beanVarieties, roasters} from "@/db/schema";
+import {format} from "date-fns";
 import {and, eq, isNotNull, sql} from "drizzle-orm";
-import {generateNanoid} from "@/db/utils";
 import {createInsertSchema} from "drizzle-zod";
 import {type z} from "zod";
-import {format} from "date-fns";
+
+import {db} from "@/db";
+import {beans, beanVarieties, roasters} from "@/db/schema";
+import {generateNanoid} from "@/db/utils";
+import {type BCData, type Bean} from "@/types/beanconqueror";
+
 
 const insertBean = createInsertSchema(beans);
 type InsertBean = z.infer<typeof insertBean>

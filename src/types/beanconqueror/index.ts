@@ -1,4 +1,5 @@
 import {beanconqueror} from "@/lib/beanconqueror/proto/generated/beanconqueror";
+
 import BeanInformation = beanconqueror.BeanInformation;
 
 export interface BCData {

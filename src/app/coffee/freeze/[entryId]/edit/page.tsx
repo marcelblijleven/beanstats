@@ -1,12 +1,13 @@
-import {Title} from "@/components/layout/title";
-import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
-import {getCoffeeIdsForUsers} from "@/lib/db/beans/get-bean-details";
+import {type User} from "@clerk/nextjs/api";
 import {notFound} from "next/navigation";
 import {undefined} from "zod";
-import {getFreezeEntry} from "@/lib/db/freeze-entries/get-freeze-entry";
-import {type FreezeEntryInput} from "@/components/forms/freeze-entries/schema";
+
 import {FreezeEntryForm} from "@/components/forms/freeze-entries/form";
+import {type FreezeEntryInput} from "@/components/forms/freeze-entries/schema";
+import {Title} from "@/components/layout/title";
+import {getCoffeeIdsForUsers} from "@/lib/db/beans/get-bean-details";
+import {getFreezeEntry} from "@/lib/db/freeze-entries/get-freeze-entry";
 
 export default async function EditFreezeEntryPage({ params }: { params: { entryId: string } }) {
     const user: User | null = await currentUser();

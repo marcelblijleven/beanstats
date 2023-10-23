@@ -1,6 +1,7 @@
-import {H2} from "@/components/text";
 import Link from "next/link";
+
 import RatioCard from "@/components/ratio-card";
+import {H2} from "@/components/text";
 import {cn} from "@/lib/utils";
 
 export interface ToolsSectionProps {

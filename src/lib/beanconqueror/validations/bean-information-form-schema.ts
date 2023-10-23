@@ -1,5 +1,7 @@
 import {z} from "zod";
+
 import {beanconqueror} from "@/lib/beanconqueror/proto/generated/beanconqueror";
+
 import BeanRoastingType = beanconqueror.BeanRoastingType;
 import Roast = beanconqueror.Roast;
 import BeanMix = beanconqueror.BeanMix;

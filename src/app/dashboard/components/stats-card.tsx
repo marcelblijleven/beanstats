@@ -1,6 +1,7 @@
+import Link from "next/link";
+
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Skeleton} from "@/components/ui/skeleton";
-import Link from "next/link";
 
 type StatsCardProps = {
     title: string;

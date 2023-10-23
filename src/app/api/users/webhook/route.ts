@@ -1,6 +1,7 @@
-import {Webhook} from "svix";
-import {headers} from "next/headers";
 import type {WebhookEvent} from "@clerk/nextjs/api";
+import {headers} from "next/headers";
+import {Webhook} from "svix";
+
 import {handleEvent} from "@/app/api/users/webhook/utils";
 
 //"runtime edge?"

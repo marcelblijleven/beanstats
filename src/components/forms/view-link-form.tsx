@@ -1,13 +1,13 @@
 "use client"
 
+import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
 import {type z} from "zod";
-import {zodResolver} from "@hookform/resolvers/zod";
 
-import {viewLinkSchema} from "@/lib/beanconqueror/validations/links";
+import {Button} from "@/components/ui/button";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
+import {viewLinkSchema} from "@/lib/beanconqueror/validations/links";
 
 type Inputs = z.infer<typeof viewLinkSchema>
 

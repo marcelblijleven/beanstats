@@ -1,6 +1,7 @@
 import Link from "next/link";
-import {Button} from "@/components/ui/button";
+
 import {H3} from "@/components/text";
+import {Button} from "@/components/ui/button";
 
 const LinkDetail = ({button, href}: { button: string, href: string }) => (
     <Link className={"block"} href={href} passHref>

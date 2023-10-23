@@ -1,6 +1,7 @@
 import {createInsertSchema} from "drizzle-zod";
-import {beans, beanVarieties} from "@/db/schema";
 import * as z from "zod";
+
+import {beans, beanVarieties} from "@/db/schema";
 
 const varietyInsertSchema = createInsertSchema(beanVarieties, {
     beanId: z.optional(z.number()).nullable(),

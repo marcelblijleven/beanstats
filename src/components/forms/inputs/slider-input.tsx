@@ -1,6 +1,7 @@
-import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {type Control} from "react-hook-form";
 import {type FieldPath, type FieldValues} from "react-hook-form/dist/types";
+
+import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Slider} from "@/components/ui/slider";
 
 export interface ControlledSliderInputProps<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> {

@@ -1,8 +1,9 @@
 "use client"
 
 import type {ColumnDef, Table as TableType} from "@tanstack/react-table";
-import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {flexRender} from "@tanstack/react-table";
+
+import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 
 export type DataTableComponentProps<TData> = {
     table: TableType<TData>

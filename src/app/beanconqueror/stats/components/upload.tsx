@@ -1,10 +1,11 @@
 "use client"
 
 import {type ChangeEvent, useState} from "react";
+
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
-import {readTextFile, readZipFileWithCallback} from "@/lib/beanconqueror/upload/utils";
 import {useToast} from "@/components/ui/use-toast";
+import {readTextFile, readZipFileWithCallback} from "@/lib/beanconqueror/upload/utils";
 import {type BCData} from "@/types/beanconqueror";
 
 export interface FileUploadProps {

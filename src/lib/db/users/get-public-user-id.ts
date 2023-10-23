@@ -1,5 +1,5 @@
-import { cache } from "react";
 import {eq} from "drizzle-orm";
+import { cache } from "react";
 
 import {db} from "@/db";
 import {users} from "@/db/schema";

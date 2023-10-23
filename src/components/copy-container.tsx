@@ -1,8 +1,9 @@
 "use client"
 
-import {Button} from "@/components/ui/button";
 import {Check, Copy, type LucideIcon} from "lucide-react";
 import {createElement, useState} from "react";
+
+import {Button} from "@/components/ui/button";
 
 const CopyContainer = ({value, displayValue}: {value: string, displayValue?: string}) => {
     const [icon, setIcon] = useState<LucideIcon>(Copy);

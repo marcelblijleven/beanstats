@@ -1,6 +1,7 @@
-import {Button} from "@/components/ui/button";
 import {Loader} from "lucide-react";
 import {usePathname, useRouter} from "next/navigation";
+
+import {Button} from "@/components/ui/button";
 
 export function SubmitButton({loading, disabled}: {loading: boolean, disabled: boolean}) {
     return (

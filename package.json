@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "pnpm eslint --fix ./src",
     "test": "jest --watch",
     "pbjs": "./node_modules/protobufjs-cli/bin/pbjs -t static-module -w es6 src/lib/beanconqueror/proto/beanconqueror.proto -o src/lib/beanconqueror/proto/generated/beanconqueror.js",
     "pbts": "./node_modules/protobufjs-cli/bin/pbts src/lib/beanconqueror/proto/generated/beanconqueror.js -o src/lib/beanconqueror/proto/generated/beanconqueror.d.ts",

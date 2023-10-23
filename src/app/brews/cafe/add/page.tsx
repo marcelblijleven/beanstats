@@ -1,7 +1,8 @@
-import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
+import {type User} from "@clerk/nextjs/api";
+
+import {CafeBrewForm} from "@/components/forms/cafe-brew-form/form";
 import {Title} from "@/components/layout/title";
-import {CafeBrewForm} from "@/app/brews/cafe/components/cafe-brew-form";
 
 export default async function AddCoffeePage() {
     const user: User | null = await currentUser();

@@ -1,8 +1,8 @@
-import {type Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
-import CountableStats from "@/app/beanconqueror/stats/components/countable-stats";
 import BacklogStats from "@/app/beanconqueror/stats/components/backlog-stats";
 import CardStats from "@/app/beanconqueror/stats/components/card-stats";
+import CountableStats from "@/app/beanconqueror/stats/components/countable-stats";
 import CardGrid from "@/components/ui/card-grid";
+import {type Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
 
 export default function Statistics(props: BrewStatistics) {
     return (
