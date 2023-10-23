@@ -2,9 +2,10 @@ import {currentUser} from "@clerk/nextjs";
 import {type User} from "@clerk/nextjs/api";
 import {notFound} from "next/navigation";
 
-import {CafeBrewForm, type Inputs} from "@/app/brews/cafe/components/cafe-brew-form";
 import {Title} from "@/components/layout/title";
 import {getCafeBrewDetails} from "@/lib/db/brews/get-cafe-brew-details";
+import {type CafeBrewInputs} from "@/components/forms/cafe-brew-form/schema";
+import {CafeBrewForm} from "@/components/forms/cafe-brew-form/form";
 
 export default async function EditCoffeePage({ params }: { params: { brewId: string } }) {
     const user: User | null = await currentUser();
@@ -15,7 +16,7 @@ export default async function EditCoffeePage({ params }: { params: { brewId: str
 
     if (!brew) return notFound();
 
-    const values: Inputs = {
+    const values: CafeBrewInputs = {
         publicId: brew.publicId,
         type: brew.type,
         coffeeVariety: brew.coffeeVariety ?? "",

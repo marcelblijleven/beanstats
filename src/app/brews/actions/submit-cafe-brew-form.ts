@@ -5,14 +5,14 @@ import {type User} from "@clerk/nextjs/api";
 import {eq} from "drizzle-orm";
 import {createInsertSchema} from "drizzle-zod";
 
-import {type Inputs} from "@/app/brews/cafe/components/cafe-brew-form";
 import {db} from "@/db";
 import {cafeBrews} from "@/db/schema";
+import {type CafeBrewInputs} from "@/components/forms/cafe-brew-form/schema";
 
 
 const insertSchema = createInsertSchema(cafeBrews)
 
-export async function submitCafeBrewForm(values: Partial<Inputs>) {
+export async function submitCafeBrewForm(values: Partial<CafeBrewInputs>) {
     const user: User | null = await currentUser();
 
     if (!user) {
