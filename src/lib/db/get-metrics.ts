@@ -93,7 +93,7 @@ export const getMetrics = cache(async (userId: number): Promise<Metrics> => {
     // "By bag" is sorted correctly by the database, need to re-sort "by weight"
     for (let i = 1; i < favoriteRoastersByWeight.length; i++) {
         for (let j = 0; j < i; j++) {
-            if (favoriteRoastersByWeight[i].total > favoriteRoastersByWeight[j].total) {
+            if (parseFloat(favoriteRoastersByWeight[i].total) > parseFloat(favoriteRoastersByWeight[j].total)) {
                 const swap = favoriteRoastersByWeight[i];
                 favoriteRoastersByWeight[i] = favoriteRoastersByWeight[j];
                 favoriteRoastersByWeight[j] = swap;
