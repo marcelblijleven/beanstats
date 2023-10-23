@@ -7,7 +7,7 @@ const varietyInsertSchema = createInsertSchema(beanVarieties, {
     beanId: z.optional(z.number()).nullable(),
 });
 
-export const formSchema = createInsertSchema(beans, {
+export const coffeeFormSchema = createInsertSchema(beans, {
     name: z.string().min(3, {message: "Minimum length should be 3 characters"}),
     roasterId: z.optional(z.number()),
     buyDate: z.optional(z.union([z.date(), z.string()])),
@@ -17,7 +17,7 @@ export const formSchema = createInsertSchema(beans, {
     roaster: z.string(),
 });
 
-export type Inputs = z.infer<typeof formSchema>;
+export type CoffeeFormInputs = z.infer<typeof coffeeFormSchema>;
 
 export const updateFormSchema = createInsertSchema(beans, {
     name: z.optional(z.string()),
@@ -30,4 +30,4 @@ export const updateFormSchema = createInsertSchema(beans, {
     roaster: z.optional(z.string()),
 });
 
-export type UpdateInputs = z.infer<typeof updateFormSchema>;
+export type CoffeeUpdateFormInputs = z.infer<typeof updateFormSchema>;

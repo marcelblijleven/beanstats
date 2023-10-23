@@ -1,7 +1,7 @@
 import {currentUser} from "@clerk/nextjs";
 import {type User} from "@clerk/nextjs/api";
 
-import BeanconquerorImport from "@/app/coffee/import/components/beanconqueror-import";
+import BeanconquerorImportForm from "@/components/forms/beanconqueror-import-form/form";
 import {Title} from "@/components/layout/title";
 
 export default async function AddCoffeePage() {
@@ -15,7 +15,7 @@ export default async function AddCoffeePage() {
                 title={"Coffee"}
                 subtitle={"Import coffee from external sources"}
             />
-            <BeanconquerorImport />
+            <BeanconquerorImportForm />
         </>
     )
 }

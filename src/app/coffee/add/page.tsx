@@ -1,7 +1,7 @@
 import {currentUser} from "@clerk/nextjs";
 import type { User } from "@clerk/nextjs/api";
 
-import {CoffeeForm} from "@/app/coffee/components/coffee-form";
+import {CoffeeForm} from "@/components/forms/coffee-form/form";
 import {Title} from "@/components/layout/title";
 import {getRoasters} from "@/lib/db/roasters/get-roasters";
 

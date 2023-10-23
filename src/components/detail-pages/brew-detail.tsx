@@ -2,15 +2,7 @@ import {createSelectSchema} from "drizzle-zod";
 import {type z} from "zod";
 
 import {cafeBrews} from "@/db/schema";
-
-function DetailItem({label, value}: { label: string, value: string }) {
-    return (
-        <div className={"flex flex-col gap-1"}>
-            <span className={"text-sm text-muted-foreground font-semibold"}>{label}</span>
-            <span className={""}>{value}</span>
-        </div>
-    )
-}
+import {DetailItem} from "@/components/detail-pages/detail-item";
 
 const selectSchema = createSelectSchema(cafeBrews);
 

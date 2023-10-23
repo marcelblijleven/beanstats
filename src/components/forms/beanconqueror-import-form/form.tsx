@@ -5,7 +5,7 @@ import {AlertCircle, Check, Info, Loader} from "lucide-react";
 // @ts-expect-error: experimental property
 import {experimental_useFormState as useFormState} from "react-dom";
 import {experimental_useFormStatus as useFormStatus} from "react-dom";
-import {importBeanconqueror} from "@/app/coffee/import/actions/import-beanconqueror";
+import {importBeanconqueror} from "@/components/forms/beanconqueror-import-form/actions/import-beanconqueror";
 
 import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
 import {Button} from "@/components/ui/button";
@@ -47,7 +47,7 @@ function FormAlert({state}: {state: {message: string | null, success: boolean | 
     )
 }
 
-export default function BeanconquerorImport() {
+export default function BeanconquerorImportForm() {
     const user = useUser();
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
     const [state, formAction] = useFormState(importBeanconqueror, {message: null, success: null})
