@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.1](https://github.com/marcelblijleven/beanstats/compare/v1.15.0...v1.15.1) (2023-10-23)
+
+
+### Bug Fixes
+
+* update cafe brew form imports ([36b5fcf](https://github.com/marcelblijleven/beanstats/commit/36b5fcf32ad194e855236aa3ed2566236b703010))
+
 ## [1.15.0](https://github.com/marcelblijleven/beanstats/compare/v1.14.0...v1.15.0) (2023-10-23)
 
 
