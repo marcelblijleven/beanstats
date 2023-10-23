@@ -8,17 +8,20 @@ import UserButton from "@/components/user/user-button";
 // Header has z-20 because of progress bars
 
 const Header = () => (
-    <header className={"sticky z-20 top-0 px-2 bg-opacity-90 w-full bg-background/95"}>
-        <div className={"h-14 mx-auto flex align-middle items-center justify-between px-4 w-full max-w-[1600px]"}>
-            <div className={"flex items-center justify-between w-full"}>
+    <header className={"sticky z-20 top-0 p-2 bg-opacity-95 w-full bg-background/95 border-b-2 border-accent"}>
+        <div className={"mx-auto py-2 flex items-center justify-between w-full max-w-[1600px]"}>
+            <div className={"flex items-center gap-2"}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                    <path fillRule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clipRule="evenodd" />
+                </svg>
                 <Link className={"text-xl md:text-2xl font-extrabold"} href={"/"}>beanstats</Link>
-                <Navigation/>
             </div>
-            <div className={"absolute top-2.5 right-12 sm:static flex items-center space-x-2"}>
+            <div className={"flex items-center space-x-2"}>
                 <UserButton />
                 <ThemeSwitcher/>
             </div>
         </div>
+        <Navigation/>
     </header>
 );
 
