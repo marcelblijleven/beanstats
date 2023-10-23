@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.0](https://github.com/marcelblijleven/beanstats/compare/v1.14.0...v1.15.0) (2023-10-23)
+
+
+### Features
+
+* add favorites to dashboard ([c5f9a59](https://github.com/marcelblijleven/beanstats/commit/c5f9a59699db14a507a6c82cced287c8785427ff))
+
 ## [1.14.0](https://github.com/marcelblijleven/beanstats/compare/v1.13.1...v1.14.0) (2023-10-23)
 
 
