@@ -1,16 +1,18 @@
 "use client"
 
+import {LucideMenu as MenuIcon, X as CloseIcon} from "lucide-react";
+import Link from "next/link";
+import {usePathname} from "next/navigation";
+import {type MouseEventHandler, type ReactNode, useState} from "react";
+
 import {
     NavigationMenu,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList
 } from "@/components/ui/navigation-menu";
-import Link from "next/link";
-import {LucideMenu as MenuIcon, X as CloseIcon} from "lucide-react";
-import {type MouseEventHandler, type ReactNode, useState} from "react";
 import {cn} from "@/lib/utils";
-import {usePathname} from "next/navigation";
+
 
 type MenuItemProps = {
     href: string,

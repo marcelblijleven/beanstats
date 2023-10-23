@@ -1,8 +1,9 @@
-import {type getBeanDetailsWithFreezeEntries} from "@/lib/db/beans/get-bean-details";
 import {createSelectSchema} from "drizzle-zod";
-import {beanVarieties} from "@/db/schema";
 import {type z} from "zod";
+
 import {type FreezeEntry, FreezeEntryDataTable} from "@/components/overview-pages/freeze-entry-datatable";
+import {beanVarieties} from "@/db/schema";
+import {type getBeanDetailsWithFreezeEntries} from "@/lib/db/beans/get-bean-details";
 
 // Figure out how to extract this from the Details type
 const selectVariety = createSelectSchema(beanVarieties);

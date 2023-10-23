@@ -1,14 +1,16 @@
-import {Title} from "@/components/layout/title";
-import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
-import {db} from "@/db";
-import {beans} from "@/db/schema";
+import {type User} from "@clerk/nextjs/api";
 import {and, eq} from "drizzle-orm";
 import Link from "next/link";
-import {cn} from "@/lib/utils";
-import {buttonVariants} from "@/components/ui/button";
-import {type Coffee, CoffeeDataTable} from "@/components/overview-pages/coffee-datatable";
 import {notFound} from "next/navigation";
+
+import {Title} from "@/components/layout/title";
+import {type Coffee, CoffeeDataTable} from "@/components/overview-pages/coffee-datatable";
+import {buttonVariants} from "@/components/ui/button";
+import {db} from "@/db";
+import {beans} from "@/db/schema";
+import {cn} from "@/lib/utils";
+
 
 /**
  * Retrieve coffee for the user from the database

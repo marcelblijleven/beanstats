@@ -1,9 +1,9 @@
-import {getNaturalDate} from "@/lib/dates";
-import {type Bean} from "@/types/beanconqueror";
 import ProgressBar from "@/components/progress-bar";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import {type Mapping} from "@/types";
+import {getNaturalDate} from "@/lib/dates";
 import {cn} from "@/lib/utils";
+import {type Mapping} from "@/types";
+import {type Bean} from "@/types/beanconqueror";
 
 interface Props {
     averageWeight: number;

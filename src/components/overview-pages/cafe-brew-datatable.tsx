@@ -5,15 +5,17 @@ import {
     getCoreRowModel, getPaginationRowModel,
     useReactTable
 } from "@tanstack/react-table";
-import {useRouter, useSearchParams} from 'next/navigation'
-
-import {Button} from "@/components/ui/button";
-import {DataTableComponent} from "@/components/data-table";
-import Link from "next/link";
 import {createSelectSchema} from "drizzle-zod";
-import {cafeBrews} from "@/db/schema";
+import Link from "next/link";
+import {useRouter, useSearchParams} from 'next/navigation'
 import {type z} from "zod";
+
+import {DataTableComponent} from "@/components/data-table";
 import {type DataTableProps} from "@/components/overview-pages/interfaces";
+import {Button} from "@/components/ui/button";
+import {cafeBrews} from "@/db/schema";
+
+
 
 const selectSchema = createSelectSchema(cafeBrews);
 

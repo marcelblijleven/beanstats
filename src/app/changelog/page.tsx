@@ -1,7 +1,8 @@
-import {getChangelog} from "@/lib/versioning/utils";
 import ReactMarkdown from 'react-markdown'
-import {H1, H2, H3} from "@/components/text";
+
 import PageShell from "@/components/layout/page-shell";
+import {H1, H2, H3} from "@/components/text";
+import {getChangelog} from "@/lib/versioning/utils";
 
 export default async function ChangelogPage() {
     const changelog = await getChangelog();

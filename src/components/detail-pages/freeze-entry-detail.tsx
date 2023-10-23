@@ -1,5 +1,5 @@
-import {type getFreezeEntry} from "@/lib/db/freeze-entries/get-freeze-entry";
 import {DetailItem} from "@/components/detail-pages/detail-item";
+import {type getFreezeEntry} from "@/lib/db/freeze-entries/get-freeze-entry";
 
 type Details = Awaited<ReturnType<typeof getFreezeEntry>>
 

@@ -1,7 +1,8 @@
+import {AlertTriangle} from "lucide-react";
 import Link from 'next/link'
+
 import PageShell from "@/components/layout/page-shell";
 import {H1} from "@/components/text";
-import {AlertTriangle} from "lucide-react";
 
 export default function NotFound() {
     return (

@@ -1,13 +1,19 @@
-import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
-import {canView} from "@/lib/perms";
-import {notFound} from "next/navigation";
-import {Title} from "@/components/layout/title";
-import {getCafeBrewDetails} from "@/lib/db/brews/get-cafe-brew-details";
-import {BrewDetail} from "@/app/brews/cafe/[brewId]/components/brew-detail";
-import Link from "next/link";
-import {buttonVariants} from "@/components/ui/button";
+import {type User} from "@clerk/nextjs/api";
 import {type Metadata, type ResolvingMetadata} from "next";
+import Link from "next/link";
+import {notFound} from "next/navigation";
+
+import {BrewDetail} from "@/app/brews/cafe/[brewId]/components/brew-detail";
+import {Title} from "@/components/layout/title";
+import {buttonVariants} from "@/components/ui/button";
+import {getCafeBrewDetails} from "@/lib/db/brews/get-cafe-brew-details";
+import {canView} from "@/lib/perms";
+
+
+
+
+
 
 type PageProps = {
     params: { brewId: string}

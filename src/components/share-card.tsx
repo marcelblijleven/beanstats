@@ -1,6 +1,6 @@
+import CopyContainer from "@/components/copy-container";
 import QRCodeCard from "@/components/qrcode-card";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import CopyContainer from "@/components/copy-container";
 import {type BeanLinkResponse} from "@/lib/beanlink";
 
 export const BeanLinkCard = ({response}: {response: BeanLinkResponse }) => (

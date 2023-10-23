@@ -1,11 +1,12 @@
 "use client"
 
 import {type ChangeEvent, type ReactNode, useState} from "react";
+
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
-import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {Input} from "@/components/ui/input";
-import {Label} from "@/components/ui/label";
 import {InputWithPrefix} from "@/components/ui/input-with-prefix";
+import {Label} from "@/components/ui/label";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 
 interface UserInputProps {
     id: string;

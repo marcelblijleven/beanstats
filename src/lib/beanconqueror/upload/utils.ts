@@ -1,4 +1,5 @@
 import {BlobReader, type Entry, TextWriter, ZipReader} from "@zip.js/zip.js";
+
 import {type BCData, type Bean, type Brew} from "@/types/beanconqueror";
 
 const BEANCONQUEROR_BASE = "Beanconqueror.json";

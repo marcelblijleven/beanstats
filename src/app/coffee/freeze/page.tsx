@@ -1,14 +1,15 @@
-import {db} from "@/db";
-import {and, eq} from "drizzle-orm";
-import {freezeEntries} from "@/db/schema";
-import {type FreezeEntry, FreezeEntryDataTable, columns} from "@/components/overview-pages/freeze-entry-datatable";
-import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
-import {notFound} from "next/navigation";
-import {Title} from "@/components/layout/title";
+import {type User} from "@clerk/nextjs/api";
+import {and, eq} from "drizzle-orm";
 import Link from "next/link";
-import {cn} from "@/lib/utils";
+import {notFound} from "next/navigation";
+
+import {Title} from "@/components/layout/title";
+import {type FreezeEntry, FreezeEntryDataTable, columns} from "@/components/overview-pages/freeze-entry-datatable";
 import {buttonVariants} from "@/components/ui/button";
+import {db} from "@/db";
+import {freezeEntries} from "@/db/schema";
+import {cn} from "@/lib/utils";
 
 async function getFreezeEntries(userId: number, page: number, defrosted: boolean): Promise<FreezeEntry[]> {
     const pageSize = 10;

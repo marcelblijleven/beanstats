@@ -1,8 +1,10 @@
+import {type ReactNode} from "react";
+
+import Rating from "@/components/beanconqueror/share/view/rating";
+import {Badge} from "@/components/ui/badge";
 import {getDateString} from "@/lib/dates";
 import {getTextWithFlagSupport} from "@/lib/flags";
-import {Badge} from "@/components/ui/badge";
-import Rating from "@/components/beanconqueror/share/view/rating";
-import {type ReactNode} from "react";
+
 
 const LabelledValue = ({
                            label,

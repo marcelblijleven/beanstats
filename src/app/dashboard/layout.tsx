@@ -1,5 +1,6 @@
-import { Title } from "@/components/layout/title";
 import {type ReactNode} from "react";
+
+import { Title } from "@/components/layout/title";
 
 export default function Layout({children}: {children: ReactNode}) {
     return (

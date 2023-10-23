@@ -1,14 +1,16 @@
 import './globals.css'
-import {Inter} from 'next/font/google'
-import {ThemeProvider} from "@/components/theme-provider";
-import Header from "@/components/layout/header";
-import {type ReactNode} from "react";
-import {type Metadata} from "next";
-import {Analytics} from '@vercel/analytics/react';
-import {cn} from "@/lib/utils";
-import Footer from "@/components/layout/footer";
-import {Toaster} from "@/components/ui/toaster";
 import {ClerkProvider} from "@clerk/nextjs";
+import {Analytics} from '@vercel/analytics/react';
+import {type Metadata} from "next";
+import {Inter} from 'next/font/google'
+import {type ReactNode} from "react";
+
+import Footer from "@/components/layout/footer";
+import Header from "@/components/layout/header";
+import {ThemeProvider} from "@/components/theme-provider";
+import {Toaster} from "@/components/ui/toaster";
+import {cn} from "@/lib/utils";
+
 
 const inter = Inter({subsets: ['latin']})
 

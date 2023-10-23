@@ -1,7 +1,8 @@
 "use client"
 import Link from "next/link";
-import ThemeSwitcher from "@/components/theme-switcher";
+
 import {Navigation} from "@/components/layout/navigation";
+import ThemeSwitcher from "@/components/theme-switcher";
 import UserButton from "@/components/user/user-button";
 
 // Header has z-20 because of progress bars

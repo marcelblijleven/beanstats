@@ -1,12 +1,13 @@
 "use client"
 
 import {useState} from "react";
-import {type Preparation, type Mill} from "@/types/beanconqueror";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import {type Mapping} from "@/types";
+
 import {Button} from "@/components/ui/button";
+import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import ProgressComponent from "@/components/ui/progress-bar";
 import {getTextWithFlagSupport} from "@/lib/flags";
+import {type Mapping} from "@/types";
+import {type Preparation, type Mill} from "@/types/beanconqueror";
 
 interface Props {
     label: string;

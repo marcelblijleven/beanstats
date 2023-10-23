@@ -1,13 +1,18 @@
-import {type Metadata, type ResolvingMetadata} from "next";
-import {getFreezeEntry} from "@/lib/db/freeze-entries/get-freeze-entry";
-import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
-import {canView} from "@/lib/perms";
-import {notFound} from "next/navigation";
-import {Title} from "@/components/layout/title";
+import {type User} from "@clerk/nextjs/api";
+import {type Metadata, type ResolvingMetadata} from "next";
 import Link from "next/link";
-import {buttonVariants} from "@/components/ui/button";
+import {notFound} from "next/navigation";
+
 import {FreezeEntryDetail} from "@/components/detail-pages/freeze-entry-detail";
+import {Title} from "@/components/layout/title";
+import {buttonVariants} from "@/components/ui/button";
+import {getFreezeEntry} from "@/lib/db/freeze-entries/get-freeze-entry";
+import {canView} from "@/lib/perms";
+
+
+
+
 
 type PageProps = {
     params: { coffeeId: string}

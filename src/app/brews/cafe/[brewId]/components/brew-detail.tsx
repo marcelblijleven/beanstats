@@ -1,6 +1,7 @@
 import {createSelectSchema} from "drizzle-zod";
-import {cafeBrews} from "@/db/schema";
 import {type z} from "zod";
+
+import {cafeBrews} from "@/db/schema";
 
 function DetailItem({label, value}: { label: string, value: string }) {
     return (

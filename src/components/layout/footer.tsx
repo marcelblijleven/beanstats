@@ -1,7 +1,7 @@
+import {Github} from "lucide-react";
 import Link from "next/link";
 
 import {getCurrentVersion} from "@/lib/versioning/utils";
-import {Github} from "lucide-react";
 
 export default async function Footer() {
     const version = await getCurrentVersion();

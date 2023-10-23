@@ -1,9 +1,10 @@
 "use client"
 
-import {type BeanLinkResponse} from "@/lib/beanlink";
 import {useState} from "react";
+
 import {ShortenLinkForm} from "@/components/forms/shorten-link-form";
 import ShareCard from "@/components/share-card";
+import {type BeanLinkResponse} from "@/lib/beanlink";
 
 export interface ShortenContainerProps {
     link: string | null;

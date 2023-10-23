@@ -1,8 +1,9 @@
 "use client"
-import Link from "next/link";
 import {UserButton as ClerkButton, useUser} from "@clerk/nextjs";
-import {useClerkTheme} from "@/lib/hooks/clerk";
+import Link from "next/link";
+
 import {Button} from "@/components/ui/button";
+import {useClerkTheme} from "@/lib/hooks/clerk";
 
 
 export default function UserButton() {

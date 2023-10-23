@@ -1,7 +1,8 @@
-import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
-import {Select, SelectValue, SelectContent, SelectItem, SelectTrigger} from "@/components/ui/select";
 import {type Control} from "react-hook-form";
 import {type FieldPath, type FieldValues} from "react-hook-form/dist/types";
+
+import {FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
+import {Select, SelectValue, SelectContent, SelectItem, SelectTrigger} from "@/components/ui/select";
 
 export interface SelectFormFieldProps<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> {
     name: TName;

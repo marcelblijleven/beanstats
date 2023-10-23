@@ -1,14 +1,16 @@
 "use client"
 
-import {type DataTableProps} from "@/components/overview-pages/interfaces";
-import {useRouter, useSearchParams} from "next/navigation";
 import {type ColumnDef, getCoreRowModel, getPaginationRowModel, useReactTable} from "@tanstack/react-table";
-import {Button} from "@/components/ui/button";
-import {DataTableComponent} from "@/components/data-table";
 import {createSelectSchema} from "drizzle-zod";
-import {beans, freezeEntries} from "@/db/schema";
-import {type z} from "zod";
 import Link from "next/link";
+import {useRouter, useSearchParams} from "next/navigation";
+import {type z} from "zod";
+
+import {DataTableComponent} from "@/components/data-table";
+import {type DataTableProps} from "@/components/overview-pages/interfaces";
+import {Button} from "@/components/ui/button";
+import {beans, freezeEntries} from "@/db/schema";
+
 
 const selectSchema = createSelectSchema(freezeEntries).extend({
     bean: createSelectSchema(beans)

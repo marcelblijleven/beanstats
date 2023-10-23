@@ -1,5 +1,6 @@
-import Form from "@/components/forms/bean-information-form/form";
 import {type Metadata} from "next";
+
+import Form from "@/components/forms/bean-information-form/form";
 import PageShell from "@/components/layout/page-shell";
 
 export const metadata: Metadata = {

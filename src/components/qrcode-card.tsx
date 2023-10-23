@@ -1,5 +1,6 @@
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import { QRCode } from "react-qrcode-logo";
+
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 
 const QRCodeSize = 200;
 

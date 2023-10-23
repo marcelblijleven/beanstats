@@ -1,8 +1,10 @@
 "use server"
 
-import {readZipFile} from "@/lib/beanconqueror/upload/utils";
-import {importBeans} from "./utils";
 import {currentUser} from "@clerk/nextjs/server";
+
+import {readZipFile} from "@/lib/beanconqueror/upload/utils";
+
+import {importBeans} from "./utils";
 
 function checkFile(file: File) {
     const zipTypes = [

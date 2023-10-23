@@ -1,7 +1,8 @@
+import {clerkClient} from "@clerk/nextjs";
 import {type UserWebhookEvent, type WebhookEvent} from "@clerk/nextjs/api";
 import type {UserJSON} from "@clerk/types";
+
 import {createUser, deleteUserByClerkId, getUserByClerkId, updateUser} from "@/db/operations";
-import {clerkClient} from "@clerk/nextjs";
 
 const acceptedWebhookEvents = [
     "user.created", "user.updated", "user.deleted",

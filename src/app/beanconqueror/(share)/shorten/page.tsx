@@ -1,4 +1,5 @@
 import {type Metadata} from "next";
+
 import {ShortenContainer} from "@/components/beanconqueror/share/shorten/shorten-link-container";
 import PageShell from "@/components/layout/page-shell";
 

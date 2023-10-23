@@ -1,15 +1,16 @@
 "use client"
 
+import {zodResolver} from "@hookform/resolvers/zod";
+import {Loader2Icon} from "lucide-react";
 import {useForm} from "react-hook-form";
 import {type z} from "zod";
-import {zodResolver} from "@hookform/resolvers/zod";
 
-import {shortenLinkSchema} from "@/lib/beanconqueror/validations/links";
+import {Button} from "@/components/ui/button";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
+import {shortenLinkSchema} from "@/lib/beanconqueror/validations/links";
 import {type BeanLinkResponse, getBeanLink} from "@/lib/beanlink";
-import {Loader2Icon} from "lucide-react";
+
 
 type Inputs = z.infer<typeof shortenLinkSchema>
 

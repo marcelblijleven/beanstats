@@ -1,9 +1,10 @@
-import {FreezeEntryForm} from "@/components/forms/freeze-entries/form";
-import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
+import {type User} from "@clerk/nextjs/api";
 import {notFound} from "next/navigation";
-import {getCoffeeIdsForUsers} from "@/lib/db/beans/get-bean-details";
+
+import {FreezeEntryForm} from "@/components/forms/freeze-entries/form";
 import {Title} from "@/components/layout/title";
+import {getCoffeeIdsForUsers} from "@/lib/db/beans/get-bean-details";
 
 export default async function AddFreezeEntryPage({searchParams}: {searchParams: Record<string, string | undefined> }) {
     const user: User | null = await currentUser();

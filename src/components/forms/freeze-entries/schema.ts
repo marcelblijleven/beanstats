@@ -1,6 +1,7 @@
 import {createInsertSchema} from "drizzle-zod";
-import {freezeEntries} from "@/db/schema";
 import {z} from "zod";
+
+import {freezeEntries} from "@/db/schema";
 
 
 export const freezeEntryInsertSchema = createInsertSchema(freezeEntries, {

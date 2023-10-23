@@ -1,5 +1,6 @@
-import {mysqlTable, serial, text, varchar, int, timestamp, date, decimal, boolean, index} from 'drizzle-orm/mysql-core'
 import {relations, sql} from "drizzle-orm";
+import {mysqlTable, serial, text, varchar, int, timestamp, date, decimal, boolean, index} from 'drizzle-orm/mysql-core'
+
 import {generateNanoid} from "./utils";
 
 export const users = mysqlTable("users", {

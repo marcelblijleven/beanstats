@@ -1,13 +1,14 @@
-import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
-import Link from "next/link";
-import {cn} from "@/lib/utils";
-import {Title} from "@/components/layout/title";
-import {buttonVariants} from "@/components/ui/button";
-import {CafeBrewDataTable, type CafeBrew} from "@/components/overview-pages/cafe-brew-datatable";
-import {db} from "@/db";
+import {type User} from "@clerk/nextjs/api";
 import {eq} from "drizzle-orm";
+import Link from "next/link";
+
+import {Title} from "@/components/layout/title";
+import {CafeBrewDataTable, type CafeBrew} from "@/components/overview-pages/cafe-brew-datatable";
+import {buttonVariants} from "@/components/ui/button";
+import {db} from "@/db";
 import {beans} from "@/db/schema";
+import {cn} from "@/lib/utils";
 
 async function getCafeBrews(userId: number, page: number): Promise<CafeBrew[]> {
     const pageSize = 10;

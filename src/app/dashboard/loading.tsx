@@ -1,5 +1,5 @@
-import {Button} from "@/components/ui/button";
 import {StatsCardSectionSkeleton} from "@/app/dashboard/components/stats-card-section";
+import {Button} from "@/components/ui/button";
 
 export default function Loading() {
     return (

@@ -1,8 +1,8 @@
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {getAge, getDateString} from "@/lib/dates";
+import {getTextWithFlagSupport} from "@/lib/flags";
 import {type Mapping} from "@/types";
 import {type Bean} from "@/types/beanconqueror";
-import {getTextWithFlagSupport} from "@/lib/flags";
 
 export interface BacklogTableProps {
     beans: Bean[];
