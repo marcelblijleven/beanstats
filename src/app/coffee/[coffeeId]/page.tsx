@@ -3,7 +3,7 @@ import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
 import {notFound} from "next/navigation";
 import {canView} from "@/lib/perms";
-import {getBeanDetails} from "@/lib/db/beans/get-bean-details";
+import {getBeanDetails, getBeanDetailsWithFreezeEntries} from "@/lib/db/beans/get-bean-details";
 import {BeanDetail} from "@/app/coffee/[coffeeId]/components/bean-detail";
 import Link from "next/link";
 import {Button, buttonVariants} from "@/components/ui/button";
@@ -65,7 +65,7 @@ function BeanConquerorButton({bean}: {bean:Awaited<ReturnType<typeof getBeanDeta
 
 export default async function CoffeeDetailPage({ params }: { params: { coffeeId: string } }) {
     const user: User | null = await currentUser();
-    const bean =  await getBeanDetails(params.coffeeId, user?.publicMetadata?.databaseId as number || undefined)
+    const bean =  await getBeanDetailsWithFreezeEntries(params.coffeeId, user?.publicMetadata?.databaseId as number || undefined)
 
     if (!bean || !canView(user, bean)) return notFound();
 

@@ -1,12 +1,13 @@
-import {type getBeanDetails} from "@/lib/db/beans/get-bean-details";
+import {type getBeanDetailsWithFreezeEntries} from "@/lib/db/beans/get-bean-details";
 import {createSelectSchema} from "drizzle-zod";
 import {beanVarieties} from "@/db/schema";
 import {type z} from "zod";
+import {type FreezeEntry, FreezeEntryDataTable} from "@/components/overview-pages/freeze-entry-datatable";
 
 // Figure out how to extract this from the Details type
 const selectVariety = createSelectSchema(beanVarieties);
 
-type Details = Awaited<ReturnType<typeof getBeanDetails>>
+type Details = Awaited<ReturnType<typeof getBeanDetailsWithFreezeEntries>>
 
 type BeanDetailProps = {
     bean: Details;
@@ -50,7 +51,7 @@ export function BeanDetail({bean}: BeanDetailProps) {
     if (!bean) return null;
 
     const isBlend = bean.varieties.length > 1;
-
+    console.log(bean)
     return (
         <>
             <section className={"space-y-2"}>
@@ -75,6 +76,12 @@ export function BeanDetail({bean}: BeanDetailProps) {
             <section>
                 <h3 className={"font-bold text-lg"}>Notes</h3>
                 <p>{bean.notes ?? ""}</p>
+            </section>
+            <section>
+                <FreezeEntryDataTable
+                    data={bean.freezeEntries as FreezeEntry[]}
+                    inlineHeader={<h3 className={"font-bold text-lg"}>Freeze entries</h3>}
+                />
             </section>
         </>
     )

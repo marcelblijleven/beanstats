@@ -36,7 +36,7 @@ export const columns: ColumnDef<FreezeEntry>[] = [
         header: "Label",
     },
     {
-        accessorFn: (row) => row.bean.name,
+        accessorFn: (row) => row.bean?.name ?? "-",
         header: "Coffee",
     },
     {
@@ -48,7 +48,7 @@ export const columns: ColumnDef<FreezeEntry>[] = [
         header: "Weight",
     },
     {
-        accessorFn: (row) => row.bean.roastDate ?? "-",
+        accessorFn: (row) => row.bean?.roastDate ?? "-",
         header: "Roast date",
     },
     {
@@ -57,7 +57,7 @@ export const columns: ColumnDef<FreezeEntry>[] = [
     }
 ]
 
-export function FreezeEntryDataTable<TData, TValue>({columns, data}: DataTableProps<TData, TValue>) {
+export function FreezeEntryDataTable({data, inlineHeader}: DataTableProps<FreezeEntry>) {
     const router = useRouter();
     const params = useSearchParams();
     const page = parseInt(params.get("page") ?? "1");
@@ -78,11 +78,12 @@ export function FreezeEntryDataTable<TData, TValue>({columns, data}: DataTablePr
 
     return (
         <div>
-            <div className={"flex flex-row-reverse my-2"}>
+            <div className={"flex flex-row-reverse items-center justify-between my-2"}>
                 <Button variant={"outline"} size={"sm"}
                         onClick={() => router.push(`/coffee/freeze?page=1&defrosted=${!!defrosted ? 0 : 1}`)}>
                     {!!defrosted ? "Hide defrosted" : "Show defrosted"}
                 </Button>
+                {inlineHeader && inlineHeader}
             </div>
             <DataTableComponent table={table} columns={columns} />
             <div className="flex items-center justify-end space-x-2 py-4">

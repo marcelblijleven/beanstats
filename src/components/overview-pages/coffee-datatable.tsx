@@ -7,12 +7,15 @@ import {DataTableComponent} from "@/components/data-table";
 import {type DataTableProps} from "@/components/overview-pages/interfaces";
 import Link from "next/link";
 import {createSelectSchema} from "drizzle-zod";
-import {beans, beanVarieties, roasters} from "@/db/schema";
+import {beans, beanVarieties, freezeEntries, roasters} from "@/db/schema";
 import {z} from "zod";
 
 const selectSchema = createSelectSchema(beans).extend({
     roaster: createSelectSchema(roasters),
     varieties: z.array(createSelectSchema(beanVarieties)),
+    freezeEntries: z.array(createSelectSchema(freezeEntries)),
+}).extend({
+
 })
 
 export type Coffee = z.infer<typeof selectSchema>
@@ -79,12 +82,22 @@ export const columns: ColumnDef<Coffee>[] = [
         header: "Archived",
     },
     {
+        accessorFn: (row) => row.freezeEntries.reduce((acc, current): number => {
+            if (current.frozen) {
+                return acc + parseFloat(current.weight)
+            }
+
+            return acc
+        }, 0),
+        header: "Total frozen",
+    },
+    {
         accessorFn: (row) => row.isPublic ? "Yes" : "No",
         header: "Public",
     },
 ]
 
-export function CoffeeDataTable<TData, TValue>({columns, data}: DataTableProps<TData, TValue>) {
+export function CoffeeDataTable({data}: DataTableProps<Coffee>) {
     const router = useRouter();
     const params = useSearchParams();
     const page = parseInt(params.get("page") ?? "1");

@@ -7,7 +7,7 @@ import {and, eq} from "drizzle-orm";
 import Link from "next/link";
 import {cn} from "@/lib/utils";
 import {buttonVariants} from "@/components/ui/button";
-import {type Coffee, CoffeeDataTable, columns} from "@/components/overview-pages/coffee-datatable";
+import {type Coffee, CoffeeDataTable} from "@/components/overview-pages/coffee-datatable";
 import {notFound} from "next/navigation";
 
 /**
@@ -22,6 +22,7 @@ async function getCoffee(userId: number, page: number, archived: boolean): Promi
         with: {
             varieties: true,
             roaster: true,
+            freezeEntries: true,
         },
         orderBy: (beans, {desc}) => [desc(beans.created), desc(beans.id)],
         limit: pageSize + 1,
@@ -67,7 +68,7 @@ export default async function CoffeePage({searchParams}: { searchParams: Record<
                         className='relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary to-[#fc6b03] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]'
                     />
                 </div>
-                <CoffeeDataTable columns={columns} data={data} />
+                <CoffeeDataTable data={data} />
             </section>
         </>
     )
