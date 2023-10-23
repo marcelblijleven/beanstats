@@ -79,9 +79,9 @@ export function StatsCard(props: StatsCardProps) {
 
 function FavoriteRow(props: { name: string, total: string }) {
     return (
-        <div className={"flex justify-between items-center hover:bg-primary/20 p-1 px-1.5 cursor-default rounded-sm"}>
-            <div className={"grow shrink-0"}>{props.name}</div>
-            <div>{props.total}</div>
+        <div className={"flex justify-between items-center hover:bg-primary/20 p-1 px-1.5 cursor-default rounded-sm overflow-hidden"}>
+            <div className={"flex-1 grow shrink-0 truncate"}>{props.name}</div>
+            <div className={"ml-4"}>{props.total}</div>
         </div>
     )
 }
