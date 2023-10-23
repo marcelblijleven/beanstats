@@ -21,7 +21,9 @@ const Header = () => (
                 <ThemeSwitcher/>
             </div>
         </div>
-        <Navigation/>
+        <div className={"mx-auto max-w-[1600px]"}>
+            <Navigation/>
+        </div>
     </header>
 );
 
