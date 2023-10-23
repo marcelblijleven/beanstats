@@ -1,4 +1,4 @@
-import {Metadata} from "next";
+import {type Metadata} from "next";
 import {ViewLinkContainer} from "@/components/beanconqueror/share/view/view-link-container";
 import PageShell from "@/components/layout/page-shell";
 

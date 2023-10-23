@@ -1,9 +1,9 @@
-import {Bean} from "@/types/beanconqueror";
+import {type Bean} from "@/types/beanconqueror";
 import {sortFnAsc} from "@/lib//sort";
 import {stringToDate} from "@/lib/dates";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import BacklogTable from "@/app/beanconqueror/stats/components/backlog-table";
-import {Mapping} from "@/types";
+import {type Mapping} from "@/types";
 
 interface BacklogStatsProps {
     label: string;

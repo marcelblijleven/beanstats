@@ -1,9 +1,9 @@
 "use client"
 
 import {useState} from "react";
-import {Preparation, Mill} from "@/types/beanconqueror";
+import {type Preparation, type Mill} from "@/types/beanconqueror";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import {Mapping} from "@/types";
+import {type Mapping} from "@/types";
 import {Button} from "@/components/ui/button";
 import ProgressComponent from "@/components/ui/progress-bar";
 import {getTextWithFlagSupport} from "@/lib/flags";
@@ -20,9 +20,9 @@ export default function CountableStats(props: Props) {
     const totalEntries = Object.keys(props.countable).length;
 
     const entries = slice ? props.countable.slice(0, slicedLength) : props.countable;
-    const total = entries.reduce((prev, [_, value]) => prev + (value as number), 0);
+    const total = entries.reduce((prev, [_, value]) => prev + (value), 0);
     const items = entries.map(([key, value]) => (
-        <ProgressComponent key={key} value={value} label={getTextWithFlagSupport(props.mapping?.[key].name || key)} total={total}/>
+        <ProgressComponent key={key} value={value} label={getTextWithFlagSupport(props.mapping?.[key].name ?? key)} total={total}/>
     ));
 
     const showAll = totalEntries > slicedLength;

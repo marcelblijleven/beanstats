@@ -1,7 +1,6 @@
-import {forwardRef, HTMLAttributes} from "react";
+import {forwardRef, type HTMLAttributes} from "react";
 import {cn} from "@/lib/utils";
 import styles from "./headings.module.css";
-
 
 export const H1 = forwardRef<
     HTMLHeadingElement,

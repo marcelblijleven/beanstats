@@ -1,14 +1,14 @@
 "use client"
 
 import {useForm} from "react-hook-form";
-import {z} from "zod";
+import {type z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 
 import {shortenLinkSchema} from "@/lib/beanconqueror/validations/links";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
-import {BeanLinkResponse, getBeanLink} from "@/lib/beanlink";
+import {type BeanLinkResponse, getBeanLink} from "@/lib/beanlink";
 import {Loader2Icon} from "lucide-react";
 
 type Inputs = z.infer<typeof shortenLinkSchema>
@@ -24,7 +24,7 @@ export function ShortenLinkForm(props: ShortenLinkFormProps) {
     const form = useForm<Inputs>({
         resolver: zodResolver(shortenLinkSchema),
         defaultValues: {
-            link: props.link || "",
+            link: props.link ?? "",
         }
     });
     const { isSubmitting } = form.formState;
@@ -61,7 +61,7 @@ export function ShortenLinkForm(props: ShortenLinkFormProps) {
                     className={"flex gap-2"}
                     disabled={isSubmitting}
                 >
-                    {props.buttonText || "Shorten"}
+                    {props.buttonText ?? "Shorten"}
                     {isSubmitting && (
                         <Loader2Icon
                             className={"h-5 w-5 animate-spin text-background"}

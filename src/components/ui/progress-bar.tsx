@@ -1,6 +1,6 @@
 "use client"
 import {motion} from "framer-motion";
-import {ReactElement} from "react";
+import {type ReactElement} from "react";
 
 const getWidth = (value: number, total: number) => `${(value / (total || 0)) * 100}%`
 

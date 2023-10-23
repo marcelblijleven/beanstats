@@ -1,12 +1,12 @@
 import QRCodeCard from "@/components/qrcode-card";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import CopyContainer from "@/components/copy-container";
-import {BeanLinkResponse} from "@/lib/beanlink";
+import {type BeanLinkResponse} from "@/lib/beanlink";
 
 export const BeanLinkCard = ({response}: {response: BeanLinkResponse }) => (
     <Card>
         <CardHeader>
-            <CardTitle>{`🫘 ${response.name}, ${response.roaster || ""}`}</CardTitle>
+            <CardTitle>{`🫘 ${response.name}, ${response.roaster ?? ""}`}</CardTitle>
         </CardHeader>
         <CardContent className={"flex flex-col space-y-2"}>
             <CopyContainer value={response.link} />

@@ -1,4 +1,4 @@
-import {User} from "@clerk/nextjs/api";
+import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
 import {Title} from "@/components/layout/title";
 import BeanconquerorImport from "@/app/coffee/import/components/beanconqueror-import";

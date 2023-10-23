@@ -7,7 +7,8 @@ export interface ToolsSectionProps {
     className?: string;
 }
 
-const ToolsSection = ({className, ...props}: ToolsSectionProps) => (
+//
+const ToolsSection = ({className}: ToolsSectionProps) => (
     <section className={cn("space-y-4", className)}>
         <H2>Tools</H2>
         <p>

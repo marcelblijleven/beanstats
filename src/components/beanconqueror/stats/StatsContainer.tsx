@@ -2,7 +2,7 @@
 
 
 import FileUpload from "@/app/beanconqueror/stats/components/upload";
-import {processBCFile, Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
+import {processBCFile, type Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
 import {Button} from "@/components/ui/button";
 import Statistics from "@/app/beanconqueror/stats/components/statistics";
 import {useState} from "react";

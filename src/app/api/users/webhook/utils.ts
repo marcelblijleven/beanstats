@@ -1,4 +1,4 @@
-import {UserWebhookEvent, WebhookEvent} from "@clerk/nextjs/api";
+import {type UserWebhookEvent, type WebhookEvent} from "@clerk/nextjs/api";
 import type {UserJSON} from "@clerk/types";
 import {createUser, deleteUserByClerkId, getUserByClerkId, updateUser} from "@/db/operations";
 import {clerkClient} from "@clerk/nextjs";
@@ -34,7 +34,7 @@ export async function handleEvent(event: WebhookEvent) {
         throw new Error("Error occurred, no Clerk id received")
     }
 
-    const emailAddress = email_addresses?.find(email => email.id === primary_email_address_id)?.email_address || null;
+    const emailAddress = email_addresses?.find(email => email.id === primary_email_address_id)?.email_address ?? null;
 
     switch (event.type) {
         case "user.created":

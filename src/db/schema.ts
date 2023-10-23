@@ -104,13 +104,34 @@ export const cafeBrews = mysqlTable("cafe_brews", {
         userIdIndex: index("user_id_index").on(table.userId),
         typeIndex: index("name_index").on(table.type),
     }
-})
+});
+
+export const freezeEntries = mysqlTable("freeze_entries", {
+    id: serial("id").primaryKey(),
+    publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid).unique(),
+    userId: int("user_id").notNull(),
+    label: varchar("label", {length: 128}).notNull(),
+    beanId: int("bean_id").notNull(),
+    weight: decimal("weight", {precision: 10, scale: 2}).notNull(),
+    freezeDate: date("freeze_date", {mode: "string"}).notNull(),
+    frozen: boolean("frozen").default(true),
+    notes: text("notes"),
+    modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
+    created: timestamp("created").default(sql`CURRENT_TIMESTAMP`),
+}, (table) => {
+    return {
+        publicIdIndex: index("public_id_index").on(table.publicId),
+        userIdIndex: index("user_id_index").on(table.userId),
+        beanIdIndex: index("bean_id_index").on(table.beanId),
+    }
+});
 
 // Relations
 export const usersRelations =  relations(users, ({ many }) => ({
     roasters: many(roasters),
     beans: many(beans),
     cafeBrews: many(cafeBrews),
+    freezeEntries: many(freezeEntries),
 }));
 
 export const beansRelations = relations(beans, ({ many, one}) => ({
@@ -119,6 +140,7 @@ export const beansRelations = relations(beans, ({ many, one}) => ({
         references: [roasters.id],
     }),
     varieties: many(beanVarieties),
+    freezeEntries: many(freezeEntries),
     user: one(users, {
         fields: [beans.userId],
         references: [users.id],
@@ -131,6 +153,17 @@ export const beanVarietiesRelations = relations(beanVarieties, ({ one }) => ({
         references: [beans.id],
     })
 }));
+
+export const freezeEntryRelations = relations(freezeEntries, ({one}) => ({
+    bean: one(beans, {
+        fields: [freezeEntries.beanId],
+        references: [beans.id],
+    }),
+    user: one(users, {
+        fields: [freezeEntries.userId],
+        references: [users.id],
+    })
+}))
 
 export const roastersRelations = relations(roasters, ({ many, one }) => ({
     user: one(users, {

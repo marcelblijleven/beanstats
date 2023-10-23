@@ -1,6 +1,6 @@
 import {createMappingByUUID, increaseCountOfKey, sortCountMappingDesc} from "@/lib/beanconqueror/utils";
-import {Mapping} from "@/types";
-import {BCData, Bean, Brew, Mill, Preparation} from "@/types/beanconqueror";
+import {type Mapping} from "@/types";
+import {type BCData, type Bean, type Brew, type Mill, type Preparation} from "@/types/beanconqueror";
 
 interface BeanStatistics {
     roasterCount: [string, number][];
@@ -68,7 +68,7 @@ function getBrewStatistics(brews: Brew[]): BrewStatistics {
     const usagePerGrinder: Mapping<number> = {};
     const brewsPerPreparationMethod: Mapping<number> = {};
     const grindWeights: number[] = [];
-    let lastBrewTime: number = 0;
+    let lastBrewTime = 0;
 
     for (const brew  of brews) {
         // Brews per day

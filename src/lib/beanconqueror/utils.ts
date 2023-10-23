@@ -1,4 +1,4 @@
-import {HasConfigUUID, Mapping} from "@/types";
+import {type HasConfigUUID, type Mapping} from "@/types";
 
 // Create a mapping of T from the provided Array, where the key is
 // the UUID from the config property.
@@ -23,7 +23,7 @@ export function increaseCountOfKey(mapping: Mapping<number>, key: string, value?
     }
 
     const lcKey = key.toLowerCase().trim();
-    mapping[lcKey] = (mapping[lcKey] || 0) + (value || 1);
+    mapping[lcKey] = (mapping[lcKey] || 0) + (value ?? 1);
 }
 
 // Sort mapping by descending value

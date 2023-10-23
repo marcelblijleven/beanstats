@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import {LucideMenu as MenuIcon, X as CloseIcon} from "lucide-react";
-import {MouseEventHandler, ReactNode, useState} from "react";
+import {type MouseEventHandler, type ReactNode, useState} from "react";
 import {cn} from "@/lib/utils";
 import {usePathname} from "next/navigation";
 

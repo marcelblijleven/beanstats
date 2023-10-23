@@ -1,13 +1,13 @@
 "use client"
 
 import {
-    DefaultValues,
-    FieldArrayWithId,
-    FieldValues, SubmitHandler,
+    type DefaultValues,
+    type FieldArrayWithId,
+    type FieldValues, type SubmitHandler,
     useFieldArray,
-    UseFieldArrayRemove,
+    type UseFieldArrayRemove,
     useForm,
-    UseFormReturn
+    type UseFormReturn
 } from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
@@ -16,9 +16,9 @@ import {Button} from "@/components/ui/button";
 
 import DatePickerInput from "@/components/forms/inputs/date-picker";
 import {Checkbox} from "@/components/ui/checkbox";
-import {CheckedState} from "@radix-ui/react-checkbox";
+import {type CheckedState} from "@radix-ui/react-checkbox";
 import {useUser} from "@clerk/nextjs";
-import {ReactNode, useEffect, useState} from "react";
+import {type ReactNode, useEffect, useState} from "react";
 import {Separator} from "@/components/ui/separator";
 import {FormItemWrapper} from "@/components/forms/inputs/form-item-wrapper";
 import {Textarea} from "@/components/ui/textarea";
@@ -221,7 +221,7 @@ export function CoffeeForm(props: CoffeeFormProps) {
     const submitFormData: SubmitHandler<Inputs> = async values => {
         setSubmitting(true);
         const dirtyFields = form.formState.dirtyFields as Partial<Inputs>;
-        const formValues = prepareFormValues<Inputs>(values, dirtyFields, "buyDate", "roastDate");
+        const formValues = prepareFormValues<Inputs>(values, dirtyFields, [],["buyDate", "roastDate"]);
 
         // No need to do something when no values have changed
         if (Object.keys(formValues).length === 0) {
@@ -397,7 +397,7 @@ export function CoffeeForm(props: CoffeeFormProps) {
                     name={"notes"}
                     render={({field}) => (
                         <FormItemWrapper label={"Notes"}>
-                            {/* @ts-ignore:*/}
+                            {/*@ts-expect-error: should be fixed globally*/}
                             <Textarea placeholder={"Enter some notes"} {...field} />
                         </FormItemWrapper>
                     )}

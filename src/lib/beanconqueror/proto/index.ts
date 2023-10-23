@@ -7,7 +7,7 @@ const decodeUrl = (url: string) => {
     let sharedBeans = "";
 
     while (true) {
-        const param = params.get(`shareUserBean${i}`) || "";
+        const param = params.get(`shareUserBean${i}`) ?? "";
 
         if (param === "") {
             break;

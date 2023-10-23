@@ -1,4 +1,4 @@
-import {Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
+import {type Statistics as BrewStatistics} from "@/lib/beanconqueror/statistics";
 import CountableStats from "@/app/beanconqueror/stats/components/countable-stats";
 import BacklogStats from "@/app/beanconqueror/stats/components/backlog-stats";
 import CardStats from "@/app/beanconqueror/stats/components/card-stats";

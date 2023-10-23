@@ -1,6 +1,6 @@
 "use client"
 
-import {SubmitHandler, useForm} from "react-hook-form";
+import {type SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useUser} from "@clerk/nextjs";
 import {z} from "zod";
@@ -10,7 +10,7 @@ import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, Form
 import {Input} from "@/components/ui/input";
 import DatePickerInput from "@/components/forms/inputs/date-picker";
 import {Checkbox} from "@/components/ui/checkbox";
-import {CheckedState} from "@radix-ui/react-checkbox";
+import {type CheckedState} from "@radix-ui/react-checkbox";
 import {FormItemWrapper} from "@/components/forms/inputs/form-item-wrapper";
 import {Textarea} from "@/components/ui/textarea";
 import {Slider} from "@/components/ui/slider";
@@ -66,7 +66,6 @@ export function CafeBrewForm(props: CafeBrewFormProps) {
         ...(props.values ?? defaultValues),
         userId: user?.publicMetadata.databaseId as number
     }
-    console.log(values)
 
     const form = useForm<Inputs>({
         mode: "onSubmit",
@@ -78,11 +77,10 @@ export function CafeBrewForm(props: CafeBrewFormProps) {
     const dirtyFields = form.formState.dirtyFields as DirtyFields
     const submitFormData: SubmitHandler<Inputs> = async values => {
         const fields: DirtyFields = {...dirtyFields, type: true, cafe: true}
-        const formValues = prepareFormValues<Inputs>(values, fields, "date")
+        const formValues = prepareFormValues<Inputs>(values, fields, [], ["date"])
         const result = await submitCafeBrewForm(formValues,);
 
         if (!result.success) {
-            console.log(result.error)
             toast({
                 title: "Form error",
                 description: result.error ?? "Something went wrong while submitting the form"
@@ -242,7 +240,7 @@ export function CafeBrewForm(props: CafeBrewFormProps) {
                             name={"notes"}
                             render={({field}) => (
                                 <FormItemWrapper label={"Notes"}>
-                                    {/* @ts-ignore:*/}
+                                    {/* @ts-expect-error: should be fixed globally*/}
                                     <Textarea placeholder={"Enter some notes"} {...field} />
                                 </FormItemWrapper>
                             )}

@@ -1,13 +1,13 @@
-import {DefaultValues, FieldArrayWithId, UseFieldArrayRemove, UseFormReturn} from "react-hook-form";
-import {beanInformationFormSchema} from "@/lib/beanconqueror/validations/bean-information-form-schema";
-import {FieldValues} from "react-hook-form/dist/types";
+import {type DefaultValues, type FieldArrayWithId, type UseFieldArrayRemove, type UseFormReturn} from "react-hook-form";
+import {type beanInformationFormSchema} from "@/lib/beanconqueror/validations/bean-information-form-schema";
+import {type FieldValues} from "react-hook-form/dist/types";
 import {Legend} from "@/components/ui/legend";
 import {FormField} from "@/components/ui/form";
 import {FormItemWrapper} from "@/components/forms/inputs/form-item-wrapper";
 import {Input} from "@/components/ui/input";
 import DatePickerInput from "@/components/forms/inputs/date-picker";
 import {Checkbox} from "@/components/ui/checkbox";
-import {CheckedState} from "@radix-ui/react-checkbox";
+import {type CheckedState} from "@radix-ui/react-checkbox";
 import {Textarea} from "@/components/ui/textarea";
 import {Button} from "@/components/ui/button";
 import {beanconqueror} from "@/lib/beanconqueror/proto/generated/beanconqueror";

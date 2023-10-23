@@ -1,6 +1,6 @@
 import {Webhook} from "svix";
 import {headers} from "next/headers";
-import type {WebhookEvent, UserWebhookEvent} from "@clerk/nextjs/api";
+import type {WebhookEvent} from "@clerk/nextjs/api";
 import {handleEvent} from "@/app/api/users/webhook/utils";
 
 //"runtime edge?"
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     }
 
     // Get the request body and instantiate a new Webhook
-    const payload = await req.json();
+    const payload = await req.json() as unknown;
     const body = JSON.stringify(payload);
     const webhook = new Webhook(webhookSecret);
 
@@ -57,6 +57,10 @@ export async function POST(req: Request) {
         await handleEvent(event);
         return new Response(null, {status: 204})
     } catch (err) {
-        return new Response(`Error occurred: ${err}`, {status: 400})
+        if (err instanceof Error) {
+            return new Response(`Error occurred: ${err.message}`, {status: 400})
+        }
+
+        return new Response("Error occurred while handling webhook", {status: 400})
     }
 }

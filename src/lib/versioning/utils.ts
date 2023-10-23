@@ -15,7 +15,7 @@ export async function getChangelog(): Promise<string> {
 
 export async function getCurrentVersion(): Promise<string> {
     const content = await fs.readFile(path.join(rootDir, "package.json"), "utf-8");
-    const json: PackageJSON = JSON.parse(content);
+    const json = JSON.parse(content) as unknown as PackageJSON;
     return json.version;
 }
 

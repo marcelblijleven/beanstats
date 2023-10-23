@@ -1,10 +1,10 @@
-import {BCData, Bean} from "@/types/beanconqueror";
+import {type BCData, type Bean} from "@/types/beanconqueror";
 import {db} from "@/db";
 import {beans, beanVarieties, roasters} from "@/db/schema";
 import {and, eq, isNotNull, sql} from "drizzle-orm";
 import {generateNanoid} from "@/db/utils";
 import {createInsertSchema} from "drizzle-zod";
-import {z} from "zod";
+import {type z} from "zod";
 import {format} from "date-fns";
 
 const insertBean = createInsertSchema(beans);
@@ -49,7 +49,7 @@ export async function importBeanconquerorBean(data: Bean, roasterMapping: Record
         const beanId = parseInt(result.insertId);
 
         if (!beanId) {
-            await tx.rollback()
+            tx.rollback()
             return false;
         }
 
@@ -99,7 +99,7 @@ async function getExistingExternalIds(userId: number) {
         .from(beans)
         .where(and(eq(beans.userId, userId), isNotNull(beans.userId)));
 
-    return result.map(item => item.externalId as string);
+    return result.map(item => item.externalId!);
 }
 
 export async function importBeans(data: BCData, userId: number) {

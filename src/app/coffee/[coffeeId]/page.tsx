@@ -1,14 +1,15 @@
 import {Title} from "@/components/layout/title";
-import {User} from "@clerk/nextjs/api";
+import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
 import {notFound} from "next/navigation";
 import {canView} from "@/lib/perms";
-import {getBeanDetails} from "@/lib/db/beans/get-bean-details";
+import {getBeanDetails, getBeanDetailsWithFreezeEntries} from "@/lib/db/beans/get-bean-details";
 import {BeanDetail} from "@/app/coffee/[coffeeId]/components/bean-detail";
 import Link from "next/link";
 import {Button, buttonVariants} from "@/components/ui/button";
 import Image from "next/image";
-import {Metadata, ResolvingMetadata} from "next";
+import {type Metadata, type ResolvingMetadata} from "next";
+import {cn} from "@/lib/utils";
 
 type PageProps = {
     params: { coffeeId: string}
@@ -31,7 +32,7 @@ export async function generateMetadata({params}: PageProps, parent: ResolvingMet
 
     return {
         title: `${bean.name}`,
-        description: `Roasted by ${bean.roaster.name}`
+        description: `Roasted by ${bean.roaster?.name ?? "??"}`
     }
 }
 
@@ -42,6 +43,12 @@ function Buttons({user, bean} :{user: User | null, bean: Awaited<ReturnType<type
         <div className={"flex flex-row-reverse gap-2"}>
             <Link href={`/coffee/${bean.publicId}/edit`} className={buttonVariants({size: "sm", variant: "outline"})}>
                 Edit
+            </Link>
+            <Link
+                href={`/coffee/freeze/add?id=${bean.publicId}&bean=${bean.name}`}
+                className={cn(buttonVariants({size: "sm", variant: "outline"}), "hover:bg-blue-400 hover:outline-blue-600 hover:text-white transition-colors duration-500")}
+            >
+                Freeze
             </Link>
             {/*<BeanConquerorButton bean={bean} />*/}
         </div>
@@ -58,7 +65,7 @@ function BeanConquerorButton({bean}: {bean:Awaited<ReturnType<typeof getBeanDeta
 
 export default async function CoffeeDetailPage({ params }: { params: { coffeeId: string } }) {
     const user: User | null = await currentUser();
-    const bean =  await getBeanDetails(params.coffeeId, user?.publicMetadata?.databaseId as number || undefined)
+    const bean =  await getBeanDetailsWithFreezeEntries(params.coffeeId, user?.publicMetadata?.databaseId as number || undefined)
 
     if (!bean || !canView(user, bean)) return notFound();
 
@@ -66,7 +73,7 @@ export default async function CoffeeDetailPage({ params }: { params: { coffeeId:
         <>
             <Title
                 title={bean.name}
-                subtitle={`Roasted by ${bean.roaster.name}`}
+                subtitle={`Roasted by ${bean.roaster?.name ?? "??"}`}
             />
             <Buttons user={user} bean={bean} />
             <BeanDetail bean={bean} />

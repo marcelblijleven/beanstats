@@ -1,11 +1,10 @@
-import {User} from "@clerk/nextjs/api";
+import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
 import Link from "next/link";
 import {cn} from "@/lib/utils";
 import {Title} from "@/components/layout/title";
 import {buttonVariants} from "@/components/ui/button";
-import {DataTable} from "@/app/brews/cafe/components/data-table";
-import {CafeBrew, columns} from "@/app/brews/cafe/components/data-table/columns";
+import {CafeBrewDataTable, type CafeBrew} from "@/components/overview-pages/cafe-brew-datatable";
 import {db} from "@/db";
 import {eq} from "drizzle-orm";
 import {beans} from "@/db/schema";
@@ -54,7 +53,7 @@ export default async function CafeBrewsPage({searchParams}: { searchParams: Reco
                         className='relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary to-[#fc6b03] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]'
                     />
                 </div>
-                <DataTable columns={columns} data={brews} />
+                <CafeBrewDataTable data={brews} />
             </section>
         </>
     )

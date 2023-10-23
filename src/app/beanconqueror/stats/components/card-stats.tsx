@@ -1,8 +1,8 @@
 import {getNaturalDate} from "@/lib/dates";
-import {Bean} from "@/types/beanconqueror";
+import {type Bean} from "@/types/beanconqueror";
 import ProgressBar from "@/components/progress-bar";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import {Mapping} from "@/types";
+import {type Mapping} from "@/types";
 import {cn} from "@/lib/utils";
 
 interface Props {
@@ -44,7 +44,7 @@ function Stats(props: StatsProps) {
 }
 
 function getRemainingWeight(mapping: Mapping<Bean>, usage: Mapping<number>): number {
-    let remainingWeight: number = 0;
+    let remainingWeight = 0;
 
     for (const bean of Object.values(mapping)) {
         if (bean.finished || !bean.weight) {

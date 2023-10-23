@@ -1,7 +1,7 @@
 "use server"
 
-import {Inputs} from "@/app/brews/cafe/components/cafe-brew-form";
-import {User} from "@clerk/nextjs/api";
+import {type Inputs} from "@/app/brews/cafe/components/cafe-brew-form";
+import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
 import {db} from "@/db";
 import {cafeBrews} from "@/db/schema";
@@ -34,7 +34,7 @@ export async function submitCafeBrewForm(values: Partial<Inputs>) {
             const result = await db.insert(cafeBrews).values(data);
             const id = parseInt(result.insertId)
             const [brew] = await db.select({publicId: cafeBrews.publicId}).from(cafeBrews).where(eq(cafeBrews.id, id)).limit(1)
-            publicId = brew.publicId as string
+            publicId = brew.publicId!
         }
 
         return {success: true, error: null, publicId: publicId}

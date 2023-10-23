@@ -2,13 +2,14 @@ import {getDateString} from "@/lib/dates";
 import {getTextWithFlagSupport} from "@/lib/flags";
 import {Badge} from "@/components/ui/badge";
 import Rating from "@/components/beanconqueror/share/view/rating";
+import {type ReactNode} from "react";
 
 const LabelledValue = ({
                            label,
                            value,
                            type,
                            splitLabels
-                       }: { label: string, value: any, type: string, splitLabels?: boolean }) => {
+                       }: { label: string, value: unknown, type: string, splitLabels?: boolean }) => {
     let parsed;
 
     if (value === null || value === undefined || value === "") {
@@ -19,7 +20,7 @@ const LabelledValue = ({
                 parsed = value ? "Yes" : "No";
                 break;
             case "date":
-                parsed = getDateString(new Date(value), false, Intl.DateTimeFormat().resolvedOptions().timeZone);
+                parsed = getDateString(new Date(value as Date), false, Intl.DateTimeFormat().resolvedOptions().timeZone);
                 break;
             case "string":
                 value = (value as string).replaceAll("_", " ");
@@ -35,11 +36,11 @@ const LabelledValue = ({
                         </div>
                     );
                 } else {
-                    parsed = getTextWithFlagSupport(value.trim().toLowerCase());
+                    parsed = getTextWithFlagSupport((value as string).trim().toLowerCase());
                 }
                 break;
             case "rating":
-                parsed = (<Rating value={value}/>);
+                parsed = (<Rating value={value as number}/>);
                 break;
             case "number":
             default:
@@ -50,7 +51,7 @@ const LabelledValue = ({
     return (
         <div className={"flex flex-col gap-1"}>
             <span className={"text-xs font-semibold"}>{label}</span>
-            <span className={"text-md capitalize"}>{parsed}</span>
+            <span className={"text-md capitalize"}>{parsed as string | ReactNode}</span>
         </div>
     )
 }

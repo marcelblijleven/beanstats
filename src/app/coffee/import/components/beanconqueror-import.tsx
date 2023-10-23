@@ -5,7 +5,7 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {importBeanconqueror} from "@/app/coffee/import/actions/import-beanconqueror";
 import {experimental_useFormStatus as useFormStatus} from "react-dom";
-// @ts-expect-error
+// @ts-expect-error: experimental property
 import { experimental_useFormState as useFormState } from "react-dom";
 import {AlertCircle, Check, Info, Loader} from "lucide-react";
 import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
@@ -48,7 +48,7 @@ function FormAlert({state}: {state: {message: string | null, success: boolean | 
 
 export default function BeanconquerorImport() {
     const user = useUser();
-    // @ts-ignore
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
     const [state, formAction] = useFormState(importBeanconqueror, {message: null, success: null})
 
     if (!user) return (
@@ -62,6 +62,7 @@ export default function BeanconquerorImport() {
         <div className={"space-y-4"}>
             <section className={"space-y-2"}>
                 <h3 className={"font-bold text-lg"}>Beanconqueror</h3>
+                {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
                 <form className={"max-w-lg space-y-2"} action={formAction}>
                     <fieldset className={"flex space-x-2"}>
                         <Input
@@ -72,7 +73,9 @@ export default function BeanconquerorImport() {
                         />
                         <SubmitButton />
                     </fieldset>
+                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
                     <FormAlert state={state} />
+                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
                     <p aria-live={"polite"} className={"sr-only"}>{state?.message}</p>
                 </form>
             </section>

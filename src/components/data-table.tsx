@@ -6,7 +6,7 @@ import {flexRender} from "@tanstack/react-table";
 
 export type DataTableComponentProps<TData> = {
     table: TableType<TData>
-    columns: ColumnDef<TData, any>[]
+    columns: ColumnDef<TData>[]
 }
 
 export function DataTableComponent<TData>(props: DataTableComponentProps<TData>) {

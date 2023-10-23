@@ -27,7 +27,7 @@ function getResultMessage(result: {totalBeans: number, abortedBeans: number, ski
         `${result.skippedBeans} were skipped, ${result.abortedBeans} were aborted due to an error.`
 }
 
-export async function importBeanconqueror(prevState: any, formData: FormData) {
+export async function importBeanconqueror(prevState: unknown, formData: FormData) {
     const file = formData.get("file") as File | null;
 
     if (!file) {

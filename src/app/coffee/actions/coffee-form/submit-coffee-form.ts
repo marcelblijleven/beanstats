@@ -1,13 +1,13 @@
 "use server"
 
-import {formSchema, Inputs, updateFormSchema, UpdateInputs} from "@/app/coffee/actions/coffee-form/form-schema";
-import {User} from "@clerk/nextjs/api";
+import {formSchema, type Inputs, updateFormSchema, type UpdateInputs} from "@/app/coffee/actions/coffee-form/form-schema";
+import {type User} from "@clerk/nextjs/api";
 import {currentUser} from "@clerk/nextjs";
 import {db} from "@/db";
 import {beans, beanVarieties, roasters} from "@/db/schema";
 import {and, eq} from "drizzle-orm";
 import {createInsertSchema} from "drizzle-zod";
-import {z} from "zod";
+import {type z} from "zod";
 
 const insertBean = createInsertSchema(beans);
 const insertVariety = createInsertSchema(beanVarieties);
@@ -67,16 +67,17 @@ async function performInsert(beanData: Inputs, varieties: Array<Partial<z.infer<
 
 async function performUpdate(bean: Partial<UpdateInputs>, varieties: Array<Partial<z.infer<typeof insertVariety>>>) {
     return db.transaction(async (tx) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore:
         await tx.update(beans).set(bean).where(
             and(
-                eq(beans.publicId, bean.publicId as string),
-                eq(beans.userId, bean.userId as number),
+                eq(beans.publicId, bean.publicId!),
+                eq(beans.userId, bean.userId!),
             )
         );
 
         const [beanSelect] = await tx.select({id: beans.id}).from(beans).where(
-            eq(beans.publicId, bean.publicId as string)
+            eq(beans.publicId, bean.publicId!)
         );
 
         for (const variety of varieties ?? []) {
@@ -85,7 +86,7 @@ async function performUpdate(bean: Partial<UpdateInputs>, varieties: Array<Parti
                 await tx.insert(beanVarieties).values(variety as z.infer<typeof insertVariety>);
             } else {
                 await tx.update(beanVarieties).set(variety).where(
-                    eq(beanVarieties.id, variety.id as number)
+                    eq(beanVarieties.id, variety.id )
                 );
             }
         }
@@ -96,9 +97,9 @@ async function performUpdate(bean: Partial<UpdateInputs>, varieties: Array<Parti
 
 
 async function submitData(values: Partial<Inputs>) {
-    console.log(values, "<- values")
     const {
         varieties,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         roaster,
         ...bean
     } = values;
@@ -124,7 +125,7 @@ async function getRoasterId(values: Partial<Inputs>, userId: number) {
 
     if (!!values.roasterId) return values.roasterId;
 
-    return await getOrCreateRoaster(values.roaster as string, userId);
+    return await getOrCreateRoaster(values.roaster , userId);
 }
 
 function parseInputs(values: Partial<Inputs> | Partial<UpdateInputs>) {
@@ -156,7 +157,7 @@ export async function submitCoffeeForm(values: Partial<Inputs> | Partial<UpdateI
     };
 
     if (roasterId !== null) modifiedValues.roasterId = roasterId;
-    if (modifiedValues.varieties) modifiedValues.varieties = Object.values(values.varieties || {})
+    if (modifiedValues.varieties) modifiedValues.varieties = Object.values(values.varieties ?? {})
 
     const result= parseInputs(modifiedValues);
     // Check for generic form errors

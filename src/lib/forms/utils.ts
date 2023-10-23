@@ -2,15 +2,18 @@ import {format} from "date-fns";
 
 type Values = Record<string, unknown>
 
-function applyKey<T extends Record<string, unknown | undefined>>(dirtyFields: Partial<Record<keyof T, unknown>>, values:T, key: keyof T) {
+
+function applyKey<T extends Record<string, unknown>>(dirtyFields: Partial<Record<keyof T, unknown>>, values:T, key: keyof T) {
     if (typeof values[key] === 'undefined') return;
 
     dirtyFields[key] = values[key];
 }
 
-export function getChangedFields<T extends Values>(dirtyFields: Partial<Record<keyof T, unknown>>, values: T): Partial<T> {
+export function getChangedFields<T extends Values>(dirtyFields: Partial<Record<keyof T, unknown>>, values: T, keepFields: Array<keyof T>): Partial<T> {
     applyKey(dirtyFields, values, "id");
     applyKey(dirtyFields, values, "publicId");
+
+    for (const key of keepFields) applyKey(dirtyFields, values, key)
 
     return Object.keys(dirtyFields).reduce((prev, key) => {
         if (!dirtyFields[key]) return prev;
@@ -18,8 +21,7 @@ export function getChangedFields<T extends Values>(dirtyFields: Partial<Record<k
         return {
             ...prev,
             [key]: typeof dirtyFields[key] === 'object' ?
-                // @ts-ignore
-                getChangedFields(dirtyFields[key] as unknown, values[key] as Values)
+                getChangedFields(dirtyFields[key] as Partial<Record<keyof T, unknown>>, values[key] as T, keepFields)
                 : values[key]
         }
     }, {});
@@ -40,9 +42,9 @@ export function handleDatesToString<T extends Record<string, unknown>>(values: T
  * Removes all non-dirty fields from the form data and converts any date field to a date string
  */
 export function prepareFormValues<T extends Record<string, unknown>>(
-    values: T, dirtyFields: Partial<Record<keyof T, unknown>>, ...dateFields: Array<keyof T>
+    values: T, dirtyFields: Partial<Record<keyof T, unknown>>, keepFields: Array<keyof T> = [], dateFields: Array<keyof T> = []
 ): Partial<T> {
-    const changedFields = getChangedFields(dirtyFields, values);
+    const changedFields = getChangedFields(dirtyFields, values, keepFields);
 
     for (const field of dateFields) {
         handleDatesToString<Partial<T>>(changedFields, field)
