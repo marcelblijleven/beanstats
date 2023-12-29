@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.15.4](https://github.com/marcelblijleven/beanstats/compare/v1.15.3...v1.15.4) (2023-12-29)
+
+
+### Bug Fixes
+
+* /changelog should be a public url ([794bbda](https://github.com/marcelblijleven/beanstats/commit/794bbdab7887171d1d6c5c8fe1c550e81b03b3e1))
+* handle missing roaster names ([00a977c](https://github.com/marcelblijleven/beanstats/commit/00a977cc4fb7b9494cacf3c4d1654fd6739bc2fa))
+
 ## [1.15.3](https://github.com/marcelblijleven/beanstats/compare/v1.15.2...v1.15.3) (2023-10-23)
 
 
