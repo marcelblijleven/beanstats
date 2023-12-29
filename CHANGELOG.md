@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.5](https://github.com/marcelblijleven/beanstats/compare/v1.15.4...v1.15.5) (2023-12-29)
+
+
+### Bug Fixes
+
+* undo eslint change for date picker ([d474dfb](https://github.com/marcelblijleven/beanstats/commit/d474dfb7169986cdf4e630ab62594726d2ece795))
+
 ## [1.15.4](https://github.com/marcelblijleven/beanstats/compare/v1.15.3...v1.15.4) (2023-12-29)
 
 
