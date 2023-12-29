@@ -16,7 +16,7 @@ export const BeanLinkCard = ({response}: {response: BeanLinkResponse }) => (
             />
         </CardContent>
     </Card>
-)
+);
 
 
 const ShareCard = ({fallbackUrl, beanLinkResponse}: {fallbackUrl?: string | undefined, beanLinkResponse?: BeanLinkResponse | undefined}) => (
@@ -38,4 +38,4 @@ const ShareCard = ({fallbackUrl, beanLinkResponse}: {fallbackUrl?: string | unde
     </Card>
 );
 
-export default ShareCard
+export default ShareCard;

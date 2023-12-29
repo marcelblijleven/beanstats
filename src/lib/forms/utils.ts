@@ -13,7 +13,7 @@ export function getChangedFields<T extends Values>(dirtyFields: Partial<Record<k
     applyKey(dirtyFields, values, "id");
     applyKey(dirtyFields, values, "publicId");
 
-    for (const key of keepFields) applyKey(dirtyFields, values, key)
+    for (const key of keepFields) applyKey(dirtyFields, values, key);
 
     return Object.keys(dirtyFields).reduce((prev, key) => {
         if (!dirtyFields[key]) return prev;
@@ -23,7 +23,7 @@ export function getChangedFields<T extends Values>(dirtyFields: Partial<Record<k
             [key]: typeof dirtyFields[key] === 'object' ?
                 getChangedFields(dirtyFields[key] as Partial<Record<keyof T, unknown>>, values[key] as T, keepFields)
                 : values[key]
-        }
+        };
     }, {});
 }
 
@@ -47,8 +47,8 @@ export function prepareFormValues<T extends Record<string, unknown>>(
     const changedFields = getChangedFields(dirtyFields, values, keepFields);
 
     for (const field of dateFields) {
-        handleDatesToString<Partial<T>>(changedFields, field)
+        handleDatesToString<Partial<T>>(changedFields, field);
     }
 
-    return changedFields
+    return changedFields;
 }

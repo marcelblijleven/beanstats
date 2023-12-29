@@ -11,7 +11,7 @@ export const metadata: Metadata = {
         description: "Create Beanconqueror (share) link using this webform",
         images: ["/beanconqueror_logo.png"],
     },
-}
+};
 
 export default function CreateShareLinkPage() {
     return (
@@ -21,5 +21,5 @@ export default function CreateShareLinkPage() {
             </h1>
             <Form />
         </PageShell>
-    )
+    );
 }

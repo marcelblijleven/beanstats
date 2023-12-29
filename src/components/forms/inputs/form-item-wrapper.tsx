@@ -24,5 +24,5 @@ export function FormItemWrapper(props: FormItemProps) {
             )}
             <FormMessage/>
         </FormItem>
-    )
+    );
 }

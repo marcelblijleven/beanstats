@@ -20,5 +20,5 @@ export default async function AddCoffeePage() {
             />
             <CoffeeForm roasters={roasters} />
         </>
-    )
+    );
 }

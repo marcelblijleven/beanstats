@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
     type ColumnDef,
@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-table";
 import {createSelectSchema} from "drizzle-zod";
 import Link from "next/link";
-import {useRouter, useSearchParams} from 'next/navigation'
+import {useRouter, useSearchParams} from 'next/navigation';
 import {type z} from "zod";
 
 import {DataTableComponent} from "@/components/overview-pages/data-table";
@@ -34,7 +34,7 @@ export const columns: ColumnDef<CafeBrew>[] = [
                     className={"w-[200px] inline-block whitespace-nowrap truncate overflow-ellipsis hover:underline"}
                     href={`/brews/cafe/${publicId}`}>{row.getValue("type")}
                 </Link>
-            )
+            );
         },
         header: "Type",
     },
@@ -68,7 +68,7 @@ export const columns: ColumnDef<CafeBrew>[] = [
         accessorKey: "rating",
         header: "Rating",
     },
-]
+];
 
 export function CafeBrewDataTable({data}: DataTableProps<CafeBrew>) {
     const router = useRouter();
@@ -86,7 +86,7 @@ export function CafeBrewDataTable({data}: DataTableProps<CafeBrew>) {
                 publicId: false,
             }
         }
-    })
+    });
 
     return (
         <div>
@@ -110,5 +110,5 @@ export function CafeBrewDataTable({data}: DataTableProps<CafeBrew>) {
                 </Button>
             </div>
         </div>
-    )
+    );
 }

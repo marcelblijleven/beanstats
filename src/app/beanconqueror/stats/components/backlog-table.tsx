@@ -25,7 +25,7 @@ const BacklogTable = (props: BacklogTableProps) => (
         <TableBody>
             {props.beans.map(bean => {
                 const usage = props.usage[bean.config.uuid] || 0;
-                const remaining = !!bean.weight ? (bean.weight - usage).toFixed(2) : "-"
+                const remaining = !!bean.weight ? (bean.weight - usage).toFixed(2) : "-";
 
                 return (
                     <TableRow key={bean.config.uuid}>
@@ -43,4 +43,4 @@ const BacklogTable = (props: BacklogTableProps) => (
     </Table>
     );
 
-export default BacklogTable
+export default BacklogTable;

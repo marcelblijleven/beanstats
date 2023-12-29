@@ -57,5 +57,5 @@ export default async function CafeBrewsPage({searchParams}: { searchParams: Reco
                 <CafeBrewDataTable data={brews} />
             </section>
         </>
-    )
+    );
 }

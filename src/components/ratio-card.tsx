@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {type ChangeEvent, type ReactNode, useState} from "react";
 
@@ -22,7 +22,7 @@ const UserInputGroup = ({children}: {children: ReactNode}) => (
     <div className={"flex flex-col md:flex-row gap-2 md:gap-4"}>
         {children}
     </div>
-)
+);
 
 const UserInput = ({id, label, value, onChange, prefix}: UserInputProps) => (
     <div className="flex flex-col items-left w-full gap-1.5">
@@ -49,7 +49,7 @@ const UserInput = ({id, label, value, onChange, prefix}: UserInputProps) => (
             />
         )}
     </div>
-)
+);
 
 
 const CalculatedValue = ({title, value}: {title: string, value: string}) => (
@@ -58,7 +58,7 @@ const CalculatedValue = ({title, value}: {title: string, value: string}) => (
         <span className={"font-bold text-5xl"}>{value}</span>
     </div>
 
-)
+);
 
 
 const RatioCard = () => {
@@ -111,7 +111,7 @@ const RatioCard = () => {
                 </Tabs>
             </CardContent>
         </Card>
-    )
-}
+    );
+};
 
-export default RatioCard
+export default RatioCard;

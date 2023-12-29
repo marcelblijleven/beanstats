@@ -13,7 +13,7 @@ const selectSchema = createSelectSchema(beans).extend({
 });
 const selectWithFreezeEntriesSchema = selectSchema.extend({
     freezeEntries: z.array(createSelectSchema(freezeEntries)),
-})
+});
 
 
 type SelectBean = Omit<z.infer<typeof selectSchema>, "id">;
@@ -27,7 +27,7 @@ export async function getBeanDetails(publicId: string, userId: number | undefine
     const where = userId ? and(
             eq(beans.publicId, publicId),
             or(eq(beans.userId, userId), eq(beans.isPublic, true))) :
-        and(eq(beans.publicId, publicId), eq(beans.isPublic, true))
+        and(eq(beans.publicId, publicId), eq(beans.isPublic, true));
 
     const bean = await db.query.beans.findFirst({
         where: where,
@@ -49,7 +49,7 @@ export async function getBeanDetailsWithFreezeEntries(publicId: string, userId: 
     const where = userId ? and(
             eq(beans.publicId, publicId),
             or(eq(beans.userId, userId), eq(beans.isPublic, true))) :
-        and(eq(beans.publicId, publicId), eq(beans.isPublic, true))
+        and(eq(beans.publicId, publicId), eq(beans.isPublic, true));
 
     const bean = await db.query.beans.findFirst({
         where: where,

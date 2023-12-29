@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {useUser} from "@clerk/nextjs";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -36,7 +36,7 @@ const defaultValues: Omit<CafeBrewInputs, "publicId" | "id" | "userId"> = {
     cafeCountry: "",
     rating: undefined,
     isPublic: false,
-}
+};
 
 export function CafeBrewForm(props: CafeBrewFormProps) {
     const {isLoaded, user} = useUser();
@@ -47,7 +47,7 @@ export function CafeBrewForm(props: CafeBrewFormProps) {
     const values = {
         ...(props.values ?? defaultValues),
         userId: user?.publicMetadata.databaseId as number
-    }
+    };
 
     const form = useForm<CafeBrewInputs>({
         mode: "onSubmit",
@@ -56,10 +56,10 @@ export function CafeBrewForm(props: CafeBrewFormProps) {
     });
 
 
-    const dirtyFields = form.formState.dirtyFields as DirtyFields
+    const dirtyFields = form.formState.dirtyFields as DirtyFields;
     const submitFormData: SubmitHandler<CafeBrewInputs> = async values => {
-        const fields: DirtyFields = {...dirtyFields, type: true, cafe: true}
-        const formValues = prepareFormValues<CafeBrewInputs>(values, fields, [], ["date"])
+        const fields: DirtyFields = {...dirtyFields, type: true, cafe: true};
+        const formValues = prepareFormValues<CafeBrewInputs>(values, fields, [], ["date"]);
         const result = await submitCafeBrewForm(formValues,);
 
         if (!result.success) {
@@ -75,11 +75,11 @@ export function CafeBrewForm(props: CafeBrewFormProps) {
             return router.push(`/brews/cafe/${result.publicId}`);
         }
 
-        return router.push("/brews/cafe")
-    }
+        return router.push("/brews/cafe");
+    };
 
     if (!isLoaded) {
-        return null
+        return null;
     }
 
     return (
@@ -235,5 +235,5 @@ export function CafeBrewForm(props: CafeBrewFormProps) {
                 </div>
             </form>
         </Form>
-    )
+    );
 }

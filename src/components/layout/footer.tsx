@@ -21,5 +21,5 @@ export default async function Footer() {
                 </Link>
             </div>
         </footer>
-    )
+    );
 }

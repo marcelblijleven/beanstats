@@ -20,23 +20,23 @@ type PageProps = {
 
 export async function generateMetadata({params}: PageProps, parent: ResolvingMetadata,): Promise<Metadata> {
     // read route params
-    const id = params.coffeeId
+    const id = params.coffeeId;
 
     // fetch data
-    const entry = await getFreezeEntry(id, undefined)
+    const entry = await getFreezeEntry(id, undefined);
 
     if (!entry || !entry.isPublic) {
-        const title = (await parent).title
+        const title = (await parent).title;
         return {
             title: title ?? "Coffee",
             description: "Keep track of your coffee backlog"
-        }
+        };
     }
 
     return {
         title: entry.beanName,
         description: `Freeze entry`
-    }
+    };
 }
 
 function Buttons({user, entry} :{user: User | null, entry: Awaited<ReturnType<typeof getFreezeEntry>>}) {
@@ -53,7 +53,7 @@ function Buttons({user, entry} :{user: User | null, entry: Awaited<ReturnType<ty
 
 export default async function FreezeEntryDetailPage({ params }: { params: { entryId: string } }) {
     const user: User | null = await currentUser();
-    const entry =  await getFreezeEntry(params.entryId, user?.publicMetadata?.databaseId as number || undefined)
+    const entry =  await getFreezeEntry(params.entryId, user?.publicMetadata?.databaseId as number || undefined);
 
     if (!entry || !canView(user, entry)) return notFound();
 
@@ -66,5 +66,5 @@ export default async function FreezeEntryDetailPage({ params }: { params: { entr
             <Buttons user={user} entry={entry} />
             <FreezeEntryDetail entry={entry} />
         </>
-    )
+    );
 }

@@ -31,5 +31,5 @@ export default function DashboardPage() {
             </section>
             <StatsCardSection />
         </div>
-    )
+    );
 }

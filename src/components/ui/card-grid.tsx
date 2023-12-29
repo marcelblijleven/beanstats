@@ -10,4 +10,4 @@ const CardGrid = ({className, children, ...props}: CardGridProps) => (
     </div>
 );
 
-export default CardGrid
+export default CardGrid;

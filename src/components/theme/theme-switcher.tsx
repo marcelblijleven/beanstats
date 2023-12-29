@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {Laptop, MoonStar, Sun} from "lucide-react";
 import {useTheme} from "next-themes";
@@ -33,8 +33,8 @@ const ThemeSwitcher = () => {
                 </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
-    )
+    );
 
-}
+};
 
 export default ThemeSwitcher;

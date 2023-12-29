@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {Check, Copy, type LucideIcon} from "lucide-react";
 import {createElement, useState} from "react";
@@ -13,10 +13,10 @@ const CopyContainer = ({value, displayValue}: {value: string, displayValue?: str
             await navigator.clipboard.writeText(value);
             setIcon(Check);
             setTimeout(() => setIcon(Copy), 5000);
-        }
+        };
 
         void writeToClipboard();
-    }
+    };
 
     return (
         <div className={"flex items-center justify-between rounded-lg border bg-card text-card-foreground shadow-sm"}>
@@ -25,7 +25,7 @@ const CopyContainer = ({value, displayValue}: {value: string, displayValue?: str
                 {createElement(icon)}
             </Button>
         </div>
-    )
-}
+    );
+};
 
-export default CopyContainer
+export default CopyContainer;

@@ -1,8 +1,8 @@
-import './globals.css'
+import './globals.css';
 import {ClerkProvider} from "@clerk/nextjs";
 import {Analytics} from '@vercel/analytics/react';
 import {type Metadata} from "next";
-import {Inter} from 'next/font/google'
+import {Inter} from 'next/font/google';
 import {type ReactNode} from "react";
 
 import Footer from "@/components/layout/footer";
@@ -12,7 +12,7 @@ import {Toaster} from "@/components/ui/toaster";
 import {cn} from "@/lib/utils";
 
 
-const inter = Inter({subsets: ['latin']})
+const inter = Inter({subsets: ['latin']});
 
 export const metadata: Metadata = {
     title: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
         default: 'Beanstats',
     },
     description: "Coffee tools, statistics and visualisations"
-}
+};
 
 export default function RootLayout({children}: { children: ReactNode }) {
     return (
@@ -41,5 +41,5 @@ export default function RootLayout({children}: { children: ReactNode }) {
             </body>
             </html>
         </ClerkProvider>
-    )
+    );
 }

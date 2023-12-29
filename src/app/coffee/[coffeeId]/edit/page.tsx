@@ -14,7 +14,7 @@ export default async function EditCoffeePage({ params }: { params: { coffeeId: s
 
     if (!user) return notFound();
 
-    const bean =  await getBeanDetails(params.coffeeId, user.publicMetadata.databaseId as number)
+    const bean =  await getBeanDetails(params.coffeeId, user.publicMetadata.databaseId as number);
 
     if (!bean) return notFound();
 
@@ -32,7 +32,7 @@ export default async function EditCoffeePage({ params }: { params: { coffeeId: s
         varieties: bean.varieties,
         weight: bean.weight
 
-    }
+    };
 
     return (
         <>
@@ -42,5 +42,5 @@ export default async function EditCoffeePage({ params }: { params: { coffeeId: s
             />
             <CoffeeForm roasters={[]} values={values}/>
         </>
-    )
+    );
 }

@@ -7,7 +7,7 @@ import {users} from "@/db/schema";
 export const revalidate = 3600;
 
 export const getPublicUserId = cache(async (userId: number)=> {
-    if (!userId) return
+    if (!userId) return;
 
     const result = await db
         .select({publicId: users.publicId})

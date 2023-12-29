@@ -12,7 +12,7 @@ export default async function AddFreezeEntryPage({searchParams}: {searchParams: 
     if (!user) return notFound();
 
     const beanPublicID = searchParams.id;
-    const beanName = searchParams.bean
+    const beanName = searchParams.bean;
     const forBean = !!beanPublicID && !!beanName;
 
     let beans;
@@ -31,6 +31,6 @@ export default async function AddFreezeEntryPage({searchParams}: {searchParams: 
             />
             <FreezeEntryForm beans={beans} forBean={forBean} />
         </>
-    )
+    );
 }
 

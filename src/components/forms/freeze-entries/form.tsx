@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {zodResolver} from "@hookform/resolvers/zod";
 import {type CheckedState} from "@radix-ui/react-checkbox";
@@ -25,7 +25,7 @@ type FreezeEntryFormProps = {
 }
 
 export function FreezeEntryForm(props: FreezeEntryFormProps) {
-    const disabled = (props.forBean ?? !!props.values?.beanPublicId) || !props.beans?.length
+    const disabled = (props.forBean ?? !!props.values?.beanPublicId) || !props.beans?.length;
     const {toast} = useToast();
 
     const pathname = usePathname();
@@ -47,7 +47,7 @@ export function FreezeEntryForm(props: FreezeEntryFormProps) {
 
     const onSubmit = async (values: Partial<FreezeEntryInput>) => {
         const dirtyFields = form.formState.dirtyFields;
-        const prepared = prepareFormValues(values, dirtyFields, ["beanPublicId", "label", "weight"], ["freezeDate"])
+        const prepared = prepareFormValues(values, dirtyFields, ["beanPublicId", "label", "weight"], ["freezeDate"]);
         let parsed;
 
         if (isEdit) {
@@ -62,7 +62,7 @@ export function FreezeEntryForm(props: FreezeEntryFormProps) {
                 description: parsed.error.message,
                 variant: "destructive"
             });
-            return
+            return;
         }
 
         const result = await saveFreezeEntry(parsed.data);
@@ -73,7 +73,7 @@ export function FreezeEntryForm(props: FreezeEntryFormProps) {
                 description: result.detail,
                 variant: "destructive",
             });
-            return
+            return;
         }
 
         toast({
@@ -83,7 +83,7 @@ export function FreezeEntryForm(props: FreezeEntryFormProps) {
         });
 
         router.push(`/coffee/freeze/${result.publicId}`);
-    }
+    };
 
     return (
         <Form {...form}>
@@ -180,5 +180,5 @@ export function FreezeEntryForm(props: FreezeEntryFormProps) {
                 {JSON.stringify(form.formState.errors)}
             </form>
         </Form>
-    )
+    );
 }

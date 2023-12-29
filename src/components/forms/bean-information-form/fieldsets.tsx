@@ -86,7 +86,7 @@ export function GeneralInformationFieldset({form}: FieldsetProps) {
                 enum={BeanMix}
             />
         </fieldset>
-    )
+    );
 }
 
 export function MoreInformationFieldset({form}: FieldsetProps) {
@@ -175,7 +175,7 @@ export function MoreInformationFieldset({form}: FieldsetProps) {
                 )}
             />
         </fieldset>
-    )
+    );
 }
 
 export function VarietyInformationFieldset<TFieldValues extends FieldValues = FieldValues>({index, remove, form}: VarietyInformationFieldsetProps<TFieldValues>) {
@@ -295,5 +295,5 @@ export function VarietyInformationFieldset<TFieldValues extends FieldValues = Fi
                 />
             </HorizontalGroup>
         </fieldset>
-    )
+    );
 }

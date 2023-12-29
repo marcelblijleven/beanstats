@@ -11,7 +11,7 @@ export const metadata: Metadata = {
         description: "View the contents of a Beanconqueror (share) link",
         images: ["/beanconqueror_logo.png"],
     },
-}
+};
 
 export default function ViewLinkPage() {
     return (
@@ -21,5 +21,5 @@ export default function ViewLinkPage() {
             </h1>
             <ViewLinkContainer />
         </PageShell>
-    )
+    );
 }

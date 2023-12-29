@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {StatsContainer} from "@/components/beanconqueror/stats/StatsContainer";
 import PageShell from "@/components/layout/page-shell";
@@ -14,5 +14,5 @@ export default function BeanconquerorPage() {
             </p>
             <StatsContainer />
         </PageShell>
-    )
+    );
 }

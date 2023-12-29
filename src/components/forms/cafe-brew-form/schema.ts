@@ -4,7 +4,7 @@ import {cafeBrews} from "@/db/schema";
 
 const optionalStringWithMinLength = (length: number, name: string) => z.union(
     [z.literal(""), z.string().min(length, `${name} should be at least ${length} characters`)]
-).optional()
+).optional();
 
 export const cafeBrewInsertSchema  = createInsertSchema(cafeBrews, {
     type: z.string().min(3, "Type should be at least 3 characters"),

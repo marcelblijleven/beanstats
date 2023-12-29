@@ -14,7 +14,7 @@ export default async function EditFreezeEntryPage({ params }: { params: { entryI
 
     if (!user) return notFound();
 
-    const entry =  await getFreezeEntry(params.entryId, user.publicMetadata.databaseId as number)
+    const entry =  await getFreezeEntry(params.entryId, user.publicMetadata.databaseId as number);
 
     if (!entry) return notFound();
 
@@ -26,7 +26,7 @@ export default async function EditFreezeEntryPage({ params }: { params: { entryI
         freezeDate: entry.freezeDate ?? undefined,
         frozen: entry.frozen,
         notes: entry.notes ?? ""
-    }
+    };
 
     const beans = await getCoffeeIdsForUsers(user.publicMetadata.databaseId as number);
 
@@ -38,5 +38,5 @@ export default async function EditFreezeEntryPage({ params }: { params: { entryI
             />
             <FreezeEntryForm values={values} beans={beans}/>
         </>
-    )
+    );
 }

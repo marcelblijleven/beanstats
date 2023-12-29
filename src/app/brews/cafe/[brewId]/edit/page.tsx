@@ -12,7 +12,7 @@ export default async function EditCoffeePage({ params }: { params: { brewId: str
 
     if (!user) return notFound();
 
-    const brew =  await getCafeBrewDetails(params.brewId, user.publicMetadata.databaseId as number)
+    const brew =  await getCafeBrewDetails(params.brewId, user.publicMetadata.databaseId as number);
 
     if (!brew) return notFound();
 
@@ -29,7 +29,7 @@ export default async function EditCoffeePage({ params }: { params: { brewId: str
         price: brew.price ?? "",
         rating: brew.rating !== null ? [brew.rating] : undefined,
         isPublic: brew.isPublic,
-    }
+    };
 
     return (
         <>
@@ -39,5 +39,5 @@ export default async function EditCoffeePage({ params }: { params: { brewId: str
             />
             <CafeBrewForm values={values}/>
         </>
-    )
+    );
 }

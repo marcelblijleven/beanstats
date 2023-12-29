@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {useClerk} from "@clerk/nextjs";
 
@@ -15,5 +15,5 @@ export default function SignOutButton() {
             Sign out
         </Button>
 
-    )
+    );
 }

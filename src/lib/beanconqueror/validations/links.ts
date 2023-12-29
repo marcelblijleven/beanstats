@@ -13,4 +13,4 @@ export const shortenLinkSchema = z.object({
 
 export const viewLinkSchema = z.object({
     link: anyLinkUrl,
-})
+});

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {type ColumnDef, getCoreRowModel, getPaginationRowModel, useReactTable} from "@tanstack/react-table";
 import {createSelectSchema} from "drizzle-zod";
@@ -18,7 +18,7 @@ const selectSchema = createSelectSchema(beans).extend({
     freezeEntries: z.array(createSelectSchema(freezeEntries)),
 }).extend({
 
-})
+});
 
 export type Coffee = z.infer<typeof selectSchema>
 
@@ -37,7 +37,7 @@ export const columns: ColumnDef<Coffee>[] = [
                 >
                     {row.getValue("name")}
                 </Link>
-            )
+            );
         },
         header: "Name",
     },
@@ -86,10 +86,10 @@ export const columns: ColumnDef<Coffee>[] = [
     {
         accessorFn: (row) => row.freezeEntries.reduce((acc, current): number => {
             if (current.frozen) {
-                return acc + parseFloat(current.weight)
+                return acc + parseFloat(current.weight);
             }
 
-            return acc
+            return acc;
         }, 0),
         header: "Total frozen",
     },
@@ -97,7 +97,7 @@ export const columns: ColumnDef<Coffee>[] = [
         accessorFn: (row) => row.isPublic ? "Yes" : "No",
         header: "Public",
     },
-]
+];
 
 export function CoffeeDataTable({data}: DataTableProps<Coffee>) {
     const router = useRouter();
@@ -146,5 +146,5 @@ export function CoffeeDataTable({data}: DataTableProps<Coffee>) {
                 </Button>
             </div>
         </div>
-    )
+    );
 }

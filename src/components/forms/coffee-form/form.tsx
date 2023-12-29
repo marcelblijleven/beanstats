@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {useUser} from "@clerk/nextjs";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -15,7 +15,7 @@ import {
     type UseFormReturn
 } from "react-hook-form";
 
-import {type CoffeeFormInputs, coffeeFormSchema} from "@/components/forms/coffee-form/schema"
+import {type CoffeeFormInputs, coffeeFormSchema} from "@/components/forms/coffee-form/schema";
 import {submitCoffeeForm} from "@/components/forms/coffee-form/actions/submit-coffee-form";
 import {ResetButton, SubmitButton} from "@/components/forms/coffee-form/form-buttons";
 import DatePickerInput from "@/components/forms/inputs/date-picker";
@@ -51,7 +51,7 @@ const defaultVarietyValues = {
     farmer: "",
     elevation: "",
     beanId: null,
-}
+};
 
 const defaultValues = {
     name: "",
@@ -64,7 +64,7 @@ const defaultValues = {
     isPublic: false,
     isArchived: false,
     varieties: [{...defaultVarietyValues}],
-}
+};
 
 function VarietyFieldset<TFieldValues extends FieldValues = FieldValues>({
      index,
@@ -183,7 +183,7 @@ function VarietyFieldset<TFieldValues extends FieldValues = FieldValues>({
                 )}
             />
         </>
-    )
+    );
 }
 
 export function CoffeeForm(props: CoffeeFormProps) {
@@ -208,7 +208,7 @@ export function CoffeeForm(props: CoffeeFormProps) {
         control: form.control,
         rules: {minLength: 0, maxLength: 10}
     });
-    const dirtyFields = form.formState.dirtyFields
+    const dirtyFields = form.formState.dirtyFields;
 
     useEffect(() => {
         form.reset(props.values);
@@ -247,9 +247,9 @@ export function CoffeeForm(props: CoffeeFormProps) {
             return router.push(`/coffee/${result.publicId}`);
         }
 
-        return router.push("/coffee")
+        return router.push("/coffee");
 
-    }
+    };
 
     return (
         <Form {...form}>
@@ -305,10 +305,10 @@ export function CoffeeForm(props: CoffeeFormProps) {
                     <h3 className={"text-lg font-bold"}>Varieties</h3>
                     {fields.reduce((acc, field, index) => {
                         acc.push(<VarietyFieldset key={`variety-${index}`} index={index} form={form} field={field}
-                                                  remove={remove}/>)
+                                                  remove={remove}/>);
 
                         if (index !== fields.length - 1) {
-                            acc.push(<Separator key={`variety-${index}-separator`} className={"my-3"} orientation={"horizontal"}/>)
+                            acc.push(<Separator key={`variety-${index}-separator`} className={"my-3"} orientation={"horizontal"}/>);
                         }
                         return acc;
                     }, [] as ReactNode[])}
@@ -409,5 +409,5 @@ export function CoffeeForm(props: CoffeeFormProps) {
             </form>
         {/*    TODO: show form errors not related to fields here*/}
         </Form>
-    )
+    );
 }

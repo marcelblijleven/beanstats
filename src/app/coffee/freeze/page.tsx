@@ -22,7 +22,7 @@ async function getFreezeEntries(userId: number, page: number, defrosted: boolean
         orderBy: (freezeEntries, {desc}) => [desc(freezeEntries.created), desc(freezeEntries.id)],
         limit: pageSize + 1,
         offset: (page - 1) * pageSize
-    })
+    });
 }
 
 export default async function FreezeEntriesPage({searchParams}: {searchParams: Record<string, string | string[] | undefined>}) {
@@ -59,5 +59,5 @@ export default async function FreezeEntriesPage({searchParams}: {searchParams: R
                 <FreezeEntryDataTable columns={columns} data={data} />
             </section>
         </>
-    )
+    );
 }

@@ -8,4 +8,4 @@ export {
     Rating,
     SharedBean,
     ViewLinkContainer,
-}
+};

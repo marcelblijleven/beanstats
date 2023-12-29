@@ -48,7 +48,7 @@ function getBeanStatistics(beans: Bean[]): BeanStatistics {
             info.country && increaseCountOfKey(countryCount, info.country.trim());
             info.variety && increaseCountOfKey(varietyCount, info.variety.trim());
             info.processing && increaseCountOfKey(processingCount, info.processing.trim());
-        })
+        });
     }
 
     return {
@@ -73,7 +73,7 @@ function getBrewStatistics(brews: Brew[]): BrewStatistics {
     for (const brew  of brews) {
         // Brews per day
         if (!brew.config.unix_timestamp) {
-            continue
+            continue;
         }
         const date = new Date(brew.config.unix_timestamp * 1000);
 
@@ -87,20 +87,20 @@ function getBrewStatistics(brews: Brew[]): BrewStatistics {
 
         if (brew.grind_weight) {
             // Usage per bean
-            increaseCountOfKey(usagePerBean, brew.bean, brew.grind_weight)
+            increaseCountOfKey(usagePerBean, brew.bean, brew.grind_weight);
 
             // Usage per grinder
-            increaseCountOfKey(usagePerGrinder, brew.mill, brew.grind_weight)
+            increaseCountOfKey(usagePerGrinder, brew.mill, brew.grind_weight);
 
             // Total usage
-            grindWeights.push(brew.grind_weight)
+            grindWeights.push(brew.grind_weight);
         }
 
         // Brews per grinder
-        increaseCountOfKey(brewsPerGrinder, brew.mill)
+        increaseCountOfKey(brewsPerGrinder, brew.mill);
 
         // Brews per preparation method
-        increaseCountOfKey(brewsPerPreparationMethod, brew.method_of_preparation)
+        increaseCountOfKey(brewsPerPreparationMethod, brew.method_of_preparation);
     }
 
     const totalGroundWeight = grindWeights.reduce((prev, current) => prev + current, 0);
@@ -124,12 +124,12 @@ function getBrewStatistics(brews: Brew[]): BrewStatistics {
 
 
 export function processBCFile(contents: string | BCData, callback: (data: Statistics) => void) {
-    let data: BCData
+    let data: BCData;
 
     if (typeof contents === "string") {
-        data = (JSON.parse(contents) as BCData)
+        data = (JSON.parse(contents) as BCData);
     } else {
-        data = contents
+        data = contents;
     }
 
     const preparationMapping = createMappingByUUID<Preparation>(data.PREPARATION);
@@ -144,7 +144,7 @@ export function processBCFile(contents: string | BCData, callback: (data: Statis
         preparationMapping,
         ...brewStatistics,
         ...beanStatistics,
-    }
+    };
 
     callback(statistics);
 }

@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import {currentUser} from "@clerk/nextjs";
 import {type User} from "@clerk/nextjs/api";
@@ -26,12 +26,12 @@ export async function saveFreezeEntry(data: Partial<FreezeEntryInput>) {
         )
     });
 
-    if (!bean) return {success: false, publicId: data.publicId ?? null, detail: "bean not found"}
+    if (!bean) return {success: false, publicId: data.publicId ?? null, detail: "bean not found"};
 
     const beanId = bean.id;
 
-    delete data.beanPublicId // delete this here, otherwise drizzle will throw an error when inserting/updating
-    const values = {...data, beanId: beanId, userId: user.publicMetadata.databaseId} as z.infer<typeof freezeEntrySchema>
+    delete data.beanPublicId; // delete this here, otherwise drizzle will throw an error when inserting/updating
+    const values = {...data, beanId: beanId, userId: user.publicMetadata.databaseId} as z.infer<typeof freezeEntrySchema>;
 
     if (!!data.publicId) {
         // Update existing entry
@@ -46,16 +46,16 @@ export async function saveFreezeEntry(data: Partial<FreezeEntryInput>) {
             );
 
         // Revalidate path since we've modified the content
-        revalidatePath(`/coffee/freeze/${data.publicId}`, "page")
-        return {success: true, publicId: data.publicId, detail: "successfully updated entry"}
+        revalidatePath(`/coffee/freeze/${data.publicId}`, "page");
+        return {success: true, publicId: data.publicId, detail: "successfully updated entry"};
     }
 
     // New entry
     const result = await db.insert(freezeEntries).values(values);
     const [dbData] = await db.select({publicId: freezeEntries.publicId}).from(freezeEntries).where(
         eq(freezeEntries.id, parseInt(result.insertId))
-    )
+    );
 
-    return {success: true, publicId: dbData.publicId, detail: "successfully created entry"}
+    return {success: true, publicId: dbData.publicId, detail: "successfully created entry"};
 
 }

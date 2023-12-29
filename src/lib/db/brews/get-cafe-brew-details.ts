@@ -18,7 +18,7 @@ export async function getCafeBrewDetails(publicId: string, userId: number | unde
     const where = userId ? and(
             eq(cafeBrews.publicId, publicId),
             or(eq(cafeBrews.userId, userId), eq(cafeBrews.isPublic, true))) :
-        and(eq(cafeBrews.publicId, publicId), eq(cafeBrews.isPublic, true))
+        and(eq(cafeBrews.publicId, publicId), eq(cafeBrews.isPublic, true));
 
     const brew = await db.query.cafeBrews.findFirst({
         where: where,

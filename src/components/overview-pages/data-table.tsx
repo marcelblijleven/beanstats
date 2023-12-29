@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import type {ColumnDef, Table as TableType} from "@tanstack/react-table";
 import {flexRender} from "@tanstack/react-table";
@@ -27,7 +27,7 @@ export function DataTableComponent<TData>(props: DataTableComponentProps<TData>)
                                                 header.getContext()
                                             )}
                                     </TableHead>
-                                )
+                                );
                             })}
                         </TableRow>
                     ))}
@@ -56,5 +56,5 @@ export function DataTableComponent<TData>(props: DataTableComponentProps<TData>)
                 </TableBody>
             </Table>
         </div>
-    )
+    );
 }

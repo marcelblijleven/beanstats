@@ -29,7 +29,7 @@ export const getMetrics = cache(async (userId: number): Promise<Metrics> => {
         favoriteRoastersByWeight: [],
         favoriteVarieties: [],
         favoriteOrigins: [],
-    }
+    };
 
     const [roaster] = await db
         .select({ count: sql<number>`count(*)`})
@@ -42,7 +42,7 @@ export const getMetrics = cache(async (userId: number): Promise<Metrics> => {
     const [cafeBrew] = await db
         .select({count: sql<number>`count(*)`})
         .from(cafeBrews)
-        .where(eq(cafeBrews.userId, userId))
+        .where(eq(cafeBrews.userId, userId));
     const [freezer] = await db
         .select({count: sql<number>`count(*)`})
         .from(freezeEntries)
@@ -86,8 +86,8 @@ export const getMetrics = cache(async (userId: number): Promise<Metrics> => {
 
     // Split roasters into by bag and by weight
     for (const row of favoriteRoasters.rows as {name: string, total: string, total_weight: string}[]) {
-        favoriteRoastersByBag.push({name: row.name, total: row.total})
-        favoriteRoastersByWeight.push({name: row.name, total: row.total_weight})
+        favoriteRoastersByBag.push({name: row.name, total: row.total});
+        favoriteRoastersByWeight.push({name: row.name, total: row.total_weight});
     }
 
     // "By bag" is sorted correctly by the database, need to re-sort "by weight"

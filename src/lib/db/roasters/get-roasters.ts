@@ -7,7 +7,7 @@ import {roasters} from "@/db/schema";
 export const revalidate = 900; // Revalidate every 15 minutes at most
 
 export const getRoasters = cache(async (userId: number)=> {
-    if (!userId) return
+    if (!userId) return;
 
     const result = await db
         .select({ id: roasters.id, name: roasters.name })

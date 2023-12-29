@@ -33,7 +33,7 @@ const LabelledValue = ({
                                 const content = getTextWithFlagSupport(part.trim().toLowerCase());
                                 return (
                                     <Badge variant={"outline"} className={"shrink-0"} key={part.trim()}>{content}</Badge>
-                                )
+                                );
                             })}
                         </div>
                     );
@@ -55,7 +55,7 @@ const LabelledValue = ({
             <span className={"text-xs font-semibold"}>{label}</span>
             <span className={"text-md capitalize"}>{parsed as string | ReactNode}</span>
         </div>
-    )
-}
+    );
+};
 
-export default LabelledValue
+export default LabelledValue;

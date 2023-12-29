@@ -30,7 +30,7 @@ export function StatsCardSkeleton() {
                 <Skeleton className={"h-3 mt-2"}/>
             </CardContent>
         </Card>
-    )
+    );
 }
 
 export function FavoriteStatsCardSkeleton() {
@@ -57,7 +57,7 @@ export function FavoriteStatsCardSkeleton() {
                 </div>
             </CardContent>
         </Card>
-    )
+    );
 }
 
 export function StatsCard(props: StatsCardProps) {
@@ -74,7 +74,7 @@ export function StatsCard(props: StatsCardProps) {
                 <p className={"text-xs text-muted-foreground"}>{props.subtitle}</p>
             </CardContent>
         </Card>
-    )
+    );
 }
 
 function FavoriteRow(props: { name: string, total: string }) {
@@ -83,7 +83,7 @@ function FavoriteRow(props: { name: string, total: string }) {
             <div className={"flex-1 grow shrink-0 truncate"}>{props.name}</div>
             <div className={"ml-4"}>{props.total}</div>
         </div>
-    )
+    );
 }
 
 export function FavoriteStatsCard(props: FavoriteStatsCardProps) {
@@ -110,5 +110,5 @@ export function FavoriteStatsCard(props: FavoriteStatsCardProps) {
                 )}
             </CardContent>
         </Card>
-    )
+    );
 }

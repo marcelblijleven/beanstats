@@ -9,7 +9,7 @@ export function SubmitButton({loading, disabled}: {loading: boolean, disabled: b
             Submit
             {loading && <Loader className={"animate-spin h-4 w-4 ml-2"} />}
         </Button>
-    )
+    );
 }
 
 function CancelButton() {
@@ -25,7 +25,7 @@ function CancelButton() {
         >
             Cancel
         </Button>
-    )
+    );
 }
 
 export function ResetButton({onClick}: {onClick: () => void}) {
@@ -42,5 +42,5 @@ export function ResetButton({onClick}: {onClick: () => void}) {
         >
             Reset
         </Button>
-    )
+    );
 }

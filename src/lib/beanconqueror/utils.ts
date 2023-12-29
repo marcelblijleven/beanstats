@@ -19,7 +19,7 @@ export function increaseCountOfKey(mapping: Mapping<number>, key: string, value?
     if (key.includes(",")) {
         const subKeys = key.split(",");
         for (const subKey of subKeys) increaseCountOfKey(mapping, subKey, value);
-        return
+        return;
     }
 
     const lcKey = key.toLowerCase().trim();

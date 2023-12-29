@@ -16,5 +16,5 @@ export function Alert(props: AlertProps) {
                 {props.description}
             </AlertDescription>
         </AlertComponent>
-    )
+    );
 }

@@ -48,20 +48,20 @@ export async function POST(req: Request) {
             "svix-id": svixId,
             "svix-timestamp": svixTimestamp,
             "svix-signature": svixSignature,
-        }) as WebhookEvent
+        }) as WebhookEvent;
     } catch (err) {
         console.error("Error verifying webhook:", err);
-        return new Response("Error occurred", {status: 400})
+        return new Response("Error occurred", {status: 400});
     }
 
     try {
         await handleEvent(event);
-        return new Response(null, {status: 204})
+        return new Response(null, {status: 204});
     } catch (err) {
         if (err instanceof Error) {
-            return new Response(`Error occurred: ${err.message}`, {status: 400})
+            return new Response(`Error occurred: ${err.message}`, {status: 400});
         }
 
-        return new Response("Error occurred while handling webhook", {status: 400})
+        return new Response("Error occurred while handling webhook", {status: 400});
     }
 }
