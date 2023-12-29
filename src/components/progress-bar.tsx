@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import * as Progress from "@radix-ui/react-progress";
 import {useEffect, useState} from "react";
@@ -14,7 +14,7 @@ export default function ProgressBar(props: Props) {
 
     useEffect(() => {
         setTimeout(() => {
-            setProgress(progressPercentage)
+            setProgress(progressPercentage);
         }, 300);
     }, [progressPercentage]);
 
@@ -29,5 +29,5 @@ export default function ProgressBar(props: Props) {
                 style={{transform: `translateX(-${100 - progress}%)`}}
             />
         </Progress.Root>
-    )
+    );
 }

@@ -44,7 +44,7 @@ const formSchemaToBeanProto = (values: beanInformationFormSchema) => BeanProto.c
             percentage: !!info.percentage ? parseInt(info.percentage) : null,
             purchasingPrice: !!info.purchasePrice ? parseInt(info.purchasePrice) : null,
             fobPrice: !!info.fobPrice ? parseInt(info.fobPrice) : null,
-        })
+        });
     }) ?? [],
     beanRoastingType: values.beanRoastingType ? BeanRoastingType[values.beanRoastingType] : BeanRoastingType.UNKNOWN_BEAN_ROASTING_TYPE,
     beanRoastInformation: BeanRoastInformation.create({
@@ -85,11 +85,11 @@ const buildURL = (encoded: string, limit = 400): string => {
 
     for (let i = 0; i < length; i++) {
         const key = `shareUserBean${i}`;
-        url.searchParams.set(key, encoded.substring(i * limit, i * limit + limit))
+        url.searchParams.set(key, encoded.substring(i * limit, i * limit + limit));
     }
 
     return url.toString();
-}
+};
 
 
 export const createUrlFromFormSchema = (values: beanInformationFormSchema) => {
@@ -97,4 +97,4 @@ export const createUrlFromFormSchema = (values: beanInformationFormSchema) => {
     const encoded = btoa(String.fromCharCode(...Array.from(new Uint8Array(bytes))));
     return buildURL(encoded);
 
-}
+};

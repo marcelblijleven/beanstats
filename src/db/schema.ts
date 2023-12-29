@@ -1,5 +1,5 @@
 import {relations, sql} from "drizzle-orm";
-import {mysqlTable, serial, text, varchar, int, timestamp, date, decimal, boolean, index} from 'drizzle-orm/mysql-core'
+import {mysqlTable, serial, text, varchar, int, timestamp, date, decimal, boolean, index} from 'drizzle-orm/mysql-core';
 
 import {generateNanoid} from "./utils";
 
@@ -15,7 +15,7 @@ export const users = mysqlTable("users", {
     return {
         publicIdIndex: index("public_id_index").on(table.publicId),
         clerkIdIndex: index("clerk_id_index").on(table.clerkId),
-    }
+    };
 });
 
 
@@ -32,7 +32,7 @@ export const roasters = mysqlTable("roasters", {
         publicIdIndex: index("public_id_index").on(table.publicId),
         userIdIndex: index("user_id_index").on(table.userId),
         nameIndex: index("name_index").on(table.name),
-    }
+    };
 });
 
 export const beanVarieties = mysqlTable("varieties", {
@@ -51,7 +51,7 @@ export const beanVarieties = mysqlTable("varieties", {
         beanId: index("bean_id_index").on(table.beanId),
         nameIndex: index("name_index").on(table.name),
         processingIndex: index("processing_index").on(table.processing),
-    }
+    };
 });
 
 export const beans = mysqlTable("beans", {
@@ -79,7 +79,7 @@ export const beans = mysqlTable("beans", {
         userIdIndex: index("user_id_index").on(table.userId),
         nameIndex: index("name_index").on(table.name),
         roasterIdIndex: index("roaster_id_index").on(table.roasterId),
-    }
+    };
 });
 
 export const cafeBrews = mysqlTable("cafe_brews", {
@@ -104,7 +104,7 @@ export const cafeBrews = mysqlTable("cafe_brews", {
         publicIdIndex: index("public_id_index").on(table.publicId),
         userIdIndex: index("user_id_index").on(table.userId),
         typeIndex: index("name_index").on(table.type),
-    }
+    };
 });
 
 export const freezeEntries = mysqlTable("freeze_entries", {
@@ -124,7 +124,7 @@ export const freezeEntries = mysqlTable("freeze_entries", {
         publicIdIndex: index("public_id_index").on(table.publicId),
         userIdIndex: index("user_id_index").on(table.userId),
         beanIdIndex: index("bean_id_index").on(table.beanId),
-    }
+    };
 });
 
 // Relations
@@ -164,7 +164,7 @@ export const freezeEntryRelations = relations(freezeEntries, ({one}) => ({
         fields: [freezeEntries.userId],
         references: [users.id],
     })
-}))
+}));
 
 export const roastersRelations = relations(roasters, ({ many, one }) => ({
     user: one(users, {

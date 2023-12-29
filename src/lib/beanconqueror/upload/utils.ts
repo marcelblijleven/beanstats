@@ -12,16 +12,16 @@ export function readTextFile(file: File, callback: (data: string) => void) {
         if (typeof event.target?.result === "string") {
             callback(event.target.result);
         }
-    }
+    };
 
-    reader.readAsText(file, "utf-8")
+    reader.readAsText(file, "utf-8");
 }
 
 async function readEntryToJSON(entry: Entry): Promise<BCData> {
     const writer = new TextWriter();
 
     if (typeof entry.getData === "undefined") {
-        return {MILL: [], PREPARATION: [], SETTINGS: [], VERSION: [], BEANS: [], BREWS: []}
+        return {MILL: [], PREPARATION: [], SETTINGS: [], VERSION: [], BEANS: [], BREWS: []};
     }
 
     const data = await entry.getData(writer);

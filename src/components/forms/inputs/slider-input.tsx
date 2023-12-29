@@ -29,5 +29,5 @@ export default function SliderInput<TFieldValues extends FieldValues = FieldValu
                 </FormItem>
             )}
         />
-    )
+    );
 }

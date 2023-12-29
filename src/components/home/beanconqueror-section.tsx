@@ -7,7 +7,7 @@ const LinkDetail = ({button, href}: { button: string, href: string }) => (
     <Link className={"block"} href={href} passHref>
         <Button>{button}</Button>
     </Link>
-)
+);
 
 const BeanconquerorSection = () => (
     <section className={"space-y-4"}>
@@ -37,6 +37,6 @@ const BeanconquerorSection = () => (
         </section>
     </section>
 
-)
+);
 
-export default BeanconquerorSection
+export default BeanconquerorSection;

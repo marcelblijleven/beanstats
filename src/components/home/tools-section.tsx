@@ -25,6 +25,6 @@ const ToolsSection = ({className}: ToolsSectionProps) => (
             <RatioCard/>
         </section>
     </section>
-)
+);
 
-export default ToolsSection
+export default ToolsSection;

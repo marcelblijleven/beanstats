@@ -6,7 +6,7 @@ const FLAG_RE = /((?:\uD83C\uDDE6)(?:\uD83C[\uDDE9-\uDDEC\uDDEE\uDDF1\uDDF2\uDDF
 
 export function countryCodeFromFlag(emoji: string): string {
     if (emoji.length !== EMOJI_LENGTH) {
-        return emoji
+        return emoji;
     }
 
     const codePoints = Array.from(emoji).map(indicator => indicator.codePointAt(0)! - REGIONAL_INDICATOR_OFFSET);
@@ -29,7 +29,7 @@ export function getTextWithFlagSupport(text: string): ReactElement  {
 
             return (
                 <Image className={"inline"} key={idx} alt={countryCodeFromFlag(part)} src={getFlagSVG(part)} width={14} height={14} />
-            )
+            );
         })}
-    </span>)
+    </span>);
 }

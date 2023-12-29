@@ -30,7 +30,7 @@ export default function SelectInput<TFieldValues extends FieldValues = FieldValu
                             {Object.keys(props.enum).map(key => {
                                 return (
                                     <SelectItem className={"capitalize"} key={key} value={key}>{key.toLowerCase().replaceAll("_", " ")}</SelectItem>
-                                )
+                                );
                             })}
                         </SelectContent>
                     </Select>
@@ -38,5 +38,5 @@ export default function SelectInput<TFieldValues extends FieldValues = FieldValu
                 </FormItem>
             )}
         />
-    )
+    );
 }

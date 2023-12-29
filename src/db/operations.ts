@@ -45,5 +45,5 @@ export async function createUser(user: InsertUser): Promise<SelectUser | undefin
  */
 export async function updateUser(user: InsertUser): Promise<void> {
     const data = insertUserSchema.parse(user);
-    await db.update(users).set(user).where(eq(users.clerkId, data.clerkId))
+    await db.update(users).set(user).where(eq(users.clerkId, data.clerkId));
 }

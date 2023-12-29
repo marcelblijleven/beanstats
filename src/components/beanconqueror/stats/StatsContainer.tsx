@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 
 import {useState} from "react";
@@ -13,7 +13,7 @@ export function StatsContainer() {
 
     const retrieveData = (data: BrewStatistics) => {
         setData(data);
-    }
+    };
 
     return (
         <>
@@ -27,5 +27,5 @@ export function StatsContainer() {
                 </>
             )}
         </>
-    )
+    );
 }

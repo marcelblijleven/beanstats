@@ -5,5 +5,5 @@ export default function Layout({children}: {children: ReactNode}) {
         <div className={"w-full max-w-7xl space-y-2 md:space-y-4"}>
             {children}
         </div>
-    )
+    );
 }

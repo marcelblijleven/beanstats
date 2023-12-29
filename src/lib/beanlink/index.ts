@@ -16,7 +16,7 @@ export async function getBeanLink(link: string): Promise<BeanLinkResponse> {
         throw new Error(data.error);
     }
 
-    return data
+    return data;
 }
 
 export async function followBeanLink(link: string): Promise<string> {

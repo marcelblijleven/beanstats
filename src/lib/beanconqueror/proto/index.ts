@@ -16,8 +16,8 @@ const decodeUrl = (url: string) => {
         sharedBeans += decodeURIComponent(param);
         i++;
     }
-    return atob(sharedBeans.replaceAll(" ", "+"))
-}
+    return atob(sharedBeans.replaceAll(" ", "+"));
+};
 
 export function decodeMessage(url: string) {
     const sharedBean = decodeUrl(url);

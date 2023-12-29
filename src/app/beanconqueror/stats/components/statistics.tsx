@@ -28,5 +28,5 @@ export default function Statistics(props: BrewStatistics) {
             </CardGrid>
         </div>
 
-    )
+    );
 }

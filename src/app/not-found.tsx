@@ -1,5 +1,5 @@
 import {AlertTriangle} from "lucide-react";
-import Link from 'next/link'
+import Link from 'next/link';
 
 import PageShell from "@/components/layout/page-shell";
 import {H1} from "@/components/text";
@@ -14,5 +14,5 @@ export default function NotFound() {
                 View <Link className={"underline text-amber-500"} href="/">home page</Link>
             </p>
         </PageShell>
-    )
+    );
 }

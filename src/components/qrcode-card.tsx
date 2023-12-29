@@ -21,6 +21,6 @@ const QRCodeCard = ({value}: {value: string}) => (
             />
         </CardContent>
     </Card>
-)
+);
 
 export default QRCodeCard;

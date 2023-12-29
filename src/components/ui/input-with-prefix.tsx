@@ -1,6 +1,6 @@
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 export interface InputProps
     extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -22,9 +22,9 @@ const InputWithPrefix = React.forwardRef<HTMLInputElement, InputProps>(
                     {...props}
                 />
             </div>
-        )
+        );
     }
-)
-InputWithPrefix.displayName = "InputWithPrefix"
+);
+InputWithPrefix.displayName = "InputWithPrefix";
 
-export { InputWithPrefix }
+export { InputWithPrefix };

@@ -18,23 +18,23 @@ type PageProps = {
 
 export async function generateMetadata({params}: PageProps, parent: ResolvingMetadata,): Promise<Metadata> {
     // read route params
-    const id = params.coffeeId
+    const id = params.coffeeId;
 
     // fetch data
-    const bean = await getBeanDetails(id, undefined)
+    const bean = await getBeanDetails(id, undefined);
 
     if (!bean || !bean.isPublic) {
-        const title = (await parent).title
+        const title = (await parent).title;
         return {
             title: title ?? "Coffee",
             description: "Keep track of your coffee backlog"
-        }
+        };
     }
 
     return {
         title: `${bean.name}`,
         description: `Roasted by ${bean.roaster?.name ?? "??"}`
-    }
+    };
 }
 
 function Buttons({user, bean} :{user: User | null, bean: Awaited<ReturnType<typeof getBeanDetails>>}) {
@@ -61,12 +61,12 @@ function BeanConquerorButton({bean}: {bean:Awaited<ReturnType<typeof getBeanDeta
         <Button variant={"outline"} size={"sm"}>
             <Image src={"/beanconqueror_logo.png"} alt={"Beanconqueror logo"} height={20} width={20} />
         </Button>
-    )
+    );
 }
 
 export default async function CoffeeDetailPage({ params }: { params: { coffeeId: string } }) {
     const user: User | null = await currentUser();
-    const bean =  await getBeanDetailsWithFreezeEntries(params.coffeeId, user?.publicMetadata?.databaseId as number || undefined)
+    const bean =  await getBeanDetailsWithFreezeEntries(params.coffeeId, user?.publicMetadata?.databaseId as number || undefined);
 
     if (!bean || !canView(user, bean)) return notFound();
 
@@ -79,5 +79,5 @@ export default async function CoffeeDetailPage({ params }: { params: { coffeeId:
             <Buttons user={user} bean={bean} />
             <BeanDetail bean={bean} />
         </>
-    )
+    );
 }

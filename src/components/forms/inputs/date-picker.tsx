@@ -36,7 +36,7 @@ export default function DatePickerInput<TFieldValues extends FieldValues = Field
                                     )}
                                 >
                                     {field.value ? (
-                                        format(typeof field.value === 'string' ? new Date(field.value) : field.value, "yyyy-MM-dd")
+                                        format(field.value, "yyyy-MM-dd")
                                     ) : (
                                         <span>Pick a date</span>
                                     )}
@@ -51,7 +51,7 @@ export default function DatePickerInput<TFieldValues extends FieldValues = Field
                                 onSelect={field.onChange}
                                 disabled={(date) => {
                                     // This will disable any future dates
-                                    return new Date(date) > new Date() || date < new Date("1900-01-01")
+                                    return new Date(date) > new Date() || date < new Date("1900-01-01");
                                 }}
                                 initialFocus
                             />
@@ -61,5 +61,5 @@ export default function DatePickerInput<TFieldValues extends FieldValues = Field
                 </FormItem>
             )}
         />
-    )
+    );
 }

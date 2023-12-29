@@ -18,14 +18,14 @@ function parseMilliseconds(ms: number): ParsedMilliseconds {
     const seconds = Math.floor(ms / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
-    const days = Math.floor(hours / 24)
+    const days = Math.floor(hours / 24);
 
     return {
         seconds: seconds % 60,
         minutes: minutes % 60,
         hours: hours % 24,
         days: days,
-    }
+    };
 }
 
 export function getNaturalDate(date: Date): string {
@@ -50,7 +50,7 @@ export function getNaturalDate(date: Date): string {
         return rtf.format(-1 * seconds, "seconds");
     }
 
-    return "Just now"
+    return "Just now";
 }
 
 export function getDateString(date: Date | null, includeTime: boolean, timeZone?: string) {
@@ -65,12 +65,12 @@ export function getDateString(date: Date | null, includeTime: boolean, timeZone?
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
-    }
+    };
 
 
     if (!includeTime) {
-        delete options.hour
-        delete options.minute
+        delete options.hour;
+        delete options.minute;
     }
 
     return date.toLocaleDateString("nl-NL", options);

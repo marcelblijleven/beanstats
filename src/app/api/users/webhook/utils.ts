@@ -6,7 +6,7 @@ import {createUser, deleteUserByClerkId, getUserByClerkId, updateUser} from "@/d
 
 const acceptedWebhookEvents = [
     "user.created", "user.updated", "user.deleted",
-]
+];
 
 /**
  * Performs actions based on the type of Webhook event
@@ -20,7 +20,7 @@ const acceptedWebhookEvents = [
  */
 export async function handleEvent(event: WebhookEvent) {
     if (!acceptedWebhookEvents.includes(event.type)) {
-        throw new Error(`Error occurred, webhook event type not implemented: ${event.type}`)
+        throw new Error(`Error occurred, webhook event type not implemented: ${event.type}`);
     }
 
     const userEvent = event as UserWebhookEvent;
@@ -29,10 +29,10 @@ export async function handleEvent(event: WebhookEvent) {
         email_addresses,
         primary_email_address_id,
         username,
-    } = userEvent.data as unknown as UserJSON
+    } = userEvent.data as unknown as UserJSON;
 
     if (!id) {
-        throw new Error("Error occurred, no Clerk id received")
+        throw new Error("Error occurred, no Clerk id received");
     }
 
     const emailAddress = email_addresses?.find(email => email.id === primary_email_address_id)?.email_address ?? null;
@@ -51,10 +51,10 @@ export async function handleEvent(event: WebhookEvent) {
                         publicMetadata: {
                             databaseId: user.id,
                         }
-                    })
+                    });
                 }
 
-                return
+                return;
             }
 
             await updateUser({clerkId: id, email: emailAddress, username: username});

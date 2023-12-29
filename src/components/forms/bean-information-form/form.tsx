@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {zodResolver} from "@hookform/resolvers/zod";
 import {type MouseEvent, useEffect, useState} from "react";
@@ -6,7 +6,7 @@ import {
     useFieldArray,
     type UseFieldArrayProps,
     useForm,
-} from "react-hook-form"
+} from "react-hook-form";
 
 import {
     GeneralInformationFieldset,
@@ -18,7 +18,7 @@ import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Form} from "@/components/ui/form";
 import {Legend} from "@/components/ui/legend";
-import {Separator} from "@/components/ui/separator"
+import {Separator} from "@/components/ui/separator";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {createUrlFromFormSchema} from "@/lib/beanconqueror/proto/proto-helpers";
 import {defaultVarietyInformation, beanInformationFormSchema} from "@/lib/beanconqueror/validations/bean-information-form-schema";
@@ -63,7 +63,7 @@ export default function BeanInformationForm() {
         getBeanLink(shareUrl).then(response => setBeanLinkResponse(response)).catch(err => {
             console.error(err);
         });
-    }
+    };
 
     useEffect(() => {
         append({...defaultVarietyInformation}, {
@@ -81,7 +81,7 @@ export default function BeanInformationForm() {
         setShowQR(false);
         setUrl("");
         setActiveTab("general");
-    }
+    };
 
     return (
         <Card className={"w-full"}>
@@ -124,7 +124,7 @@ export default function BeanInformationForm() {
                                     ))}
                                     {blend === "BLEND" && (<Button onClick={(event) => {
                                         event.preventDefault();
-                                        append({...defaultVarietyInformation})
+                                        append({...defaultVarietyInformation});
                                     }}>
                                         Add additional bean
                                     </Button>)}
@@ -140,5 +140,5 @@ export default function BeanInformationForm() {
                 {showQR && <ShareCard fallbackUrl={url} beanLinkResponse={beanLinkResponse}/>}
             </CardContent>
         </Card>
-    )
+    );
 }

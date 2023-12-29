@@ -29,7 +29,7 @@ async function getCoffee(userId: number, page: number, archived: boolean): Promi
         orderBy: (beans, {desc}) => [desc(beans.created), desc(beans.id)],
         limit: pageSize + 1,
         offset: (page - 1) * pageSize
-    })
+    });
 }
 
 
@@ -73,5 +73,5 @@ export default async function CoffeePage({searchParams}: { searchParams: Record<
                 <CoffeeDataTable data={data} />
             </section>
         </>
-    )
+    );
 }

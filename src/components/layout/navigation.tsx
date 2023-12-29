@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 
@@ -23,7 +23,7 @@ function MenuItem(props: MenuItemProps) {
             </NavigationMenuLink>
         </Link>
         </NavigationMenuItem>
-    )
+    );
 }
 
 export function Navigation() {
@@ -44,7 +44,7 @@ export function Navigation() {
             href: "/brews/cafe",
             label: "Cafe brews",
         }
-    ]
+    ];
 
     return (
         <div className={"sm:mr-2"}>
@@ -57,7 +57,7 @@ export function Navigation() {
             </NavigationMenu>
         </div>
 
-    )
+    );
 }
 
 

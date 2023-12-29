@@ -1,4 +1,4 @@
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown';
 
 import PageShell from "@/components/layout/page-shell";
 import {H1, H2, H3} from "@/components/text";
@@ -38,5 +38,5 @@ export default async function ChangelogPage() {
                 {changelog}
             </ReactMarkdown>
         </PageShell>
-    )
+    );
 }

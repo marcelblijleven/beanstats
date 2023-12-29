@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Loader2Icon} from "lucide-react";
@@ -35,9 +35,9 @@ export function ShortenLinkForm(props: ShortenLinkFormProps) {
             const response = await getBeanLink(data.link);
             props.callback(response);
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
-    }
+    };
 
     return (
         <Form {...form}>
@@ -71,5 +71,5 @@ export function ShortenLinkForm(props: ShortenLinkFormProps) {
                 </Button>
             </form>
         </Form>
-    )
+    );
 }

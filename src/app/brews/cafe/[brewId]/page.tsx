@@ -16,23 +16,23 @@ type PageProps = {
 
 export async function generateMetadata({params}: PageProps, parent: ResolvingMetadata,): Promise<Metadata> {
     // read route params
-    const id = params.brewId
+    const id = params.brewId;
 
     // fetch data
-    const brew = await getCafeBrewDetails(id, undefined)
+    const brew = await getCafeBrewDetails(id, undefined);
 
     if (!brew || !brew.isPublic) {
-        const title = (await parent).title ?? "Cafe brew"
+        const title = (await parent).title ?? "Cafe brew";
         return {
             title: title,
             description: "Keep track of your cafe brews"
-        }
+        };
     }
 
     return {
         title: `${brew.type}`,
         description: `Served by ${brew.cafe}`
-    }
+    };
 }
 
 function Buttons({user, brew} :{user: User | null, brew: Awaited<ReturnType<typeof getCafeBrewDetails>>}) {
@@ -50,7 +50,7 @@ function Buttons({user, brew} :{user: User | null, brew: Awaited<ReturnType<type
 
 export default async function CafeBrewDetailPage({ params }: { params: { brewId: string } }) {
     const user: User | null = await currentUser();
-    const brew =  await getCafeBrewDetails(params.brewId, user?.publicMetadata?.databaseId as number || undefined)
+    const brew =  await getCafeBrewDetails(params.brewId, user?.publicMetadata?.databaseId as number || undefined);
 
     if (!brew || !canView(user, brew)) return notFound();
 
@@ -63,5 +63,5 @@ export default async function CafeBrewDetailPage({ params }: { params: { brewId:
             <Buttons user={user} brew={brew} />
             <BrewDetail brew={brew} />
         </>
-    )
+    );
 }

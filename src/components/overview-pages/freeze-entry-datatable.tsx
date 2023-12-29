@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {type ColumnDef, getCoreRowModel, getPaginationRowModel, useReactTable} from "@tanstack/react-table";
 import {createSelectSchema} from "drizzle-zod";
@@ -33,7 +33,7 @@ export const columns: ColumnDef<FreezeEntry>[] = [
                 >
                     {row.getValue("label")}
                 </Link>
-            )
+            );
         },
         header: "Label",
     },
@@ -57,7 +57,7 @@ export const columns: ColumnDef<FreezeEntry>[] = [
         accessorFn: (row) => !row.frozen ? "Yes" : "No",
         header: "Defrosted",
     }
-]
+];
 
 export function FreezeEntryDataTable({data, inlineHeader}: DataTableProps<FreezeEntry>) {
     const router = useRouter();
@@ -107,5 +107,5 @@ export function FreezeEntryDataTable({data, inlineHeader}: DataTableProps<Freeze
                 </Button>
             </div>
         </div>
-    )
+    );
 }

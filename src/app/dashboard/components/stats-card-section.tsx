@@ -12,7 +12,7 @@ function Layout({children}: { children: ReactNode }) {
             <h2 className={"text-xl font-bold"}>Stats</h2>
             {children}
         </section>
-    )
+    );
 }
 
 export async function StatsCardSection() {
@@ -22,10 +22,10 @@ export async function StatsCardSection() {
     if (!userId) {
         return (
             <Layout><span>No database user found</span></Layout>
-        )
+        );
     }
 
-    const metrics = await getMetrics(userId as number)
+    const metrics = await getMetrics(userId as number);
 
     return (
         <Layout>
@@ -80,7 +80,7 @@ export async function StatsCardSection() {
                 </div>
             </div>
         </Layout>
-    )
+    );
 }
 
 export function StatsCardSectionSkeleton() {
@@ -102,5 +102,5 @@ export function StatsCardSectionSkeleton() {
                 </div>
             </div>
         </Layout>
-    )
+    );
 }

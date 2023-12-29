@@ -11,7 +11,7 @@ export const metadata: Metadata = {
         description: "Shorten a Beanconqueror (share) link using Beanlink",
         images: ["/beanconqueror_logo.png"],
     },
-}
+};
 
 export default function CreateShareLinkPage() {
     return (
@@ -24,5 +24,5 @@ export default function CreateShareLinkPage() {
             </p>
             <ShortenContainer link={null}  />
         </PageShell>
-    )
+    );
 }

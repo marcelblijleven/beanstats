@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {useUser} from "@clerk/nextjs";
 import {AlertCircle, Check, Info, Loader} from "lucide-react";
@@ -19,7 +19,7 @@ function SubmitButton() {
             {pending ? "Importing" : "Import"}
             {pending && <Loader className={"animate-spin h-4 w-4 ml-2"} />}
         </Button>
-    )
+    );
 }
 
 function FormAlert({state}: {state: {message: string | null, success: boolean | null}}) {
@@ -32,7 +32,7 @@ function FormAlert({state}: {state: {message: string | null, success: boolean | 
                     Previously imported beans will not be updated at this time
                 </AlertDescription>
             </Alert>
-        )
+        );
     }
 
     return (
@@ -40,24 +40,24 @@ function FormAlert({state}: {state: {message: string | null, success: boolean | 
             {state.success && <Check className={"h-4 w-4"}/>}
             {!state.success && <AlertCircle className={"h-4 w-4"} />}
             <AlertTitle>Done</AlertTitle>
-            <AlertDescription>
+            <AlertDescription className={"whitespace-pre-line"}>
                 {state.message}
             </AlertDescription>
         </Alert>
-    )
+    );
 }
 
 export default function BeanconquerorImportForm() {
     const user = useUser();
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
-    const [state, formAction] = useFormState(importBeanconqueror, {message: null, success: null})
+    const [state, formAction] = useFormState(importBeanconqueror, {message: null, success: null});
 
     if (!user) return (
         <section>
             <h3 className={"font-bold text-lg"}>Beanconqueror</h3>
             <div className={"text-destructive"}>You have to be logged in to import</div>
         </section>
-    )
+    );
 
     return (
         <div className={"space-y-4"}>
@@ -86,5 +86,5 @@ export default function BeanconquerorImportForm() {
                 <a className={"text-primary hover:underline"} href={"https://www.github.com/marcelblijleven/beanstats"}>Github repository</a>
             </section>
         </div>
-    )
+    );
 }

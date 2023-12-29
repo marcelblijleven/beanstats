@@ -42,5 +42,5 @@ export function BrewDetail({brew}: BrewDetailProps) {
                 <p>{brew.notes ?? "-"}</p>
             </section>
         </div>
-    )
+    );
 }

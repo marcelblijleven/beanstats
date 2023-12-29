@@ -37,14 +37,14 @@ function VarietyDetail({variety, index, blend}: VarietyDetailProps) {
                 <DetailItem label={"Farmer"} value={variety.farmer ?? "-"}/>
             </div>
         </div>
-    )
+    );
 }
 
 export function BeanDetail({bean}: BeanDetailProps) {
     if (!bean) return null;
 
     const isBlend = bean.varieties.length > 1;
-    console.log(bean)
+    console.log(bean);
     return (
         <>
             <section className={"space-y-2"}>
@@ -77,5 +77,5 @@ export function BeanDetail({bean}: BeanDetailProps) {
                 />
             </section>
         </>
-    )
+    );
 }

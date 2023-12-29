@@ -40,7 +40,7 @@ function Stats(props: StatsProps) {
                     )}
                 </CardContent>
 
-    </Card>)
+    </Card>);
 }
 
 function getRemainingWeight(mapping: Mapping<Bean>, usage: Mapping<number>): number {
@@ -63,7 +63,7 @@ function getRemainingWeight(mapping: Mapping<Bean>, usage: Mapping<number>): num
 function getRemainingWeightWarningClassName(remainingWeight: number): string | null {
     if (remainingWeight >= 100) return null;
 
-    const baseShadow = "shadow-md"
+    const baseShadow = "shadow-md";
 
     if (remainingWeight >= 50) return cn(baseShadow, "shadow-amber-600");
     if (remainingWeight >= 20) return cn(baseShadow, "shadow-orange-600");
@@ -80,7 +80,7 @@ export default function CardStats(props: Props) {
     let totalGroundBeansText = "-";
 
     if (props.totalGroundBeans) {
-        totalGroundBeansText = props.totalGroundBeans > 1000 ? `${(props.totalGroundBeans / 1000).toFixed(2)} kg` : `${props.totalGroundBeans} gr`
+        totalGroundBeansText = props.totalGroundBeans > 1000 ? `${(props.totalGroundBeans / 1000).toFixed(2)} kg` : `${props.totalGroundBeans} gr`;
     }
 
     const timeSinceLastCoffee = getNaturalDate(props.lastBrew);
@@ -103,5 +103,5 @@ export default function CardStats(props: Props) {
             />
             {props.lastBrew && <Stats label={"Last brew"} value={timeSinceLastCoffee} />}
         </div>
-    )
+    );
 }

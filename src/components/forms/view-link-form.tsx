@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
@@ -25,7 +25,7 @@ export function ViewLinkForm(props: ViewFormProps) {
 
     const onSubmit = (data: Inputs) => {
         props.callback(data.link);
-    }
+    };
 
     return (
         <Form {...form}>
@@ -49,5 +49,5 @@ export function ViewLinkForm(props: ViewFormProps) {
                 <Button className={"flex gap-2"}>View</Button>
             </form>
         </Form>
-    )
+    );
 }

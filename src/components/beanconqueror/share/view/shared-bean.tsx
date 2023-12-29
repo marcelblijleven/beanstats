@@ -71,7 +71,7 @@ const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
             </CardContent>
         </Card>
     </>
-)
+);
 
 const VarietyCard = ({info, index}: {info: IBeanInformation, index?: number}) => (
     <Card>
@@ -96,7 +96,7 @@ const VarietyCard = ({info, index}: {info: IBeanInformation, index?: number}) =>
             </div>
         </CardContent>
     </Card>
-)
+);
 
 const VarietyTabsContent = ({decoded}: {decoded: BeanProto}) => (
     <>
@@ -104,7 +104,7 @@ const VarietyTabsContent = ({decoded}: {decoded: BeanProto}) => (
             <VarietyCard key={index} info={info} index={index} />
         ))}
     </>
-)
+);
 
 const SharedBean = ({url}: { url: string}) => {
     const [viewUrl, setViewUrl] = useState<string>(url);
@@ -116,7 +116,7 @@ const SharedBean = ({url}: { url: string}) => {
 
     useEffect(() => {
         setViewUrl(url ?? "");
-    }, [url])
+    }, [url]);
 
     if (url.match(BEANLINK_RE)) {
         followBeanLink(url).then(response => {
@@ -139,7 +139,7 @@ const SharedBean = ({url}: { url: string}) => {
     }
 
     if (err !== undefined || decoded === undefined) {
-        return (<Alert description={"Could not decode this url"} />)
+        return (<Alert description={"Could not decode this url"} />);
     }
 
     return (
@@ -177,7 +177,7 @@ const SharedBean = ({url}: { url: string}) => {
 
             </CardContent>
         </Card>
-    )
-}
+    );
+};
 
 export default SharedBean;

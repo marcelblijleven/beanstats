@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import {currentUser} from "@clerk/nextjs";
 import {type User} from "@clerk/nextjs/api";
@@ -48,7 +48,7 @@ async function performInsert(beanData: CoffeeFormInputs, varieties: Array<Partia
 
         if (!beanId) {
             tx.rollback();
-            throw new Error("Something went wrong while adding beans, invalid id")
+            throw new Error("Something went wrong while adding beans, invalid id");
         }
 
         const insertVarieties = varieties.map(entry => {
@@ -61,9 +61,9 @@ async function performInsert(beanData: CoffeeFormInputs, varieties: Array<Partia
 
         const [beanSelect] = await tx.select({publicID: beans.publicId}).from(beans).where(
             eq(beans.id, beanId)
-        )
-        return beanSelect.publicID
-    })
+        );
+        return beanSelect.publicID;
+    });
 }
 
 async function performUpdate(bean: Partial<CoffeeUpdateFormInputs>, varieties: Array<Partial<z.infer<typeof insertVariety>>>) {
@@ -142,7 +142,7 @@ export async function submitCoffeeForm(values: Partial<CoffeeFormInputs> | Parti
     const user: User | null = await currentUser();
 
     if (!user) {
-        return {success: false, error: "Not authenticated"}
+        return {success: false, error: "Not authenticated"};
     }
 
     const userId = user.publicMetadata.databaseId as number;
@@ -158,22 +158,22 @@ export async function submitCoffeeForm(values: Partial<CoffeeFormInputs> | Parti
     };
 
     if (roasterId !== null) modifiedValues.roasterId = roasterId;
-    if (modifiedValues.varieties) modifiedValues.varieties = Object.values(values.varieties ?? {})
+    if (modifiedValues.varieties) modifiedValues.varieties = Object.values(values.varieties ?? {});
 
     const result= parseInputs(modifiedValues);
     // Check for generic form errors
     if (!result.success) {
-        return {success: false, error: result.error.message}
+        return {success: false, error: result.error.message};
     }
 
     try {
         const publicId = await submitData(modifiedValues);
-        return {success: true, error: null, publicId: publicId}
+        return {success: true, error: null, publicId: publicId};
     } catch (e) {
         if (e instanceof Error) {
-            return {success: false, error: e.stack}
+            return {success: false, error: e.stack};
         }
 
-        return {success: false, error: "Could not complete bean submit"}
+        return {success: false, error: "Could not complete bean submit"};
     }
 }

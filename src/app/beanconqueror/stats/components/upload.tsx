@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {type ChangeEvent, useState} from "react";
 
@@ -24,7 +24,7 @@ const Process = (props: ProcessProps) => {
         if (!props.file) return;
 
         if (props.file.type === "application/json") {
-            readTextFile(props.file, props.callback)
+            readTextFile(props.file, props.callback);
         } else if (props.file.type === "application/zip" || props.file.type === "application/x-zip-compressed") {
             readZipFileWithCallback(props.file, props.callback).catch(err => {
                 console.error(err);
@@ -32,17 +32,17 @@ const Process = (props: ProcessProps) => {
                     title: "Oh, something went wrong",
                     description: "There was a problem reading the file",
                     variant: "destructive",
-                })
+                });
             });
         }
-    }
+    };
 
     return (
         <Button variant={!!props.file ? "default": "secondary"} onClick={onClick} disabled={!props.file}>
             Process
         </Button>
-    )
-}
+    );
+};
 
 
 const FileUpload = (props: FileUploadProps) => {
@@ -50,7 +50,7 @@ const FileUpload = (props: FileUploadProps) => {
 
     const onFileChange = (event: ChangeEvent<HTMLInputElement>) => {
         setFile(event.target.files?.[0]);
-    }
+    };
 
     return (
         <div className={"flex gap-2"}>
@@ -64,7 +64,7 @@ const FileUpload = (props: FileUploadProps) => {
             />
             <Process file={file} callback={props.callback} />
         </div>
-    )
-}
+    );
+};
 
 export default FileUpload;

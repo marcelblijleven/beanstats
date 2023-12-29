@@ -17,7 +17,7 @@ export default function BacklogStats(props: BacklogStatsProps) {
             .map(([_, bean]) => bean)
             .filter(bean => !bean.finished)
             .sort((a, b) => {
-                return sortFnAsc(stringToDate(a.roastingDate), stringToDate(b.roastingDate))
+                return sortFnAsc(stringToDate(a.roastingDate), stringToDate(b.roastingDate));
             })
     );
 
@@ -31,5 +31,5 @@ export default function BacklogStats(props: BacklogStatsProps) {
                 {!!beans.length && <BacklogTable beans={beans} usage={props.usage} />}
             </CardContent>
         </Card>
-    )
+    );
 }

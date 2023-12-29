@@ -28,5 +28,5 @@ export function FreezeEntryDetail({entry}: PageProps) {
                 <p className={"min-h-[300px] w-full md:w-1/2 rounded-lg outline outline-accent"}>{entry.notes ?? ""}</p>
             </section>
         </>
-    )
+    );
 }

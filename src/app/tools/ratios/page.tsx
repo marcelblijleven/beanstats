@@ -19,5 +19,5 @@ export default function RatioPage() {
                 <RatioCard />
             </div>
         </div>
-    )
+    );
 }

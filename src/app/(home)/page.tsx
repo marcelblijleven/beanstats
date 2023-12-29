@@ -61,5 +61,5 @@ export default function Home() {
                 <Link className={"inline-block font-semibold rounded-full outline outline-gray-200 py-1 px-5 shadow hover:bg-primary-foreground hover:text-primary"} href={"/beanconqueror"}>View</Link>
             </section>
         </PageShell>
-    )
+    );
 }

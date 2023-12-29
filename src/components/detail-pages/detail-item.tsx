@@ -4,5 +4,5 @@ export function DetailItem({label, value}: { label: string, value: string }) {
             <span className={"text-sm text-muted-foreground font-semibold"}>{label}</span>
             <span className={""}>{value}</span>
         </div>
-    )
+    );
 }

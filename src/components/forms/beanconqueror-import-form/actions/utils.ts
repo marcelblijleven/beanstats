@@ -14,6 +14,20 @@ type InsertBean = z.infer<typeof insertBean>
 const insertVariety = createInsertSchema(beanVarieties);
 type InsertVariety = z.infer<typeof insertVariety>
 
+/**
+ * Data structure for the import result
+ */
+export type Notify = {
+    // Total beans provided in zip file
+    totalBeans: number;
+    // Beans skipped because they were already imported once before
+    skippedBeans: string[];
+    // Import failed on the database side
+    abortedBeans: string[];
+    // Invalid beans, various reasons like missing roaster name etc.
+    invalidBeans: string[];
+}
+
 export function getRoastersFromData(data: BCData) {
     const roasters = new Set<string>();
 
@@ -21,7 +35,7 @@ export function getRoastersFromData(data: BCData) {
         roasters.add(record.roaster);
     }
 
-    return roasters.values()
+    return roasters.values();
 }
 
 export async function importBeanconquerorBean(data: Bean, roasterMapping: Record<string, number>, userId: number) {
@@ -44,14 +58,14 @@ export async function importBeanconquerorBean(data: Bean, roasterMapping: Record
         roastedFor: data.roast.toString().toLowerCase(),
         created: new Date(data.config.unix_timestamp * 1000),
         modified: new Date(data.config.unix_timestamp * 1000),
-    }
+    };
 
     return db.transaction(async tx => {
         const result = await tx.insert(beans).values(bean);
         const beanId = parseInt(result.insertId);
 
         if (!beanId) {
-            tx.rollback()
+            tx.rollback();
             return false;
         }
 
@@ -65,7 +79,7 @@ export async function importBeanconquerorBean(data: Bean, roasterMapping: Record
                 farmer: info.farmer,
                 elevation: info.elevation,
                 beanId: parseInt(result.insertId),
-            }
+            };
         });
 
         await tx.insert(beanVarieties).values(varieties);
@@ -75,7 +89,7 @@ export async function importBeanconquerorBean(data: Bean, roasterMapping: Record
 
 async function importRoasters(data: Iterable<string>, userId: number) {
     const values: string[] = Array.from(data).map(entry => {
-        return `(${userId}, '${generateNanoid()}', '${entry.replaceAll("'", "\\'").replaceAll('"', '\\"')}')`
+        return `(${userId}, '${generateNanoid()}', '${entry.replaceAll("'", "\\'").replaceAll('"', '\\"')}')`;
     });
     await db.execute(
         sql.raw(`
@@ -86,7 +100,7 @@ async function importRoasters(data: Iterable<string>, userId: number) {
         `)
     );
     const result = await db.select({id: roasters.id, name: roasters.name}).from(roasters).where(eq(roasters.userId, userId));
-    const mapping: Record<string, number> = {}
+    const mapping: Record<string, number> = {};
 
     for (const record of result) {
         mapping[record.name] = record.id;
@@ -108,23 +122,32 @@ export async function importBeans(data: BCData, userId: number) {
     const roasters = getRoastersFromData(data);
     const roasterMapping = await importRoasters(roasters, userId);
     const existingExternalIds = await getExistingExternalIds(userId);
-
-    const totalBeans = data.BEANS.length;
-    let skippedBeans = 0;
-    let abortedBeans = 0;
+    const notify: Notify = {
+        totalBeans: data.BEANS.length,
+        skippedBeans: [],
+        abortedBeans: [],
+        invalidBeans: [],
+    };
 
     for (const bean of data.BEANS) {
-        if (existingExternalIds.includes(bean.config.uuid)) {
-            skippedBeans += 1;
-            continue
+        const uuid = bean.config.uuid;
+        if (existingExternalIds.includes(uuid)) {
+            notify.skippedBeans.push(uuid);
+            continue;
         }
 
-        const result = await importBeanconquerorBean(bean, roasterMapping, userId);
+        if (!bean.roaster) {
+            // roaster_id is a required field in the db
+            notify.invalidBeans.push(uuid);
+            continue;
+        }
 
-        if (!result) {
-            abortedBeans += 1;
+        const success = await importBeanconquerorBean(bean, roasterMapping, userId);
+
+        if (!success) {
+            notify.abortedBeans.push(uuid);
         }
     }
 
-    return {totalBeans, skippedBeans, abortedBeans}
+    return notify;
 }
