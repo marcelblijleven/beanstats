@@ -17,7 +17,7 @@ type InsertVariety = z.infer<typeof insertVariety>
 /**
  * Data structure for the import result
  */
-type Notify = {
+export type Notify = {
     // Total beans provided in zip file
     totalBeans: number;
     // Beans skipped because they were already imported once before

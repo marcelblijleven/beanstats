@@ -40,7 +40,7 @@ function FormAlert({state}: {state: {message: string | null, success: boolean | 
             {state.success && <Check className={"h-4 w-4"}/>}
             {!state.success && <AlertCircle className={"h-4 w-4"} />}
             <AlertTitle>Done</AlertTitle>
-            <AlertDescription>
+            <AlertDescription className={"whitespace-pre-line"}>
                 {state.message}
             </AlertDescription>
         </Alert>
