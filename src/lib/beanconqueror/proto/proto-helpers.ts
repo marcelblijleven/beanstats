@@ -92,6 +92,10 @@ const buildURL = (encoded: string, limit = 400): string => {
 };
 
 
+/**
+ * Creates a Beanconqueror share url with a protobuf message containing all the relevant information about the coffee
+ * @param values
+ */
 export const createUrlFromFormSchema = (values: beanInformationFormSchema) => {
     const bytes = BeanProto.encode(formSchemaToBeanProto(values)).finish();
     const encoded = btoa(String.fromCharCode(...Array.from(new Uint8Array(bytes))));
