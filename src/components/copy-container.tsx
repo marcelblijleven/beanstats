@@ -1,11 +1,16 @@
 "use client";
 
 import {Check, Copy, type LucideIcon} from "lucide-react";
-import {createElement, useState} from "react";
+import {createElement, useState, type HTMLAttributes} from "react";
 
 import {Button} from "@/components/ui/button";
 
-const CopyContainer = ({value, displayValue}: {value: string, displayValue?: string}) => {
+interface CopyContainerProps extends HTMLAttributes<HTMLButtonElement> {
+    value: string;
+    displayValue: string;
+}
+
+const CopyContainer = ({value, displayValue, ...props}: CopyContainerProps) => {
     const [icon, setIcon] = useState<LucideIcon>(Copy);
 
     const onClick = () => {
@@ -19,12 +24,10 @@ const CopyContainer = ({value, displayValue}: {value: string, displayValue?: str
     };
 
     return (
-        <div className={"flex items-center justify-between rounded-lg border bg-card text-card-foreground shadow-sm"}>
+        <Button onClick={onClick} {...props} variant={"outline"}>
             <div className={"text-sm p-2 truncate text-ellipsis"}>{displayValue ?? value}</div>
-            <Button variant={"ghost"} onClick={onClick}>
-                {createElement(icon)}
-            </Button>
-        </div>
+            {createElement(icon, {size: 20})}
+        </Button>
     );
 };
 

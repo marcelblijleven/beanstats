@@ -16,7 +16,7 @@ const selectWithFreezeEntriesSchema = selectSchema.extend({
 });
 
 
-type SelectBean = Omit<z.infer<typeof selectSchema>, "id">;
+export type SelectBean = Omit<z.infer<typeof selectSchema>, "id">;
 type SelectBeanWithFreezeEntries = Omit<z.infer<typeof selectWithFreezeEntriesSchema>, "id">;
 
 /**
