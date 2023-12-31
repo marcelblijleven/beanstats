@@ -1,20 +1,22 @@
 import {currentUser} from "@clerk/nextjs";
 import {type User} from "@clerk/nextjs/api";
 import {type Metadata, type ResolvingMetadata} from "next";
-import Image from "next/image";
 import Link from "next/link";
 import {notFound} from "next/navigation";
 
 import {BeanDetail} from "@/components/detail-pages/bean-detail";
 import {Title} from "@/components/layout/title";
-import {Button, buttonVariants} from "@/components/ui/button";
+import {buttonVariants} from "@/components/ui/button";
 import {getBeanDetails, getBeanDetailsWithFreezeEntries} from "@/lib/db/beans/get-bean-details";
 import {canView} from "@/lib/perms";
 import {cn} from "@/lib/utils";
+import {ShareComponent} from "@/components/coffee/share";
 
 type PageProps = {
     params: { coffeeId: string}
 }
+
+type BeanDetails = Awaited<ReturnType<typeof getBeanDetails>>
 
 export async function generateMetadata({params}: PageProps, parent: ResolvingMetadata,): Promise<Metadata> {
     // read route params
@@ -37,7 +39,7 @@ export async function generateMetadata({params}: PageProps, parent: ResolvingMet
     };
 }
 
-function Buttons({user, bean} :{user: User | null, bean: Awaited<ReturnType<typeof getBeanDetails>>}) {
+function Buttons({user, bean} :{user: User | null, bean: BeanDetails}) {
     if (!bean || !user ||  user.publicMetadata.databaseId !== bean.userId) return null;
 
     return (
@@ -51,16 +53,8 @@ function Buttons({user, bean} :{user: User | null, bean: Awaited<ReturnType<type
             >
                 Freeze
             </Link>
-            {/*<BeanConquerorButton bean={bean} />*/}
+            <ShareComponent bean={bean} />
         </div>
-    );
-}
-
-function BeanConquerorButton({bean}: {bean:Awaited<ReturnType<typeof getBeanDetails>>}) {
-    return (
-        <Button variant={"outline"} size={"sm"}>
-            <Image src={"/beanconqueror_logo.png"} alt={"Beanconqueror logo"} height={20} width={20} />
-        </Button>
     );
 }
 
