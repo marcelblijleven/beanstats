@@ -1,7 +1,7 @@
 "use client";
 
 import {Check, Copy, type LucideIcon} from "lucide-react";
-import {createElement, useState, HTMLAttributes} from "react";
+import {createElement, useState, type HTMLAttributes} from "react";
 
 import {Button} from "@/components/ui/button";
 

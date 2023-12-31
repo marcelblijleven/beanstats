@@ -3,7 +3,7 @@ import {type z} from "zod";
 
 import {type FreezeEntry, FreezeEntryDataTable} from "@/components/overview-pages/freeze-entry-datatable";
 import {beanVarieties} from "@/db/schema";
-import {getBeanDetails, type getBeanDetailsWithFreezeEntries} from "@/lib/db/beans/get-bean-details";
+import {type getBeanDetailsWithFreezeEntries} from "@/lib/db/beans/get-bean-details";
 import {DetailItem} from "@/components/detail-pages/detail-item";
 
 // Figure out how to extract this from the Details type

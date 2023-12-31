@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import dynamic from "next/dynamic";
 import {
@@ -18,7 +18,6 @@ import {type beanInformationFormSchema} from "@/lib/beanconqueror/validations/be
 import {useState} from "react";
 import {getBeanLink} from "@/lib/beanlink";
 import CopyContainer from "@/components/copy-container";
-import {cn} from "@/lib/utils";
 
 const QRCode = dynamic(() => import("@/components/qrcode-card").then(module => module.QRCode), {ssr: false});
 
@@ -33,7 +32,7 @@ type Varieties = BeanDetails["varieties"];
 function getBeanMix(length: number): "UNKNOWN_BEAN_MIX" | "SINGLE_ORIGIN" | "BLEND" {
   if (length < 0 || length === 0) return "UNKNOWN_BEAN_MIX";
   if (length > 1) return "BLEND";
-  return "SINGLE_ORIGIN"
+  return "SINGLE_ORIGIN";
 }
 
 /**

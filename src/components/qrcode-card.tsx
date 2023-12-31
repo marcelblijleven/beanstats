@@ -13,7 +13,7 @@ export const QRCode = ({value}: {value: string}) => (
     logoWidth={0.2 * QRCodeSize}
     removeQrCodeBehindLogo={true}
   />
-)
+);
 
 const QRCodeCard = ({value}: {value: string}) => (
     <Card className={"bg-white"} style={{color: "hsl(222.2 47.4% 11.2%)"}}>
