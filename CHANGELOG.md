@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.16.0](https://github.com/marcelblijleven/beanstats/compare/v1.15.5...v1.16.0) (2023-12-31)
+
+
+### Features
+
+* add share component ([996767c](https://github.com/marcelblijleven/beanstats/commit/996767c210638d91d8d8f6305b987970851f4fd7))
+* add share component to bean details ([4a6db23](https://github.com/marcelblijleven/beanstats/commit/4a6db235b255ceea97e9a03d650cd58c0b56ed46))
+
 ## [1.15.5](https://github.com/marcelblijleven/beanstats/compare/v1.15.4...v1.15.5) (2023-12-29)
 
 
