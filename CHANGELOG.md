@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.2](https://github.com/marcelblijleven/beanstats/compare/v1.16.1...v1.16.2) (2024-01-01)
+
+
+### Bug Fixes
+
+* make displayValue an optional prop for CopyContainer ([061763d](https://github.com/marcelblijleven/beanstats/commit/061763d105a051dd9a55ee3b9579b852b6b08cec))
+
 ## [1.16.1](https://github.com/marcelblijleven/beanstats/compare/v1.16.0...v1.16.1) (2024-01-01)
 
 
