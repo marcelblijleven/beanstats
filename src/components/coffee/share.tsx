@@ -18,6 +18,15 @@ import {type beanInformationFormSchema} from "@/lib/beanconqueror/validations/be
 import {useState} from "react";
 import {getBeanLink} from "@/lib/beanlink";
 import CopyContainer from "@/components/copy-container";
+import {useMediaQuery} from "@/lib/hooks";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog";
 
 const QRCode = dynamic(() => import("@/components/qrcode-card").then(module => module.QRCode), {ssr: false});
 
@@ -55,9 +64,12 @@ function getVarietyInformation(varieties: Varieties): beanInformationFormSchema[
   }));
 }
 
+/**
+ * Create bean information scheme from provided BeanDetails
+ * @param bean
+ */
 function createBeanInformationSchema(bean: BeanDetails): beanInformationFormSchema | null {
   if (bean === undefined) return null;
-
 
   return {
     coffeeName: bean.name,
@@ -77,9 +89,14 @@ function createBeanInformationSchema(bean: BeanDetails): beanInformationFormSche
   };
 }
 
+/**
+ * Represents a section where the Beanconqueror QR code can be rendered
+ * @param url
+ */
 function QRCodeSection({url}: { url: string }) {
   const [show, setShow] = useState<boolean>(false);
   const [shareUrl, setShareUrl] = useState<string>();
+
   const onButtonClick = async () => {
     try {
       const beanlink = await getBeanLink(url);
@@ -93,29 +110,25 @@ function QRCodeSection({url}: { url: string }) {
 
   if (!show || !shareUrl) {
     return (
-      <Button type={"button"} onClick={onButtonClick}>Generate QR code</Button>
+      <Button type={"button"} variant={"outline"} onClick={onButtonClick}>Generate QR code</Button>
     );
   }
 
   return (
-    <div className={"flex flex-col gap-2 items-center"}>
+    <>
       <div className={"text-muted-foreground text-sm"}>Scan this QR code with your camera app</div>
       <QRCode value={shareUrl}/>
-    </div>
+      <CopyContainer value={shareUrl} displayValue={"Copy Beanlink url"} />
+    </>
   );
 }
 
-
 /**
- * Share component which renders a shareable link (if public) and the beanconqueror import QR Code
+ * Container for all the share options
  * @param bean
  * @constructor
  */
-export function ShareComponent({bean}: { bean: BeanDetails }) {
-  if (bean === null) {
-    return null;
-  }
-
+function ShareContainer({bean}: { bean: BeanDetails }) {
   const values = createBeanInformationSchema(bean);
 
   if (!values) {
@@ -123,29 +136,73 @@ export function ShareComponent({bean}: { bean: BeanDetails }) {
   }
 
   const shareUrl = createUrlFromFormSchema(values);
+  const beanstatsText = bean.isPublic ?
+    "This coffee is set to public, so the url can be shared with others." :
+    "To share this coffee via its url, you have to set it to 'public'.";
 
   return (
-    <Drawer>
+    <div className={"divide-y space-y-4 max-w-xl"}>
+      <section className={"space-y-2"}>
+        <h3 className={"font-semibold mb-1"}>Share via Beanstats link</h3>
+        <div className={"text-sm text-muted-foreground"}>{beanstatsText}</div>
+        {bean.isPublic && (
+          <CopyContainer
+            value={window.location.toString()}
+            displayValue={"Copy url"}
+          />
+        )}
+      </section>
+      <section className={"space-y-2"}>
+        <h3 className={"font-semibold mb-1"}>Share with Beanconqueror</h3>
+          <QRCodeSection url={shareUrl}/>
+      </section>
+    </div>
+  );
+}
+
+/**
+ * Share component which renders a shareable link (if public) and the beanconqueror import QR Code
+ * @param bean
+ * @constructor
+ */
+export function ShareComponent({bean}: { bean: BeanDetails }) {
+  const [open, setOpen] = useState<boolean>(false);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
+
+  if (bean === null) {
+    return null;
+  }
+
+  if (isDesktop) {
+    return (
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Button variant={"outline"} size={"sm"}>Share</Button>
+        </DialogTrigger>
+        <DialogContent className={"sm:max-w-[425px]"}>
+          <DialogHeader>
+            <DialogTitle>Share</DialogTitle>
+            <DialogDescription>
+              Share this coffee.
+            </DialogDescription>
+          </DialogHeader>
+          <ShareContainer bean={bean} />
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
+  return (
+    <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger className={buttonVariants({variant: "outline", size: "sm"})}>Share</DrawerTrigger>
       <DrawerContent>
-        <DrawerHeader className={"max-w-xl mx-auto"}>
-          <DrawerTitle>Share this coffee</DrawerTitle>
-          {bean.isPublic && <DrawerDescription>This bean is public and can be shared by link or scanned by
-            Beanconqueror</DrawerDescription>}
-          {!bean.isPublic &&
-            <DrawerDescription>This bean is not public so it can only be scanned by Beanconqueror</DrawerDescription>}
+        <DrawerHeader className={"max-w-xl"}>
+          <DrawerTitle>Share</DrawerTitle>
+          <DrawerDescription>Share this coffee.</DrawerDescription>
         </DrawerHeader>
         <DrawerFooter className={"max-w-xl mx-auto"}>
-          <div className={"flex items-center gap-2 max-w-xl mx-auto"}>
-            {bean.isPublic && (
-              <CopyContainer
-                value={window.location.toString()}
-                displayValue={"Copy url"}
-              />
-            )}
-            <QRCodeSection url={shareUrl}/>
-          </div>
-          <DrawerClose>
+          <ShareContainer bean={bean} />
+          <DrawerClose className={"self-end"}>
             <Button variant="outline">Cancel</Button>
           </DrawerClose>
         </DrawerFooter>
