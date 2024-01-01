@@ -1,30 +1,36 @@
-"use client";
+import headerNavLinks from "@/components/layout/nav-links";
+import MobileNav from "./mobile-nav";
+import HeaderTitle from "@/components/layout/header-title";
 import Link from "next/link";
-
-import {Navigation} from "@/components/layout/navigation";
-import ThemeSwitcher from "@/components/theme/theme-switcher";
 import UserButton from "@/components/account/user-button";
+import ThemeSwitcher from "@/components/theme/theme-switcher";
 
-// Header has z-20 because of progress bars
-
-const Header = () => (
-    <header className={"sticky z-20 top-0 p-2 bg-opacity-95 w-full bg-background/95 border-b-2 border-accent"}>
-        <div className={"mx-auto py-2 flex items-center justify-between w-full max-w-[1600px]"}>
-            <div className={"flex items-center gap-2"}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                    <path fillRule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clipRule="evenodd" />
-                </svg>
-                <Link className={"text-xl md:text-2xl font-extrabold"} href={"/"}>beanstats</Link>
-            </div>
-            <div className={"flex items-center space-x-2"}>
-                <UserButton />
-                <ThemeSwitcher/>
-            </div>
+const Header = () => {
+  return (
+    <header className="sticky z-20 flex items-center justify-between p-4 bg-opacity-95 bg-background/95 border-b-2 border-accent w-full py-4">
+      <div>
+        <HeaderTitle />
+      </div>
+      <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
+        {headerNavLinks
+          .filter((link) => link.href !== "/")
+          .map((link) => (
+            <Link
+              key={link.title}
+              href={link.href}
+              className="hidden font-medium text-gray-900 text-sm dark:text-gray-100 sm:block"
+            >
+              {link.title}
+            </Link>
+          ))}
+        <div className={"flex items-center space-x-2"}>
+          <UserButton />
+          <ThemeSwitcher/>
         </div>
-        <div className={"mx-auto max-w-[1600px]"}>
-            <Navigation/>
-        </div>
+        <MobileNav />
+      </div>
     </header>
-);
+  );
+};
 
 export default Header;
