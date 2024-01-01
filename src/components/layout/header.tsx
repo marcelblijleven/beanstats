@@ -1,7 +1,6 @@
-import headerNavLinks from "@/components/layout/nav-links";
+import headerNavLinks, {NavLink} from "@/components/layout/nav-links";
 import MobileNav from "./mobile-nav";
 import HeaderTitle from "@/components/layout/header-title";
-import Link from "next/link";
 import UserButton from "@/components/account/user-button";
 import ThemeSwitcher from "@/components/theme/theme-switcher";
 
@@ -14,15 +13,7 @@ const Header = () => {
       <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
         {headerNavLinks
           .filter((link) => link.href !== "/")
-          .map((link) => (
-            <Link
-              key={link.title}
-              href={link.href}
-              className="hidden font-medium text-gray-900 text-sm dark:text-gray-100 sm:block"
-            >
-              {link.title}
-            </Link>
-          ))}
+          .map((link) => <NavLink key={link.title} link={link} />)}
         <div className={"flex items-center space-x-2"}>
           <UserButton />
           <ThemeSwitcher/>
