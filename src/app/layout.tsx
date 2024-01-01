@@ -6,10 +6,10 @@ import {Inter} from 'next/font/google';
 import {type ReactNode} from "react";
 
 import Footer from "@/components/layout/footer";
-import Header from "@/components/layout/header";
 import {ThemeProvider} from "@/components/theme/theme-provider";
 import {Toaster} from "@/components/ui/toaster";
 import {cn} from "@/lib/utils";
+import Header from "@/components/layout/header";
 
 
 const inter = Inter({subsets: ['latin']});
