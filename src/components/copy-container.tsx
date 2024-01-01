@@ -7,7 +7,7 @@ import {Button} from "@/components/ui/button";
 
 interface CopyContainerProps extends HTMLAttributes<HTMLButtonElement> {
     value: string;
-    displayValue: string;
+    displayValue?: string;
 }
 
 const CopyContainer = ({value, displayValue, ...props}: CopyContainerProps) => {
