@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.17.0](https://github.com/marcelblijleven/beanstats/compare/v1.16.2...v1.17.0) (2024-01-01)
+
+
+### Features
+
+* improve header ([019ba1e](https://github.com/marcelblijleven/beanstats/commit/019ba1e768a2a6d11d46e8e3aace52cf147da92a))
+
 ## [1.16.2](https://github.com/marcelblijleven/beanstats/compare/v1.16.1...v1.16.2) (2024-01-01)
 
 
