@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.1](https://github.com/marcelblijleven/beanstats/compare/v1.16.0...v1.16.1) (2024-01-01)
+
+
+### Bug Fixes
+
+* build lock file using pnpm &gt;= 8 ([8cdb84a](https://github.com/marcelblijleven/beanstats/commit/8cdb84a783ff567da9f84ca9b2686f65c909b2fc))
+
 ## [1.16.0](https://github.com/marcelblijleven/beanstats/compare/v1.15.5...v1.16.0) (2023-12-31)
 
 
