@@ -50,6 +50,7 @@
     "date-fns": "^2.30.0",
     "drizzle-orm": "^0.28.6",
     "drizzle-zod": "^0.5.1",
+    "embla-carousel-react": "8.0.0-rc17",
     "framer-motion": "^10.12.16",
     "lucide-react": "^0.241.0",
     "nanoid": "^3.3.6",
@@ -68,7 +69,8 @@
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.6",
     "vaul": "^0.8.0",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",

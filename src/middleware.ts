@@ -9,6 +9,7 @@ export default authMiddleware({
         "/beanconqueror/stats",
         "/beanconqueror/shorten",
         "/beanconqueror/view",
+        /^\/beanconqueror\/wrapped\/(\d{4})$/,
         "/changelog",
         /^\/coffee\/(.{12})$/,
         /^\/coffee\/freeze\/(.{12})$/,
