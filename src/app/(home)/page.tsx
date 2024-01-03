@@ -11,10 +11,19 @@ export default function Home() {
             </h1>
             <p className={"max-w-prose sm:text-lg text-slate-700 dark:text-slate-200"}>Beanstats lets you track your
                 coffee backlog and provides visualization of your coffee stats.</p>
+            {/*<Link*/}
+            {/*    className={"font-semibold rounded-full outline outline-gray-200 py-1 px-5 shadow hover:bg-primary-foreground hover:text-primary"}*/}
+            {/*    href={"/dashboard"}>*/}
+            {/*    Get started*/}
+            {/*</Link>*/}
             <Link
-                className={"font-semibold rounded-full outline outline-gray-200 py-1 px-5 shadow hover:bg-primary-foreground hover:text-primary"}
-                href={"/dashboard"}>
-                Get started
+              className={"relative flex items-center gap-2 font-semibold rounded-full outline outline-gray-200 py-1 px-5 shadow hover:bg-primary-foreground hover:text-primary"}
+              href={"/beanconqueror/wrapped/2023"}>
+              View Wrapped 2023
+              <div className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </div>
             </Link>
             <div className={"mb-12"}>
                 <div className='relative isolate'>
