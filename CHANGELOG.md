@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.18.0](https://github.com/marcelblijleven/beanstats/compare/v1.17.0...v1.18.0) (2024-01-03)
+
+
+### Features
+
+* add wrapped ([79b9309](https://github.com/marcelblijleven/beanstats/commit/79b93096b6beda38e7f9300528ec727d4f7298d2))
+
+
+### Bug Fixes
+
+* type hints for carousel component are not correct ([4336114](https://github.com/marcelblijleven/beanstats/commit/4336114a391769ae337bd8791182aaa0948e5cba))
+
 ## [1.17.0](https://github.com/marcelblijleven/beanstats/compare/v1.16.2...v1.17.0) (2024-01-01)
 
 
