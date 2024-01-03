@@ -23,13 +23,13 @@ interface Props {
 
 function Text({children}: { children: ReactNode }) {
   return (
-    <div className={"text-lg font-semibold"}>{children}</div>
+    <div className={"text-md md:text-lg font-semibold"}>{children}</div>
   );
 }
 
 function BigText({children}: { children: ReactNode }) {
   return (
-    <div className={"text-5xl font-black"}>
+    <div className={"text-2xl md:text-5xl font-black"}>
       {children}
     </div>
   );
@@ -54,7 +54,7 @@ function WrappedCarousel() {
 
 
   return (
-    <Carousel className={"max-w-xl"}>
+    <Carousel className={"w-[275px] md:w-[500px] text-black"}>
       <CarouselContent>
         <IsometricPage>
           <Text>In {year} you&apos;ve bought</Text>
@@ -150,7 +150,7 @@ function Upload() {
   return (
     <section className={"flex flex-col gap-2 my-4"}>
       <h2 className={"text-lg font-semibold self-center"}>Upload</h2>
-      <div>Get started by uploading your Beanconqueror zip file</div>
+      <div className={"text-sm md:text-base"}>Get started by uploading your Beanconqueror zip file</div>
       <div className={"flex gap-2"}>
         <Input
           hidden
@@ -176,17 +176,17 @@ export default function Wrapped(props: Props) {
   }, [setYear, props.year]);
 
   return (
-    <>
-      <div className={"flex flex-col items-center gap-2"}>
+    <div className={"mx-2"}>
+      <div className={"flex flex-col items-center gap-1 lg:gap-2"}>
         <div className={"bg-gradient-to-tr from-amber-700 to-yellow-300 bg-clip-text text-transparent"}>
-          <h1 className={"text-5xl lg:text-7xl font-black tracking-tight"}>Wrapped {props.year}</h1>
+          <h1 className={"text-4xl lg:text-7xl font-black tracking-tight"}>Wrapped {props.year}</h1>
         </div>
-        <div className={"text-lg lg:text-xl text-muted-foreground"}>Your year in coffee</div>
+        <div className={"text-md lg:text-xl text-muted-foreground"}>Your year in coffee</div>
       </div>
       <div className={cn("flex flex-col items-center gap-4", data && "flex-col-reverse")}>
-      <Upload/>
+      <Upload />
       {data && <WrappedCarousel/>}
       </div>
-    </>
+    </div>
   );
 }
