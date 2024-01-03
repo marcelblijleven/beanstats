@@ -1,7 +1,7 @@
 "use client"
 
-import {type CSSProperties, type ReactNode, useEffect, useRef} from "react";
-import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
+import {type ReactNode, useEffect, useRef, useState} from "react";
+import {Carousel, CarouselContent, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 import {useWrappedStore} from "@/components/beanconqueror/wrapped/store";
 import {createWrappedStatistics} from "@/components/beanconqueror/wrapped/utils";
 import {readZipFile} from "@/lib/beanconqueror/upload/utils";
@@ -81,32 +81,32 @@ function WrappedCarousel() {
           </ol>
         </CirclesPage>
         <ZigZag3DPage>
-          <Text>You needed coffee the most between</Text>
-          <BigText>{data.mostCommonDrinkingHour}:00 - {data.mostCommonDrinkingHour + 1}:00</BigText>
+            <Text>You usually drank coffee between</Text>
+            <BigText>{data.mostCommonDrinkingHour}:00 - {data.mostCommonDrinkingHour + 1}:00</BigText>
         </ZigZag3DPage>
         <WavyPage>
           <Text>Your most used grinder</Text>
           <BigText>{data.mostUsedGrinder}</BigText>
         </WavyPage>
         <CirclesPage>
-          <Text>Your most used preparation method</Text>
+          <Text>Your favorite preparation method</Text>
           <BigText>{data.mostUsedPreparationMethod}</BigText>
         </CirclesPage>
         <ZigZag3DPage>
-          <Text>Your most common origin</Text>
+          <Text>Your favorite origin</Text>
           <BigText>{data.mostCommonOrigin}</BigText>
         </ZigZag3DPage>
         <CirclesPage>
-          <Text>Your most common varieties</Text>
+          <Text>Your favorite variety</Text>
           <BigText>{data.mostCommonVariety}</BigText>
         </CirclesPage>
         <ZigZagPage>
-          <Text>Your most common processing</Text>
+          <Text>Your favorite processing</Text>
           <BigText>{data.mostCommonProcessingMethod}</BigText>
         </ZigZagPage>
       </CarouselContent>
-      <CarouselPrevious/>
-      <CarouselNext/>
+      <CarouselPrevious className={"ml-2 -mr-1"}/>
+      <CarouselNext className={"mr-2 -ml-1"}/>
     </Carousel>
 
   );
@@ -118,6 +118,11 @@ function Upload() {
   const setData = useWrappedStore(state => state.setData);
   const year = useWrappedStore(state => state.year)!;
   const {toast} = useToast();
+  const [disabled, setDisabled] = useState<boolean>(true);
+
+  const onChange = () => {
+    setDisabled(false);
+  };
 
   const callback = async () => {
     const file = fileRef.current?.files?.[0];
@@ -143,7 +148,10 @@ function Upload() {
 
   if (!!data) {
     return (
-      <Button onClick={() => setData(null)} className={"w-40"}>Upload new file</Button>
+      <Button onClick={() => {
+        setData(null);
+        setDisabled(true);
+      }} className={"w-40"}>Upload new file</Button>
     );
   }
 
@@ -160,8 +168,9 @@ function Upload() {
           type={"file"}
           multiple={false}
           accept={"application/zip"}
+          onChange={onChange}
         />
-        <Button className={"shrink-0"} type={"button"} onClick={callback}>Get stats</Button>
+        <Button disabled={disabled} className={"shrink-0"} type={"button"} onClick={callback}>Get stats</Button>
       </div>
     </section>
   );
