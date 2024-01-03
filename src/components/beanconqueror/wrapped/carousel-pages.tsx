@@ -1,13 +1,13 @@
-import {CSSProperties, ReactNode} from "react";
+import {type CSSProperties, type ReactNode} from "react";
 import {CarouselItem} from "@/components/ui/carousel";
 
 function CarouselPage({children, style}: { children: ReactNode, style: CSSProperties }) {
   return (
     <CarouselItem
-      className={"relative h-72 p-4 border border-accent rounded-xl shadow shadow-accent"}
+      className={"relative h-96 w-full p-4 border border-accent rounded-xl shadow shadow-accent"}
       style={style}
     >
-      <div className={"absolute top-0 left-0 flex flex-col items-center justify-center z-10 w-full h-full"}>
+      <div className={"absolute top-0 left-0 flex flex-col items-center justify-center z-10 h-full w-full min-w-0"}>
         {children}
       </div>
       <div className={"absolute top-0 left-0 w-full h-full bg-white/70 z-0"}></div>
