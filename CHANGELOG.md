@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.2](https://github.com/marcelblijleven/beanstats/compare/v1.18.1...v1.18.2) (2024-01-03)
+
+
+### Bug Fixes
+
+* styling issues ([caaadf5](https://github.com/marcelblijleven/beanstats/commit/caaadf5e62bf197567d2a1ef7838b5fb42832be2))
+
 ## [1.18.1](https://github.com/marcelblijleven/beanstats/compare/v1.18.0...v1.18.1) (2024-01-03)
 
 
