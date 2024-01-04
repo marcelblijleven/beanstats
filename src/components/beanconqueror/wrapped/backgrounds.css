@@ -1,0 +1,162 @@
+/* Patterns from https://css-pattern.com/ */
+
+:root {
+    --c1: #ffd9cb;
+    --c2: #c2daee
+}
+
+.bg-circle-wave {
+    --s: 100px;
+
+    --_g:
+            var(--c2) 6%  14%,var(--c1) 16% 24%,var(--c2) 26% 34%,var(--c1) 36% 44%,
+            var(--c2) 46% 54%,var(--c1) 56% 64%,var(--c2) 66% 74%,var(--c1) 76% 84%,var(--c2) 86% 94%;
+    background:
+            radial-gradient(100% 100% at 100% 0,var(--c1) 4%,var(--_g), rgba(117, 117, 117, 0.34) 96%,#0000),
+            radial-gradient(100% 100% at 0 100%,#0000, rgba(117, 117, 117, 0.34) 4%,var(--_g),var(--c1) 96%)
+            var(--c1);
+    background-size: var(--s) var(--s);
+}
+
+.bg-circle-wave-2 {
+    --s: 100px; /* control the size */
+
+    --_g:#0000, rgba(117, 117, 117, 0.34) 5%,
+    var(--c2) 6%  14%,var(--c1) 16% 24%,var(--c2) 26% 34%,var(--c1) 36% 44%,
+    var(--c2) 46% 54%,var(--c1) 56% 64%,var(--c2) 66% 74%,var(--c1) 76% 84%,
+    var(--c2) 86% 94%, rgba(117, 117, 117, 0.34) 95%,#0000;
+    background:
+            radial-gradient(100% 50% at 100% 0   ,var(--_g)),
+            radial-gradient(100% 50% at 0    50% ,var(--_g)),
+            radial-gradient(100% 50% at 100% 100%,var(--_g));
+    background-size: var(--s) calc(2*var(--s));
+}
+
+
+.bg-wave {
+    --s: 30px;
+
+    --_s:37.5% 12.5% at 62.5%;
+    --_g:34% 99%,#0000 101%;
+    --g1:radial-gradient(var(--_s) 100%,#0000 32%,var(--c1) var(--_g));
+    --g2:radial-gradient(var(--_s) 0   ,#0000 32%,var(--c1) var(--_g));
+    --g3:radial-gradient(var(--_s) 100%,#0000 32%,var(--c2) var(--_g));
+    --g4:radial-gradient(var(--_s) 0   ,#0000 32%,var(--c2) var(--_g));
+    background:
+            var(--g1),
+            var(--g2) 0                calc(3*var(--s)),
+            var(--g3) var(--s)         calc(3*var(--s)),
+            var(--g4) var(--s)         calc(6*var(--s)),
+            var(--g1) calc(2*var(--s)) calc(6*var(--s)),
+            var(--g2) calc(2*var(--s)) calc(9*var(--s)),
+            var(--g3) calc(3*var(--s)) calc(9*var(--s)),
+            var(--g4) calc(3*var(--s)) 0,
+            repeating-linear-gradient(var(--c1) 0 25%,var(--c2) 0 50%);
+    background-size: calc(4*var(--s)) calc(12*var(--s));
+}
+
+.bg-pixels {
+    --s: 50px; /* control the size */
+    --c: var(--c1) 0 25%, #c2daee 0 50%,#0000 0;
+    background:
+            conic-gradient(from 180deg,var(--c))
+            0/var(--s) var(--s),
+            repeating-conic-gradient(from 90deg,var(--c))
+            0/calc(3*var(--s)) calc(3*var(--s))
+}
+
+.bg-chain {
+    --s: 160px; /* control the size */
+
+    --_g: var(--s) var(--s)
+    radial-gradient(var(--c1) 17%,var(--c2) 18% 35%,#0000 36.5%);
+    background:
+            calc(var(--s)/-4) calc(var(--s)/-4)/var(--_g),
+            calc(var(--s)/ 4) calc(var(--s)/ 4)/var(--_g),
+            radial-gradient(var(--c2) 34%,var(--c1) 36% 68%,#0000 70%)
+            0 0/calc(var(--s)/2) calc(var(--s)/2),
+            repeating-linear-gradient(45deg,var(--c1) -12.5% 12.5%,var(--c2) 0 37.5%)
+            0 0/var(--s) var(--s);
+}
+
+.bg-swirl {
+    --s: 6px; /* control the size */
+
+    --g:#0000 66%, #c2daee 68% 98%,#0000;
+    background:
+            radial-gradient(30% 30% at 0%   30%,var(--g))
+            var(--s) calc(9*var(--s)),
+            radial-gradient(30% 30% at 100% 30%,var(--g))
+            var(--s) calc(-1*var(--s)),
+            radial-gradient(30% 30% at 30% 100%,var(--g))
+            calc(10*var(--s)) 0,
+            radial-gradient(30% 30% at 30% 0%  ,var(--g)) #ffd9cb;
+    background-size: calc(20*var(--s)) calc(20*var(--s));
+}
+
+.bg-3d-blocks {
+    --s: 194px; /* control the size */
+
+    --_l:#0000 calc(25%/3),var(--c1) 0 25%,#0000 0;
+    --_g:conic-gradient(from 120deg at 50% 87.5%,var(--c1) 120deg,#0000 0);
+    background:
+            var(--_g),var(--_g) 0 calc(var(--s)/2),
+            conic-gradient(from 180deg at 75%,var(--c2) 60deg,#0000 0),
+            conic-gradient(from 60deg at 75% 75%,var(--c1) 0 60deg,#0000 0),
+            linear-gradient(150deg,var(--_l)) 0 calc(var(--s)/2),
+            conic-gradient(at 25% 25%,#0000 50%,var(--c2) 0 240deg,var(--c1) 0 300deg,var(--c2) 0),
+            linear-gradient(-150deg,var(--_l)) #95b4bd /* third color here */;
+    background-size: calc(0.866*var(--s)) var(--s);
+}
+
+.bg-pills {
+    --s: 60px; /* control the size */
+
+    background:
+            repeating-conic-gradient(var(--c1) 0 25%,#0000 0 50%)
+            0 0/calc(4*var(--s)) calc(2*var(--s)),
+            conic-gradient(#0000 50%,var(--c2) 0)
+            calc(var(--s)/2) 0/calc(2*var(--s)) 1%,
+            radial-gradient(var(--c2) 70%,var(--c1) 72%)
+            0 0/var(--s) var(--s)
+}
+
+.bg-arrows {
+    --s: 62px; /* control the size */
+
+    background:
+            conic-gradient(from  45deg at 75% 75%,var(--c1) 25%,var(--c2) 0 50%,#0000 0)
+            0 0/var(--s) var(--s),
+            conic-gradient(from 225deg at 25% 25%,var(--c2) 25%,var(--c1) 0 50%,#0000 0)
+            0 0/var(--s) var(--s),
+            repeating-conic-gradient(var(--c2) 0 25%,var(--c1) 0 50%)
+            0 0/calc(2*var(--s)) calc(2*var(--s))
+}
+
+.bg-links {
+    --s: 60px; /* control the size */
+
+    --c:#0000 71%,var(--c1) 0 79%,#0000 0;
+    --_s:calc(var(--s)/2)/calc(2*var(--s)) calc(2*var(--s));
+    background:
+            linear-gradient(45deg,var(--c))
+            calc(var(--s)/-2) var(--_s),
+            linear-gradient(135deg,var(--c))
+            calc(var(--s)/2) var(--_s),
+            radial-gradient(var(--c1) 35%,var(--c2) 37%)
+            0 0/var(--s) var(--s);
+}
+
+.bg-tiles {
+    --s: 110px; /* control the size */
+
+    --l1:#0000  48%,var(--c1) 0 52%,#0000 0;
+    --l2:#0000 1.3%,var(--c2) 0 32%,#0000 0;
+    background:
+            linear-gradient(-45deg,var(--l2)),
+            linear-gradient( 45deg,var(--l1)),
+            linear-gradient( 45deg,var(--l2)) calc(var(--s)/2) calc(var(--s)/2),
+            linear-gradient(-45deg,var(--l1)) var(--c2);
+    background-size: calc(2*var(--s)) var(--s),var(--s) var(--s);
+}
+

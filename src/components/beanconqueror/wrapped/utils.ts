@@ -1,6 +1,4 @@
 import {type BCData, type Bean, type Brew, type Mill, type Preparation} from "@/types/beanconqueror";
-import {beanconqueror} from "@/lib/beanconqueror/proto/generated/beanconqueror";
-import BeanInformation = beanconqueror.BeanInformation;
 
 interface HasConfig {
   config: {uuid: string, unix_timestamp: number}
@@ -60,6 +58,8 @@ function getDefaultDict(initial: number): Record<string | symbol, number> {
   });
 }
 
+const foo = {};
+
 /**
  * Checks if the provided data has either a buy date equal to the provided year, or
  * a unix timestamp of the provided year.
@@ -70,7 +70,10 @@ function inYear(data: HasTimeData, year: number): boolean {
   if (!!data.buyDate) {
     return new Date(data.buyDate).getFullYear() === year;
   }
-
+  const d = new Date(data.config.unix_timestamp * 1000);
+  if (d.getFullYear() === year) {
+    console.log(d.getHours())
+  }
   return new Date(data.config.unix_timestamp * 1000).getFullYear() === year;
 }
 
@@ -166,9 +169,19 @@ function mostCommonValue<T>(data: Array<T | undefined>): T | undefined {
   return data.filter(a => !!a).sort((a,b) => data.filter(v => v === a).length - data.filter(v => v=== b).length).pop();
 }
 
+/**
+ * Create wrapped statistics for the provided year. If the year has no brews or beans, the function
+ * will throw a custom object
+ * @param data {BCData} the Beanconqueror data from the zip file
+ * @param year {number} the year to create statistics for
+ */
 export function createWrappedStatistics(data: BCData, year: number): WrappedData {
   const mappings = createMappings(data, year);
   const timeStats = createBrewStats(mappings);
+
+  if (mappings.brewMaps.inYear.size === 0 || mappings.beanMaps.inYear.size === 0) {
+    throw {wrappedError: "missing brew or bean information for this year."};
+  }
 
   const [mostCommonDrinkingHour,] = Object.entries(timeStats.countPerHour).sort((entry) => {
     const [, count] = entry;
