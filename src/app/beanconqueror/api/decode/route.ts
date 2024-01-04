@@ -1,5 +1,5 @@
 import {decodeMessage} from "@/lib/beanconqueror/proto";
-import {type NextRequest, type NextResponse} from "next/server";
+import {type NextRequest, NextResponse} from "next/server";
 
 type Body = {
   url: string
