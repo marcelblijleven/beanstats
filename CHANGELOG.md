@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.3](https://github.com/marcelblijleven/beanstats/compare/v1.18.2...v1.18.3) (2024-01-04)
+
+
+### Bug Fixes
+
+* round total weight in wrapped ([2009555](https://github.com/marcelblijleven/beanstats/commit/2009555ce02cbe53c64e0eb4ebc93772cbd58fee))
+
 ## [1.18.2](https://github.com/marcelblijleven/beanstats/compare/v1.18.1...v1.18.2) (2024-01-03)
 
 
