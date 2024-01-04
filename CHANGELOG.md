@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.18.4](https://github.com/marcelblijleven/beanstats/compare/v1.18.3...v1.18.4) (2024-01-04)
+
+
+### Bug Fixes
+
+* handle year data without beans or brews ([bc1ee2b](https://github.com/marcelblijleven/beanstats/commit/bc1ee2ba2ee04e5ffa90dafac78799a9d602916e))
+* hide overflow for rounded borders ([13408f5](https://github.com/marcelblijleven/beanstats/commit/13408f5cc9a310de1000fc9008b1582532c4e52a))
+* layout issues and simplified carousel ([4e2b379](https://github.com/marcelblijleven/beanstats/commit/4e2b379b39e70ac9a9ab2d6082d4f25de66a7744))
+
 ## [1.18.3](https://github.com/marcelblijleven/beanstats/compare/v1.18.2...v1.18.3) (2024-01-04)
 
 
