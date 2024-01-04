@@ -4,7 +4,7 @@ import {CarouselItem} from "@/components/ui/carousel";
 function CarouselPage({children, style}: { children: ReactNode, style: CSSProperties }) {
   return (
     <CarouselItem
-      className={"relative h-96 w-full p-4 border border-accent rounded-xl shadow shadow-accent"}
+      className={"relative h-96 w-full p-4 border border-accent rounded-xl shadow shadow-accent overflow-hidden"}
       style={style}
     >
       <div className={"absolute top-0 left-0 flex flex-col items-center justify-center z-10 h-full w-full min-w-0"}>
