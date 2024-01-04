@@ -5,6 +5,7 @@ export default authMiddleware({
         "/",
         "/api/users/webhook",
         "/beanconqueror",
+        "/beanconqueror/api/decode",
         "/beanconqueror/create",
         "/beanconqueror/stats",
         "/beanconqueror/shorten",
