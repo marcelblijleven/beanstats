@@ -169,6 +169,12 @@ function mostCommonValue<T>(data: Array<T | undefined>): T | undefined {
   return data.filter(a => !!a).sort((a,b) => data.filter(v => v === a).length - data.filter(v => v=== b).length).pop();
 }
 
+/**
+ * Create wrapped statistics for the provided year. If the year has no brews or beans, the function
+ * will throw a custom object
+ * @param data {BCData} the Beanconqueror data from the zip file
+ * @param year {number} the year to create statistics for
+ */
 export function createWrappedStatistics(data: BCData, year: number): WrappedData {
   const mappings = createMappings(data, year);
   const timeStats = createBrewStats(mappings);

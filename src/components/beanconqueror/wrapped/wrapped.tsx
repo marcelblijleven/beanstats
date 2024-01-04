@@ -1,7 +1,7 @@
 "use client"
 
 import {type ReactNode, useEffect, useRef, useState} from "react";
-import {Carousel, CarouselContent, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
+import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 import {useWrappedStore} from "@/components/beanconqueror/wrapped/store";
 import {createWrappedStatistics} from "@/components/beanconqueror/wrapped/utils";
 import {readZipFile} from "@/lib/beanconqueror/upload/utils";
@@ -9,13 +9,8 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {useToast} from "@/components/ui/use-toast";
 import {cn} from "@/lib/utils";
-import {
-  CirclesPage,
-  IsometricPage,
-  RhombusPage,
-  WavyPage, ZigZag3DPage,
-  ZigZagPage
-} from "@/components/beanconqueror/wrapped/carousel-pages";
+
+import "./backgrounds.css";
 
 interface Props {
   year: number
@@ -54,59 +49,64 @@ function WrappedCarousel() {
 
   console.log(data.mostCommonProcessingMethod);
   return (
-    <Carousel className={"w-[275px] md:w-[500px] text-black"}>
-      <CarouselContent>
-        <IsometricPage>
+    <Carousel opts={{
+      align: "start",
+    }}
+              className="w-full max-w-xs mt-4 text-gray-950">
+      <CarouselContent className={"h-[300px] text-gray-950"}>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-circle-wave"}>
           <Text>In {year} you&apos;ve bought</Text>
           <BigText>{data.totalCoffee}</BigText>
           <Text>bags of coffee</Text>
-        </IsometricPage>
-        <WavyPage>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-wave"}>
           <Text>With a total weight of</Text>
           <BigText>{Math.floor(data.totalWeight * 100) / 100} grams</BigText>
-        </WavyPage>
-        <RhombusPage>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-circle-wave-2"}>
           <Text>You&apos;ve been busy, you made</Text>
           <BigText>{data.totalBrews} brews</BigText>
           <Text>Averaging {Math.floor(data.averageBrewsPerDay * 100) / 100} brews per day</Text>
-        </RhombusPage>
-        <ZigZagPage>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-pixels"}>
           <Text>You made the most brews on</Text>
           <BigText>{data.mostBrewsOnDay}</BigText>
-        </ZigZagPage>
-        <CirclesPage>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-chain"}>
           <Text>Your top 5 brews per month</Text>
           <ol className={"text-center text-lg"}>
             {months}
           </ol>
-        </CirclesPage>
-        <ZigZag3DPage>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-swirl"}>
             <Text>You usually drank coffee between</Text>
             <BigText>{data.mostCommonDrinkingHour}:00 - {data.mostCommonDrinkingHour + 1}:00</BigText>
-        </ZigZag3DPage>
-        <WavyPage>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-3d-blocks"}>
           <Text>Your most used grinder</Text>
           <BigText>{data.mostUsedGrinder}</BigText>
-        </WavyPage>
-        <CirclesPage>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-pills"}>
           <Text>Your favorite preparation method</Text>
           <BigText>{data.mostUsedPreparationMethod}</BigText>
-        </CirclesPage>
-        <ZigZag3DPage>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-arrows"}>
           <Text>Your favorite origin</Text>
           <BigText>{data.mostCommonOrigin}</BigText>
-        </ZigZag3DPage>
-        <CirclesPage>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-links"}>
           <Text>Your favorite variety</Text>
           <BigText>{data.mostCommonVariety}</BigText>
-        </CirclesPage>
-        <ZigZagPage>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-tiles"}>
           <Text>Your favorite processing</Text>
           <BigText>{data.mostCommonProcessingMethod}</BigText>
-        </ZigZagPage>
+        </CarouselItem>
       </CarouselContent>
-      <CarouselPrevious className={"ml-2 -mr-1"}/>
-      <CarouselNext className={"mr-2 -ml-1"}/>
+      <div className={"flex items-center justify-center gap-4 m-4"}>
+        <CarouselPrevious />
+        <CarouselNext />
+      </div>
     </Carousel>
 
   );
@@ -203,7 +203,7 @@ export default function Wrapped(props: Props) {
         </div>
         <div className={"text-md lg:text-xl text-muted-foreground"}>Your year in coffee</div>
       </div>
-      <div className={cn("flex flex-col items-center gap-4", data && "flex-col-reverse")}>
+      <div className={cn("flex flex-col items-center gap-4 g-red-400", data && "flex-col-reverse")}>
       <Upload />
       {data && <WrappedCarousel/>}
       </div>
