@@ -63,7 +63,7 @@ function WrappedCarousel() {
         </IsometricPage>
         <WavyPage>
           <Text>With a total weight of</Text>
-          <BigText>{data.totalWeight} grams</BigText>
+          <BigText>{Math.floor(data.totalWeight * 100) / 100} grams</BigText>
         </WavyPage>
         <RhombusPage>
           <Text>You&apos;ve been busy, you made</Text>
