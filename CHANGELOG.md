@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.1](https://github.com/marcelblijleven/beanstats/compare/v1.19.0...v1.19.1) (2024-01-04)
+
+
+### Bug Fixes
+
+* don't import NextResponse as type ([417cb73](https://github.com/marcelblijleven/beanstats/commit/417cb73f98ced8a1e9e0ae5306ca971b32f37845))
+
 ## [1.19.0](https://github.com/marcelblijleven/beanstats/compare/v1.18.4...v1.19.0) (2024-01-04)
 
 
