@@ -52,7 +52,7 @@ function WrappedCarousel() {
     );
   });
 
-
+  console.log(data.mostCommonProcessingMethod);
   return (
     <Carousel className={"w-[275px] md:w-[500px] text-black"}>
       <CarouselContent>
@@ -138,6 +138,17 @@ function Upload() {
     try {
       setData(createWrappedStatistics(await readZipFile(file), year));
     } catch (e) {
+      const wrappedError = (e as {wrappedError: string}).wrappedError;
+      if (wrappedError) {
+        toast({
+          title: "Error",
+          description: wrappedError,
+          variant: "destructive",
+        });
+        return;
+      }
+
+      console.error(e);
       toast({
         title: "Error",
         description: "Something went wrong while processing your data",
