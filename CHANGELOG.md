@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.0](https://github.com/marcelblijleven/beanstats/compare/v1.18.4...v1.19.0) (2024-01-04)
+
+
+### Features
+
+* add api route for decoding share urls ([2f46ee6](https://github.com/marcelblijleven/beanstats/commit/2f46ee64f174fd8ffb72a182ef46fab9629286ab))
+
 ## [1.18.4](https://github.com/marcelblijleven/beanstats/compare/v1.18.3...v1.18.4) (2024-01-04)
 
 
