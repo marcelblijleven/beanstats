@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {type ReactNode, useEffect, useRef, useState} from "react";
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
@@ -22,9 +22,9 @@ function Text({children}: { children: ReactNode }) {
   );
 }
 
-function BigText({children}: { children: ReactNode }) {
+function BigText({children, className}: { children: ReactNode, className?: string }) {
   return (
-    <div className={"text-2xl md:text-5xl font-black"}>
+    <div className={cn("text-2xl md:text-5xl font-black", className)}>
       {children}
     </div>
   );
@@ -51,7 +51,7 @@ function WrappedCarousel() {
     <Carousel opts={{
       align: "start",
     }}
-              className="w-full max-w-xs mt-4 text-gray-950">
+              className="max-w-sm  mt-4 text-gray-950">
       <CarouselContent className={"h-[300px] text-gray-950"}>
         <CarouselItem className={"flex flex-col items-center justify-center bg-circle-wave"}>
           <Text>In {year} you&apos;ve bought</Text>
@@ -65,7 +65,7 @@ function WrappedCarousel() {
         {data.totalCost > 0 && (
           <CarouselItem className={"flex flex-col items-center justify-center bg-tiles"}>
             <Text>You&apos;ve spent</Text>
-            <BigText>{data.totalCost} 🤫</BigText>
+            <BigText>{Math.floor(data.totalCost * 100) / 100} 🤫</BigText>
             {data.hasMissingCosts && (<div className={"whitespace-pre-wrap"}>Did you enter everything 😉?</div>)}
           </CarouselItem>
         )}
@@ -90,23 +90,23 @@ function WrappedCarousel() {
         </CarouselItem>
         <CarouselItem className={"flex flex-col items-center justify-center bg-3d-blocks"}>
           <Text>Your most used grinder</Text>
-          <BigText>{data.mostUsedGrinder}</BigText>
+          <BigText className={"px-1 truncate max-w-full"}>{data.mostUsedGrinder}</BigText>
         </CarouselItem>
         <CarouselItem className={"flex flex-col items-center justify-center bg-pills"}>
           <Text>Your favorite preparation method</Text>
-          <BigText>{data.mostUsedPreparationMethod}</BigText>
+          <BigText className={"px-1 truncate max-w-full"}>{data.mostUsedPreparationMethod}</BigText>
         </CarouselItem>
         <CarouselItem className={"flex flex-col items-center justify-center bg-arrows"}>
           <Text>Your favorite origin</Text>
-          <BigText>{data.mostCommonOrigin}</BigText>
+          <BigText className={"px-1 truncate max-w-full"}>{data.mostCommonOrigin}</BigText>
         </CarouselItem>
         <CarouselItem className={"flex flex-col items-center justify-center bg-links"}>
           <Text>Your favorite variety</Text>
-          <BigText>{data.mostCommonVariety}</BigText>
+          <BigText className={"px-1 truncate max-w-full"}>{data.mostCommonVariety}</BigText>
         </CarouselItem>
         <CarouselItem className={"flex flex-col items-center justify-center bg-tiles"}>
           <Text>Your favorite processing</Text>
-          <BigText>{data.mostCommonProcessingMethod}</BigText>
+          <BigText className={"px-1 truncate max-w-full"}>{data.mostCommonProcessingMethod}</BigText>
         </CarouselItem>
 
         <CarouselItem className={"flex flex-col items-center justify-center bg-stars"}>
@@ -169,7 +169,6 @@ function Upload() {
     }
     try {
       setData(createWrappedStatistics(await readZipFile(file), year));
-    console.log("miaw?")
     } catch (e) {
       const wrappedError = (e as {wrappedError: string}).wrappedError;
       if (wrappedError) {
