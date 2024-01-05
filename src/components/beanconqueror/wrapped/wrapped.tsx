@@ -47,7 +47,6 @@ function WrappedCarousel() {
     );
   });
 
-  console.log(data.mostCommonProcessingMethod);
   return (
     <Carousel opts={{
       align: "start",
@@ -63,6 +62,13 @@ function WrappedCarousel() {
           <Text>With a total weight of</Text>
           <BigText>{Math.floor(data.totalWeight * 100) / 100} grams</BigText>
         </CarouselItem>
+        {data.totalCost > 0 && (
+          <CarouselItem className={"flex flex-col items-center justify-center bg-tiles"}>
+            <Text>You&apos;ve spent</Text>
+            <BigText>{data.totalCost} 🤫</BigText>
+            {data.hasMissingCosts && (<div className={"whitespace-pre-wrap"}>Did you enter everything 😉?</div>)}
+          </CarouselItem>
+        )}
         <CarouselItem className={"flex flex-col items-center justify-center bg-circle-wave-2"}>
           <Text>You&apos;ve been busy, you made</Text>
           <BigText>{data.totalBrews} brews</BigText>
@@ -126,7 +132,6 @@ function Upload() {
 
   const callback = async () => {
     const file = fileRef.current?.files?.[0];
-
     if (!file) {
       toast({
         title: "Error",
@@ -137,6 +142,7 @@ function Upload() {
     }
     try {
       setData(createWrappedStatistics(await readZipFile(file), year));
+    console.log("miaw?")
     } catch (e) {
       const wrappedError = (e as {wrappedError: string}).wrappedError;
       if (wrappedError) {

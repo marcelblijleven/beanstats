@@ -34,6 +34,8 @@ export type WrappedData = {
   totalBrews: number;
   totalCoffee: number;
   totalWeight: number;
+  totalCost: number;
+  hasMissingCosts: boolean;
   brewsPerMonth: Record<string, number>;
   averageBrewsPerDay: number;
   mostCommonDrinkingHour: number;
@@ -58,8 +60,6 @@ function getDefaultDict(initial: number): Record<string | symbol, number> {
   });
 }
 
-const foo = {};
-
 /**
  * Checks if the provided data has either a buy date equal to the provided year, or
  * a unix timestamp of the provided year.
@@ -70,10 +70,7 @@ function inYear(data: HasTimeData, year: number): boolean {
   if (!!data.buyDate) {
     return new Date(data.buyDate).getFullYear() === year;
   }
-  const d = new Date(data.config.unix_timestamp * 1000);
-  if (d.getFullYear() === year) {
-    console.log(d.getHours())
-  }
+
   return new Date(data.config.unix_timestamp * 1000).getFullYear() === year;
 }
 
@@ -195,11 +192,22 @@ export function createWrappedStatistics(data: BCData, year: number): WrappedData
   const grinders = brewsInYear.map(b => b.mill);
   const preps = brewsInYear.map(b => b.method_of_preparation);
 
+  let hasMissingCosts = false;
+
+  for (const bean of beansInYear) {
+    if (!bean.cost) {
+      hasMissingCosts = true;
+      break;
+    }
+  }
+
   return  {
     year: year,
     totalBrews: mappings.brewMaps.inYear.size,
     totalCoffee: mappings.beanMaps.inYear.size,
     totalWeight: Array.from(beansInYear).reduce((prev, bean) => prev + bean.weight, 0),
+    totalCost: beansInYear.reduce((prev, curr) => prev + curr.cost, 0),
+    hasMissingCosts: hasMissingCosts,
     brewsPerMonth: timeStats.countPerMonth,
     averageBrewsPerDay: Object.values(timeStats.brewsPerDay).reduce((prev, curr) => prev + curr, 0) / Object.values(timeStats.brewsPerDay).length,
     mostCommonDrinkingHour: parseInt(mostCommonDrinkingHour),
