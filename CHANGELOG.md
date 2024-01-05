@@ -1,5 +1,28 @@
 # Changelog
 
+## [2.0.0](https://github.com/marcelblijleven/beanstats/compare/v1.19.1...v2.0.0) (2024-01-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* moving api urls to central location
+
+### Features
+
+* add best rated stats ([3c390cd](https://github.com/marcelblijleven/beanstats/commit/3c390cdfae2ac0fd4ffb2ccfb06d01bad9025a5a))
+* show how much people spent on their coffee in wrapped ([743a84c](https://github.com/marcelblijleven/beanstats/commit/743a84ce3580375320ca1cc877cbfc15c8d642b5))
+
+
+### Bug Fixes
+
+* drop index instead of constraint ([2b811d3](https://github.com/marcelblijleven/beanstats/commit/2b811d37b2d10c88d2c50d005a3925fcad809459))
+* move unique constraint from roaster name and combine it with user id ([d6fdddc](https://github.com/marcelblijleven/beanstats/commit/d6fdddc1c697208c0b61b576a307ad2146cbef80))
+
+
+### Code Refactoring
+
+* moving api urls to central location ([eedd124](https://github.com/marcelblijleven/beanstats/commit/eedd124e746daab6cf70fbfd78f0b7222b14280f))
+
 ## [1.19.1](https://github.com/marcelblijleven/beanstats/compare/v1.19.0...v1.19.1) (2024-01-04)
 
 
