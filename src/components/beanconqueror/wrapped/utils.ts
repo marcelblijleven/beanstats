@@ -282,7 +282,7 @@ export function createWrappedStatistics(data: BCData, year: number): WrappedData
   const grinders = brewsInYear.map(b => b.mill);
   const preps = brewsInYear.map(b => b.method_of_preparation);
   const bestRated = getBestRated(mappings.beanMaps.inYear, mappings.grinderMap, mappings.preparationMap, brewsInYear);
-  console.log(bestRated)
+
   let hasMissingCosts = false;
 
   for (const bean of beansInYear) {
