@@ -5,6 +5,7 @@ import {currentUser} from "@clerk/nextjs/server";
 import {readZipFile} from "@/lib/beanconqueror/upload/utils";
 
 import {importBeans, type Notify} from "./utils";
+import {nanoid} from "nanoid";
 
 /**
  * Checks if the file has the expected mime type
@@ -83,7 +84,10 @@ export async function importBeanconqueror(prevState: unknown, formData: FormData
 
         return {message: getResultMessage(importResult), success: true};
     } catch (e) {
-        const message = e instanceof Error ? e.message : "unknown error occurred";
+        const errorMessage = e instanceof Error ? e.message : "unknown error occurred";
+        const id = nanoid(10);
+        const message = `an error occurred, log id: ${id}`;
+        console.error(`id: ${id} error: ${errorMessage}`);
         return {message, success: false};
     }
 
