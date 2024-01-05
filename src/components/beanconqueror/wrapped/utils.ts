@@ -29,6 +29,11 @@ type TimeStats = {
   countOfMostBrews: number;
 }
 
+type BestRated = {
+  name: string;
+  average: number;
+}
+
 export type WrappedData = {
   year: number;
   totalBrews: number;
@@ -44,9 +49,11 @@ export type WrappedData = {
   mostCommonProcessingMethod: string;
   mostUsedGrinder: string;
   mostUsedPreparationMethod: string;
-  bestRatedCoffee: string;
   mostBrewsOnDay: string;
   countOfMostBrews: number;
+  bestRatedBeans: BestRated[],
+  bestRatedGrindSetting: BestRated[],
+  bestRatedPreparationMethod: BestRated[],
 }
 
 /**
@@ -58,6 +65,15 @@ function getDefaultDict(initial: number): Record<string | symbol, number> {
   return new Proxy(init, {
     get: (target, key)  => key in target ? target[key] : initial,
   });
+}
+
+function getDefaultForObject<T, R>(obj: T, key: keyof T, initial: R): R {
+  if (key in obj) {
+    return obj[key];
+  }
+
+  obj[key] = initial;
+  return obj[key];
 }
 
 /**
@@ -167,6 +183,80 @@ function mostCommonValue<T>(data: Array<T | undefined>): T | undefined {
 }
 
 /**
+ * Retrieve the top 5 rated objects
+ * @param data
+ */
+function getRating(data: Record<string, number[]>):{name: string, rating: number}[] {
+  return Object.entries(data).map(value => {
+    const [name, ratings] = value;
+    return {
+      name: name,
+      average: ratings.reduce((prev, curr) => prev + curr, 0) / ratings.length,
+    };
+  }).sort((a, b) => b.average - a.average).filter(entry => {
+    return entry.name !== "";
+  }).slice(0, 5);
+}
+
+/**
+ * Retrieve the top 5 rated objects, where the actual name of the rated object
+ * is retrieved from the provided map via a property key.
+ * @param data
+ * @param mapping
+ */
+function getRatingWithMap(data: Record<string, number[]>, mapping: Map<string, Mill | Preparation>): {name: string, rating: number}[] {
+  return Object.entries(data).map(value => {
+    const [uuid, ratings] = value;
+    return {
+      entry: uuid,
+      average: ratings.reduce((prev, curr) => prev + curr, 0) / ratings.length,
+    };
+  }).sort((a, b) => b.average - a.average).slice(0, 5).map(value => ({
+    name: mapping.get(value.entry)?.name ?? "Unknown",
+    average: value.average,
+  })).filter(entry => entry.name !== "Unknown").slice(0, 5);
+}
+
+function getBestRated(beanMap: Map<string, Bean>, grinderMap: Map<string, Mill>, preparationMap: Map<string, Preparation>, brews: Brew[]) {
+  type RatedBean = {
+    ratings: number[];
+    beanRating: number;
+  }
+  const ratedBeans: Record<string, RatedBean> = {};
+  const ratedGrinderSetting: Record<string, number[]> = {};
+  const ratedPreparationMethods: Record<string, number[]> = {};
+  for (const brew of brews) {
+    const rating = brew.rating;
+    if (!rating) continue;
+
+    // Add ratings
+    getDefaultForObject(ratedBeans, brew.bean, {ratings: [], beanRating: 0}).ratings.push(rating);
+    ratedBeans[brew.bean].beanRating = beanMap.get(brew.bean)?.rating ?? 0;
+    getDefaultForObject(ratedGrinderSetting, brew.grind_size, []).push(rating);
+    getDefaultForObject(ratedPreparationMethods, brew.method_of_preparation, []).push(rating);
+  }
+
+  const bestRatedBeans = Object.entries(ratedBeans).map(value => {
+    const [bean, rated] = value;
+    return {
+      bean: bean,
+      average: rated.ratings.reduce((prev, curr: number) => prev + curr, 0) / rated.ratings.length,
+      beanRating: rated.beanRating,
+    };
+  }).sort((a, b) => {
+    if (a.average === b.average) {
+      // Averages are the same, use bean rating to compare
+      return b.beanRating - a.beanRating;
+    }
+
+    return b.average - a.average;
+  }).map(rated => ({name: beanMap.get(rated.bean)?.name ?? "Unknown", average: rated.average})).filter(entry => entry.bean !== "Unknown").slice(0, 5);
+  const bestRatedGrinderSetting = getRating(ratedGrinderSetting);
+  const bestRatedPreparationMethods = getRatingWithMap(ratedPreparationMethods, preparationMap);
+  return {bestRatedBeans, bestRatedGrinderSetting, bestRatedPreparationMethods};
+}
+
+/**
  * Create wrapped statistics for the provided year. If the year has no brews or beans, the function
  * will throw a custom object
  * @param data {BCData} the Beanconqueror data from the zip file
@@ -191,7 +281,8 @@ export function createWrappedStatistics(data: BCData, year: number): WrappedData
   const varieties = beansInYear.flatMap(b => b.bean_information.flatMap(i => i.variety));
   const grinders = brewsInYear.map(b => b.mill);
   const preps = brewsInYear.map(b => b.method_of_preparation);
-
+  const bestRated = getBestRated(mappings.beanMaps.inYear, mappings.grinderMap, mappings.preparationMap, brewsInYear);
+  console.log(bestRated)
   let hasMissingCosts = false;
 
   for (const bean of beansInYear) {
@@ -216,8 +307,10 @@ export function createWrappedStatistics(data: BCData, year: number): WrappedData
     mostCommonProcessingMethod: mostCommonValue(processings) ?? "",
     mostUsedGrinder: mappings.grinderMap.get(mostCommonValue<string>(grinders) ?? "")?.name ?? "",
     mostUsedPreparationMethod: mappings.preparationMap.get(mostCommonValue(preps) ?? "")?.name ?? "",
-    bestRatedCoffee: "",
     mostBrewsOnDay: timeStats.mostBrewsOnDate,
     countOfMostBrews: timeStats.countOfMostBrews,
+    bestRatedGrindSetting: bestRated.bestRatedGrinderSetting,
+    bestRatedPreparationMethod: bestRated.bestRatedPreparationMethods,
+    bestRatedBeans: bestRated.bestRatedBeans,
   } satisfies WrappedData;
 }

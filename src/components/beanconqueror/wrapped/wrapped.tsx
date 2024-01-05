@@ -108,6 +108,33 @@ function WrappedCarousel() {
           <Text>Your favorite processing</Text>
           <BigText>{data.mostCommonProcessingMethod}</BigText>
         </CarouselItem>
+
+        <CarouselItem className={"flex flex-col items-center justify-center bg-stars"}>
+          <Text>Your best rated coffee</Text>
+          <ol className={"text-center text-lg"}>
+            {data.bestRatedBeans.map(rated => (
+              <li key={`rated-beans-${rated.name}`} className={"flex gap-2 items-center justify-center"}><div className={"max-w-[240px] truncate"}>{rated.name}</div>: <b>{Math.floor(rated.average * 100) / 100}</b></li>
+            ))}
+          </ol>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-stars"}>
+          <Text>Your best rated grind setting</Text>
+          <ol className={"text-center text-lg"}>
+            {data.bestRatedGrindSetting.map(rated => (
+              <li key={`rated-grind-setting-${rated.name}`} className={"flex gap-2 items-center justify-center"}><div className={"max-w-[240px] truncate"}>{rated.name}</div>: <b>{Math.floor(rated.average * 100) / 100}</b></li>
+            ))}
+          </ol>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-stars"}>
+          <Text>Your best rated preparation method</Text>
+          <ol className={"text-center text-lg"}>
+            {data.bestRatedPreparationMethod.map(rated => (
+              <li key={`rated-prep-method-${rated.name}`} className={"flex gap-2 items-center justify-center"}><div className={"max-w-[240px] truncate"}>{rated.name}</div>: <b>{Math.floor(rated.average * 100) / 100}</b></li>
+            ))}
+
+          </ol>
+        </CarouselItem>
+
       </CarouselContent>
       <div className={"flex items-center justify-center gap-4 m-4"}>
         <CarouselPrevious />
