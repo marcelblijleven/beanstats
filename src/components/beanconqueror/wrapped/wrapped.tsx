@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {type ReactNode, useEffect, useRef, useState} from "react";
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
@@ -22,9 +22,9 @@ function Text({children}: { children: ReactNode }) {
   );
 }
 
-function BigText({children}: { children: ReactNode }) {
+function BigText({children, className}: { children: ReactNode, className?: string }) {
   return (
-    <div className={"text-2xl md:text-5xl font-black"}>
+    <div className={cn("text-2xl md:text-5xl font-black", className)}>
       {children}
     </div>
   );
@@ -47,12 +47,11 @@ function WrappedCarousel() {
     );
   });
 
-  console.log(data.mostCommonProcessingMethod);
   return (
     <Carousel opts={{
       align: "start",
     }}
-              className="w-full max-w-xs mt-4 text-gray-950">
+              className="max-w-sm  mt-4 text-gray-950">
       <CarouselContent className={"h-[300px] text-gray-950"}>
         <CarouselItem className={"flex flex-col items-center justify-center bg-circle-wave"}>
           <Text>In {year} you&apos;ve bought</Text>
@@ -63,6 +62,13 @@ function WrappedCarousel() {
           <Text>With a total weight of</Text>
           <BigText>{Math.floor(data.totalWeight * 100) / 100} grams</BigText>
         </CarouselItem>
+        {data.totalCost > 0 && (
+          <CarouselItem className={"flex flex-col items-center justify-center bg-tiles"}>
+            <Text>You&apos;ve spent</Text>
+            <BigText>{Math.floor(data.totalCost * 100) / 100} 🤫</BigText>
+            {data.hasMissingCosts && (<div className={"whitespace-pre-wrap"}>Did you enter everything 😉?</div>)}
+          </CarouselItem>
+        )}
         <CarouselItem className={"flex flex-col items-center justify-center bg-circle-wave-2"}>
           <Text>You&apos;ve been busy, you made</Text>
           <BigText>{data.totalBrews} brews</BigText>
@@ -84,24 +90,51 @@ function WrappedCarousel() {
         </CarouselItem>
         <CarouselItem className={"flex flex-col items-center justify-center bg-3d-blocks"}>
           <Text>Your most used grinder</Text>
-          <BigText>{data.mostUsedGrinder}</BigText>
+          <BigText className={"px-1 truncate max-w-full"}>{data.mostUsedGrinder}</BigText>
         </CarouselItem>
         <CarouselItem className={"flex flex-col items-center justify-center bg-pills"}>
           <Text>Your favorite preparation method</Text>
-          <BigText>{data.mostUsedPreparationMethod}</BigText>
+          <BigText className={"px-1 truncate max-w-full"}>{data.mostUsedPreparationMethod}</BigText>
         </CarouselItem>
         <CarouselItem className={"flex flex-col items-center justify-center bg-arrows"}>
           <Text>Your favorite origin</Text>
-          <BigText>{data.mostCommonOrigin}</BigText>
+          <BigText className={"px-1 truncate max-w-full"}>{data.mostCommonOrigin}</BigText>
         </CarouselItem>
         <CarouselItem className={"flex flex-col items-center justify-center bg-links"}>
           <Text>Your favorite variety</Text>
-          <BigText>{data.mostCommonVariety}</BigText>
+          <BigText className={"px-1 truncate max-w-full"}>{data.mostCommonVariety}</BigText>
         </CarouselItem>
         <CarouselItem className={"flex flex-col items-center justify-center bg-tiles"}>
           <Text>Your favorite processing</Text>
-          <BigText>{data.mostCommonProcessingMethod}</BigText>
+          <BigText className={"px-1 truncate max-w-full"}>{data.mostCommonProcessingMethod}</BigText>
         </CarouselItem>
+
+        <CarouselItem className={"flex flex-col items-center justify-center bg-stars"}>
+          <Text>Your best rated coffee</Text>
+          <ol className={"text-center text-lg"}>
+            {data.bestRatedBeans.map(rated => (
+              <li key={`rated-beans-${rated.name}`} className={"flex gap-2 items-center justify-center"}><div className={"max-w-[240px] truncate"}>{rated.name}</div>: <b>{Math.floor(rated.average * 100) / 100}</b></li>
+            ))}
+          </ol>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-stars"}>
+          <Text>Your best rated grind setting</Text>
+          <ol className={"text-center text-lg"}>
+            {data.bestRatedGrindSetting.map(rated => (
+              <li key={`rated-grind-setting-${rated.name}`} className={"flex gap-2 items-center justify-center"}><div className={"max-w-[240px] truncate"}>{rated.name}</div>: <b>{Math.floor(rated.average * 100) / 100}</b></li>
+            ))}
+          </ol>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-stars"}>
+          <Text>Your best rated preparation method</Text>
+          <ol className={"text-center text-lg"}>
+            {data.bestRatedPreparationMethod.map(rated => (
+              <li key={`rated-prep-method-${rated.name}`} className={"flex gap-2 items-center justify-center"}><div className={"max-w-[240px] truncate"}>{rated.name}</div>: <b>{Math.floor(rated.average * 100) / 100}</b></li>
+            ))}
+
+          </ol>
+        </CarouselItem>
+
       </CarouselContent>
       <div className={"flex items-center justify-center gap-4 m-4"}>
         <CarouselPrevious />
@@ -126,7 +159,6 @@ function Upload() {
 
   const callback = async () => {
     const file = fileRef.current?.files?.[0];
-
     if (!file) {
       toast({
         title: "Error",
