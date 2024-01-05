@@ -67,8 +67,8 @@ function getDefaultDict(initial: number): Record<string | symbol, number> {
   });
 }
 
-function getDefaultForObject<T, R>(obj: T, key: keyof T, initial: R): R {
-  if (key in obj) {
+function getDefaultForObject<T>(obj: Record<string, T>, key: keyof typeof obj, initial: T): T {
+  if (Object.hasOwn(obj, key)) {
     return obj[key];
   }
 
@@ -186,7 +186,7 @@ function mostCommonValue<T>(data: Array<T | undefined>): T | undefined {
  * Retrieve the top 5 rated objects
  * @param data
  */
-function getRating(data: Record<string, number[]>):{name: string, rating: number}[] {
+function getRating(data: Record<string, number[]>):{name: string, average: number}[] {
   return Object.entries(data).map(value => {
     const [name, ratings] = value;
     return {
@@ -204,7 +204,7 @@ function getRating(data: Record<string, number[]>):{name: string, rating: number
  * @param data
  * @param mapping
  */
-function getRatingWithMap(data: Record<string, number[]>, mapping: Map<string, Mill | Preparation>): {name: string, rating: number}[] {
+function getRatingWithMap(data: Record<string, number[]>, mapping: Map<string, Mill | Preparation>): {name: string, average: number}[] {
   return Object.entries(data).map(value => {
     const [uuid, ratings] = value;
     return {
@@ -250,7 +250,7 @@ function getBestRated(beanMap: Map<string, Bean>, grinderMap: Map<string, Mill>,
     }
 
     return b.average - a.average;
-  }).map(rated => ({name: beanMap.get(rated.bean)?.name ?? "Unknown", average: rated.average})).filter(entry => entry.bean !== "Unknown").slice(0, 5);
+  }).map(rated => ({name: beanMap.get(rated.bean)?.name ?? "Unknown", average: rated.average})).filter(entry => entry.name !== "Unknown").slice(0, 5);
   const bestRatedGrinderSetting = getRating(ratedGrinderSetting);
   const bestRatedPreparationMethods = getRatingWithMap(ratedPreparationMethods, preparationMap);
   return {bestRatedBeans, bestRatedGrinderSetting, bestRatedPreparationMethods};
