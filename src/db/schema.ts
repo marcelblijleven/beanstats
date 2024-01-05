@@ -1,5 +1,17 @@
 import {relations, sql} from "drizzle-orm";
-import {mysqlTable, serial, text, varchar, int, timestamp, date, decimal, boolean, index} from 'drizzle-orm/mysql-core';
+import {
+    mysqlTable,
+    serial,
+    text,
+    varchar,
+    int,
+    timestamp,
+    date,
+    decimal,
+    boolean,
+    index,
+    unique
+} from 'drizzle-orm/mysql-core';
 
 import {generateNanoid} from "./utils";
 
@@ -22,7 +34,7 @@ export const users = mysqlTable("users", {
 export const roasters = mysqlTable("roasters", {
     id: serial("id").primaryKey(),
     publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid).unique(),
-    name: varchar("name", {length: 255}).notNull().unique(),
+    name: varchar("name", {length: 255}).notNull(),
     country: varchar("country", {length: 255}),
     userId: int("user_id").notNull(),
     modified: timestamp("modified").onUpdateNow().default(sql`CURRENT_TIMESTAMP`),
@@ -32,6 +44,7 @@ export const roasters = mysqlTable("roasters", {
         publicIdIndex: index("public_id_index").on(table.publicId),
         userIdIndex: index("user_id_index").on(table.userId),
         nameIndex: index("name_index").on(table.name),
+        uniqueNameForUser: unique().on(table.userId, table.name)
     };
 });
 
