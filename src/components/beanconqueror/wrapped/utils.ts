@@ -51,11 +51,13 @@ export type WrappedData = {
   mostCommonProcessingMethod: string;
   mostUsedGrinder: string;
   mostUsedPreparationMethod: string;
+  mostUsedRoasters: {name: string, count: number}[];
   mostBrewsOnDay: string;
   countOfMostBrews: number;
   bestRatedBeans: BestRated[],
   bestRatedGrindSetting: BestRated[],
   bestRatedPreparationMethod: BestRated[],
+  weightUnit: string;
 }
 
 /**
@@ -227,6 +229,7 @@ function getBestRated(beanMap: Map<string, Bean>, grinderMap: Map<string, Mill>,
   const ratedBeans: Record<string, RatedBean> = {};
   const ratedGrinderSetting: Record<string, number[]> = {};
   const ratedPreparationMethods: Record<string, number[]> = {};
+
   for (const brew of brews) {
     const rating = brew.rating;
     if (!rating) continue;
@@ -306,6 +309,9 @@ export function createWrappedStatistics(data: BCData, year: number): WrappedData
     }
   }
 
+  const roasters = beansInYear.reduce((prev, curr) => prev.set(curr.roaster, (prev.get(curr.roaster) ?? 0) + 1), new Map<string, number>());
+  const mostUsedRoasters = Array.from(new Map<string, number>([...roasters.entries()].sort((a, b) => b[1] - a[1])).entries()).map(([name, count]) => ({name, count})).slice(0, 5);
+
   return  {
     year: year,
     toCurrency: (value: number) => toCurrency(value, getCurrencySymbol(setting)),
@@ -322,10 +328,12 @@ export function createWrappedStatistics(data: BCData, year: number): WrappedData
     mostCommonProcessingMethod: mostCommonValue(processings) ?? "",
     mostUsedGrinder: mappings.grinderMap.get(mostCommonValue<string>(grinders) ?? "")?.name ?? "",
     mostUsedPreparationMethod: mappings.preparationMap.get(mostCommonValue(preps) ?? "")?.name ?? "",
+    mostUsedRoasters: mostUsedRoasters,
     mostBrewsOnDay: timeStats.mostBrewsOnDate,
     countOfMostBrews: timeStats.countOfMostBrews,
     bestRatedGrindSetting: bestRated.bestRatedGrinderSetting,
     bestRatedPreparationMethod: bestRated.bestRatedPreparationMethods,
     bestRatedBeans: bestRated.bestRatedBeans,
+    weightUnit: brewsInYear[brewsInYear.length - 1].brew_quantity_type
   } satisfies WrappedData;
 }

@@ -110,7 +110,7 @@ export interface Brew {
     brew_temperature:                     number;
     brew_time:                            number;
     brew_quantity:                        number;
-    brew_quantity_type:                   BrewQuantityType;
+    brew_quantity_type:                   string;
     note:                                 string;
     rating:                               number;
     coffee_type:                          string;
@@ -136,10 +136,6 @@ export interface Brew {
     brew_temperature_time_milliseconds?:  number;
     coffee_first_drip_time_milliseconds?: number;
     coffee_blooming_time_milliseconds?:   number;
-}
-
-export enum BrewQuantityType {
-    Gr = "GR",
 }
 
 export interface Coordinates {
