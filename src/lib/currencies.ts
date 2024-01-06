@@ -63,7 +63,7 @@ export const currencies: Record<string, string> = {
   "MUR": "₨",
   "MXN": "$",
   "MNT": "₮",
-  "MNT": "د.إ",
+  "MNT2": "د.إ",
   "MZN": "MT",
   "NAD": "$",
   "NPR": "₨",
