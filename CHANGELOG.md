@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/marcelblijleven/beanstats/compare/v2.0.0...v2.0.1) (2024-01-06)
+
+
+### Bug Fixes
+
+* make /api/beanconqueror/decode public ([aaa04ea](https://github.com/marcelblijleven/beanstats/commit/aaa04eacabe2bab198e0af5d5ea1812ab557bfee))
+
 ## [2.0.0](https://github.com/marcelblijleven/beanstats/compare/v1.19.1...v2.0.0) (2024-01-05)
 
 
