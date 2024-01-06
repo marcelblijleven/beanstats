@@ -3,9 +3,9 @@ import { authMiddleware } from "@clerk/nextjs";
 export default authMiddleware({
     publicRoutes: [
         "/",
+        "/api/beanconqueror/decode",
         "/api/users/webhook",
         "/beanconqueror",
-        "/beanconqueror/api/decode",
         "/beanconqueror/create",
         "/beanconqueror/stats",
         "/beanconqueror/shorten",
