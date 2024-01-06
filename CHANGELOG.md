@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/marcelblijleven/beanstats/compare/v2.0.1...v2.1.0) (2024-01-06)
+
+
+### Features
+
+* add most used roasters ([207c318](https://github.com/marcelblijleven/beanstats/commit/207c318fe0b01c590add1a603bc2d045e24b04e9))
+
 ## [2.0.1](https://github.com/marcelblijleven/beanstats/compare/v2.0.0...v2.0.1) (2024-01-06)
 
 
