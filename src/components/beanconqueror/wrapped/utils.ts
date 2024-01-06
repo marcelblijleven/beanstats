@@ -232,7 +232,8 @@ function getBestRated(beanMap: Map<string, Bean>, grinderMap: Map<string, Mill>,
     // Add ratings
     getDefaultForObject(ratedBeans, brew.bean, {ratings: [], beanRating: 0}).ratings.push(rating);
     ratedBeans[brew.bean].beanRating = beanMap.get(brew.bean)?.rating ?? 0;
-    getDefaultForObject(ratedGrinderSetting, brew.grind_size, []).push(rating);
+
+    if (brew.grind_size !== "") getDefaultForObject(ratedGrinderSetting, `${brew.grind_size} (${grinderMap.get(brew.mill)?.name ?? "unknown"})`, []).push(rating);
     getDefaultForObject(ratedPreparationMethods, brew.method_of_preparation, []).push(rating);
   }
 
