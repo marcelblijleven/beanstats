@@ -1,4 +1,5 @@
-import {type BCData, type Bean, type Brew, type Mill, type Preparation} from "@/types/beanconqueror";
+import {type BCData, type Bean, type Brew, type Mill, type Preparation, type Setting} from "@/types/beanconqueror";
+import {toCurrency, currencies} from "@/lib/currencies";
 
 interface HasConfig {
   config: {uuid: string, unix_timestamp: number}
@@ -36,6 +37,7 @@ type BestRated = {
 
 export type WrappedData = {
   year: number;
+  toCurrency: (value: number) => string;
   totalBrews: number;
   totalCoffee: number;
   totalWeight: number;
@@ -257,12 +259,24 @@ function getBestRated(beanMap: Map<string, Bean>, grinderMap: Map<string, Mill>,
 }
 
 /**
+ * Returns the corresponding currency symbol for the provided settings.
+ * If the settings are undefined or the used currency is unknown, the universal
+ * currency symbol (¤) will be returned.
+ * @param settings {Setting | undefined} Beanconqueror settings
+ */
+function getCurrencySymbol(settings: Setting | undefined): string {
+  const currency = settings?.currency.toUpperCase() ?? "EUR";
+  return currencies[currency] ?? "¤";
+}
+
+/**
  * Create wrapped statistics for the provided year. If the year has no brews or beans, the function
  * will throw a custom object
  * @param data {BCData} the Beanconqueror data from the zip file
  * @param year {number} the year to create statistics for
  */
 export function createWrappedStatistics(data: BCData, year: number): WrappedData {
+  const setting = data.SETTINGS[0];
   const mappings = createMappings(data, year);
   const timeStats = createBrewStats(mappings);
 
@@ -294,6 +308,7 @@ export function createWrappedStatistics(data: BCData, year: number): WrappedData
 
   return  {
     year: year,
+    toCurrency: (value: number) => toCurrency(value, getCurrencySymbol(setting)),
     totalBrews: mappings.brewMaps.inYear.size,
     totalCoffee: mappings.beanMaps.inYear.size,
     totalWeight: Array.from(beansInYear).reduce((prev, bean) => prev + bean.weight, 0),

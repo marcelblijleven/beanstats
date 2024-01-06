@@ -65,7 +65,7 @@ function WrappedCarousel() {
         {data.totalCost > 0 && (
           <CarouselItem className={"flex flex-col items-center justify-center bg-tiles"}>
             <Text>You&apos;ve spent</Text>
-            <BigText>{Math.floor(data.totalCost * 100) / 100} 🤫</BigText>
+            <BigText>{data.toCurrency(data.totalCost)} 🤫</BigText>
             {data.hasMissingCosts && (<div className={"whitespace-pre-wrap"}>Did you enter everything 😉?</div>)}
           </CarouselItem>
         )}
