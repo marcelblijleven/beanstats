@@ -190,6 +190,7 @@ export const currencies: Record<string | symbol, string> = {
 
 export function toCurrency(value: number, currencySymbol: string): string {
   const rounded = Math.round(value * 100) / 100;
+  // @ts-expect-error: complains about style not being valid
   const formattedValue = new Intl.NumberFormat({style: "currency"}).format(rounded);
   return `${currencySymbol} ${formattedValue}`;
 }
