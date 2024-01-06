@@ -11,6 +11,7 @@ import {useToast} from "@/components/ui/use-toast";
 import {cn} from "@/lib/utils";
 
 import "./backgrounds.css";
+import {getWeightString} from "@/lib/weight";
 
 interface Props {
   year: number
@@ -33,6 +34,7 @@ function BigText({children, className}: { children: ReactNode, className?: strin
 function WrappedCarousel() {
   const data = useWrappedStore(state => state.data);
   const year = useWrappedStore(state => state.year);
+
   if (!data) {
     return null;
   }
@@ -60,9 +62,9 @@ function WrappedCarousel() {
         </CarouselItem>
         <CarouselItem className={"flex flex-col items-center justify-center bg-wave"}>
           <Text>With a total weight of</Text>
-          <BigText>{Math.floor(data.totalWeight * 100) / 100} grams</BigText>
+          <BigText>{getWeightString(data.totalWeight, data.weightUnit)}</BigText>
         </CarouselItem>
-        {data.totalCost > 0 && (
+        {!!data.totalCost && data.totalCost > 0 && (
           <CarouselItem className={"flex flex-col items-center justify-center bg-tiles"}>
             <Text>You&apos;ve spent</Text>
             <BigText>{data.toCurrency(data.totalCost)} 🤫</BigText>
@@ -77,6 +79,15 @@ function WrappedCarousel() {
         <CarouselItem className={"flex flex-col items-center justify-center bg-pixels"}>
           <Text>You made the most brews on</Text>
           <BigText>{data.mostBrewsOnDay}</BigText>
+        </CarouselItem>
+        <CarouselItem className={"flex flex-col items-center justify-center bg-links"}>
+          <Text>You bought the most from</Text>
+          <ol className={"text-center text-lg"}>
+            {data.mostUsedRoasters.map(roaster => (
+              <li key={`rated-prep-method-${roaster.name}`} className={"flex gap-2 items-center justify-center"}><div className={"max-w-[240px] truncate"}>{roaster.name}</div>: <b>{roaster.count}</b></li>
+            ))}
+
+          </ol>
         </CarouselItem>
         <CarouselItem className={"flex flex-col items-center justify-center bg-chain"}>
           <Text>Your top 5 brews per month</Text>
