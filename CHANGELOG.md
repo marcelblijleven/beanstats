@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.1.1](https://github.com/marcelblijleven/beanstats/compare/v2.1.0...v2.1.1) (2024-01-07)
+
+
+### Bug Fixes
+
+* notes get cleared when switching tab ([da12ce3](https://github.com/marcelblijleven/beanstats/commit/da12ce33cd028d999c97e04bf9886852dd8e87cd))
+* remove duplicate currency key ([fac857c](https://github.com/marcelblijleven/beanstats/commit/fac857cf9c902bee2b2846d73354aa10016e945e))
+* satisfy compiler by overruling type from react-hook-form ([086aed4](https://github.com/marcelblijleven/beanstats/commit/086aed4224035a059f2c4cbbb9dd1eb23b70d24a))
+* update currency map ([d7eaab0](https://github.com/marcelblijleven/beanstats/commit/d7eaab0f04e69f45c8753e77a43b3f9fb29618d9))
+
 ## [2.1.0](https://github.com/marcelblijleven/beanstats/compare/v2.0.1...v2.1.0) (2024-01-06)
 
 
