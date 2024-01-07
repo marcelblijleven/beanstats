@@ -170,7 +170,11 @@ export function MoreInformationFieldset({form}: FieldsetProps) {
                 name={"notes"}
                 render={({field}) => (
                     <FormItemWrapper label={"Notes"}>
-                        <Textarea onChange={field.onChange} value={field.value} placeholder={"Enter some notes"} />
+                        <Textarea
+                          onChange={field.onChange}
+                          value={field.value as string | undefined}
+                          placeholder={"Enter some notes"}
+                        />
                     </FormItemWrapper>
                 )}
             />
