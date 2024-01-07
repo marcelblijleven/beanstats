@@ -52,7 +52,7 @@ function Usp({title, link, children, icon}: {title: string, link: string, childr
 
   return (
     <section
-      className={"flex items-start gap-4 max-w-md h-32 group hover:cursor-pointer"}
+      className={"flex items-start gap-4 max-w-lg h-32 group hover:cursor-pointer"}
         onClick={onClick}
     >
       <UspIcon>{icon}</UspIcon>
