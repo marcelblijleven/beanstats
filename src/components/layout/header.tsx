@@ -7,10 +7,8 @@ import ThemeSwitcher from "@/components/theme/theme-switcher";
 const Header = () => {
   return (
     <header className="sticky z-20 flex items-center justify-between p-4 bg-opacity-95 bg-background/95 border-b-2 border-accent w-full py-4">
-      <div>
         <HeaderTitle />
-      </div>
-      <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
+        <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
         {headerNavLinks
           .filter((link) => link.href !== "/")
           .map((link) => <NavLink key={link.title} link={link} />)}

@@ -16,7 +16,6 @@ import {type SelectBean} from "@/lib/db/beans/get-bean-details";
 import {createUrlFromFormSchema} from "@/lib/beanconqueror/proto/proto-helpers";
 import {type beanInformationFormSchema} from "@/lib/beanconqueror/validations/bean-information-form-schema";
 import {useState} from "react";
-import {getBeanLink} from "@/lib/beanlink";
 import CopyContainer from "@/components/copy-container";
 import {useMediaQuery} from "@/lib/hooks";
 import {
@@ -27,6 +26,8 @@ import {
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog";
+import {getShortShareLink} from "@/lib/share/actions";
+import {useToast} from "@/components/ui/use-toast";
 
 const QRCode = dynamic(() => import("@/components/qrcode-card").then(module => module.QRCode), {ssr: false});
 
@@ -96,17 +97,31 @@ function createBeanInformationSchema(bean: BeanDetails): beanInformationFormSche
 function QRCodeSection({url}: { url: string }) {
   const [show, setShow] = useState<boolean>(false);
   const [shareUrl, setShareUrl] = useState<string>();
+  const {toast} = useToast();
 
   const onButtonClick = async () => {
     try {
-      const beanlink = await getBeanLink(url);
-      setShareUrl(beanlink.link);
+      const shareLink = await getShortShareLink(url);
+      if (!shareLink) {
+        toast({
+          title: "Error",
+          description: "Something went wrong while creating the share url",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      setShareUrl(shareLink);
       setShow(true);
+      toast({
+        title: "Success",
+        description: "Successfully created a shareable Beanconqueror link",
+        variant: "default",
+      });
     } catch (e) {
       console.error(e);
     }
   };
-
 
   if (!show || !shareUrl) {
     return (
@@ -118,7 +133,7 @@ function QRCodeSection({url}: { url: string }) {
     <>
       <div className={"text-muted-foreground text-sm"}>Scan this QR code with your camera app</div>
       <QRCode value={shareUrl}/>
-      <CopyContainer value={shareUrl} displayValue={"Copy Beanlink url"} />
+      <CopyContainer value={shareUrl} displayValue={"Copy share url"} />
     </>
   );
 }

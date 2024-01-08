@@ -22,13 +22,13 @@ import {Separator} from "@/components/ui/separator";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {createUrlFromFormSchema} from "@/lib/beanconqueror/proto/proto-helpers";
 import {defaultVarietyInformation, beanInformationFormSchema} from "@/lib/beanconqueror/validations/bean-information-form-schema";
-import {type BeanLinkResponse, getBeanLink} from "@/lib/beanlink";
+import {getShortShareEntry} from "@/lib/share/actions";
+import {type createShareEntry} from "@/lib/db/shares/create-share-entry";
 
 export default function BeanInformationForm() {
     const [activeTab, setActiveTab] = useState<"general" | "variety">("general");
     const [showQR, setShowQR] = useState(false);
-    const [url, setUrl] = useState("");
-    const [beanLinkResponse, setBeanLinkResponse] = useState<BeanLinkResponse | undefined>();
+    const [shareEntry, setShareEntry] = useState<Awaited<ReturnType<typeof createShareEntry>>>();
 
     const form = useForm<beanInformationFormSchema>({
         resolver: zodResolver(beanInformationFormSchema),
@@ -56,13 +56,11 @@ export default function BeanInformationForm() {
 
     const blend = form.watch("beanMix");
 
-    const onSubmit = (values: beanInformationFormSchema) => {
+    const onSubmit = async (values: beanInformationFormSchema) => {
         const shareUrl = createUrlFromFormSchema(values);
-        setUrl(shareUrl);
-        setShowQR(true);
-        getBeanLink(shareUrl).then(response => setBeanLinkResponse(response)).catch(err => {
-            console.error(err);
-        });
+        const entry = await getShortShareEntry(shareUrl);
+        setShareEntry(entry);
+        setShowQR(!!entry);
     };
 
     useEffect(() => {
@@ -79,7 +77,6 @@ export default function BeanInformationForm() {
 
         // Reset state
         setShowQR(false);
-        setUrl("");
         setActiveTab("general");
     };
 
@@ -137,7 +134,7 @@ export default function BeanInformationForm() {
                         </div>
                     </form>
                 </Form>
-                {showQR && <ShareCard fallbackUrl={url} beanLinkResponse={beanLinkResponse}/>}
+                {showQR && !!shareEntry?.publicId && <ShareCard shareEntry={shareEntry}/>}
             </CardContent>
         </Card>
     );

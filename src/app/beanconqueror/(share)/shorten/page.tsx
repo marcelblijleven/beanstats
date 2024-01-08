@@ -1,15 +1,15 @@
 import {type Metadata} from "next";
 
-import {ShortenContainer} from "@/components/beanconqueror/share/shorten/shorten-link-container";
+import {ShortLinkForm} from "@/components/beanconqueror/share/shorten/form";
 
 export const metadata: Metadata = {
-    title: "Shorten Beanconqueror link",
-    description: "Shorten a Beanconqueror (share) link using this Beanlink",
-    openGraph: {
-        title: "Shorten a (share) link",
-        description: "Shorten a Beanconqueror (share) link using Beanlink",
-        images: ["/beanconqueror_logo.png"],
-    },
+  title: "Shorten Beanconqueror link",
+  description: "Shorten a Beanconqueror (share) link",
+  openGraph: {
+    title: "Shorten a (share) link",
+    description: "Shorten a Beanconqueror (share) link",
+    images: ["/beanconqueror_logo.png"],
+  },
 };
 
 export default function CreateShareLinkPage() {
@@ -20,11 +20,11 @@ export default function CreateShareLinkPage() {
             Shorten a <span className={"gradient-text"}>Beanconqueror</span> share link
           </h1>
           <p className={"text-center"}>
-            This form uses Beanlink to shorten a Beanconqueror share link.
+            This form creates a shorter and easier-to-share Beanconqueror share link.
           </p>
         </section>
         <div className={"w-full my-6"}>
-          <ShortenContainer link={null}  />
+          <ShortLinkForm />
         </div>
       </div>
 

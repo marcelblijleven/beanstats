@@ -16,7 +16,7 @@ export function StatsContainer() {
     };
 
     return (
-        <div className={"my-6"}>
+        <>
             <div className={"space-y-4"}>
                 {!data && <FileUpload callback={(contents) => processBCFile(contents, retrieveData)}/>}
             </div>
@@ -26,6 +26,6 @@ export function StatsContainer() {
                     <Statistics {...data} />
                 </>
             )}
-        </div>
+        </>
     );
 }

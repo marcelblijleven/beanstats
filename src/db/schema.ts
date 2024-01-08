@@ -140,6 +140,20 @@ export const freezeEntries = mysqlTable("freeze_entries", {
     };
 });
 
+export const shareEntry = mysqlTable("share_entries", {
+    id: serial("id").primaryKey(),
+    publicId: varchar("public_id", {length: 12}).$defaultFn(generateNanoid).unique(),
+    name: varchar("name", {length: 255}),
+    roaster: varchar("roaster", {length: 255}),
+    variety: varchar("variety", {length: 255}),
+    processing: varchar("processing", {length: 255}),
+    beanconquerorUrl: varchar("beanconqueror_url", {length: 2048}),
+}, (table) => {
+    return {
+        publicIdIndex: index("public_id_index").on(table.publicId),
+    };
+});
+
 // Relations
 export const usersRelations =  relations(users, ({ many }) => ({
     roasters: many(roasters),

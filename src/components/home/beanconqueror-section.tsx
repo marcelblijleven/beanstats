@@ -27,8 +27,7 @@ const BeanconquerorSection = () => (
             </p>
             <LinkDetail button={"Create share link"} href={"/beanconqueror/create"} />
             <p>
-                If you have a Beanconqueror or Beanlink share url, you can inspect the information or shorten it using
-                Beanlink.
+                If you have a Beanconqueror or Beanlink share url, you can inspect the information or shorten it.
             </p>
             <div className={"flex gap-2"}>
                 <LinkDetail button={"View share link"} href={"/beanconqueror/view "} />
