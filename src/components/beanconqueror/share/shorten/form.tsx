@@ -21,7 +21,7 @@ function SubmitButton() {
       {pending ? "Shortening" : "Shorten"}
       {pending && <Loader className={"animate-spin h-4 w-4 ml-2"} />}
     </Button>
-  )
+  );
 }
 
 export function ShortLinkForm() {
