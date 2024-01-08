@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.0](https://github.com/marcelblijleven/beanstats/compare/v2.1.1...v2.2.0) (2024-01-08)
+
+
+### Features
+
+* add share links ([004ba88](https://github.com/marcelblijleven/beanstats/commit/004ba88d8000c8d92db45850420c2e21877aee7c))
+* add share links ([4d64545](https://github.com/marcelblijleven/beanstats/commit/4d645454292a456946eb37af3342ea49af728cc7))
+
 ## [2.1.1](https://github.com/marcelblijleven/beanstats/compare/v2.1.0...v2.1.1) (2024-01-07)
 
 
