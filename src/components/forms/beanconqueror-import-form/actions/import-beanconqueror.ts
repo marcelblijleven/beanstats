@@ -57,12 +57,17 @@ function getResultMessage(result: Notify): string {
     return message.join("\n");
 }
 
+export type ImportBeanconquerorFormState = {
+    message: string;
+    success: boolean;
+}
+
 /**
  * Form action for importing a Beanconqueror zip file
  * @param prevState
  * @param formData
  */
-export async function importBeanconqueror(prevState: unknown, formData: FormData) {
+export async function importBeanconqueror(prevState: ImportBeanconquerorFormState, formData: FormData): Promise<ImportBeanconquerorFormState> {
     const file = formData.get("file") as File | null;
 
     if (!file) {
@@ -88,7 +93,6 @@ export async function importBeanconqueror(prevState: unknown, formData: FormData
         const id = nanoid(10);
         const message = `an error occurred, log id: ${id}`;
         console.error(`id: ${id} error: ${errorMessage}`);
-        return {message, success: false};
+        return {message: message, success: false};
     }
-
 }

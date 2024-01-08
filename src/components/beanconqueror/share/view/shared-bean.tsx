@@ -1,12 +1,10 @@
-// https://beanconqueror.com?shareUserBean0=ChtSd2FuZGEgcm9vdHMgb3JpZ2luIEludGFuZ28SGDIwMjMtMDYtMTNUMDk6MzQ6MDAuMDAwWhoYMjAyMy0wNS0yM1QwOTozNDowMC4wMDBaIgAqIlRleGVsc2UgQnJhbmRpbmcgKFRleGVsIPCfh7Pwn4exKSAyADgAQABIAVIAWgpSZWQgRnJ1aXRzYPoBaABwC4IBAIgBAJIBAJoBAKABAKoBKwoGUndhbmRhEglMYWtlIEtpdnUaB0ludGFuZ28qBDE1MDBCB05hdHVyYWywAQC6ARYIABAAGgAgACgAMAA6AEAASABQAFgAwgEAyAEA0AEA2gEWCAAQABgAIAAoADAAOABAAEgAUABYAOIBAgoA
-// https://beanconqueror.com?shareUserBean0=CglGYWtlIG5hbWUSGDIwMjMtMDYtMTVUMTM6NDI6MDAuMDAwWhoYMjAyMy0wNi0xNVQxMzo0MjowMC4wMDBaIgtGYWtlIG5vdGVzICoMRmFrZSByb2FzdGVyMgA4DUADSAJSDWN1c3RvbSBkZWdyZWVaD0xla2tlciwgcHJvZmllbGB7aABwDIIBBTM0LjU2iAEBkgEDVXJsmgEDRWFuoAEAqgF8Cg5GYWtlIGNvdW50cnkgMRINRmFrZSByZWdpb24gMRoLRmFrZSBmYXJtIDEiDUZha2UgZmFybWVyIDEqBDE1MDAyC0hhcnZlc3RlZCAxOglWYXJpZXR5IDFCDFByb2Nlc3NpbmcgMUoHQ2VydGkgMVAMWMDEB2DShdjMBKoBFQoJQ291bnRy&shareUserBean1=eSAyEghSZWdpb24gMrABAboBFggAEAAaACAAKAAwADoAQABIAFAAWADCAQDIAQDQAQDaARYIABAAGAAgACgAMAA4AEAASABQAFgA4gECCgA=
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {useToast} from "@/components/ui/use-toast";
 import {decodeMessage} from "@/lib/beanconqueror/proto";
 import {beanconqueror} from "@/lib/beanconqueror/proto/generated/beanconqueror";
 import {BEANLINK_RE} from "@/lib/beanconqueror/validations/links";
-import {type BeanLinkResponse, followBeanLink} from "@/lib/beanlink";
+import {followBeanLink} from "@/lib/beanlink";
 import {getTextWithFlagSupport} from "@/lib/flags";
 
 import Roast = beanconqueror.Roast;
@@ -16,13 +14,12 @@ import BeanProto = beanconqueror.BeanProto;
 import IBeanInformation = beanconqueror.IBeanInformation;
 
 import LabelledValue from "@/components/beanconqueror/share/view/labelled-value";
-import QRCodeCard from "@/components/qrcode-card";
 
 import {useEffect, useState} from "react";
 
 import {Alert} from "@/components/alert";
 import {ShortenLinkForm} from "@/components/forms/shorten-link-form";
-import {BeanLinkCard} from "@/components/share-card";
+import {type CheckedShareEntryType, type ShareEntryType, ShortShareCard} from "@/components/share-card";
 
 const GeneralTabsContent = ({decoded}: {decoded: BeanProto}) => (
     <>
@@ -108,7 +105,7 @@ const VarietyTabsContent = ({decoded}: {decoded: BeanProto}) => (
 
 const SharedBean = ({url}: { url: string}) => {
     const [viewUrl, setViewUrl] = useState<string>(url);
-    const [data, setData] = useState<BeanLinkResponse | null>(null);
+    const [data, setData] = useState<ShareEntryType>();
     const {toast} = useToast();
 
     let err;
@@ -163,14 +160,11 @@ const SharedBean = ({url}: { url: string}) => {
                     <TabsContent value={"share"} className={"flex flex-col space-y-4"}>
                         {!data && <ShortenLinkForm
                           link={viewUrl}
-                          callback={(data: BeanLinkResponse) => setData(data)}
+                          callback={(data: ShareEntryType) => setData(data)}
                           buttonText={"Create share link"}
                         />}
-                        {!!data && (
-                            <>
-                                <BeanLinkCard response={data} />
-                                <QRCodeCard value={data.link} />
-                            </>
+                        {!!data?.publicId && (
+                            <ShortShareCard entry={data as CheckedShareEntryType} />
                         )}
                     </TabsContent>
                 </Tabs>

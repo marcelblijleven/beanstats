@@ -9,19 +9,21 @@ import {Button} from "@/components/ui/button";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Input} from "@/components/ui/input";
 import {shortenLinkSchema} from "@/lib/beanconqueror/validations/links";
-import {type BeanLinkResponse, getBeanLink} from "@/lib/beanlink";
+import {type ShareEntryType} from "@/components/share-card";
+import {getShortShareEntry} from "@/lib/share/actions";
+import {useToast} from "@/components/ui/use-toast";
 
 
 type Inputs = z.infer<typeof shortenLinkSchema>
 
 export interface ShortenLinkFormProps {
-    callback: (data: BeanLinkResponse) => void;
+    callback: (data: ShareEntryType) => void;
     link?: string | null;
     buttonText?: string;
 }
 
 export function ShortenLinkForm(props: ShortenLinkFormProps) {
-
+    const {toast} = useToast();
     const form = useForm<Inputs>({
         resolver: zodResolver(shortenLinkSchema),
         defaultValues: {
@@ -29,13 +31,25 @@ export function ShortenLinkForm(props: ShortenLinkFormProps) {
         }
     });
     const { isSubmitting } = form.formState;
+    const errorToast = () => toast({
+      title: "Error",
+      description: "Something went wrong",
+      variant: "destructive",
+    });
 
     const onSubmit = async (data: Inputs) => {
         try {
-            const response = await getBeanLink(data.link);
-            props.callback(response);
+            const response = await getShortShareEntry(data.link);
+
+            if (!!response) {
+              props.callback(response);
+              return;
+            }
+            errorToast();
+
         } catch (e) {
             console.log(e);
+            errorToast();
         }
     };
 

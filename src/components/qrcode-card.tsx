@@ -1,3 +1,5 @@
+"use client";
+
 import { QRCode as QRCodeComponent } from "react-qrcode-logo";
 
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";

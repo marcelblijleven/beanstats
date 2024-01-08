@@ -2,9 +2,8 @@
 
 import {useUser} from "@clerk/nextjs";
 import {AlertCircle, Check, Info, Loader} from "lucide-react";
-// @ts-expect-error: experimental property
-import {experimental_useFormState as useFormState} from "react-dom";
-import {experimental_useFormStatus as useFormStatus} from "react-dom";
+import {useFormState} from "react-dom";
+import {useFormStatus} from "react-dom";
 import {importBeanconqueror} from "@/components/forms/beanconqueror-import-form/actions/import-beanconqueror";
 
 import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
@@ -49,8 +48,8 @@ function FormAlert({state}: {state: {message: string | null, success: boolean | 
 
 export default function BeanconquerorImportForm() {
     const user = useUser();
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-assignment
-    const [state, formAction] = useFormState(importBeanconqueror, {message: null, success: null});
+    // @ts-expect-error: typing for importBeanconqueror seems off
+  const [state, action] = useFormState(importBeanconqueror, {message: null, success: null});
 
     if (!user) return (
         <section>
@@ -64,7 +63,7 @@ export default function BeanconquerorImportForm() {
             <section className={"space-y-2"}>
                 <h3 className={"font-bold text-lg"}>Beanconqueror</h3>
                 {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
-                <form className={"max-w-lg space-y-2"} action={formAction}>
+                <form className={"max-w-lg space-y-2"} action={action}>
                     <fieldset className={"flex space-x-2"}>
                         <Input
                             id={"file"}
