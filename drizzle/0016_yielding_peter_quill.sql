@@ -1,0 +1,1 @@
+ALTER TABLE `share_entries` ADD `beanconqueror_url` varchar(2048);
