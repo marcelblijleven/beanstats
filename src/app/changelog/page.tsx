@@ -1,6 +1,5 @@
 import ReactMarkdown from 'react-markdown';
 
-import PageShell from "@/components/layout/page-shell";
 import {H1, H2, H3} from "@/components/text";
 import {getChangelog} from "@/lib/versioning/utils";
 
@@ -8,7 +7,7 @@ export default async function ChangelogPage() {
     const changelog = await getChangelog();
 
     return (
-        <PageShell>
+        <div className={"flex flex-col items-center"}>
             <ReactMarkdown
                 className={"space-y-4"}
                 components={{
@@ -37,6 +36,6 @@ export default async function ChangelogPage() {
             >
                 {changelog}
             </ReactMarkdown>
-        </PageShell>
+        </div>
     );
 }
