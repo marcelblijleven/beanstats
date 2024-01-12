@@ -111,12 +111,13 @@ export default function BeanInformationForm() {
                                     {fields.map((field, index) => (
                                         <>
                                             <VarietyInformationFieldset<beanInformationFormSchema>
-                                                key={field.id} field={field}
+                                                key={field.id}
+                                                field={field}
                                                 index={index}
                                                 form={form}
                                                 remove={remove}
                                             />
-                                            {index !== fields.length - 1 && <Separator />}
+                                            {index !== fields.length - 1 && <Separator key={`sep-${field.id}`} />}
                                         </>
                                     ))}
                                     {blend === "BLEND" && (<Button onClick={(event) => {
