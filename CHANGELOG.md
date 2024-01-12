@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.1](https://github.com/marcelblijleven/beanstats/compare/v2.2.0...v2.2.1) (2024-01-12)
+
+
+### Bug Fixes
+
+* select element form state not persistent ([9732c4b](https://github.com/marcelblijleven/beanstats/commit/9732c4beff92d3942dbd067d27676000a841df6c))
+
 ## [2.2.0](https://github.com/marcelblijleven/beanstats/compare/v2.1.1...v2.2.0) (2024-01-08)
 
 
