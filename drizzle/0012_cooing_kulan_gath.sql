@@ -1,1 +1,0 @@
-ALTER TABLE `cafe_brews` ADD `price` decimal(10,2);

@@ -1,1 +1,0 @@
-ALTER TABLE `share_entries` ADD `processing` varchar(255);
