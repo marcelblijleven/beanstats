@@ -1,1 +1,0 @@
-ALTER TABLE `beans` DROP COLUMN `created_at`;

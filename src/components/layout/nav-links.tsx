@@ -1,25 +1,19 @@
-import Link, {type LinkProps} from "next/link";
+import Link, { type LinkProps } from "next/link";
 
 type HeaderNavLink = {
   href: string;
   title: string;
-}
+};
 
-const headerNavLinks: HeaderNavLink[] = [
-  {href: '/', title: 'Home'},
-  {href: '/dashboard', title: 'Dashboard'},
-  {href: '/coffee', title: 'Coffee'},
-  {href: '/coffee/freeze', title: 'Freeze'},
-  {href: '/brews/cafe', title: 'Cafe brews'},
-];
+const headerNavLinks: HeaderNavLink[] = [{ href: "/", title: "Home" }];
 
 export default headerNavLinks;
 
 export interface NavLinkProps extends Omit<LinkProps, "href"> {
-  link: HeaderNavLink
+  link: HeaderNavLink;
 }
 
-export function NavLink({link, ...props}: NavLinkProps) {
+export function NavLink({ link, ...props }: NavLinkProps) {
   return (
     <Link
       href={link.href}
@@ -30,4 +24,3 @@ export function NavLink({link, ...props}: NavLinkProps) {
     </Link>
   );
 }
-
