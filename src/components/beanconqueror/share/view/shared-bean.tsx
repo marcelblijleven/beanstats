@@ -54,10 +54,7 @@ const GeneralTabsContent = ({ decoded }: { decoded: BeanProto }) => (
             />
           )}
           {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
-          <LabelledValue
-            type={"rating"}
-            label={"Roast range"}
-            value={decoded.roastRange}
+          <LabelledValue type={"rating"} label={"Roast range"} value={decoded.roastRange}
           />
           <LabelledValue
             type={"string"}
@@ -86,10 +83,7 @@ const GeneralTabsContent = ({ decoded }: { decoded: BeanProto }) => (
       <CardContent>
         <div className={"grid grid-cols-1 md:grid-cols-2 gap-2"}>
           {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
-          <LabelledValue
-            type={"number"}
-            label={"Weight"}
-            value={decoded.weight}
+          <LabelledValue type={"number"} label={"Weight"} value={decoded.weight}
           />
           {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
           <LabelledValue type={"number"} label={"Cost"} value={decoded.cost} />

@@ -16,13 +16,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { shortenLinkSchema } from "@/lib/beanconqueror/validations/links";
-import { type BeankLinkResponse, getBeanLink } from "@/lib/beanlink";
+import { type BeanLinkResponse, getBeanLink } from "@/lib/beanlink";
 import { useToast } from "@/components/ui/use-toast";
 
 type Inputs = z.infer<typeof shortenLinkSchema>;
 
 export interface ShortenLinkFormProps {
-  callback: (data: BeankLinkResponse) => void;
+  callback: (data: BeanLinkResponse) => void;
   link?: string | null;
   buttonText?: string;
 }
