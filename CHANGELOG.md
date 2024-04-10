@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.0.0](https://github.com/marcelblijleven/beanstats/compare/v2.2.1...v3.0.0) (2024-04-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* add deprecation notice
+* bump version
+
+### Miscellaneous Chores
+
+* add deprecation notice ([ece7312](https://github.com/marcelblijleven/beanstats/commit/ece73123c901a3e729a683f58f35e3df2a9272de))
+* bump version ([d9524b9](https://github.com/marcelblijleven/beanstats/commit/d9524b9712d9d74414df399679b7bfd564c42be2))
+
 ## [2.2.1](https://github.com/marcelblijleven/beanstats/compare/v2.2.0...v2.2.1) (2024-01-12)
 
 
