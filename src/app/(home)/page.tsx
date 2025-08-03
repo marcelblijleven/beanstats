@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BeanconquerorUsp } from "@/components/home/usp";
-import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 function WrappedLink() {
   return (
@@ -17,21 +17,6 @@ function WrappedLink() {
       </div>
     </Link>
   );
-}
-
-function DBDeprecationNotice() {
-    return (
-        <Alert variant={"destructive"}>
-            <AlertTitle>Database deprecation</AlertTitle>
-            <AlertDescription>
-                A change in the pricing strategy of the database provider increased the costs of hosting Beanstats by several
-                hundreds of dollars, making it impossible to keep providing the database related functionalities of Beanstats free of charge.
-                Therefor these functionalities had to be removed from Beanstats.
-
-                Contact me if you need an export of your data.
-            </AlertDescription>
-        </Alert>
-    )
 }
 
 export default function Home() {
@@ -51,7 +36,6 @@ export default function Home() {
           Beanstats extends Beanconqueror and makes it easy to enter data,
           visualise data and share bean entries
         </p>
-        <DBDeprecationNotice />
         <BeanconquerorUsp />
       </section>
     </div>
