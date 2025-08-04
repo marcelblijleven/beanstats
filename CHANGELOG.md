@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.1.0](https://github.com/marcelblijleven/beanstats/compare/v3.0.0...v3.1.0) (2025-08-04)
+
+
+### Features
+
+* add qr code generation endpoint ([f313428](https://github.com/marcelblijleven/beanstats/commit/f31342857bbbdd8872cd93a710fb6ef8e712ad9f))
+
+
+### Bug Fixes
+
+* build and linter issues ([961bd4e](https://github.com/marcelblijleven/beanstats/commit/961bd4e0a1f71893be599fad53a845f45f194e5b))
+
 ## [3.0.0](https://github.com/marcelblijleven/beanstats/compare/v2.2.1...v3.0.0) (2024-04-10)
 
 
