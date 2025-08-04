@@ -31,7 +31,7 @@ import {
   defaultVarietyInformation,
   beanInformationFormSchema,
 } from "@/lib/beanconqueror/validations/bean-information-form-schema";
-import { BeanLinkResponse, getBeanLink } from "@/lib/beanlink";
+import { type BeanLinkResponse, getBeanLink } from "@/lib/beanlink";
 
 export default function BeanInformationForm() {
   const [activeTab, setActiveTab] = useState<"general" | "variety">("general");

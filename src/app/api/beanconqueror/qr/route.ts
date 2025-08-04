@@ -1,10 +1,9 @@
 import { beanInformationFormSchema } from "@/lib/beanconqueror/validations/bean-information-form-schema";
-import { ZodIssue } from "zod";
 import { createUrlFromFormSchema } from "@/lib/beanconqueror/proto/proto-helpers";
 import { NextResponse } from "next/server";
 import { getBeanLink } from "@/lib/beanlink";
 
-export async function GET() {
+export function GET() {
   return NextResponse.json({
     example: {
       "coffeeName": "Ethiopian Yirgacheffe",
@@ -39,25 +38,22 @@ export async function GET() {
         }
       ]
     }
-  })
+  });
 }
 
-export async function POST(
-  req: Request,
-) {
-  const json = await req.json()
-  const body = beanInformationFormSchema.safeParse(json)
+export async function POST(req: Request) {
+  const body = beanInformationFormSchema.safeParse((await req.json()));
 
   if (!body.success) {
-    const { errors } = body.error
+    const { errors } = body.error;
 
     return NextResponse.json({
       error: { message: "Invalid request data", errors }
-    }, { status: 400 })
+    }, { status: 400 });
   }
 
-  const beanconquerorUrl = createUrlFromFormSchema(body.data)
-  const beanLink = await getBeanLink(beanconquerorUrl)
+  const beanconquerorUrl = createUrlFromFormSchema(body.data);
+  const beanLink = await getBeanLink(beanconquerorUrl);
 
-  return NextResponse.json({ qr: beanLink })
+  return NextResponse.json({ qr: beanLink });
 }
